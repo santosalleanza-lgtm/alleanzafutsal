@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0b0b0c">
+<title>Liberar simulados</title>
+<style>
+:root{--bg:#0b0b0c;--s1:#151517;--s2:#1d1d21;--line:#2e2e34;--tx:#f3eee2;--tx2:#b8b1a0;--gold:#e6c34a;--ok:#4cbf7a;--bad:#e26a6a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+main{max-width:480px;margin:0 auto;padding:28px 16px}
+h1{font-size:22px;margin:0 0 4px}
+p{color:var(--tx2);margin:0 0 18px;font-size:14px}
+.card{background:var(--s1);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:14px}
+form{display:grid;gap:10px}
+label{font-size:13px;color:var(--tx2)}
+input{width:100%;min-height:50px;border-radius:12px;border:1px solid var(--line);background:var(--s2);color:var(--tx);padding:0 14px;font:inherit}
+button,a.btn{display:flex;align-items:center;justify-content:center;min-height:50px;border-radius:12px;border:0;font:inherit;font-weight:800;cursor:pointer;text-decoration:none;background:linear-gradient(135deg,#f3d873,#c9a227);color:#111}
+a.btn.sec{background:var(--s2);color:var(--tx);font-weight:700}
+.cod{font-size:40px;font-weight:900;letter-spacing:.25em;color:var(--gold);text-align:center;margin:6px 0 12px}
+.err{color:var(--bad);font-size:14px}
+#res{display:none}
+.acts{display:grid;gap:10px}
+</style>
+</head>
+<body>
+<main>
+<h1>Liberar simulados</h1>
+<p>Cole o e-mail que chegou no pedido de liberação. O código gerado vale só para esse e-mail.</p>
+<div class="card">
+<form id="f">
+<label>E-mail do aluno<input name="email" type="email" required autocomplete="off"></label>
+<label>WhatsApp do aluno (opcional)<input name="wa" inputmode="tel" autocomplete="off"></label>
+<label>Senha de administrador<input name="senha" type="password" required autocomplete="current-password"></label>
+<button>Gerar código</button>
+<div class="err" id="err"></div>
+</form>
+</div>
+<div class="card" id="res">
+<label>Código para <b id="em"></b></label>
+<div class="cod" id="cod"></div>
+<div class="acts">
+<a class="btn" id="mail" target="_blank" rel="noopener">Enviar por e-mail</a>
+<a class="btn sec" id="wa" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+</div>
+</div>
+</main>
+<script>
+const f=document.getElementById('f'),err=document.getElementById('err');
+try{f.senha.value=sessionStorage.getItem('adm')||''}catch(e){}
+f.onsubmit=async e=>{
+ e.preventDefault();err.textContent='';
+ const r=await fetch('/api/codigo',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:f.email.value,senha:f.senha.value})});
+ const j=await r.json().catch(()=>({erro:'Falha na conexão.'}));
+ if(!r.ok){err.textContent=j.erro||'Erro.';return}
+ try{sessionStorage.setItem('adm',f.senha.value)}catch(e){}
+ const site=location.origin+'/';
+ const msg=`Olá! Seus simulados do HCPA 2026 foram liberados.\n\nAbra ${site}, toque em qualquer simulado bloqueado e digite:\nE-mail: ${j.email}\nCódigo: ${j.codigo}\n\nBons estudos!`;
+ document.getElementById('em').textContent=j.email;
+ document.getElementById('cod').textContent=j.codigo;
+ document.getElementById('mail').href=`mailto:${j.email}?subject=${encodeURIComponent('Seu código de liberação · Simulados HCPA 2026')}&body=${encodeURIComponent(msg)}`;
+ const wa=f.wa.value.replace(/\D/g,''),w=document.getElementById('wa');
+ w.style.display=wa?'':'none';
+ if(wa)w.href=`https://wa.me/${wa.length<=11?'55'+wa:wa}?text=${encodeURIComponent(msg)}`;
+ document.getElementById('res').style.display='block';
+};
+</script>
+</body>
+</html>
