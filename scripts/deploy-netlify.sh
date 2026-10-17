@@ -19,7 +19,7 @@ if [ -z "$SITE_ID" ]; then
 fi
 
 ZIP=$(mktemp -d)/site.zip
-(cd "$ROOT" && zip -qr "$ZIP" index.html netlify.toml img painel)
+(cd "$ROOT" && zip -qr "$ZIP" index.html netlify.toml img)
 
 echo "Enviando deploy..."
 curl -fsS -H "$AUTH" -H 'Content-Type: application/zip' --data-binary "@$ZIP" "$API/sites/$SITE_ID/deploys" |

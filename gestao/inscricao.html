@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#060f1d">
+<meta name="robots" content="noindex, nofollow">
+<title>Inscrição — Alleanza Escola de Futsal</title>
+<meta name="description" content="Ficha de inscrição da Alleanza Escola de Futsal">
+<meta property="og:title" content="Inscrição — Alleanza Escola de Futsal">
+<meta property="og:description" content="Preencha a ficha de inscrição do seu filho(a). Leva 2 minutos.">
+<meta property="og:image" content="logo.jpg">
+<link rel="icon" href="logo.jpg">
+<link rel="apple-touch-icon" href="logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy-deep:#060f1d;
+  --navy:#0a1d36;
+  --gold:#d4af5f;
+  --gold-light:#ecd393;
+  --gold-deep:#a88334;
+  --cream:#f3efe6;
+  --muted:rgba(240,236,226,0.6);
+  --hairline:rgba(255,255,255,0.09);
+  --erro:#f0938d;
+  --ok:#8fd6a8;
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+*{box-sizing:border-box;}
+html{-webkit-font-smoothing:antialiased;background:#060f1d;}
+body{
+  margin:0;min-height:100vh;
+  font-family:'Inter',sans-serif;color:var(--cream);
+  background:
+    radial-gradient(800px 480px at 50% -10%, rgba(212,175,95,0.16), transparent 70%),
+    linear-gradient(180deg,#071426 0%, var(--navy-deep) 70%);
+  background-repeat:no-repeat;
+}
+.wrap{max-width:560px;margin:0 auto;padding:max(28px, env(safe-area-inset-top)) 16px 48px;}
+header{text-align:center;margin-bottom:22px;}
+.logo{width:88px;height:88px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px rgba(212,175,95,0.55), 0 14px 40px -10px rgba(212,175,95,0.5);}
+h1{font-family:'Playfair Display',serif;font-weight:800;font-size:26px;margin:16px 0 4px;letter-spacing:.5px;}
+.kicker{font-size:10.5px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-light);font-weight:700;}
+.intro{font-size:14px;color:var(--muted);line-height:1.6;margin:10px auto 0;max-width:420px;}
+
+.card{
+  background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.018));
+  border:1px solid var(--hairline);border-radius:20px;padding:22px 18px;margin-bottom:14px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.05), 0 20px 50px -24px rgba(0,0,0,0.7);
+}
+.card h2{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:700;margin:0 0 16px;}
+.card h2 .n{width:26px;height:26px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,var(--gold-light),var(--gold-deep));color:#0a1729;font-size:12.5px;font-weight:800;}
+.field{margin-bottom:14px;}
+.field:last-child{margin-bottom:0;}
+label{display:block;font-size:12.5px;font-weight:600;margin-bottom:6px;color:rgba(240,236,226,0.85);}
+label .req{color:var(--gold-light);}
+label .opt{color:var(--muted);font-weight:500;}
+input, select, textarea{
+  width:100%;font-family:'Inter',sans-serif;font-size:16px;color:var(--cream);
+  background:rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.12);border-radius:12px;
+  padding:12px 14px;outline:none;transition:border-color .2s var(--ease), box-shadow .2s var(--ease);
+  -webkit-appearance:none;appearance:none;
+}
+input[type=date]{min-height:48px;}
+select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9'><path d='M1 1l6 6 6-6' stroke='%23ecd393' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");background-repeat:no-repeat;background-position:right 14px center;padding-right:38px;}
+select option{background:#0d2442;color:var(--cream);}
+textarea{min-height:84px;resize:vertical;}
+input:focus, select:focus, textarea:focus{border-color:rgba(212,175,95,0.65);box-shadow:0 0 0 3px rgba(212,175,95,0.25);}
+input::placeholder, textarea::placeholder{color:rgba(240,236,226,0.35);}
+.invalido{border-color:rgba(240,147,141,0.8) !important;box-shadow:0 0 0 3px rgba(240,147,141,0.18) !important;}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
+.row:last-child{margin-bottom:0;}
+.row .field{margin-bottom:0;}
+@media (max-width:480px){ .row{grid-template-columns:1fr;} }
+.check{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px solid var(--hairline);cursor:pointer;}
+.check:first-child{border-top:none;padding-top:0;}
+.check input{width:22px;height:22px;flex-shrink:0;margin:1px 0 0;accent-color:var(--gold);-webkit-appearance:auto;appearance:auto;}
+.check span{font-size:13.5px;line-height:1.55;color:rgba(240,236,226,0.85);}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+.erro-box{display:none;background:rgba(198,54,47,0.12);border:1px solid rgba(198,54,47,0.4);color:var(--erro);
+  border-radius:12px;padding:12px 14px;font-size:13.5px;line-height:1.5;margin-bottom:14px;}
+.btn{
+  display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
+  border:none;border-radius:14px;padding:16px 20px;cursor:pointer;
+  font-family:'Inter',sans-serif;font-size:15.5px;font-weight:800;letter-spacing:.3px;
+  background:linear-gradient(135deg,var(--gold-light) 0%,var(--gold) 45%,var(--gold-deep) 100%);color:#0a1729;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.4), 0 12px 30px -10px rgba(212,175,95,0.75);
+  transition:transform .15s var(--ease), filter .2s var(--ease);
+}
+.btn:active{transform:translateY(1px);}
+.btn:disabled{opacity:.65;cursor:wait;}
+.btn-sec{background:rgba(255,255,255,0.06);color:var(--cream);border:1px solid var(--hairline);box-shadow:none;margin-top:10px;font-weight:700;}
+.privacidade{font-size:11.5px;color:var(--muted);text-align:center;line-height:1.6;margin-top:14px;}
+.sucesso{display:none;text-align:center;padding:34px 22px;}
+.sucesso .ic{width:72px;height:72px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;
+  background:rgba(46,125,79,0.18);border:1px solid rgba(143,214,168,0.45);color:var(--ok);}
+.sucesso h2{justify-content:center;font-family:'Playfair Display',serif;font-size:23px;margin-bottom:8px;}
+.sucesso p{font-size:14px;color:var(--muted);line-height:1.65;margin:0 0 20px;}
+footer{text-align:center;font-size:11px;color:rgba(240,236,226,0.35);margin-top:22px;}
+@media (prefers-reduced-motion: reduce){ *{transition:none !important;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img src="logo.jpg" alt="Alleanza Escola de Futsal" class="logo">
+    <div class="kicker" style="margin-top:16px;">Alleanza Escola de Futsal</div>
+    <h1>Ficha de inscrição</h1>
+    <p class="intro">Preencha os dados do atleta e do responsável. Leva uns 2 minutos — depois a gente confirma tudo pelo WhatsApp.</p>
+  </header>
+
+  <form id="form" novalidate>
+    <div class="card">
+      <h2><span class="n">1</span>Atleta</h2>
+      <div class="field">
+        <label for="nome">Nome completo <span class="req">*</span></label>
+        <input id="nome" name="nome" autocomplete="off" maxlength="120" required placeholder="Nome e sobrenome do atleta">
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="nascimento">Data de nascimento <span class="req">*</span></label>
+          <input id="nascimento" name="nascimento" type="date" required>
+        </div>
+        <div class="field">
+          <label for="rg">RG <span class="opt">(opcional)</span></label>
+          <input id="rg" name="rg" inputmode="numeric" maxlength="30" placeholder="Nº do RG">
+        </div>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="tamanhoCamisa">Tamanho do uniforme</label>
+          <select id="tamanhoCamisa" name="tamanhoCamisa">
+            <option value="">Não sei ainda</option>
+            <option>8</option><option>10</option><option>12</option><option>14</option><option>16</option>
+            <option>PP</option><option>P</option><option>M</option><option>G</option><option>GG</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="jaJogou">Já jogou futsal?</label>
+          <select id="jaJogou" name="jaJogou">
+            <option value="">Selecione</option>
+            <option>Nunca jogou</option>
+            <option>Já jogou em escolinha</option>
+            <option>Joga/jogou em clube</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="escola">Escola onde estuda <span class="opt">(opcional)</span></label>
+        <input id="escola" name="escola" maxlength="120" placeholder="Nome da escola">
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="n">2</span>Família</h2>
+      <div class="field">
+        <label for="responsavel">Nome do responsável <span class="req">*</span></label>
+        <input id="responsavel" name="responsavel" autocomplete="name" maxlength="120" required placeholder="Quem vai acompanhar a matrícula">
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="telefone">WhatsApp <span class="req">*</span></label>
+          <input id="telefone" name="telefone" type="tel" autocomplete="tel" inputmode="tel" maxlength="16" required placeholder="(51) 99999-9999">
+        </div>
+        <div class="field">
+          <label for="email">E-mail <span class="opt">(opcional)</span></label>
+          <input id="email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="120" placeholder="seu@email.com">
+        </div>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="filiacaoMae">Nome da mãe <span class="opt">(opcional)</span></label>
+          <input id="filiacaoMae" name="filiacaoMae" maxlength="120">
+        </div>
+        <div class="field">
+          <label for="filiacaoPai">Nome do pai <span class="opt">(opcional)</span></label>
+          <input id="filiacaoPai" name="filiacaoPai" maxlength="120">
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="n">3</span>Saúde e autorizações</h2>
+      <div class="field">
+        <label for="observacoes">Alergias, condições de saúde ou algo que a gente deva saber <span class="opt">(opcional)</span></label>
+        <textarea id="observacoes" name="observacoes" maxlength="600" placeholder="Ex.: asma, alergia a ..., usa óculos"></textarea>
+      </div>
+      <label class="check"><input type="checkbox" id="autorizaImagem"><span>Autorizo o uso de fotos e vídeos do atleta nas redes sociais da Alleanza.</span></label>
+      <label class="check"><input type="checkbox" id="aceite"><span>Declaro que as informações são verdadeiras e que sou o responsável legal pelo atleta. <span class="req">*</span></span></label>
+    </div>
+
+    <!-- campo isca para robôs: pessoas não veem -->
+    <div class="hp" aria-hidden="true"><label for="site">Site</label><input id="site" name="site" tabindex="-1" autocomplete="off"></div>
+
+    <div class="erro-box" id="erro-box"></div>
+    <button class="btn" id="enviar" type="submit">Enviar inscrição</button>
+    <p class="privacidade">🔒 Seus dados são usados somente pela Alleanza Escola de Futsal para a matrícula e o contato com a família.</p>
+  </form>
+
+  <div class="card sucesso" id="sucesso">
+    <div class="ic"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+    <h2>Inscrição enviada!</h2>
+    <p id="sucesso-txt">Recebemos a ficha. A Alleanza vai entrar em contato pelo WhatsApp para confirmar a matrícula.</p>
+    <a class="btn" id="btn-whats" href="#" target="_blank" rel="noopener">Falar com a Alleanza no WhatsApp</a>
+    <button class="btn btn-sec" id="btn-outra" type="button">Inscrever outro filho(a)</button>
+  </div>
+
+  <footer>Alleanza Escola de Futsal · Porto Alegre/RS</footer>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyBvqWOksEDd9T3lOuiajqmbczv54Czf1Dk",
+  authDomain: "alleanza-c6a68.firebaseapp.com",
+  projectId: "alleanza-c6a68",
+  storageBucket: "alleanza-c6a68.firebasestorage.app",
+  messagingSenderId: "471864636284",
+  appId: "1:471864636284:web:4e4554225a2fe3a2c8eaf9"
+};
+const WHATS_ALLEANZA = '5551991925356';
+
+const form = document.getElementById('form');
+const erroBox = document.getElementById('erro-box');
+const btnEnviar = document.getElementById('enviar');
+const $ = id => document.getElementById(id);
+
+// Data de nascimento: só faz sentido entre 3 e 20 anos atrás
+(function(){
+  const hoje = new Date();
+  const fmt = d => d.toISOString().slice(0,10);
+  $('nascimento').max = fmt(new Date(hoje.getFullYear()-3, hoje.getMonth(), hoje.getDate()));
+  $('nascimento').min = fmt(new Date(hoje.getFullYear()-20, 0, 1));
+})();
+
+// Máscara do WhatsApp: (51) 99999-9999
+$('telefone').addEventListener('input', e=>{
+  const d = e.target.value.replace(/\D/g,'').slice(0,11);
+  let v = d;
+  if(d.length > 2) v = '(' + d.slice(0,2) + ') ' + d.slice(2);
+  if(d.length > 7) v = '(' + d.slice(0,2) + ') ' + d.slice(2, d.length-4) + '-' + d.slice(-4);
+  e.target.value = v;
+});
+
+form.querySelectorAll('input, select, textarea').forEach(el=>{
+  el.addEventListener('input', ()=>el.classList.remove('invalido'));
+});
+
+function mostrarErro(msg, campo){
+  erroBox.textContent = msg;
+  erroBox.style.display = 'block';
+  if(campo){ campo.classList.add('invalido'); campo.focus(); }
+  erroBox.scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+function limpo(id, max){ return ($(id).value || '').trim().slice(0, max); }
+
+form.addEventListener('submit', async e=>{
+  e.preventDefault();
+  erroBox.style.display = 'none';
+  if($('site').value) return; // robô
+
+  const nome = limpo('nome', 120);
+  const nascISO = $('nascimento').value;
+  const responsavel = limpo('responsavel', 120);
+  const telefone = $('telefone').value.replace(/\D/g,'');
+  const email = limpo('email', 120);
+
+  if(nome.split(/\s+/).length < 2) return mostrarErro('Informe o nome completo do atleta (nome e sobrenome).', $('nome'));
+  if(!nascISO) return mostrarErro('Informe a data de nascimento do atleta.', $('nascimento'));
+  if(!responsavel) return mostrarErro('Informe o nome do responsável.', $('responsavel'));
+  if(telefone.length < 10) return mostrarErro('Informe um WhatsApp com DDD, por exemplo (51) 99999-9999.', $('telefone'));
+  if(email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return mostrarErro('Confira o e-mail digitado.', $('email'));
+  if(!$('aceite').checked) return mostrarErro('Marque a declaração de responsável para enviar.', null);
+
+  const [y, m, d] = nascISO.split('-');
+  const ficha = {
+    nome, nascimento: d + '/' + m + '/' + y,
+    rg: limpo('rg', 30), tamanhoCamisa: $('tamanhoCamisa').value, jaJogou: $('jaJogou').value,
+    escola: limpo('escola', 120), responsavel, telefone, email,
+    filiacaoMae: limpo('filiacaoMae', 120), filiacaoPai: limpo('filiacaoPai', 120),
+    observacoes: limpo('observacoes', 600), autorizaImagem: $('autorizaImagem').checked,
+    criadoEm: firebase.firestore.FieldValue.serverTimestamp()
+  };
+
+  btnEnviar.disabled = true;
+  btnEnviar.textContent = 'Enviando...';
+  try{
+    if(!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+    await firebase.firestore().collection('inscricoes').add(ficha);
+    const primeiro = nome.split(' ')[0];
+    $('sucesso-txt').textContent = 'Recebemos a ficha de ' + primeiro + '. A Alleanza vai entrar em contato pelo WhatsApp para confirmar a matrícula.';
+    $('btn-whats').href = 'https://api.whatsapp.com/send?phone=' + WHATS_ALLEANZA + '&text=' +
+      encodeURIComponent('Olá! Acabei de enviar a ficha de inscrição de ' + nome + ' pelo site da Alleanza.');
+    form.style.display = 'none';
+    $('sucesso').style.display = 'block';
+    window.scrollTo({top:0, behavior:'smooth'});
+  }catch(err){
+    console.error(err);
+    mostrarErro('Não foi possível enviar agora. Verifique sua internet e tente de novo. Se continuar, chame a Alleanza no WhatsApp.', null);
+  }finally{
+    btnEnviar.disabled = false;
+    btnEnviar.textContent = 'Enviar inscrição';
+  }
+});
+
+$('btn-outra').addEventListener('click', ()=>{
+  ['nome','nascimento','rg','escola','observacoes'].forEach(id=>$(id).value = '');
+  $('tamanhoCamisa').value = ''; $('jaJogou').value = ''; $('autorizaImagem').checked = false;
+  $('sucesso').style.display = 'none';
+  form.style.display = 'block';
+  $('nome').focus();
+});
+</script>
+</body>
+</html>

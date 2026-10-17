@@ -1,0 +1,49 @@
+// Regras de segurança do Firestore — Painel de Gestão da Alleanza.
+// Cole no console do Firebase: Firestore Database → Regras → Publicar.
+// TROQUE o e-mail abaixo pelo e-mail do administrador criado em
+// Authentication → Users (dá para listar mais de um, separados por vírgula).
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email in ['SEU-EMAIL-ADMIN@exemplo.com'];
+    }
+
+    // Texto opcional com tamanho máximo.
+    function texto(campo, max) {
+      let v = request.resource.data.get(campo, '');
+      return v is string && v.size() <= max;
+    }
+
+    // Dados do painel (alunos, telefones, mensalidades, balanço...): só admin.
+    match /alleanza/{doc} {
+      allow read, write: if isAdmin();
+    }
+
+    // Fichas do link de inscrição (inscricao.html).
+    // Qualquer pessoa pode ENVIAR uma ficha; só o admin lê e apaga.
+    match /inscricoes/{id} {
+      allow create: if request.resource.data.keys().hasOnly([
+            'nome','nascimento','rg','tamanhoCamisa','jaJogou','escola',
+            'responsavel','telefone','email','filiacaoMae','filiacaoPai',
+            'observacoes','autorizaImagem','criadoEm'])
+        && request.resource.data.nome is string
+        && request.resource.data.nome.size() >= 3 && request.resource.data.nome.size() <= 120
+        && request.resource.data.responsavel is string
+        && request.resource.data.responsavel.size() >= 2 && request.resource.data.responsavel.size() <= 120
+        && request.resource.data.telefone is string
+        && request.resource.data.telefone.matches('^[0-9]{10,13}$')
+        && request.resource.data.nascimento is string
+        && request.resource.data.nascimento.matches('^[0-9]{2}/[0-9]{2}/[0-9]{4}$')
+        && texto('rg', 30) && texto('tamanhoCamisa', 6) && texto('jaJogou', 40)
+        && texto('escola', 120) && texto('email', 120)
+        && texto('filiacaoMae', 120) && texto('filiacaoPai', 120)
+        && texto('observacoes', 600)
+        && request.resource.data.get('autorizaImagem', false) is bool
+        && request.resource.data.criadoEm == request.time;
+      allow read, delete: if isAdmin();
+    }
+  }
+}

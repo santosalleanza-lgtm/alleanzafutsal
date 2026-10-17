@@ -13,6 +13,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="application-name" content="Painel Alleanza">
 <meta name="description" content="Painel de Gestão — Alleanza Escola de Futsal">
+<link rel="manifest" href="manifest.webmanifest">
 <title>Painel de Gestão — Alleanza Escola de Futsal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -481,184 +482,6 @@ body.force-mobile .main *{min-width:0 !important;}
   body.force-desktop .view-title{font-size:26px !important;}
 }
 
-/* ============================================================
-   TELA INICIAL (LANDING) — pública, comercial
-============================================================ */
-#landing{
-  min-height:100vh;
-  background:
-    radial-gradient(circle at 15% -10%, rgba(201,162,74,0.16), transparent 45%),
-    radial-gradient(circle at 100% 15%, rgba(46,125,79,0.14), transparent 40%),
-    radial-gradient(circle at 50% 120%, rgba(198,54,47,0.10), transparent 50%),
-    var(--navy-deep);
-  overflow-x:hidden;
-}
-.landing-topbar{
-  position:sticky;top:0;z-index:30;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:14px 22px;
-  background:rgba(8,23,41,0.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-  border-bottom:1px solid var(--line);
-}
-.landing-topbar-brand{display:flex;align-items:center;gap:10px;font-family:'Playfair Display',serif;font-weight:800;font-size:14px;letter-spacing:0.5px;}
-.landing-topbar-brand img{width:34px;height:34px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 1.5px rgba(201,162,74,0.5);}
-.landing-topbar-brand small{display:block;font-size:8.5px;letter-spacing:1.5px;color:var(--gold-light);font-weight:600;font-family:'Inter',sans-serif;}
-.btn-admin-top{
-  background:rgba(255,255,255,0.04);border:1px solid rgba(201,162,74,0.4);
-  color:var(--gold-light);padding:9px 16px;border-radius:999px;
-  font-family:'Inter',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.3px;
-  cursor:pointer;transition:background .2s ease, transform .15s ease;white-space:nowrap;
-}
-.btn-admin-top:hover{background:rgba(201,162,74,0.14);transform:translateY(-1px);}
-
-.landing-hero{
-  min-height:calc(100vh - 64px);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;padding:40px 20px 60px;position:relative;
-}
-.landing-hero-glow{
-  position:absolute;top:8%;left:50%;transform:translateX(-50%);
-  width:460px;height:460px;border-radius:50%;
-  background:radial-gradient(circle, rgba(201,162,74,0.22), transparent 68%);
-  filter:blur(10px);pointer-events:none;
-  animation:heroGlowPulse 6s ease-in-out infinite;
-}
-@keyframes heroGlowPulse{
-  0%,100%{opacity:0.7;transform:translateX(-50%) scale(1);}
-  50%{opacity:1;transform:translateX(-50%) scale(1.08);}
-}
-.landing-logo-hero{
-  width:132px;height:132px;border-radius:50%;object-fit:cover;
-  box-shadow:0 0 0 3px rgba(201,162,74,0.55), 0 18px 50px rgba(0,0,0,0.55), 0 0 60px rgba(201,162,74,0.25);
-  position:relative;z-index:1;margin-bottom:22px;
-  animation:heroLogoFloat 5s ease-in-out infinite;
-  opacity:0;animation-fill-mode:forwards;
-  animation-name:heroLogoFloat, landingFadeUp;
-  animation-duration:5s, .8s;
-  animation-delay:0s, .05s;
-  animation-timing-function:ease-in-out, ease-out;
-  animation-iteration-count:infinite, 1;
-}
-@keyframes heroLogoFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
-@keyframes landingFadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
-.landing-kicker{
-  font-size:11px;letter-spacing:3px;color:var(--gold-light);font-weight:700;margin-bottom:10px;
-  opacity:0;animation:landingFadeUp .7s ease-out .15s forwards;
-}
-.landing-title{
-  font-family:'Playfair Display',serif;font-weight:800;
-  font-size:clamp(40px,9vw,72px);letter-spacing:2px;margin:0;line-height:1;
-  background:linear-gradient(135deg,#f3dfa8 0%, var(--gold-light) 35%, var(--gold) 65%, #a97f2f 100%);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-  filter:drop-shadow(0 6px 18px rgba(0,0,0,0.4));
-  opacity:0;animation:landingFadeUp .7s ease-out .25s forwards;
-}
-.landing-subtitle{
-  font-family:'Inter',sans-serif;font-weight:700;font-size:clamp(13px,2.4vw,17px);
-  letter-spacing:5px;text-transform:uppercase;color:var(--cream);margin-top:8px;
-  opacity:0;animation:landingFadeUp .7s ease-out .35s forwards;
-}
-.landing-tagline{
-  max-width:480px;margin:22px auto 34px;font-size:14.5px;line-height:1.7;color:var(--muted);
-  opacity:0;animation:landingFadeUp .7s ease-out .45s forwards;
-}
-.btn-inicio{
-  position:relative;overflow:hidden;
-  background:linear-gradient(135deg,var(--gold-light),var(--gold) 55%,#a97f2f);
-  color:var(--navy-deep);border:none;border-radius:999px;
-  padding:18px 56px;font-family:'Inter',sans-serif;font-weight:800;font-size:16px;letter-spacing:1.5px;
-  cursor:pointer;text-transform:uppercase;
-  box-shadow:0 10px 30px rgba(201,162,74,0.35), 0 0 0 0 rgba(201,162,74,0.5);
-  animation:btnInicioPulse 2.6s ease-in-out infinite, landingFadeUp .7s ease-out .6s forwards;
-  opacity:0;
-  transition:transform .18s ease;
-}
-.btn-inicio:hover{transform:translateY(-2px) scale(1.02);}
-.btn-inicio:active{transform:translateY(0) scale(0.98);}
-@keyframes btnInicioPulse{
-  0%,100%{box-shadow:0 10px 30px rgba(201,162,74,0.35), 0 0 0 0 rgba(201,162,74,0.45);}
-  50%{box-shadow:0 10px 34px rgba(201,162,74,0.5), 0 0 0 14px rgba(201,162,74,0);}
-}
-.btn-inicio-glow{
-  position:absolute;top:0;left:-60%;width:50%;height:100%;
-  background:linear-gradient(120deg, transparent, rgba(255,255,255,0.55), transparent);
-  transform:skewX(-20deg);
-  animation:btnInicioShine 3.2s ease-in-out infinite;
-}
-@keyframes btnInicioShine{
-  0%{left:-60%;} 35%{left:120%;} 100%{left:120%;}
-}
-.btn-inicio-label{position:relative;z-index:1;}
-.landing-scroll-hint{
-  margin-top:30px;font-size:11px;letter-spacing:1px;color:rgba(246,243,236,0.4);
-  animation:scrollHintBounce 2s ease-in-out infinite, landingFadeUp .7s ease-out .8s forwards;
-  opacity:0;
-}
-@keyframes scrollHintBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
-
-.landing-content{
-  max-width:1100px;margin:0 auto;padding:10px 24px 70px;
-  max-height:0;opacity:0;overflow:hidden;
-  transition:max-height 1s cubic-bezier(.2,.8,.2,1), opacity .8s ease;
-}
-.landing-content.show{max-height:6000px;opacity:1;}
-
-.landing-section-title{text-align:center;margin:38px 0 26px;}
-.ls-kicker{font-size:11px;letter-spacing:3px;color:var(--gold-light);font-weight:700;}
-.landing-section-title h2{font-family:'Playfair Display',serif;font-size:clamp(21px,3.4vw,30px);font-weight:700;margin:8px 0 0;color:var(--cream);}
-
-.depo-carousel-wrap{display:flex;align-items:center;gap:10px;}
-.depo-nav{
-  flex-shrink:0;width:40px;height:40px;border-radius:50%;
-  background:rgba(255,255,255,0.05);border:1px solid var(--line);color:var(--gold-light);
-  font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;
-  transition:background .2s ease;
-}
-.depo-nav:hover{background:rgba(201,162,74,0.18);}
-.depo-track-viewport{flex:1;min-width:0;overflow:hidden;}
-.depo-track{display:flex;gap:16px;transition:transform .5s cubic-bezier(.2,.8,.2,1);}
-.depo-card{
-  flex:0 0 100%;max-width:100%;
-  background:linear-gradient(160deg, rgba(255,255,255,0.05), rgba(255,255,255,0.015));
-  border:1px solid var(--line);border-radius:18px;padding:26px 28px;
-  box-sizing:border-box;
-}
-.depo-quote-ic{font-family:'Playfair Display',serif;font-size:40px;color:var(--gold);line-height:1;margin-bottom:6px;opacity:0.8;}
-.depo-estrelas{color:var(--gold-light);font-size:13px;margin-bottom:10px;letter-spacing:2px;}
-.depo-texto{font-size:14.5px;line-height:1.75;color:var(--cream);margin-bottom:16px;min-height:52px;}
-.depo-nome{font-weight:700;font-size:12.5px;color:var(--gold-light);}
-.depo-badge-exemplo{display:inline-block;margin-left:8px;font-size:9.5px;font-weight:700;letter-spacing:0.5px;color:#f0938d;background:rgba(198,54,47,0.15);border:1px solid rgba(198,54,47,0.3);border-radius:999px;padding:2px 8px;vertical-align:middle;}
-@media (min-width:760px){
-  .depo-card{flex:0 0 calc(50% - 8px);max-width:calc(50% - 8px);}
-}
-@media (min-width:1040px){
-  .depo-card{flex:0 0 calc(33.333% - 11px);max-width:calc(33.333% - 11px);}
-}
-.depo-dots{display:flex;justify-content:center;gap:6px;margin-top:16px;}
-.depo-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.18);cursor:pointer;transition:background .2s ease, transform .2s ease;}
-.depo-dot.active{background:var(--gold);transform:scale(1.3);}
-
-.landing-cta{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:44px 0;}
-.landing-cta-card{background:rgba(255,255,255,0.03);border:1px solid var(--line);border-radius:16px;padding:22px 18px;text-align:center;}
-.landing-cta-ic{font-size:26px;margin-bottom:10px;}
-.landing-cta-label{font-family:'Playfair Display',serif;font-weight:700;font-size:15px;color:var(--gold-light);margin-bottom:6px;}
-.landing-cta-txt{font-size:12.5px;line-height:1.6;color:var(--muted);}
-
-.landing-matricula{
-  display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;
-  background:linear-gradient(135deg, rgba(201,162,74,0.14), rgba(201,162,74,0.03));
-  border:1px solid rgba(201,162,74,0.35);border-radius:18px;padding:26px 28px;margin-bottom:40px;
-}
-.landing-matricula-title{font-family:'Playfair Display',serif;font-size:19px;font-weight:800;color:var(--cream);}
-.landing-matricula-sub{font-size:12.5px;color:var(--muted);margin-top:4px;}
-.landing-foot{display:flex;flex-direction:column;align-items:center;gap:8px;font-size:11px;color:rgba(246,243,236,0.4);letter-spacing:0.3px;}
-.landing-foot-logo{width:26px;height:26px;border-radius:50%;object-fit:cover;opacity:0.6;}
-
-@media (max-width:760px){
-  .landing-cta{grid-template-columns:1fr;}
-  .landing-matricula{flex-direction:column;align-items:flex-start;}
-  .btn-inicio{padding:16px 42px;font-size:14.5px;}
-}
 
 /* ============================================================
    CAMADA PREMIUM v2 — refinamento visual por cima do tema
@@ -683,7 +506,7 @@ body.force-mobile .main *{min-width:0 !important;}
   --ring:0 0 0 3px rgba(212,175,95,0.28);
   --ease:cubic-bezier(.2,.8,.2,1);
 }
-html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;}
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;background:#060f1d;}
 body{
   background:
     radial-gradient(1200px 600px at 0% -10%, rgba(212,175,95,0.10), transparent 60%),
@@ -808,7 +631,7 @@ body{
 .view-sub{font-size:13.5px;margin-bottom:26px;max-width:720px;line-height:1.55;}
 @keyframes viewIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
 
-.card, .info-card, .comp-card, .evento-card, .kpi, .depo-card, .landing-cta-card{
+.card, .info-card, .comp-card, .evento-card, .kpi{
   background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.018));
   border:1px solid var(--hairline);
   box-shadow:inset 0 1px 0 rgba(255,255,255,0.05), var(--shadow-sm);
@@ -925,13 +748,6 @@ td.sticky-col, th.sticky-col{background:#0b2040;}
   bottom:max(22px, env(safe-area-inset-bottom));
 }
 
-/* ---------- Tela inicial pública ---------- */
-.landing-topbar{background:rgba(6,15,29,0.7);border-bottom:1px solid var(--hairline);padding-top:max(14px, env(safe-area-inset-top));}
-.btn-admin-top{border-color:rgba(212,175,95,0.3);font-weight:600;}
-.landing-title{letter-spacing:6px;}
-.landing-cta-card{border-radius:18px;transition:transform .25s var(--ease), border-color .25s var(--ease);}
-.landing-cta-card:hover{transform:translateY(-3px);border-color:rgba(212,175,95,0.3);}
-.landing-matricula{box-shadow:var(--shadow-lg);}
 
 /* ---------- Celular ---------- */
 @media (max-width: 860px){
@@ -951,6 +767,80 @@ body.force-desktop .view-title{font-size:30px !important;}
 
 @media (prefers-reduced-motion: reduce){
   *, *::before, *::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;}
+}
+
+
+/* ============================================================
+   GESTÃO v2 — login, menu agrupado, alertas de inscrição
+============================================================ */
+#login-screen{
+  min-height:100vh;min-height:100dvh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+  padding:24px 16px;
+  background:
+    radial-gradient(700px 420px at 50% 20%, rgba(212,175,95,0.14), transparent 70%),
+    var(--navy-deep);
+}
+.login-card{
+  width:100%;max-width:380px;
+  display:flex;flex-direction:column;align-items:stretch;
+  background:linear-gradient(180deg,#10284a 0%, #0a1c35 100%);
+  border:1px solid rgba(212,175,95,0.2);border-radius:22px;
+  padding:30px 26px 18px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.06), var(--shadow-lg);
+  animation:modalIn .4s var(--ease);
+}
+.login-card .login-logo{align-self:center;width:76px;height:76px;margin-bottom:14px;}
+.login-brand{text-align:center;font-family:'Playfair Display',serif;font-weight:800;font-size:22px;letter-spacing:4px;}
+.login-sub{text-align:center;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold-light);margin:4px 0 24px;}
+.login-btn{justify-content:center;width:100%;padding:13px 16px;font-size:14px;margin-top:4px;}
+.login-card .btn-link{align-self:center;margin-top:6px;font-size:12.5px;}
+.login-foot{font-size:11px;color:rgba(240,236,226,0.35);text-align:center;}
+
+/* Menu agrupado */
+.nav .sb-title{margin:18px 0 6px 12px;}
+.nav .sb-title:first-child{margin-top:8px;}
+.nav-badge{
+  margin-left:auto;min-width:20px;height:20px;padding:0 6px;border-radius:999px;
+  display:inline-flex;align-items:center;justify-content:center;
+  background:#e5534b;color:#fff;font-size:11px;font-weight:800;font-variant-numeric:tabular-nums;
+  box-shadow:0 0 0 3px rgba(229,83,75,0.18);animation:badgePulse 2s ease-in-out infinite;
+}
+.nav-badge[hidden]{display:none;}
+.tabbar .nav-badge{margin-left:4px;min-width:18px;height:18px;font-size:10.5px;}
+@keyframes badgePulse{0%,100%{box-shadow:0 0 0 3px rgba(229,83,75,0.18);}50%{box-shadow:0 0 0 6px rgba(229,83,75,0.06);}}
+.sb-sair{
+  margin-top:12px;background:transparent;border:1px solid var(--hairline);border-radius:10px;
+  color:rgba(240,236,226,0.55);padding:9px;font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;cursor:pointer;
+}
+.sb-sair:hover{color:#f0938d;border-color:rgba(198,54,47,0.4);}
+.sb-foot{word-break:break-all;}
+.tb-bell{
+  position:relative;flex-shrink:0;width:40px;height:40px;border-radius:12px;
+  display:inline-flex;align-items:center;justify-content:center;
+  background:var(--surface);border:1px solid var(--hairline);color:var(--gold-light);cursor:pointer;
+}
+.tb-bell[hidden]{display:none;}
+.tb-bell .nav-badge{position:absolute;top:-6px;right:-6px;margin:0;min-width:18px;height:18px;font-size:10px;}
+
+/* Inscrições */
+.status-nova{background:rgba(229,83,75,0.16);color:#ff9d95;border:1px solid rgba(229,83,75,0.45);}
+tr.linha-pendente td{background:rgba(212,175,95,0.045);}
+.sub-linha{font-size:11px;color:var(--muted);margin-top:2px;font-weight:500;}
+.link-card{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:18px;
+  background:linear-gradient(135deg, rgba(212,175,95,0.12), rgba(212,175,95,0.03)) !important;border-color:rgba(212,175,95,0.3) !important;}
+.link-card-txt{flex:1;min-width:240px;}
+.link-card-label{font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold-light);font-weight:700;}
+.link-card-url{font-family:'JetBrains Mono',monospace;font-size:13px;margin:6px 0;word-break:break-all;color:var(--cream);}
+.link-card-sub{font-size:12px;color:var(--muted);line-height:1.6;}
+.link-card-acoes{display:flex;gap:8px;flex-wrap:wrap;}
+.ficha{background:rgba(0,0,0,0.2);border:1px solid var(--hairline);border-radius:12px;padding:6px 14px;margin-bottom:16px;}
+.ficha-linha{display:flex;justify-content:space-between;gap:14px;padding:8px 0;border-top:1px solid rgba(255,255,255,0.05);font-size:13px;}
+.ficha-linha:first-child{border-top:none;}
+.ficha-linha span{color:var(--muted);flex-shrink:0;}
+.ficha-linha strong{font-weight:600;text-align:right;}
+@media (max-width:860px){
+  .link-card-acoes, .link-card-acoes .btn{width:100%;justify-content:center;}
 }
 
 </style>
@@ -995,78 +885,26 @@ body.force-desktop .view-title{font-size:30px !important;}
 </script>
 
 <!-- ================================================================
-     TELA INICIAL (pública, comercial) — logo, botão animado "Início",
-     carrossel de depoimentos e botão de Administração com login.
+     LOGIN — acesso restrito (Firebase Authentication, e-mail e senha)
      ================================================================ -->
-<div id="landing" style="display:none;">
-  <div class="landing-topbar">
-    <div class="landing-topbar-brand">
-      <img src="" data-app-logo alt="Alleanza">
-      <span>ALLEANZA<small>ESCOLA DE FUTSAL</small></span>
+<div id="login-screen" style="display:none;">
+  <form class="login-card" id="login-form" autocomplete="on" novalidate>
+    <img src="" data-app-logo alt="Alleanza" class="login-logo">
+    <div class="login-brand">ALLEANZA</div>
+    <div class="login-sub">Painel de Gestão</div>
+    <div class="field">
+      <label for="login-email">E-mail</label>
+      <input type="email" id="login-email" autocomplete="username" inputmode="email" placeholder="seu@email.com" required>
     </div>
-    <button class="btn-admin-top" id="btn-admin-abrir">🔐 Administração</button>
-  </div>
-
-  <section class="landing-hero" id="landing-hero">
-    <div class="landing-hero-glow"></div>
-    <img src="" data-app-logo alt="Alleanza Escola de Futsal" class="landing-logo-hero">
-    <div class="landing-kicker">PORTO ALEGRE · RS</div>
-    <h1 class="landing-title">ALLEANZA</h1>
-    <div class="landing-subtitle">Escola de Futsal</div>
-    <p class="landing-tagline">Formação técnica, disciplina e paixão pelo futsal — construindo o futuro dos nossos atletas dentro e fora de quadra.</p>
-    <button class="btn-inicio" id="btn-inicio">
-      <span class="btn-inicio-glow"></span>
-      <span class="btn-inicio-label">Início</span>
-    </button>
-    <div class="landing-scroll-hint" id="landing-scroll-hint">↓ deslize para conhecer a escola</div>
-  </section>
-
-  <section class="landing-content" id="landing-content">
-    <div class="landing-section-title">
-      <span class="ls-kicker">O QUE OS PAIS DIZEM</span>
-      <h2>Depoimentos de quem confia na Alleanza</h2>
+    <div class="field">
+      <label for="login-senha">Senha</label>
+      <input type="password" id="login-senha" autocomplete="current-password" placeholder="••••••••" required>
     </div>
-
-    <div class="depo-carousel-wrap">
-      <button class="depo-nav depo-prev" id="depo-prev" aria-label="Depoimento anterior">‹</button>
-      <div class="depo-track-viewport">
-        <div class="depo-track" id="depo-track"></div>
-      </div>
-      <button class="depo-nav depo-next" id="depo-next" aria-label="Próximo depoimento">›</button>
-    </div>
-    <div class="depo-dots" id="depo-dots"></div>
-
-    <div class="landing-cta">
-      <div class="landing-cta-card">
-        <div class="landing-cta-ic">🏆</div>
-        <div class="landing-cta-label">Categorias</div>
-        <div class="landing-cta-txt">SUB7 ao SUB15, treinos por faixa etária com metodologia própria.</div>
-      </div>
-      <div class="landing-cta-card">
-        <div class="landing-cta-ic">🤝</div>
-        <div class="landing-cta-label">Formação completa</div>
-        <div class="landing-cta-txt">Técnica, tática, disciplina e valores — dentro e fora de quadra.</div>
-      </div>
-      <div class="landing-cta-card">
-        <div class="landing-cta-ic">📈</div>
-        <div class="landing-cta-label">Acompanhamento</div>
-        <div class="landing-cta-txt">Evolução de cada atleta acompanhada de perto pela comissão técnica.</div>
-      </div>
-    </div>
-
-    <div class="landing-matricula card">
-      <div>
-        <div class="landing-matricula-title">Matrículas abertas</div>
-        <div class="landing-matricula-sub">Garanta a vaga do seu filho(a) na Alleanza Escola de Futsal.</div>
-      </div>
-      <a id="landing-cta-btn" class="btn btn-gold" href="#" target="_blank" rel="noopener">📝 Fazer inscrição</a>
-    </div>
-
-    <div class="landing-foot">
-      <img src="" data-app-logo alt="Alleanza" class="landing-foot-logo">
-      <div>Alleanza Escola de Futsal · Porto Alegre/RS</div>
-    </div>
-  </section>
+    <div id="login-erro" class="login-erro" style="display:none;"></div>
+    <button class="btn btn-gold login-btn" id="login-entrar" type="submit">Entrar</button>
+    <button class="btn btn-link" id="login-esqueci" type="button">Esqueci a senha</button>
+  </form>
+  <div class="login-foot">Acesso restrito à gestão da Alleanza Escola de Futsal</div>
 </div>
 
 <div class="app" id="admin-root" style="display:none;">
@@ -1079,27 +917,26 @@ body.force-desktop .view-title{font-size:30px !important;}
         <div class="sb-sub">Painel de Gestão</div>
       </div>
     </div>
-    <div class="sb-title">Navegação</div>
     <nav class="nav">
+      <div class="sb-title">Visão geral</div>
       <button data-view="dashboard" class="active"><span class="ic">📊</span>Dashboard</button>
+      <div class="sb-title">Alunos</div>
+      <button data-view="inscricoes"><span class="ic">📝</span>Inscrições<span class="nav-badge" hidden></span></button>
+      <button data-view="elenco"><span class="ic">👥</span>Elenco</button>
+      <button data-view="desistencias"><span class="ic">🚪</span>Desistências</button>
+      <div class="sb-title">Financeiro</div>
       <button data-view="mensalidades"><span class="ic">💳</span>Mensalidades</button>
       <button data-view="balanco"><span class="ic">💹</span>Balanço</button>
-      <button data-view="competicoes"><span class="ic">🏆</span>Competições</button>
       <button data-view="pedidos"><span class="ic">🛍️</span>Pedidos</button>
-      <button data-view="elenco"><span class="ic">👥</span>Elenco</button>
+      <div class="sb-title">Esportivo</div>
       <button data-view="escalacao"><span class="ic">📋</span>Escalação</button>
-      <button data-view="inscricoes"><span class="ic">📝</span>Inscrições</button>
+      <button data-view="competicoes"><span class="ic">🏆</span>Competições</button>
       <button data-view="calendario"><span class="ic">📅</span>Calendário</button>
-      <button data-view="nutricao"><span class="ic">🥗</span>Nutrição</button>
-      <button data-view="exercicios"><span class="ic">🏋️</span>Exercícios em casa</button>
-      <button data-view="desistencias"><span class="ic">🚪</span>Desistências</button>
+      <div class="sb-title">Sistema</div>
       <button data-view="historico"><span class="ic">🕓</span>Histórico</button>
       <button data-view="config"><span class="ic">⚙️</span>Configurações</button>
     </nav>
-    <div class="sb-toggle-wrap">
-      <button class="js-toggle-layout" type="button" aria-label="Alternar entre versão mobile e PC">🔄 Alternar versão</button>
-      <button class="js-toggle-layout btn-tela-inicial" type="button" id="btn-voltar-landing" style="margin-top:6px;" aria-label="Voltar para a tela inicial">🏠 Tela inicial</button>
-    </div>
+    <button class="sb-sair" id="btn-sair-sidebar" type="button">Sair</button>
     <div class="sb-foot">Alleanza Escola de Futsal<br><span id="sb-sync-status">Painel de Gestão</span> · v2.0</div>
   </aside>
 
@@ -1110,21 +947,18 @@ body.force-desktop .view-title{font-size:30px !important;}
         <img src="" data-app-logo class="app-logo-img" alt="Alleanza" width="30" height="30">
         <div class="tb-name">ALLEANZA<small>Painel de Gestão</small></div>
       </div>
-      <button class="js-toggle-layout" type="button" aria-label="Alternar entre versão mobile e PC">🔄</button>
-      <button class="js-toggle-layout btn-tela-inicial" type="button" id="btn-voltar-landing-mobile" aria-label="Voltar para a tela inicial">🏠</button>
+      <button class="tb-bell" id="tb-bell" type="button" aria-label="Inscrições novas" hidden><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span class="nav-badge"></span></button>
     </div>
     <div class="tabbar">
       <button data-view="dashboard" class="active">📊 Dashboard</button>
+      <button data-view="inscricoes">📝 Inscrições<span class="nav-badge" hidden></span></button>
       <button data-view="mensalidades">💳 Mensalidades</button>
-      <button data-view="balanco">💹 Balanço</button>
-      <button data-view="competicoes">🏆 Competições</button>
-      <button data-view="pedidos">🛍️ Pedidos</button>
       <button data-view="elenco">👥 Elenco</button>
+      <button data-view="balanco">💹 Balanço</button>
+      <button data-view="pedidos">🛍️ Pedidos</button>
       <button data-view="escalacao">📋 Escalação</button>
-      <button data-view="inscricoes">📝 Inscrições</button>
+      <button data-view="competicoes">🏆 Competições</button>
       <button data-view="calendario">📅 Calendário</button>
-      <button data-view="nutricao">🥗 Nutrição</button>
-      <button data-view="exercicios">🏋️ Exercícios</button>
       <button data-view="desistencias">🚪 Desistências</button>
       <button data-view="historico">🕓 Histórico</button>
       <button data-view="config">⚙️ Config</button>
@@ -1143,17 +977,17 @@ body.force-desktop .view-title{font-size:30px !important;}
 <!-- ================================================================
      FIREBASE — sincronização entre navegadores/dispositivos
      ================================================================
-     Os dados ficam em dois documentos do Firestore:
-       alleanza/painel-dados  → TUDO do painel (alunos, telefones,
-                                mensalidades, balanço...). Só o(s)
-                                administrador(es) leem e escrevem.
-       alleanza/publico       → só o que a tela inicial pública mostra
-                                (depoimentos e link de inscrição).
-                                Qualquer visitante lê; só admin escreve.
-     O login da Administração usa Firebase Authentication com
-     e-mail e senha (Authentication → Sign-in method → E-mail/senha).
-     As regras de segurança estão no arquivo firestore.rules do
-     repositório — cole no console do Firebase (Firestore → Regras).
+     Onde ficam os dados no Firestore:
+       alleanza/painel-dados → TUDO do painel (alunos, telefones,
+                               mensalidades, balanço...). Só admin.
+       inscricoes/{id}       → fichas enviadas pelo link público
+                               (inscricao.html). Qualquer pessoa pode
+                               CRIAR; só admin lê e apaga. O painel
+                               importa cada ficha para "Inscrições" e
+                               apaga a cópia daqui.
+     Login: Firebase Authentication com e-mail e senha.
+     Regras de segurança: arquivo firestore.rules (cole no console do
+     Firebase → Firestore → Regras → Publicar).
 -->
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
@@ -1242,7 +1076,7 @@ function seedCompeticoes(){
 }
 
 /* ---------- PEDIDOS DE UNIFORME ---------- */
-const PIX_CHAVE = '83900349053';
+const PIX_CHAVE = 'aimore.weren@gmail.com';
 const WHATS_NUMBER_PEDIDOS = '5551991925356';
 const TIPOS_PEDIDO = {
   uniforme:  {label:'Uniforme Infantil', valor:180, custo:90, tamanhos:['8','10','12','14','16','PP','P','M','G']},
@@ -1378,19 +1212,19 @@ function montarMensagemPedido(p){
     msg = "🟢 *NOVO PEDIDO — UNIFORME INFANTIL*\n_Alleanza Escola de Futsal_\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n";
     msg += "👤 *Aluno:* "+p.nome+"\n📏 *Tamanho:* "+p.tamanho+"\n";
     if(p.responsavel) msg += "👨‍👩‍👧 *Responsável:* "+p.responsavel+"\n";
-    msg += "\n💰 *Valor:* "+fmtBRL(info.valor)+"\n🔑 *Pix (CPF):* "+PIX_CHAVE+"\n✅ *Sinal mínimo p/ reserva:* R$ 85,00\n\n";
+    msg += "\n💰 *Valor:* "+fmtBRL(info.valor)+"\n🔑 *Pix (e-mail):* "+PIX_CHAVE+"\n✅ *Sinal mínimo p/ reserva:* R$ 85,00\n\n";
     msg += "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n📎 Comprovante do Pix vai a seguir nesta conversa.";
   } else if(p.tipo==='agasalho'){
     msg = "🔵 *NOVO PEDIDO — AGASALHO DE ATLETA*\n_Alleanza Escola de Futsal_\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n";
     msg += "👤 *Atleta:* "+p.nome+"\n📏 *Tamanho:* "+p.tamanho+"\n";
     if(p.responsavel) msg += "👨‍👩‍👧 *Responsável:* "+p.responsavel+"\n";
-    msg += "\n💰 *Valor total:* "+fmtBRL(info.valor)+"\n✅ *Entrada p/ reserva:* "+fmtBRL(info.entrada)+"\n🔑 *Pix (CPF):* "+PIX_CHAVE+"\n\n";
+    msg += "\n💰 *Valor total:* "+fmtBRL(info.valor)+"\n✅ *Entrada p/ reserva:* "+fmtBRL(info.entrada)+"\n🔑 *Pix (e-mail):* "+PIX_CHAVE+"\n\n";
     msg += "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n📎 Comprovante do Pix vai a seguir nesta conversa.";
   } else {
     msg = "🔴 *NOVO PEDIDO — CAMISA DE TORCEDOR*\n_Alleanza Escola de Futsal_\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n";
     msg += "👤 *Torcedor:* "+p.nome+"\n📏 *Tamanho:* "+p.tamanho+"\n";
     msg += "🖋️ *Nome nas costas:* "+(p.costas||'sem personalização')+"\n🔟 *Número:* "+(p.numero||'sem personalização')+"\n";
-    msg += "\n💰 *Valor:* "+fmtBRL(info.valor)+"\n🔑 *Pix (CPF):* "+PIX_CHAVE+"\n\n";
+    msg += "\n💰 *Valor:* "+fmtBRL(info.valor)+"\n🔑 *Pix (e-mail):* "+PIX_CHAVE+"\n\n";
     msg += "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n📎 Comprovante do Pix vai a seguir nesta conversa.";
   }
   return 'https://api.whatsapp.com/send?phone='+WHATS_NUMBER_PEDIDOS+'&text='+encodeURIComponent(msg);
@@ -1470,26 +1304,8 @@ function receitaEhAoVivo(ano, mesKey){
 
 const STORAGE_KEY = 'alleanzaPainelDB_v1'; // cache local — usado como fallback se o Firebase não estiver configurado, e como cópia de segurança extra
 
-/* Depoimentos exibidos no carrossel da tela inicial (pública, comercial).
-   São EXEMPLOS — texto de espaço reservado, claramente identificado como
-   tal — para você substituir pelos relatos reais dos pais em
-   Configurações → Depoimentos. Nunca published como se fossem reais. */
-function seedDepoimentosExemplo(){
-  const lista = [];
-  for(let i=1;i<=25;i++){
-    lista.push({
-      id: 'depo_exemplo_'+i,
-      nome: 'Responsável (exemplo '+i+')',
-      texto: 'Este é um depoimento de exemplo. Substitua este texto pelo relato real de um pai/mãe/responsável em Configurações → Depoimentos.',
-      estrelas: 5,
-      exemplo: true
-    });
-  }
-  return lista;
-}
-
 function seedDBFresh(){
-  return { atletas: seedAtletas(), competicoes: seedCompeticoes(), balanco: seedBalanco(), pedidos: seedPedidos(), pedidosImportadosPlanilha: true, lotes: [], log: [], valorMensalidade: 90, valorMatricula: 75, linkInscricao: '', depoimentos: seedDepoimentosExemplo() };
+  return { atletas: seedAtletas(), competicoes: seedCompeticoes(), balanco: seedBalanco(), pedidos: seedPedidos(), pedidosImportadosPlanilha: true, lotes: [], log: [], valorMensalidade: 90, valorMatricula: 75 };
 }
 
 /* Aplica todas as migrações de formato a um objeto DB vindo de qualquer fonte
@@ -1499,9 +1315,6 @@ function migrarDB(parsed){
   else { parsed.balanco = migrarBalanco(parsed.balanco); }
   if(!parsed.valorMensalidade) parsed.valorMensalidade = 90;
   if(!parsed.valorMatricula) parsed.valorMatricula = 75;
-  if(parsed.linkInscricao === undefined) parsed.linkInscricao = '';
-  if(!parsed.depoimentos || !parsed.depoimentos.length) parsed.depoimentos = seedDepoimentosExemplo();
-  parsed.depoimentos.forEach(d=>{ if(d.estrelas===undefined) d.estrelas = 5; if(d.exemplo===undefined) d.exemplo = false; });
   if(!parsed.atletas) parsed.atletas = [];
   if(!parsed.competicoes) parsed.competicoes = [];
   parsed.atletas.forEach(a=>{ if(!a.matricula) a.matricula = {valor: parsed.valorMatricula, pago:true}; });
@@ -1581,7 +1394,6 @@ function saveDB(){
         ? '⚠️ Sem permissão para salvar — entre de novo na administração'
         : '⚠️ Não sincronizou — verifique sua internet');
     });
-    sincronizarPublico();
     toast('Alterações salvas');
     return;
   }
@@ -1710,9 +1522,16 @@ function linkCobranca(atleta){
   if(!phone) return null;
   return 'https://api.whatsapp.com/send?phone='+phone+'&text='+encodeURIComponent(MSG_COBRANCA);
 }
+/* Link público do formulário de inscrição — é a página inscricao.html
+   publicada junto com o painel (mesmo site do Netlify). */
+function linkInscricaoPublico(){
+  if(location.protocol === 'file:') return null;
+  return new URL('inscricao.html', location.href).href.split('#')[0].split('?')[0];
+}
 function linkConviteInscricao(){
-  if(!DB.linkInscricao) return null;
-  const msg = 'Olá! Segue o link para inscrição na Alleanza Escola de Futsal:\n' + DB.linkInscricao;
+  const link = linkInscricaoPublico();
+  if(!link) return null;
+  const msg = 'Olá! Segue o link para a inscrição na Alleanza Escola de Futsal. É rapidinho, leva 2 minutos:\n' + link;
   // sem "phone=" -> abre o seletor de contatos do WhatsApp (funciona igual no celular e no computador)
   return 'https://api.whatsapp.com/send?text='+encodeURIComponent(msg);
 }
@@ -1748,12 +1567,11 @@ function render(){
   else if(currentView === 'historico') main.innerHTML = viewHistorico();
   else if(currentView === 'inscricoes') main.innerHTML = viewInscricoes();
   else if(currentView === 'calendario') main.innerHTML = viewCalendario();
-  else if(currentView === 'nutricao') main.innerHTML = viewNutricao();
-  else if(currentView === 'exercicios') main.innerHTML = viewExercicios();
   else if(currentView === 'escalacao') main.innerHTML = viewEscalacao();
   else if(currentView === 'desistencias') main.innerHTML = viewDesistencias();
   else if(currentView === 'config') main.innerHTML = viewConfig();
   bindViewEvents();
+  atualizarBadgeInscricoes();
 }
 
 
@@ -2265,7 +2083,7 @@ function viewInscricoes(){
     const nascFmt = a.nascimento || '—';
     const idadeFmt = (a.idade===''||a.idade===null||a.idade===undefined) ? '—' : a.idade+' anos';
     const statusTxt = a.status==='ativo' ? '<span class="status-pill status-andamento">Ativo</span>'
-      : a.status==='inscricao_pendente' ? '<span class="status-pill status-agendada">Pendente</span>'
+      : a.status==='inscricao_pendente' ? (a.novaInscricao ? '<span class="status-pill status-nova">Nova</span>' : '<span class="status-pill status-agendada">Pendente</span>')
       : '<span class="status-pill status-concluida">Desistente</span>';
     const matriculaTxt = a.matricula.pago
       ? `<span class="mes-cell pago" style="cursor:default;">PAGA</span>`
@@ -2274,8 +2092,9 @@ function viewInscricoes(){
     const docsTxt = qtdDocs > 0
       ? `<button class="icon-btn" data-ver-docs="${a.id}" title="Ver documentos anexados">📎 ${qtdDocs}</button>`
       : '<span class="resp-cell">—</span>';
-    return `<tr>
-      <td><strong>${a.nome}</strong></td>
+    const enviadaEm = a.origem==='link' && a.dataEnvioInscricao ? `<div class="sub-linha">pelo link · ${a.dataEnvioInscricao.split('-').reverse().join('/')}</div>` : '';
+    return `<tr class="${a.status==='inscricao_pendente' ? 'linha-pendente' : ''}">
+      <td><strong ${a.status==='inscricao_pendente' ? `class="name-cell" data-aprovar="${a.id}"` : ''}>${a.nome}</strong>${enviadaEm}</td>
       <td><span class="cat-badge">${a.categoria}</span></td>
       <td class="resp-cell">${nascFmt}</td>
       <td class="resp-cell">${idadeFmt}</td>
@@ -2285,7 +2104,7 @@ function viewInscricoes(){
       <td>${statusTxt}</td>
       <td>
         <div class="row-actions">
-          ${a.status==='inscricao_pendente' ? `<button class="icon-btn" data-aprovar="${a.id}" title="Aprovar inscrição e ativar atleta">✅</button>` : ''}
+          ${a.status==='inscricao_pendente' ? `<button class="btn btn-gold btn-sm" data-aprovar="${a.id}" title="Revisar e aprovar a inscrição">Revisar</button>` : ''}
           <button class="icon-btn" data-edit="${a.id}" title="Editar">✏️</button>
           ${a.status==='ativo' ? `<button class="icon-btn danger" data-drop="${a.id}" title="Registrar saída/desistência">🚪</button>` : ''}
           <button class="icon-btn danger" data-remove="${a.id}" title="Remover cadastro definitivamente">🗑️</button>
@@ -2307,15 +2126,13 @@ function viewInscricoes(){
 
     <div class="toolbar">
       <button class="btn btn-gold" id="btn-nova-inscricao">+ Nova inscrição</button>
-      <button class="btn btn-ghost" id="btn-ler-ficha">📥 Ler ficha recebida</button>
-      <button class="btn btn-ghost" id="btn-enviar-convite">📲 Enviar link de inscrição</button>
       <input type="text" id="busca-mensal" placeholder="Buscar atleta..." value="${filtroBusca}" style="margin-left:auto;">
       <select id="filtro-categoria">
         <option value="">Todas categorias</option>
         ${CATEGORIAS.map(c=>`<option value="${c}" ${filtroCategoria===c?'selected':''}>${c}</option>`).join('')}
       </select>
     </div>
-    ${!DB.linkInscricao ? `<div class="note-box">⚠️ Nenhum link de inscrição configurado ainda. Vá em <strong style="color:var(--gold-light)">Configurações</strong> e cole o link do formulário público (inscricao_alleanza.html) que deve ser enviado aos pais.</div>` : ''}
+    ${cartaoLinkInscricao()}
     <div class="table-wrap">
       <table style="min-width:900px;">
         <thead><tr><th>Atleta</th><th>Categoria</th><th>Nascimento</th><th>Idade</th><th>Responsável</th><th>Docs</th><th>Matrícula</th><th>Status</th><th>Ações</th></tr></thead>
@@ -2473,110 +2290,6 @@ function verDocumentos(id){
     </div>
   `);
   document.getElementById('docs-fechar').addEventListener('click', closeModal);
-}
-
-/* ============================================================
-   VIEW: NUTRIÇÃO
-============================================================ */
-function viewNutricao(){
-  return `
-    <h1 class="view-title">Informações Nutricionais</h1>
-    <p class="view-sub">Orientações gerais para pais e atletas sobre alimentação em dias de treino e jogo.</p>
-
-    <div class="info-card">
-      <h3>🍽️ Antes do treino (1h30 a 2h antes)</h3>
-      <ul>
-        <li>Prefira carboidratos de fácil digestão: pão, banana, tapioca, aveia.</li>
-        <li>Evite frituras e alimentos muito gordurosos perto do horário de treino.</li>
-        <li>Garanta que a criança não vá treinar em jejum prolongado.</li>
-      </ul>
-    </div>
-
-    <div class="info-card">
-      <h3>💧 Hidratação</h3>
-      <ul>
-        <li>Enviar sempre uma garrafinha de água própria, identificada com o nome.</li>
-        <li>Estimular a beber água antes, durante os intervalos e após o treino — não só quando sentir sede.</li>
-        <li>Em dias muito quentes, reforçar a hidratação ao longo de todo o dia, não só na hora do treino.</li>
-      </ul>
-    </div>
-
-    <div class="info-card">
-      <h3>🍎 Depois do treino (até 1h)</h3>
-      <ul>
-        <li>Combinar proteína + carboidrato: exemplos — leite com achocolatado e pão, iogurte com fruta, sanduíche natural.</li>
-        <li>Esse é o período mais importante para repor energia e ajudar na recuperação muscular.</li>
-      </ul>
-    </div>
-
-    <div class="info-card">
-      <h3>🚫 O que evitar em dias de treino/jogo</h3>
-      <ul>
-        <li>Refrigerantes e sucos industrializados próximos ao horário de treino.</li>
-        <li>Frituras, fast-food e doces em excesso antes da atividade física.</li>
-        <li>Refeições muito pesadas nas 2 horas anteriores ao treino.</li>
-      </ul>
-    </div>
-
-    <div class="info-card">
-      <h3>ℹ️ Observação importante</h3>
-      <p>Estas são orientações gerais de apoio às famílias. Crianças e adolescentes com restrições alimentares, alergias ou acompanhamento nutricional específico devem seguir a orientação do profissional responsável. Em caso de dúvida, procure um nutricionista.</p>
-    </div>
-  `;
-}
-
-/* ============================================================
-   VIEW: EXERCÍCIOS EM CASA
-============================================================ */
-function viewExercicios(){
-  return `
-    <h1 class="view-title">Exercícios em Casa</h1>
-    <p class="view-sub">Atividades simples para os atletas praticarem fora dos dias de treino, organizadas por faixa etária.</p>
-
-    <div class="info-card">
-      <span class="cat-tag">SUB7 · SUB9</span>
-      <h3>🤸 Coordenação e diversão</h3>
-      <ul>
-        <li>Embaixadinha com bola de meia ou bola leve — contar quantas consegue fazer sem deixar cair.</li>
-        <li>Pular corda por 1 a 2 minutos, descansar e repetir 3 vezes.</li>
-        <li>Circuito de cones (ou garrafas pet) para conduzir a bola em zig-zag.</li>
-        <li>Jogos de equilíbrio: caminhar sobre uma linha no chão, ficar em um pé só por 20 segundos.</li>
-      </ul>
-    </div>
-
-    <div class="info-card">
-      <span class="cat-tag">SUB11 · SUB13</span>
-      <h3>⚡ Técnica e força funcional</h3>
-      <ul>
-        <li>Condução de bola entre obstáculos, alternando pé direito e esquerdo.</li>
-        <li>Passe de parede: chutar a bola contra uma parede e controlar o retorno, 10 repetições com cada pé.</li>
-        <li>Prancha abdominal: 3 séries de 20 a 30 segundos.</li>
-        <li>Agachamento livre: 3 séries de 12 repetições, sem peso, com atenção à postura.</li>
-        <li>Polichinelos ou corrida estacionária: 3 séries de 30 segundos para condicionamento.</li>
-      </ul>
-    </div>
-
-    <div class="info-card">
-      <span class="cat-tag">SUB15</span>
-      <h3>🔥 Potência e finalização</h3>
-      <ul>
-        <li>Finalizações de curta distância contra uma parede ou pequeno gol, buscando precisão.</li>
-        <li>Exercícios de força com o próprio peso: agachamento, afundo e prancha — 3 séries de cada.</li>
-        <li>Trabalho de resistência: corrida leve de 10 a 15 minutos ou pular corda em blocos de 1 minuto.</li>
-        <li>Alongamento geral ao final de toda sessão, 5 a 10 minutos.</li>
-      </ul>
-    </div>
-
-    <div class="info-card">
-      <h3>⚠️ Recomendações gerais</h3>
-      <ul>
-        <li>Sempre fazer um aquecimento leve antes de começar (caminhada ou trote de 3 a 5 minutos).</li>
-        <li>Usar roupas confortáveis e espaço seguro, livre de obstáculos.</li>
-        <li>Respeitar o cansaço da criança — o objetivo é desenvolver o gosto pelo esporte, não sobrecarregar.</li>
-        <li>Em caso de dor persistente, suspender a atividade e informar o professor responsável.</li>
-      </ul>
-    </div>
-  `;
 }
 
 /* ============================================================
@@ -3020,8 +2733,6 @@ function viewHistorico(){
 
 function viewConfig(){
   const conectado = !!FIREBASE_DOC_REF;
-  const depoLista = DB.depoimentos || [];
-  const depoExemploCount = depoLista.filter(d=>d.exemplo).length;
   return `
     <h1 class="view-title">Configurações</h1>
     <p class="view-sub">Ajustes gerais do painel e backup de dados.</p>
@@ -3056,16 +2767,9 @@ function viewConfig(){
       <div class="settings-row">
         <div>
           <div class="st-label">Link de inscrição</div>
-          <div class="st-sub">Enviado junto com o convite pelo WhatsApp na aba Inscrições.</div>
+          <div class="st-sub">${linkInscricaoPublico() ? `<span style="word-break:break-all;">${linkInscricaoPublico()}</span>` : 'Disponível depois de publicar o painel no Netlify.'}</div>
         </div>
-        <input type="text" id="input-link-inscricao" value="${DB.linkInscricao||''}" placeholder="https://..." style="width:200px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:9px;padding:9px 12px;color:var(--cream);font-size:13px;">
-      </div>
-      <div class="settings-row">
-        <div>
-          <div class="st-label">Depoimentos de pais (tela inicial)</div>
-          <div class="st-sub">${depoExemploCount>0 ? `⚠️ ${depoExemploCount} de ${depoLista.length} ainda são texto de exemplo — substitua pelos relatos reais antes de divulgar.` : `${depoLista.length} depoimento(s) reais cadastrados, exibidos em carrossel na tela inicial.`}</div>
-        </div>
-        <button class="btn btn-gold" id="btn-depoimentos">💬 Gerenciar</button>
+        <button class="btn btn-ghost" id="btn-ir-inscricoes">Abrir Inscrições</button>
       </div>
       <div class="settings-row">
         <div>
@@ -3114,101 +2818,6 @@ function viewConfig(){
 
 
 /* ============================================================
-   MODAL: DEPOIMENTOS DE PAIS (carrossel da tela inicial pública)
-============================================================ */
-function openDepoimentosModal(){
-  if(!DB.depoimentos) DB.depoimentos = [];
-  const lista = DB.depoimentos;
-  const exemploCount = lista.filter(d=>d.exemplo).length;
-
-  const linhas = lista.map(d=>`
-    <div style="display:flex;gap:8px;align-items:flex-start;padding:9px 10px;border-radius:9px;background:rgba(255,255,255,0.03);margin-bottom:6px;${d.exemplo?'border:1px dashed rgba(201,162,74,0.45);':'border:1px solid transparent;'}">
-      <div style="flex:1;min-width:0;">
-        <input type="text" data-depo-nome="${d.id}" value="${(d.nome||'').replace(/"/g,'&quot;')}" placeholder="Nome do responsável" style="width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:7px;padding:6px 8px;color:var(--cream);font-size:12px;margin-bottom:5px;">
-        <textarea data-depo-texto="${d.id}" placeholder="Depoimento" style="width:100%;min-height:44px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:7px;padding:6px 8px;color:var(--cream);font-size:12px;resize:vertical;">${d.texto||''}</textarea>
-        ${d.exemplo ? '<div style="font-size:10px;color:var(--gold-light);margin-top:3px;">⚠️ texto de exemplo — edite antes de divulgar</div>' : ''}
-      </div>
-      <div style="display:flex;flex-direction:column;gap:4px;align-items:center;flex-shrink:0;">
-        <select data-depo-estrelas="${d.id}" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:7px;padding:4px;color:var(--cream);font-size:11px;">
-          ${[5,4,3,2,1].map(n=>`<option value="${n}" ${d.estrelas===n?'selected':''}>${'⭐'.repeat(n)}</option>`).join('')}
-        </select>
-        <button class="icon-btn danger" data-depo-remover="${d.id}" title="Remover">🗑️</button>
-      </div>
-    </div>`).join('');
-
-  openModal(`
-    <h3>Depoimentos de pais</h3>
-    <p style="font-size:12.5px;color:var(--muted);margin-top:-10px;margin-bottom:14px;">Aparecem em carrossel na tela inicial pública (antes do login de administração). ${exemploCount>0 ? `<strong style="color:var(--gold-light)">${exemploCount} de ${lista.length} ainda são texto de exemplo.</strong>` : `Todos os ${lista.length} são texto real.`}</p>
-
-    <div class="field">
-      <label>Colar vários de uma vez (substitui toda a lista abaixo)</label>
-      <textarea id="depo-colar" placeholder="Um por linha, assim:&#10;Nome do responsável — texto do depoimento&#10;Outro nome — outro depoimento" style="width:100%;min-height:90px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:9px;padding:9px 10px;color:var(--cream);font-size:12.5px;resize:vertical;"></textarea>
-      <div style="display:flex;justify-content:flex-end;margin-top:6px;">
-        <button class="btn btn-gold btn-sm" id="depo-colar-aplicar">Substituir lista com o texto colado</button>
-      </div>
-    </div>
-
-    <div style="max-height:280px;overflow-y:auto;margin:14px 0;">
-      ${linhas || '<div class="empty-state">Nenhum depoimento cadastrado.</div>'}
-    </div>
-
-    <div class="modal-actions" style="justify-content:space-between;">
-      <button class="btn btn-ghost" id="depo-add">+ Adicionar um</button>
-      <button class="btn btn-gold" id="depo-fechar">Concluído</button>
-    </div>
-  `);
-
-  document.getElementById('depo-fechar').addEventListener('click', closeModal);
-  document.getElementById('depo-add').addEventListener('click', ()=>{
-    DB.depoimentos.push({id: uid('depo'), nome:'', texto:'', estrelas:5, exemplo:false});
-    saveDB();
-    openDepoimentosModal();
-  });
-  document.getElementById('depo-colar-aplicar').addEventListener('click', ()=>{
-    const bruto = document.getElementById('depo-colar').value;
-    const linhasTexto = bruto.split('\n').map(l=>l.trim()).filter(Boolean);
-    if(!linhasTexto.length){ alert('Cole ao menos uma linha, uma por depoimento.'); return; }
-    if(!confirm('Isso vai SUBSTITUIR os '+lista.length+' depoimento(s) atuais pelos '+linhasTexto.length+' colados agora. Continuar?')) return;
-    const novos = linhasTexto.map(l=>{
-      const partes = l.split(/\s+—\s+|\s+--\s+|\|/);
-      const nome = (partes[0]||'').trim() || 'Responsável';
-      const texto = (partes.length>1 ? partes.slice(1).join(' — ') : l).trim();
-      return {id: uid('depo'), nome, texto, estrelas:5, exemplo:false};
-    });
-    DB.depoimentos = novos;
-    logAcao('Configurações', linhasTexto.length+' depoimento(s) substituído(s) via colagem em lote');
-    saveDB();
-    openDepoimentosModal();
-  });
-  document.querySelectorAll('[data-depo-remover]').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      DB.depoimentos = DB.depoimentos.filter(d=>d.id!==btn.dataset.depoRemover);
-      logAcao('Configurações', 'Depoimento removido');
-      saveDB();
-      openDepoimentosModal();
-    });
-  });
-  document.querySelectorAll('[data-depo-nome]').forEach(inp=>{
-    inp.addEventListener('change', ()=>{
-      const d = DB.depoimentos.find(x=>x.id===inp.dataset.depoNome);
-      if(d){ d.nome = inp.value.trim(); d.exemplo=false; saveDB(); }
-    });
-  });
-  document.querySelectorAll('[data-depo-texto]').forEach(ta=>{
-    ta.addEventListener('change', ()=>{
-      const d = DB.depoimentos.find(x=>x.id===ta.dataset.depoTexto);
-      if(d){ d.texto = ta.value.trim(); d.exemplo=false; saveDB(); }
-    });
-  });
-  document.querySelectorAll('[data-depo-estrelas]').forEach(sel=>{
-    sel.addEventListener('change', ()=>{
-      const d = DB.depoimentos.find(x=>x.id===sel.dataset.depoEstrelas);
-      if(d){ d.estrelas = parseInt(sel.value,10); saveDB(); }
-    });
-  });
-}
-
-/* ============================================================
    MODAL HELPERS
 ============================================================ */
 function openModal(html){
@@ -3224,8 +2833,9 @@ function closeModal(){
   if(DB_PENDENTE){
     DB = DB_PENDENTE;
     DB_PENDENTE = null;
-    if(telaAtual === 'admin'){ render(); } else { renderLanding(); }
+    if(telaAtual === 'admin'){ render(); }
   }
+  processarFilaInscricoes();
 }
 document.getElementById('overlay').addEventListener('click', (e)=>{
   if(e.target.id === 'overlay') closeModal();
@@ -3344,19 +2954,7 @@ function bindViewEvents(){
     });
   });
   document.querySelectorAll('[data-aprovar]').forEach(el=>{
-    el.addEventListener('click', ()=>{
-      const a = DB.atletas.find(x=>x.id===el.dataset.aprovar);
-      if(a && confirm('Aprovar a inscrição de '+a.nome+' e ativar o atleta?')){
-        a.status = 'ativo';
-        if(!a.matricula) a.matricula = {valor:DB.valorMatricula, pago:false};
-        if(!a.mensalidades || Object.keys(a.mensalidades).length===0){
-          a.mensalidades = Object.fromEntries(MESES.map(m=>[m.key, a.bolsista?'BOLSA':'-']));
-        }
-        logAcao('Inscrições', 'Inscrição de '+a.nome+' aprovada e atleta ativado');
-        toast('Inscrição aprovada!');
-        saveDB(); render();
-      }
-    });
+    el.addEventListener('click', ()=> openAprovarInscricao(el.dataset.aprovar));
   });
   document.querySelectorAll('[data-ver-docs]').forEach(el=>{
     el.addEventListener('click', ()=> verDocumentos(el.dataset.verDocs));
@@ -3469,12 +3067,22 @@ function bindViewEvents(){
   // ---- Inscrições ----
   const btnNovaInsc = document.getElementById('btn-nova-inscricao');
   if(btnNovaInsc) btnNovaInsc.addEventListener('click', ()=> openEditAtleta(null));
-  const btnLerFicha = document.getElementById('btn-ler-ficha');
-  if(btnLerFicha) btnLerFicha.addEventListener('click', abrirModalLerFicha);
+  const btnCopiarLink = document.getElementById('btn-copiar-link');
+  if(btnCopiarLink) btnCopiarLink.addEventListener('click', ()=>{
+    const link = linkInscricaoPublico();
+    if(!link) return;
+    (navigator.clipboard ? navigator.clipboard.writeText(link) : Promise.reject())
+      .then(()=>toast('Link copiado!'))
+      .catch(()=>prompt('Copie o link:', link));
+  });
+  const btnAlertas = document.getElementById('btn-ativar-alertas');
+  if(btnAlertas) btnAlertas.addEventListener('click', ()=>{
+    Notification.requestPermission().then(()=>render());
+  });
   const btnConvite = document.getElementById('btn-enviar-convite');
   if(btnConvite) btnConvite.addEventListener('click', ()=>{
     const link = linkConviteInscricao();
-    if(!link){ alert('Configure o link de inscrição em Configurações antes de enviar o convite.'); setView('config'); return; }
+    if(!link){ alert('O link de inscrição só funciona com o painel publicado no Netlify.'); return; }
     logAcao('Inscrições', 'Link de inscrição enviado pelo WhatsApp');
     saveDB();
     abrirWhatsApp(link);
@@ -3568,8 +3176,8 @@ function bindViewEvents(){
   });
 
   // ---- Config ----
-  const btnDepoimentos = document.getElementById('btn-depoimentos');
-  if(btnDepoimentos) btnDepoimentos.addEventListener('click', openDepoimentosModal);
+  const btnIrInscricoes = document.getElementById('btn-ir-inscricoes');
+  if(btnIrInscricoes) btnIrInscricoes.addEventListener('click', ()=>setView('inscricoes'));
   const btnSairAdmin = document.getElementById('btn-sair-admin');
   if(btnSairAdmin) btnSairAdmin.addEventListener('click', ()=>{
     if(confirm('Sair da administração? Você vai precisar entrar com e-mail e senha de novo neste aparelho.')) sairDaAdministracao();
@@ -3621,12 +3229,6 @@ function bindViewEvents(){
       logAcao('Configurações', 'Valor da matrícula alterado de '+fmtBRL(DB.valorMatricula)+' para '+fmtBRL(v));
       DB.valorMatricula = v; saveDB(); render();
     }
-  });
-  const inputLink = document.getElementById('input-link-inscricao');
-  if(inputLink) inputLink.addEventListener('change', e=>{
-    DB.linkInscricao = e.target.value.trim();
-    logAcao('Configurações', 'Link de inscrição atualizado');
-    saveDB();
   });
 }
 
@@ -3895,44 +3497,6 @@ function sugerirCategoria(idade){
   if(idade<=11) return 'SUB11';
   if(idade<=13) return 'SUB13';
   return 'SUB15';
-}
-function parseFichaInscricao(texto){
-  function pegar(label){
-    const re = new RegExp(label+'\\s*:?\\s*\\*?\\s*(.+)', 'i');
-    const m = texto.match(re);
-    return m ? m[1].trim().replace(/\*+$/,'').trim() : '';
-  }
-  const nome = pegar('Nome do atleta');
-  const nascimento = pegar('Data de nascimento');
-  const responsavel = pegar('Nome do respons[aá]vel');
-  const telefone = pegar('Telefone').replace(/[^\d]/g,'');
-  const idade = nascimento ? calcularIdade(nascimento) : '';
-  return { nome, nascimento, responsavel, telefone, idade, categoria: sugerirCategoria(idade) };
-}
-function abrirModalLerFicha(){
-  openModal(`
-    <h3>Ler ficha recebida</h3>
-    <p style="font-size:12.5px;color:var(--muted);margin-top:-10px;margin-bottom:14px;">Cole abaixo a mensagem que o responsável te mandou de volta pelo WhatsApp.</p>
-    <div class="field">
-      <textarea id="ficha-texto" style="width:100%;min-height:160px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:9px;padding:10px 12px;color:var(--cream);font-family:'Inter',sans-serif;font-size:13px;resize:vertical;" placeholder="Cole aqui a mensagem completa..."></textarea>
-    </div>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" id="ficha-cancel">Cancelar</button>
-      <button class="btn btn-gold" id="ficha-processar">Processar</button>
-    </div>
-  `);
-  document.getElementById('ficha-cancel').addEventListener('click', closeModal);
-  document.getElementById('ficha-processar').addEventListener('click', ()=>{
-    const texto = document.getElementById('ficha-texto').value;
-    if(!texto.trim()){ alert('Cole o texto da mensagem antes de processar.'); return; }
-    const dados = parseFichaInscricao(texto);
-    if(!dados.nome){
-      alert('Não consegui identificar o nome do atleta nessa mensagem. Confira se ela veio do formulário de inscrição, ou cadastre manualmente com "+ Nova inscrição".');
-      return;
-    }
-    closeModal();
-    openEditAtleta(null, dados);
-  });
 }
 
 
@@ -4275,7 +3839,7 @@ function openNovoPedidoModal(tipo){
       <textarea id="p-obs" placeholder="Ex: combinou de pagar o restante na sexta..." style="width:100%;min-height:52px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:9px;padding:9px 11px;color:var(--cream);font-family:'Inter',sans-serif;font-size:13px;resize:vertical;"></textarea>
     </div>
     <div class="pix-box" style="background:rgba(46,125,79,0.10);border:1px dashed rgba(201,162,74,0.5);border-radius:12px;padding:12px 14px;font-size:13px;line-height:1.6;color:rgba(246,243,236,0.85);margin-bottom:14px;">
-      <strong style="color:var(--gold-light);">Pix (CPF):</strong> ${PIX_CHAVE}
+      <strong style="color:var(--gold-light);">Pix (e-mail):</strong> ${PIX_CHAVE}
     </div>
     <div class="err" id="p-err" style="display:none;color:#f0938d;font-size:12.5px;margin-bottom:10px;">Preencha nome e tamanho antes de continuar.</div>
     <div class="modal-actions">
@@ -4435,177 +3999,54 @@ function importarDados(e){
 }
 
 /* ============================================================
-   TELA INICIAL (LANDING) — estado, carrossel de depoimentos e
-   portão de login da administração
+   ACESSO — login (Firebase Auth, e-mail e senha) e sessão
 ============================================================ */
-/* Login da administração = Firebase Authentication (e-mail e senha).
-   Nada de senha escrita no código: quem decide quem entra são as regras
-   do Firestore (firestore.rules), que só liberam o e-mail do admin. */
-let ADMIN_USER = null;          // usuário logado no Firebase (ou null)
-let entrarQuandoCarregar = false; // abrir o painel assim que os dados chegarem
-let PUBLICO = null;             // {depoimentos, linkInscricao} vindos de alleanza/publico
-let PUBLICO_DOC_REF = null;
+let ADMIN_USER = null;              // usuário logado no Firebase (ou null)
 let unsubDadosPrivados = null;
-let telaAtual = 'carregando'; // 'carregando' | 'landing' | 'admin'
-let depoIndiceAtual = 0;
-let depoAutoplayTimer = null;
-let depoCardsPorTela = 1;
+let unsubInscricoesWeb = null;
+let FILA_INSCRICOES = [];           // fichas do link aguardando importação
+let telaAtual = 'carregando';       // 'carregando' | 'login' | 'admin'
 
-/* Chamada sempre que o DB muda (primeira carga, ou uma atualização vinda
-   do Firestore). Decide o que atualizar de acordo com a tela em que a
-   pessoa está — nunca força a entrada na administração. */
+/* Chamada sempre que o DB muda (primeira carga ou atualização do Firestore). */
 function aoDBAtualizado(){
   esconderTelaCarregamento();
-  if(telaAtual === 'carregando'){
-    mostrarLanding();
-  } else if(telaAtual === 'admin'){
-    render();
-  } else {
-    renderLanding();
-  }
-}
-
-function mostrarLanding(){
-  telaAtual = 'landing';
-  const landing = document.getElementById('landing');
-  const admin = document.getElementById('admin-root');
-  if(admin) admin.style.display = 'none';
-  if(landing) landing.style.display = 'block';
-  renderLanding();
+  if(telaAtual === 'admin') render();
+  else entrarAdmin();
 }
 
 function entrarAdmin(){
   telaAtual = 'admin';
-  if(depoAutoplayTimer){ clearInterval(depoAutoplayTimer); depoAutoplayTimer = null; }
-  const landing = document.getElementById('landing');
-  const admin = document.getElementById('admin-root');
-  if(landing) landing.style.display = 'none';
-  if(admin) admin.style.display = 'flex';
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('admin-root').style.display = 'flex';
   render();
 }
 
-/* Volta pra tela inicial sem apagar o login salvo — clicar em
-   "Administração" de novo entra direto, sem pedir senha outra vez. */
-function voltarParaLanding(){
-  mostrarLanding();
+function mostrarLogin(){
+  telaAtual = 'login';
+  esconderTelaCarregamento();
+  document.getElementById('admin-root').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+  const btn = document.getElementById('login-entrar');
+  btn.disabled = false;
+  btn.textContent = 'Entrar';
+  document.getElementById('login-senha').value = '';
+  document.title = 'Painel de Gestão — Alleanza Escola de Futsal';
 }
 
 function sairDaAdministracao(){
-  entrarQuandoCarregar = false;
   pararDadosPrivados();
   try{ localStorage.removeItem(STORAGE_KEY); }catch(e){}
-  if(typeof firebase !== 'undefined' && firebase.apps && firebase.apps.length){
+  if(firebaseAtivo()){
     firebase.auth().signOut().catch(err=>console.error('Erro ao sair:', err));
-  }
-  mostrarLanding();
-}
-
-/* O que a tela inicial pública mostra. Com o admin logado, vem do DB
-   (sempre o mais atual); para visitantes, do documento público. */
-function dadosPublicos(){
-  if(DB) return { depoimentos: DB.depoimentos || [], linkInscricao: DB.linkInscricao || '' };
-  if(PUBLICO) return { depoimentos: PUBLICO.depoimentos || [], linkInscricao: PUBLICO.linkInscricao || '' };
-  return { depoimentos: seedDepoimentosExemplo(), linkInscricao: '' };
-}
-
-/* Copia depoimentos + link de inscrição para alleanza/publico, só quando
-   mudaram — é a única parte do banco que visitantes conseguem ler. */
-function sincronizarPublico(){
-  if(!PUBLICO_DOC_REF || !DB || !ADMIN_USER) return;
-  const novo = { depoimentos: DB.depoimentos || [], linkInscricao: DB.linkInscricao || '' };
-  const atual = PUBLICO ? { depoimentos: PUBLICO.depoimentos || [], linkInscricao: PUBLICO.linkInscricao || '' } : null;
-  if(atual && JSON.stringify(atual) === JSON.stringify(novo)) return;
-  PUBLICO = novo;
-  PUBLICO_DOC_REF.set(Object.assign({ atualizadoEm: new Date().toISOString() }, novo))
-    .catch(err=>console.error('Erro ao publicar dados da tela inicial:', err));
-}
-
-function renderLanding(){
-  const pub = dadosPublicos();
-  const ctaBtn = document.getElementById('landing-cta-btn');
-  if(ctaBtn){
-    if(pub.linkInscricao){
-      ctaBtn.href = pub.linkInscricao;
-      ctaBtn.style.opacity = '1';
-      ctaBtn.style.pointerEvents = 'auto';
-      ctaBtn.textContent = '📝 Fazer inscrição';
-    } else {
-      ctaBtn.removeAttribute('href');
-      ctaBtn.style.opacity = '0.55';
-      ctaBtn.style.pointerEvents = 'none';
-      ctaBtn.textContent = '📝 Link de inscrição ainda não configurado';
-    }
-  }
-  renderDepoimentosCarousel();
-}
-
-function renderDepoimentosCarousel(){
-  const track = document.getElementById('depo-track');
-  const dotsWrap = document.getElementById('depo-dots');
-  if(!track || !dotsWrap) return;
-  const lista = (dadosPublicos().depoimentos || []).filter(d=>d.texto);
-  if(!lista.length){
-    track.innerHTML = '<div class="depo-card"><div class="depo-texto">Nenhum depoimento cadastrado ainda.</div></div>';
-    dotsWrap.innerHTML = '';
-    return;
-  }
-  track.innerHTML = lista.map(d=>`
-    <div class="depo-card">
-      <div class="depo-quote-ic">“</div>
-      <div class="depo-estrelas">${'★'.repeat(d.estrelas||5)}${'☆'.repeat(5-(d.estrelas||5))}</div>
-      <div class="depo-texto">${(d.texto||'').replace(/</g,'&lt;')}</div>
-      <div class="depo-nome">${(d.nome||'Responsável').replace(/</g,'&lt;')}${d.exemplo ? '<span class="depo-badge-exemplo">EXEMPLO</span>' : ''}</div>
-    </div>`).join('');
-
-  depoCardsPorTela = window.innerWidth >= 1040 ? 3 : window.innerWidth >= 760 ? 2 : 1;
-  const totalPaginas = Math.max(1, Math.ceil(lista.length / depoCardsPorTela));
-  if(depoIndiceAtual >= totalPaginas) depoIndiceAtual = 0;
-
-  dotsWrap.innerHTML = Array.from({length: totalPaginas}).map((_,i)=>
-    `<span class="depo-dot ${i===depoIndiceAtual?'active':''}" data-depo-dot="${i}"></span>`).join('');
-
-  aplicarPosicaoCarousel();
-
-  dotsWrap.querySelectorAll('[data-depo-dot]').forEach(dot=>{
-    dot.addEventListener('click', ()=>{ depoIndiceAtual = parseInt(dot.dataset.depoDot,10); aplicarPosicaoCarousel(); reiniciarAutoplayDepo(); });
-  });
-
-  if(!depoAutoplayTimer){
-    depoAutoplayTimer = setInterval(()=>{ moverCarousel(1); }, 5500);
+  } else {
+    mostrarLogin();
   }
 }
 
-function aplicarPosicaoCarousel(){
-  const track = document.getElementById('depo-track');
-  const dotsWrap = document.getElementById('depo-dots');
-  if(!track) return;
-  const cardEl = track.querySelector('.depo-card');
-  if(!cardEl) return;
-  const larguraCard = cardEl.getBoundingClientRect().width + 16; // + gap
-  track.style.transform = `translateX(-${depoIndiceAtual * depoCardsPorTela * larguraCard}px)`;
-  if(dotsWrap){
-    dotsWrap.querySelectorAll('[data-depo-dot]').forEach((dot,i)=>{
-      dot.classList.toggle('active', i===depoIndiceAtual);
-    });
-  }
-}
-
-function moverCarousel(delta){
-  const lista = (dadosPublicos().depoimentos || []).filter(d=>d.texto);
-  const totalPaginas = Math.max(1, Math.ceil(lista.length / depoCardsPorTela));
-  depoIndiceAtual = (depoIndiceAtual + delta + totalPaginas) % totalPaginas;
-  aplicarPosicaoCarousel();
-}
-
-function reiniciarAutoplayDepo(){
-  if(depoAutoplayTimer){ clearInterval(depoAutoplayTimer); }
-  depoAutoplayTimer = setInterval(()=>{ moverCarousel(1); }, 5500);
-}
-
-/* ---------- Login da Administração ---------- */
 function firebaseAtivo(){
   return typeof firebase !== 'undefined' && firebase.apps && firebase.apps.length > 0;
 }
+
 function mensagemErroLogin(err){
   const code = (err && err.code) || '';
   if(code === 'auth/invalid-email') return 'E-mail inválido.';
@@ -4614,108 +4055,343 @@ function mensagemErroLogin(err){
   if(code === 'auth/operation-not-allowed') return 'Login por e-mail/senha não está ativado no Firebase.';
   return 'E-mail ou senha incorretos.';
 }
-function abrirLoginAdmin(){
-  if(!firebaseAtivo()){
-    // Modo local (Firebase não configurado): os dados só existem neste aparelho.
-    entrarAdmin();
-    return;
-  }
-  openModal(`
-    <div class="login-head">
-      <img src="${LOGO_ALLEANZA}" alt="" class="login-logo">
-      <h3>Administração</h3>
-      <p>Acesso restrito à gestão da Alleanza.</p>
-    </div>
-    <div class="field">
-      <label>E-mail</label>
-      <input type="email" id="login-email" autocomplete="username" inputmode="email" placeholder="seu@email.com">
-    </div>
-    <div class="field">
-      <label>Senha</label>
-      <input type="password" id="login-senha" autocomplete="current-password" placeholder="••••••••">
-    </div>
-    <div id="login-erro" class="login-erro" style="display:none;"></div>
-    <div class="modal-actions login-actions">
-      <button class="btn btn-link" id="login-esqueci" type="button">Esqueci a senha</button>
-      <span style="flex:1"></span>
-      <button class="btn btn-ghost" id="login-cancelar" type="button">Cancelar</button>
-      <button class="btn btn-gold" id="login-entrar" type="button">Entrar</button>
-    </div>
-  `);
+
+(function ligarLogin(){
+  const form = document.getElementById('login-form');
   const emailInput = document.getElementById('login-email');
   const senhaInput = document.getElementById('login-senha');
   const erroEl = document.getElementById('login-erro');
   const btnEntrar = document.getElementById('login-entrar');
-  emailInput.focus();
   function mostrarErro(msg, ok){
     erroEl.textContent = msg;
     erroEl.classList.toggle('ok', !!ok);
     erroEl.style.display = 'block';
   }
-  function tentarLogin(){
+  form.addEventListener('submit', e=>{
+    e.preventDefault();
     const email = emailInput.value.trim();
     const senha = senhaInput.value;
     if(!email || !senha){ mostrarErro('Preencha e-mail e senha.'); return; }
+    if(!firebaseAtivo()){ mostrarErro('Sem conexão com o Firebase.'); return; }
+    erroEl.style.display = 'none';
     btnEntrar.disabled = true;
     btnEntrar.textContent = 'Entrando...';
-    entrarQuandoCarregar = true;
-    firebase.auth().signInWithEmailAndPassword(email, senha)
-      .then(()=>{ closeModal(); toast('Carregando o painel...'); })
-      .catch(err=>{
-        entrarQuandoCarregar = false;
-        btnEntrar.disabled = false;
-        btnEntrar.textContent = 'Entrar';
-        mostrarErro(mensagemErroLogin(err));
-      });
-  }
+    firebase.auth().signInWithEmailAndPassword(email, senha).catch(err=>{
+      btnEntrar.disabled = false;
+      btnEntrar.textContent = 'Entrar';
+      mostrarErro(mensagemErroLogin(err));
+    });
+  });
   document.getElementById('login-esqueci').addEventListener('click', ()=>{
     const email = emailInput.value.trim();
     if(!email){ mostrarErro('Digite seu e-mail acima e toque em "Esqueci a senha" de novo.'); emailInput.focus(); return; }
     firebase.auth().sendPasswordResetEmail(email)
-      .then(()=>mostrarErro('Se esse e-mail for de um administrador, um link para criar nova senha foi enviado.', true))
+      .then(()=>mostrarErro('Se esse e-mail for de um administrador, enviamos um link para criar uma nova senha.', true))
       .catch(err=>mostrarErro(mensagemErroLogin(err)));
   });
-  btnEntrar.addEventListener('click', tentarLogin);
-  document.getElementById('login-cancelar').addEventListener('click', closeModal);
-  [emailInput, senhaInput].forEach(inp=>{
-    inp.addEventListener('keydown', e=>{ if(e.key==='Enter') tentarLogin(); });
+  document.getElementById('btn-sair-sidebar').addEventListener('click', ()=>{
+    if(confirm('Sair do painel neste aparelho?')) sairDaAdministracao();
+  });
+  document.getElementById('tb-bell').addEventListener('click', ()=>setView('inscricoes'));
+})();
+
+/* ============================================================
+   INSCRIÇÕES PELO LINK — os pais preenchem inscricao.html, que
+   grava uma ficha em "inscricoes/". Com o painel aberto, cada
+   ficha nova vira um atleta "Nova" em Inscrições e a cópia
+   em "inscricoes/" é apagada.
+============================================================ */
+
+/* Texto vindo de formulário público: tira caracteres de HTML para
+   nunca virar código dentro do painel. */
+function textoSeguro(v, max){
+  return String(v == null ? '' : v).replace(/[<>"'`]/g, '').replace(/&/g, 'e').replace(/\s+/g, ' ').trim().slice(0, max || 200);
+}
+function dataISOlocal(d){
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+
+function atletaDaInscricaoWeb(id, x){
+  const enviadaEm = x.criadoEm && x.criadoEm.toDate ? x.criadoEm.toDate() : new Date();
+  const nascimento = textoSeguro(x.nascimento, 10);
+  const idade = nascimento ? calcularIdade(nascimento) : '';
+  const email = textoSeguro(x.email, 120);
+  const extras = [];
+  if(email) extras.push('E-mail: ' + email);
+  if(x.escola) extras.push('Escola: ' + textoSeguro(x.escola, 120));
+  if(x.jaJogou) extras.push('Experiência: ' + textoSeguro(x.jaJogou, 200));
+  extras.push('Uso de imagem: ' + (x.autorizaImagem ? 'autorizado' : 'NÃO autorizado'));
+  const observacoes = [textoSeguro(x.observacoes, 600), ...extras].filter(Boolean).join(' · ');
+  const iso = dataISOlocal(enviadaEm);
+  return {
+    id, categoria: sugerirCategoria(idade), nome: textoSeguro(x.nome, 120), idade, nascimento,
+    responsavel: textoSeguro(x.responsavel, 120),
+    telefone: String(x.telefone || '').replace(/\D/g, '').slice(0, 15),
+    rg: textoSeguro(x.rg, 30), filiacaoMae: textoSeguro(x.filiacaoMae, 120), filiacaoPai: textoSeguro(x.filiacaoPai, 120),
+    observacoesInscricao: observacoes, documentos: [], bolsista: false,
+    status: 'inscricao_pendente', dataInscricao: iso, dataEnvioInscricao: iso,
+    dataDesistencia: null, motivoDesistencia: '',
+    matricula: { valor: DB.valorMatricula, pago: false },
+    perfil: { tamanhoCamisa: textoSeguro(x.tamanhoCamisa, 6), peso: '', anotacoes: [], feedbacks: [] },
+    mensalidades: Object.fromEntries(MESES.map(m=>[m.key, '-'])),
+    emailResponsavel: email, autorizaImagem: !!x.autorizaImagem,
+    origem: 'link', novaInscricao: true
+  };
+}
+
+function iniciarInscricoesWeb(){
+  if(unsubInscricoesWeb || !firebaseAtivo()) return;
+  unsubInscricoesWeb = firebase.firestore().collection('inscricoes').onSnapshot(snap=>{
+    snap.docs.forEach(d=>{ if(!FILA_INSCRICOES.some(x=>x.id===d.id)) FILA_INSCRICOES.push(d); });
+    processarFilaInscricoes();
+  }, err=>{
+    console.warn('Não consegui ler as inscrições do link:', err && err.code);
+    unsubInscricoesWeb = null;
   });
 }
 
-/* ---------- Ligações de eventos da tela inicial (uma vez só) ---------- */
-(function ligarEventosLanding(){
-  const btnInicio = document.getElementById('btn-inicio');
-  if(btnInicio) btnInicio.addEventListener('click', ()=>{
-    const content = document.getElementById('landing-content');
-    const hint = document.getElementById('landing-scroll-hint');
-    if(content) content.classList.add('show');
-    if(hint) hint.style.display = 'none';
-    setTimeout(()=>{
-      if(content) content.scrollIntoView({behavior:'smooth', block:'start'});
-    }, 120);
+function processarFilaInscricoes(){
+  if(!DB || !FIREBASE_DOC_REF || modalAberto || !FILA_INSCRICOES.length) return;
+  const docs = FILA_INSCRICOES.splice(0);
+  const novos = [];
+  docs.forEach(d=>{
+    const id = 'atl_web_' + d.id;
+    if(DB.atletas.some(a=>a.id===id)) return; // já importada (outro aparelho)
+    const atleta = atletaDaInscricaoWeb(id, d.data());
+    if(!atleta.nome) return;
+    DB.atletas.push(atleta);
+    novos.push(atleta);
+    logAcao('Inscrições', 'Nova inscrição pelo link: ' + atleta.nome + ' (' + atleta.categoria + ')');
   });
-  const btnAdminAbrir = document.getElementById('btn-admin-abrir');
-  if(btnAdminAbrir) btnAdminAbrir.addEventListener('click', ()=>{
-    if(!firebaseAtivo()){ entrarAdmin(); return; }
-    if(ADMIN_USER && DB){ entrarAdmin(); return; }
-    if(ADMIN_USER){ entrarQuandoCarregar = true; toast('Carregando o painel...'); return; }
-    abrirLoginAdmin();
+  const apagarFichas = ()=>Promise.all(docs.map(d=>d.ref.delete()))
+    .catch(err=>console.warn('Não consegui limpar fichas importadas:', err));
+  if(!novos.length){ apagarFichas(); return; }
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(DB)); }catch(e){}
+  // Só apaga a ficha depois que ela estiver salva no painel.
+  FIREBASE_DOC_REF.set(DB).then(apagarFichas)
+    .catch(err=>console.error('Erro ao salvar inscrições importadas:', err));
+  avisarNovasInscricoes(novos);
+  if(telaAtual === 'admin') render();
+}
+
+function avisarNovasInscricoes(novos){
+  const txt = novos.length === 1 ? 'Nova inscrição: ' + novos[0].nome : novos.length + ' novas inscrições';
+  toast('🔔 ' + txt);
+  try{
+    if('Notification' in window && Notification.permission === 'granted' && document.hidden){
+      new Notification('Alleanza — ' + txt, { body: 'Abra o painel em Inscrições para revisar.', icon: 'logo.jpg', tag: 'alleanza-inscricao' });
+    }
+  }catch(e){ /* navegador sem suporte */ }
+}
+
+function atualizarBadgeInscricoes(){
+  if(!DB) return;
+  const n = pendentesInscricao().length;
+  document.querySelectorAll('[data-view="inscricoes"] .nav-badge, #tb-bell .nav-badge').forEach(el=>{
+    el.textContent = n > 9 ? '9+' : String(n);
+    el.hidden = n === 0;
   });
-  const depoPrev = document.getElementById('depo-prev');
-  const depoNext = document.getElementById('depo-next');
-  if(depoPrev) depoPrev.addEventListener('click', ()=>{ moverCarousel(-1); reiniciarAutoplayDepo(); });
-  if(depoNext) depoNext.addEventListener('click', ()=>{ moverCarousel(1); reiniciarAutoplayDepo(); });
-  const carouselWrap = document.querySelector('.depo-carousel-wrap');
-  if(carouselWrap){
-    carouselWrap.addEventListener('mouseenter', ()=>{ if(depoAutoplayTimer){ clearInterval(depoAutoplayTimer); depoAutoplayTimer = null; } });
-    carouselWrap.addEventListener('mouseleave', reiniciarAutoplayDepo);
+  const bell = document.getElementById('tb-bell');
+  if(bell) bell.hidden = n === 0;
+  document.title = (n ? '(' + n + ') ' : '') + 'Painel de Gestão — Alleanza';
+}
+
+/* Cartão no topo de Inscrições: link pronto para mandar aos pais. */
+function cartaoLinkInscricao(){
+  const link = linkInscricaoPublico();
+  const podeAlertar = 'Notification' in window && Notification.permission === 'default';
+  if(!link){
+    return `<div class="note-box">🔗 O link de inscrição para os pais aparece aqui depois que o painel estiver publicado no Netlify (ele não funciona com o arquivo aberto direto do computador).</div>`;
   }
-  window.addEventListener('resize', ()=>{ if(telaAtual==='landing') aplicarPosicaoCarousel(); });
-  const btnVoltar1 = document.getElementById('btn-voltar-landing');
-  const btnVoltar2 = document.getElementById('btn-voltar-landing-mobile');
-  if(btnVoltar1) btnVoltar1.addEventListener('click', voltarParaLanding);
-  if(btnVoltar2) btnVoltar2.addEventListener('click', voltarParaLanding);
-})();
+  return `
+    <div class="card link-card">
+      <div class="link-card-txt">
+        <div class="link-card-label">Link de inscrição para os pais</div>
+        <div class="link-card-url">${link}</div>
+        <div class="link-card-sub">Cada ficha enviada aparece aqui como <span class="status-pill status-nova">Nova</span> e conta a partir do mês da inscrição.</div>
+      </div>
+      <div class="link-card-acoes">
+        <button class="btn btn-gold" id="btn-enviar-convite">📲 Enviar no WhatsApp</button>
+        <button class="btn btn-ghost" id="btn-copiar-link">Copiar link</button>
+        ${podeAlertar ? '<button class="btn btn-ghost" id="btn-ativar-alertas">🔔 Ativar alertas</button>' : ''}
+      </div>
+    </div>`;
+}
+
+/* Revisar e aprovar uma inscrição: define categoria e o mês em que o
+   aluno começa a contar (meses anteriores ficam como "não se aplica"). */
+function openAprovarInscricao(id){
+  const a = DB.atletas.find(x=>x.id===id);
+  if(!a) return;
+  const mapa = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+  const mesInsc = mesKeyDaData(a.dataInscricao);
+  let idxPadrao = MESES.findIndex(m=>m.key===mesInsc);
+  if(idxPadrao === -1) idxPadrao = mesInsc === 'dez' ? MESES.length - 1 : 0;
+  const linha = (rotulo, valor)=> valor ? `<div class="ficha-linha"><span>${rotulo}</span><strong>${valor}</strong></div>` : '';
+  const tel = a.telefone ? a.telefone.replace(/^55(?=\d{10,11}$)/, '') : '';
+  openModal(`
+    <h3>Revisar inscrição</h3>
+    <div class="ficha">
+      ${linha('Atleta', a.nome)}
+      ${linha('Nascimento', a.nascimento + (a.idade!=='' && a.idade!==undefined ? ' · ' + a.idade + ' anos' : ''))}
+      ${linha('RG', a.rg)}
+      ${linha('Mãe', a.filiacaoMae)}
+      ${linha('Pai', a.filiacaoPai)}
+      ${linha('Responsável', a.responsavel)}
+      ${linha('WhatsApp', tel)}
+      ${linha('Uniforme', a.perfil && a.perfil.tamanhoCamisa)}
+      ${linha('Observações', a.observacoesInscricao)}
+      ${linha('Enviada em', a.dataEnvioInscricao ? a.dataEnvioInscricao.split('-').reverse().join('/') : '')}
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>Categoria</label>
+        <select id="ap-categoria">${CATEGORIAS.map(c=>`<option value="${c}" ${a.categoria===c?'selected':''}>${c}</option>`).join('')}</select>
+      </div>
+      <div class="field">
+        <label>Começa a pagar em</label>
+        <select id="ap-mes">${MESES.map((m,i)=>`<option value="${m.key}" ${i===idxPadrao?'selected':''}>${m.label}</option>`).join('')}</select>
+      </div>
+    </div>
+    <div class="check-row">
+      <input type="checkbox" id="ap-matricula" ${a.matricula && a.matricula.pago ? 'checked' : ''}>
+      <label for="ap-matricula">Matrícula (${fmtBRL(a.matricula ? a.matricula.valor : DB.valorMatricula)}) já paga</label>
+    </div>
+    <div class="check-row">
+      <input type="checkbox" id="ap-bolsista" ${a.bolsista ? 'checked' : ''}>
+      <label for="ap-bolsista">Aluno bolsista (isento de mensalidade)</label>
+    </div>
+    ${a.telefone ? `<div class="check-row">
+      <input type="checkbox" id="ap-whats" checked>
+      <label for="ap-whats">Abrir WhatsApp com mensagem de boas-vindas</label>
+    </div>` : ''}
+    <div class="modal-actions">
+      <button class="btn btn-danger" id="ap-recusar" style="margin-right:auto;">Recusar</button>
+      <button class="btn btn-ghost" id="ap-cancelar">Depois</button>
+      <button class="btn btn-gold" id="ap-aprovar">Aprovar</button>
+    </div>
+  `);
+  document.getElementById('ap-cancelar').addEventListener('click', ()=>{ closeModal(); render(); });
+  document.getElementById('ap-recusar').addEventListener('click', ()=>{
+    if(!confirm('Recusar e apagar a inscrição de ' + a.nome + '?')) return;
+    DB.atletas = DB.atletas.filter(x=>x.id!==a.id);
+    logAcao('Inscrições', 'Inscrição de ' + a.nome + ' recusada');
+    closeModal(); saveDB(); render();
+  });
+  document.getElementById('ap-aprovar').addEventListener('click', ()=>{
+    const mesKey = document.getElementById('ap-mes').value;
+    const mesLabel = MESES.find(m=>m.key===mesKey).label;
+    const bolsista = document.getElementById('ap-bolsista').checked;
+    const ano = (a.dataEnvioInscricao || dataISOlocal(new Date())).slice(0,4);
+    a.categoria = document.getElementById('ap-categoria').value;
+    a.dataInscricao = ano + '-' + String(mapa.indexOf(mesKey)+1).padStart(2,'0') + '-01';
+    a.bolsista = bolsista;
+    a.status = 'ativo';
+    delete a.novaInscricao;
+    a.matricula = { valor: a.matricula ? a.matricula.valor : DB.valorMatricula, pago: document.getElementById('ap-matricula').checked };
+    a.mensalidades = Object.fromEntries(MESES.map(m=>[m.key, bolsista ? 'BOLSA' : (((a.mensalidades||{})[m.key] || '-') === 'BOLSA' ? '-' : ((a.mensalidades||{})[m.key] || '-'))]));
+    logAcao('Inscrições', 'Inscrição de ' + a.nome + ' aprovada (' + a.categoria + ') — conta a partir de ' + mesLabel);
+    const whats = document.getElementById('ap-whats');
+    const abrirBoasVindas = whats && whats.checked;
+    closeModal(); saveDB(); render();
+    toast('Inscrição aprovada!');
+    if(abrirBoasVindas){
+      const primeiro = (a.responsavel || '').split(' ')[0];
+      const msg = 'Olá' + (primeiro ? ', ' + primeiro : '') + '! A inscrição de ' + a.nome + ' na Alleanza Escola de Futsal foi confirmada ✅\n\n'
+        + '⚽ Categoria: ' + a.categoria + '\n'
+        + (a.matricula.pago ? '' : '🎟️ Matrícula: ' + fmtBRL(a.matricula.valor) + '\n')
+        + (bolsista ? '🎓 Aluno bolsista\n' : '💳 Mensalidade: ' + fmtBRL(DB.valorMensalidade) + ' a partir de ' + mesLabel + '\n')
+        + '🔑 Pix (e-mail): ' + PIX_CHAVE + '\n\nSeja bem-vindo(a) à família Alleanza!';
+      abrirWhatsApp('https://api.whatsapp.com/send?phone=' + normalizePhone(a.telefone) + '&text=' + encodeURIComponent(msg));
+    }
+  });
+}
+
+/* ============================================================
+   DADOS PRIVADOS — só com administrador logado
+============================================================ */
+function pararDadosPrivados(){
+  if(unsubDadosPrivados){ unsubDadosPrivados(); unsubDadosPrivados = null; }
+  if(unsubInscricoesWeb){ unsubInscricoesWeb(); unsubInscricoesWeb = null; }
+  FILA_INSCRICOES = [];
+  DB = null;
+  DB_PENDENTE = null;
+}
+
+function assinarDadosPrivados(){
+  if(unsubDadosPrivados) return;
+  unsubDadosPrivados = FIREBASE_DOC_REF.onSnapshot(snap=>{
+    if(snap.exists){
+      const novoDB = migrarDB(snap.data());
+      if(modalAberto && DB){
+        // Não troca o DB debaixo de um modal aberto — isso quebraria a
+        // referência ao item sendo editado. Aplica quando o modal fechar.
+        DB_PENDENTE = novoDB;
+        return;
+      }
+      DB = novoDB;
+    } else {
+      // Documento novo na nuvem: aproveita o cache deste navegador, se houver.
+      const raw = (function(){ try{ return localStorage.getItem(STORAGE_KEY); }catch(e){ return null; } })();
+      if(raw){
+        try{ DB = migrarDB(JSON.parse(raw)); }
+        catch(e){ DB = seedDBFresh(); }
+      } else {
+        DB = seedDBFresh();
+      }
+      FIREBASE_DOC_REF.set(DB);
+    }
+    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(DB)); }catch(e){}
+    aoDBAtualizado();
+    iniciarInscricoesWeb();
+    processarFilaInscricoes();
+  }, err=>{
+    console.error('Erro Firestore (dados do painel):', err);
+    unsubDadosPrivados = null;
+    if(err && err.code === 'permission-denied'){
+      alert('Este usuário não tem permissão para abrir o painel. Confira se o e-mail dele está na lista de administradores nas regras do Firestore (firestore.rules).');
+      firebase.auth().signOut();
+    } else {
+      mostrarErroConexao('Não consegui carregar os dados do painel. Verifique sua internet.');
+    }
+  });
+}
+
+function iniciarFirebase(){
+  const configPreenchida = typeof firebaseConfig !== 'undefined'
+    && firebaseConfig.apiKey && !firebaseConfig.apiKey.includes('SUBSTITUA');
+  if(!configPreenchida || typeof firebase === 'undefined'){
+    bootstrapLocal('Firebase não configurado — rodando só com armazenamento local neste navegador.');
+    return;
+  }
+  try{
+    if(!firebase.apps || !firebase.apps.length){ firebase.initializeApp(firebaseConfig); }
+    FIREBASE_DOC_REF = firebase.firestore().collection('alleanza').doc('painel-dados');
+    firebase.auth().onAuthStateChanged(user=>{
+      if(user && user.isAnonymous){
+        // Sessão anônima da versão antiga do painel — não dá mais acesso.
+        firebase.auth().signOut();
+        return;
+      }
+      ADMIN_USER = user || null;
+      if(user){
+        const status = document.getElementById('sb-sync-status');
+        if(status) status.textContent = user.email || 'Sincronizado';
+        assinarDadosPrivados();
+      } else {
+        pararDadosPrivados();
+        mostrarLogin();
+      }
+    });
+  }catch(err){
+    console.error('Erro ao iniciar Firebase:', err);
+    bootstrapLocal('Falha ao iniciar o Firebase — caindo para armazenamento local.');
+  }
+}
+
+// O botão manual "versão PC / celular" saiu: o layout se adapta sozinho.
+try{ localStorage.removeItem('alleanza_layout_forcado'); }catch(e){}
+
 
 /* ============================================================
    INIT — Firebase (com fallback automático pra armazenamento local
@@ -4761,107 +4437,6 @@ function bootstrapLocal(motivo){
     setTimeout(mostrarAvisoStorageBloqueado, 300);
   }
 }
-function aoPublicoCarregado(){
-  esconderTelaCarregamento();
-  if(telaAtual === 'carregando') mostrarLanding();
-  else if(telaAtual === 'landing') renderLanding();
-}
-
-function pararDadosPrivados(){
-  if(unsubDadosPrivados){ unsubDadosPrivados(); unsubDadosPrivados = null; }
-  DB = null;
-  DB_PENDENTE = null;
-  if(telaAtual === 'admin') mostrarLanding();
-}
-
-/* Só roda com um administrador logado: assina o documento privado. */
-function assinarDadosPrivados(){
-  if(unsubDadosPrivados) return;
-  unsubDadosPrivados = FIREBASE_DOC_REF.onSnapshot(snap=>{
-    if(snap.exists){
-      const novoDB = migrarDB(snap.data());
-      if(modalAberto && DB){
-        // Não troca o DB debaixo de um modal aberto — isso quebraria a
-        // referência ao item sendo editado (ex.: elenco de uma
-        // competição) e a próxima alteração feita sem fechar o modal
-        // se perderia. Guarda e aplica quando o modal fechar.
-        DB_PENDENTE = novoDB;
-        return;
-      }
-      DB = novoDB;
-    } else {
-      // Documento novo na nuvem: aproveita o que já existir salvo neste
-      // navegador (localStorage) como ponto de partida.
-      const raw = (function(){ try{ return localStorage.getItem(STORAGE_KEY); }catch(e){ return null; } })();
-      if(raw){
-        try{ DB = migrarDB(JSON.parse(raw)); }
-        catch(e){ DB = seedDBFresh(); }
-      } else {
-        DB = seedDBFresh();
-      }
-      FIREBASE_DOC_REF.set(DB);
-    }
-    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(DB)); }catch(e){}
-    sincronizarPublico();
-    if(entrarQuandoCarregar){
-      entrarQuandoCarregar = false;
-      entrarAdmin();
-    } else {
-      aoDBAtualizado();
-    }
-  }, err=>{
-    console.error('Erro Firestore (dados privados):', err);
-    unsubDadosPrivados = null;
-    entrarQuandoCarregar = false;
-    if(err && err.code === 'permission-denied'){
-      alert('Este usuário não tem permissão para abrir o painel. Confira se o e-mail dele está na lista de administradores nas regras do Firestore.');
-      firebase.auth().signOut();
-    } else {
-      toast('⚠️ Não consegui carregar os dados — verifique sua internet');
-    }
-  });
-}
-
-function iniciarFirebase(){
-  const configPreenchida = typeof firebaseConfig !== 'undefined'
-    && firebaseConfig.apiKey && !firebaseConfig.apiKey.includes('SUBSTITUA');
-  if(!configPreenchida || typeof firebase === 'undefined'){
-    bootstrapLocal('Firebase não configurado — rodando só com armazenamento local neste navegador.');
-    return;
-  }
-  try{
-    if(!firebase.apps || !firebase.apps.length){ firebase.initializeApp(firebaseConfig); }
-    const fs = firebase.firestore();
-    FIREBASE_DOC_REF = fs.collection('alleanza').doc('painel-dados');
-    PUBLICO_DOC_REF = fs.collection('alleanza').doc('publico');
-
-    // Parte pública (depoimentos + link de inscrição): qualquer visitante lê.
-    PUBLICO_DOC_REF.onSnapshot(snap=>{
-      PUBLICO = snap.exists ? snap.data() : null;
-      if(!DB) aoPublicoCarregado();
-    }, err=>{
-      console.warn('Documento público indisponível:', err && err.code);
-      if(!DB) aoPublicoCarregado();
-    });
-
-    firebase.auth().onAuthStateChanged(user=>{
-      if(user && user.isAnonymous){
-        // Sessão anônima da versão antiga do painel — não dá mais acesso.
-        firebase.auth().signOut();
-        return;
-      }
-      ADMIN_USER = user || null;
-      const status = document.getElementById('sb-sync-status');
-      if(status) status.textContent = user ? 'Sincronizado' : 'Painel de Gestão';
-      if(user){ assinarDadosPrivados(); }
-      else { pararDadosPrivados(); }
-    });
-  }catch(err){
-    console.error('Erro ao iniciar Firebase:', err);
-    bootstrapLocal('Falha ao iniciar o Firebase — caindo para armazenamento local.');
-  }
-}
-
 iniciarFirebase();
 
 /* ============================================================
@@ -4878,8 +4453,6 @@ iniciarFirebase();
     escalacao:'<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 10h6M9 14h6M9 18h3"/>',
     inscricoes:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M19 8v6M16 11h6"/>',
     calendario:'<rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/>',
-    nutricao:'<path d="M12 7c-2-1.5-6-1-7 3s1 10 4 10c1.2 0 1.8-.6 3-.6s1.8.6 3 .6c3 0 5-6 4-10s-5-4.5-7-3z"/><path d="M12 7c0-2 1-4 3-4"/>',
-    exercicios:'<path d="M6 7v10M18 7v10M3 10v4M21 10v4M6 12h12"/>',
     desistencias:'<path d="M14 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4"/><path d="M10 17l-5-5 5-5M5 12h11"/>',
     historico:'<path d="M3.5 12a8.5 8.5 0 1 0 2.6-6.1L3.5 8.5"/><path d="M3.5 3.5v5h5M12 7.5V12l3 2"/>',
     config:'<path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/>'
@@ -4897,54 +4470,13 @@ iniciarFirebase();
   document.querySelectorAll('.tabbar button[data-view]').forEach(function(btn){
     var s = svg(btn.dataset.view);
     if(!s) return;
-    var rotulo = btn.textContent.replace(/^[^\p{L}]+/u, '').trim();
-    btn.innerHTML = '<span class="ic">' + s + '</span>' + rotulo;
+    var badge = btn.querySelector('.nav-badge');
+    var rotulo = btn.firstChild.textContent.replace(/^[^\p{L}]+/u, '').trim();
+    btn.firstChild.remove();
+    btn.insertAdjacentHTML('afterbegin', '<span class="ic">' + s + '</span>' + rotulo);
   });
 })();
 
-/* ============================================================
-   ALTERNAR VERSÃO MOBILE / PC — botão manual
-   Força o layout independente da largura real da tela do
-   dispositivo, e lembra a escolha (localStorage) nas próximas
-   vezes que o painel for aberto neste aparelho.
-============================================================ */
-(function(){
-  var CHAVE = 'alleanza_layout_forcado';
-
-  function layoutAtual(){
-    if(document.body.classList.contains('force-mobile')) return 'mobile';
-    if(document.body.classList.contains('force-desktop')) return 'desktop';
-    return window.innerWidth <= 860 ? 'mobile' : 'desktop';
-  }
-
-  function atualizarBotoes(){
-    var modo = layoutAtual();
-    var rotulo = modo === 'mobile' ? '🖥️ Ver versão PC' : '📱 Ver versão celular';
-    document.querySelectorAll('.js-toggle-layout:not(.btn-tela-inicial)').forEach(function(btn){
-      btn.textContent = btn.closest('.topbar') ? (modo === 'mobile' ? '🖥️' : '📱') : rotulo;
-      btn.title = rotulo;
-    });
-  }
-
-  function aplicarModo(modo){
-    document.body.classList.remove('force-mobile','force-desktop');
-    if(modo === 'mobile' || modo === 'desktop'){
-      document.body.classList.add(modo === 'mobile' ? 'force-mobile' : 'force-desktop');
-    }
-    atualizarBotoes();
-  }
-
-  document.addEventListener('click', function(e){
-    var btn = e.target.closest('.js-toggle-layout:not(.btn-tela-inicial)');
-    if(!btn) return;
-    var novoModo = layoutAtual() === 'mobile' ? 'desktop' : 'mobile';
-    localStorage.setItem(CHAVE, novoModo);
-    aplicarModo(novoModo);
-  });
-
-  var salvo = localStorage.getItem(CHAVE);
-  aplicarModo(salvo === 'mobile' || salvo === 'desktop' ? salvo : null);
-})();
 </script>
 </body>
 </html>
