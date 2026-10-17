@@ -30,17 +30,25 @@ body{background:var(--ink);color:var(--t1);font-family:'Inter',system-ui,sans-se
 ::selection{background:var(--gold-dim);color:var(--gold3);}
 
 /* ── LOGO ── */
-.logo-shield,.logo-nav,.hero-logo-img{
+.logo-shield{
   clip-path:polygon(50% 0%,93% 9%,100% 33%,100% 58%,82% 86%,50% 100%,18% 86%,0% 58%,0% 33%,7% 9%);
   object-fit:cover;
 }
-.logo-nav{width:36px;height:44px;flex-shrink:0;display:block;}
+.logo-nav{width:36px;height:44px;flex-shrink:0;display:block;object-fit:contain;filter:drop-shadow(1px 1px 0 #8a6a22) drop-shadow(0 3px 4px rgba(0,0,0,.6));}
+/* Escudo 3D do topo: imagem sem fundo + espessura dourada + giro lento + brilho */
+.logo3d{position:relative;width:100%;height:100%;transform-style:preserve-3d;animation:hero3d 8s ease-in-out infinite;will-change:transform;}
 .hero-logo-img{
-  width:100%;height:100%;object-fit:contain;
-  filter:drop-shadow(0 0 60px rgba(201,168,76,.3)) drop-shadow(0 20px 60px rgba(0,0,0,.9));
-  animation:heroFloat 6s ease-in-out infinite;
+  width:100%;height:100%;object-fit:contain;display:block;
+  filter:drop-shadow(1px 1px 0 #c9a84c) drop-shadow(1px 1px 0 #a8862f) drop-shadow(1px 1px 0 #876a20) drop-shadow(1px 1px 0 #6a5216) drop-shadow(1px 1px 0 #4e3c0f)
+    drop-shadow(0 34px 34px rgba(0,0,0,.7)) drop-shadow(0 0 60px rgba(201,168,76,.28));
 }
-@keyframes heroFloat{0%,100%{transform:translateY(0) rotateY(0deg);}30%{transform:translateY(-14px) rotateY(2deg);}70%{transform:translateY(-6px) rotateY(-1.5deg);}}
+.logo-sheen{position:absolute;inset:0;pointer-events:none;mix-blend-mode:overlay;
+  background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.55) 50%,transparent 62%) 0 0/260% 100% no-repeat;
+  -webkit-mask:url(img/escudo-3d.webp) center/contain no-repeat;mask:url(img/escudo-3d.webp) center/contain no-repeat;
+  animation:logoSheen 6s ease-in-out infinite;}
+@keyframes hero3d{0%,100%{transform:translateY(0) rotateY(-16deg) rotateX(5deg);}50%{transform:translateY(-16px) rotateY(16deg) rotateX(-3deg);}}
+@keyframes logoSheen{0%,35%{background-position:130% 0;}75%,100%{background-position:-30% 0;}}
+@media (prefers-reduced-motion:reduce){.logo3d,.logo-sheen{animation:none;}}
 
 /* ── REVEAL ── */
 [data-reveal]{opacity:0;transition:opacity .7s var(--ease),transform .7s var(--ease);}
@@ -124,7 +132,7 @@ html{overflow-x:clip;}
 .cta-g{display:inline-flex;align-items:center;gap:9px;background:transparent;color:var(--t1);padding:15px 28px;border-radius:var(--r);border:1px solid var(--b2);font-weight:600;font-size:14px;text-decoration:none;cursor:pointer;font-family:'Inter',sans-serif;transition:all .22s;}
 .cta-g:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim);}
 .h-vis{display:flex;justify-content:center;align-items:center;position:relative;}
-.hlw{width:min(380px,85vw);height:min(450px,100vw);position:relative;display:flex;align-items:center;justify-content:center;}
+.hlw{width:min(380px,85vw);height:min(450px,100vw);position:relative;perspective:1000px;display:flex;align-items:center;justify-content:center;}
 .gorb{position:absolute;border-radius:50%;pointer-events:none;}
 .gorb1{width:280px;height:280px;background:radial-gradient(circle,rgba(201,168,76,.15) 0%,transparent 65%);animation:gBreath 4s ease-in-out infinite;}
 .gorb2{width:360px;height:360px;background:radial-gradient(circle,rgba(0,191,165,.06) 0%,transparent 65%);animation:gBreath 6s ease-in-out infinite reverse;}
@@ -808,6 +816,7 @@ footer{background:var(--ink2);border-top:1px solid var(--b1);padding:40px;}
 .btn-ct:hover{border-color:var(--gold);color:var(--gold);}
 .pt-feat{grid-column:1/-1;}
 .sp-plans{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:26px;}
+.sp-plans.sp-one{grid-template-columns:minmax(0,420px);}
 .sp{background:var(--ink);border:1px solid var(--b2);border-radius:16px;padding:24px;}
 .sp h4{font-family:'Oswald',sans-serif;font-size:19px;text-transform:uppercase;letter-spacing:.5px;}
 .sp .price{margin:8px 0 12px;font-size:30px;}
@@ -841,7 +850,7 @@ footer{background:var(--ink2);border-top:1px solid var(--b1);padding:40px;}
 <nav id="nav">
 <div class="nav-inner">
   <a class="nav-brand" onclick="gp('home')">
-    <img src="img/escudo.webp" alt="Alleanza" class="logo-nav">
+    <img src="img/escudo-3d.webp" alt="Alleanza" class="logo-nav">
     <div><div class="brand-name">Alleanza</div><div class="brand-sub">Escola de Futsal</div></div>
   </a>
   <ul class="nav-links">
@@ -921,7 +930,7 @@ footer{background:var(--ink2);border-top:1px solid var(--b1);padding:40px;}
       <div class="hlw">
         <div class="gorb gorb1"></div><div class="gorb gorb2"></div>
         <div class="oring o1"></div><div class="oring o2"></div><div class="oring o3"></div>
-        <img src="img/escudo.webp" alt="Alleanza" class="hero-logo-img">
+        <div class="logo3d"><img src="img/escudo-3d.webp" alt="Alleanza Escola de Futsal" class="hero-logo-img"><span class="logo-sheen"></span></div>
       </div>
     </div>
   </div>
@@ -1565,12 +1574,11 @@ footer{background:var(--ink2);border-top:1px solid var(--b1);padding:40px;}
   <div class="wbox" style="display:block">
     <div class="ey"><div class="ey-line"></div><span class="ey-txt">Sua empresa aqui</span></div>
     <h3 style="font-size:28px">Quer divulgar sua marca para as famílias da Alleanza?</h3>
-    <p style="max-width:640px">Seja apoiador ou patrocinador e apareça nesta página, nas nossas redes e na quadra.</p>
-    <div class="sp-plans">
-      <div class="sp"><h4>Apoiador</h4><div class="price"><small>R$</small>90<small>/mês</small></div><ul class="nl"><li>2 bolsas de estudo na escolinha</li><li>Post de boas-vindas nas redes</li><li>Menções nas publicações</li><li>Card nesta página de parceiros</li></ul></div>
-      <div class="sp" style="border-color:var(--bgold)"><h4>Patrocinador Oficial</h4><div class="price"><small>R$</small>200<small>/mês</small></div><ul class="nl"><li>Logo na camiseta</li><li>Vídeo do seu negócio em todas as redes</li><li>Destaque nesta página de parceiros</li></ul></div>
+    <p style="max-width:640px">Seja patrocinador e apareça na camiseta dos atletas, nos nossos Reels e nesta página.</p>
+    <div class="sp-plans sp-one">
+      <div class="sp" style="border-color:var(--bgold)"><h4>Patrocinador Alleanza</h4><div class="price"><small>R$</small>150<small>/mês</small></div><ul class="nl"><li>1 bolsa para atleta na escolinha</li><li>1 publicação semanal nos Reels</li><li>Divulgação da sua marca no uniforme</li><li>Logo nesta página de parceiros</li></ul></div>
     </div>
-    <a href="https://wa.me/5551991925356?text=Ol%C3%A1!%20Tenho%20interesse%20em%20ser%20parceiro%20ou%20patrocinador%20da%20Alleanza." class="btn-wpp" target="_blank" rel="noopener" style="margin-top:24px"><svg class="wa-ico"><use href="#wa-i"/></svg>Quero ser parceiro</a>
+    <a href="https://wa.me/5551991925356?text=Ol%C3%A1!%20Tenho%20interesse%20no%20patroc%C3%ADnio%20de%20R%24%20150%2Fm%C3%AAs%20da%20Alleanza." class="btn-wpp" target="_blank" rel="noopener" style="margin-top:24px"><svg class="wa-ico"><use href="#wa-i"/></svg>Quero ser parceiro</a>
   </div>
 </div>
 </div>
@@ -1595,7 +1603,7 @@ footer{background:var(--ink2);border-top:1px solid var(--b1);padding:40px;}
 <footer>
 <div class="fi">
   <div class="fb">
-    <img src="img/escudo.webp" alt="Alleanza" class="logo-nav">
+    <img src="img/escudo-3d.webp" alt="Alleanza" class="logo-nav">
     <div><div class="fname">Alleanza</div><span class="fsub">Escola de Futsal</span></div>
   </div>
   <div class="ff2">
@@ -3387,25 +3395,25 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeBook();
 // ─── Parceiros ────────────────────────────────────────────────
 // Para usar o logo real: salve em img/parceiros/ e preencha "logo" (ex.: 'img/parceiros/jw.png').
 const PARCEIROS = [
-  { handle: 'mayeresportes', nome: 'Mayer Esportes', cat: 'Patrocinador oficial · Espaço esportivo', ini: 'ME', bg: 'linear-gradient(135deg,#C9A84C,#7a5c12)', fg: '#030B18', logo: '',
+  { handle: 'mayeresportes', nome: 'Mayer Esportes', cat: 'Patrocinador oficial · Espaço esportivo', ini: 'ME', bg: 'linear-gradient(135deg,#C9A84C,#7a5c12)', fg: '#030B18', logo: 'img/parceiros/mayeresportes.webp',
     texto: 'A casa da Alleanza. A Quadra Mayer Esportes 52 recebe os treinos da escolinha todo sábado, em Alvorada.',
     itens: ['R. Natal, 359, Sumaré, Alvorada/RS', 'Patrocinador oficial da Alleanza Futsal', 'Chame no direct para conhecer o espaço'],
     contato: { tipo: 'direct' }, feat: true },
-  { handle: 'jwgoleiros', nome: 'Escola de Goleiros João Weren', cat: 'Escola de goleiros', ini: 'JW', bg: '#0C0C0E', fg: '#E2B33C', logo: '',
+  { handle: 'jwgoleiros', nome: 'Escola de Goleiros João Weren', cat: 'Escola de goleiros', ini: 'JW', bg: '#0C0C0E', fg: '#E2B33C', logo: 'img/parceiros/jwgoleiros.webp',
     quote: '30 anos formando goleiros.',
     texto: 'Treinamento específico para goleiros, aos sábados, na Escola de Futsal Alleanza. Meninos e meninas de todas as idades.',
     itens: ['Fundamentos e técnica de goleiro', 'Treinos aos sábados na Alleanza', 'Contato pelo direct do Instagram'],
     contato: { tipo: 'direct' } },
-  { handle: 'aimorepersonal', nome: 'Aimoré Weren · Personal', cat: 'Personal trainer online', ini: 'AW', bg: 'linear-gradient(135deg,#111,#2b2b2b)', fg: '#E8C97A', logo: '',
+  { handle: 'aimorepersonal', nome: 'Aimoré Weren · Personal', cat: 'Personal trainer online', ini: 'AW', bg: 'linear-gradient(135deg,#111,#2b2b2b)', fg: '#E8C97A', logo: 'img/parceiros/aimorepersonal.webp',
     quote: 'Você não precisa morar perto de mim para treinar comigo.',
     texto: 'Consultoria de treino online pelo app MFIT, com treinos montados para o seu objetivo e acompanhamento a distância. Também trabalha preparação para futebol e goleiros.',
     itens: ['Pós-graduado em Treinamento Desportivo, Fisiologia do Exercício e Musculação e Condicionamento Físico', 'Consultoria online mensal: R$ 240', 'Velocidade, força e agilidade para quem joga bola'],
     contato: { tipo: 'whats', msg: 'Olá, Aimoré! Vi você no site da Alleanza e quero saber da consultoria online.' } },
-  { handle: 'mkt.prosp', nome: 'MKT Prosp', cat: 'Agência de social media', ini: 'MP', bg: '#2F45E0', fg: '#FFB02E', logo: '',
+  { handle: 'mkt.prosp', nome: 'MKT Prosp', cat: 'Agência de social media', ini: 'MP', bg: '#2F45E0', fg: '#FFB02E', logo: 'img/parceiros/mkt-prosp.webp',
     texto: 'Agência de social media para pequenos negócios de Porto Alegre e região. Cuida do seu Instagram e Facebook para você focar no seu negócio.',
     itens: ['Arrumação de perfil, posts e Reels', 'Gestão mensal de Instagram e Facebook', 'Captação presencial e anúncios no plano premium'],
     contato: { tipo: 'direct' } },
-  { handle: 'ouro.concursos', nome: 'Ouro Concursos', cat: 'Concursos públicos', ini: 'OC', bg: 'linear-gradient(135deg,#F5DFA0,#C9A84C 55%,#8a6d22)', fg: '#1a1405', logo: '',
+  { handle: 'ouro.concursos', nome: 'Ouro Concursos', cat: 'Concursos públicos', ini: 'OC', bg: 'linear-gradient(135deg,#F5DFA0,#C9A84C 55%,#8a6d22)', fg: '#1a1405', logo: 'img/parceiros/ouro-concursos.webp',
     texto: 'Conteúdo para quem está se preparando para concursos públicos. Siga no Instagram e chame no direct para conhecer o trabalho.',
     itens: ['Dicas e conteúdo para concurseiros', 'Contato pelo direct do Instagram'],
     contato: { tipo: 'direct' } }
