@@ -17,7 +17,8 @@ Sem a `DADOS_CHAVE` (que só existe no Netlify), o repositório público não ex
 
 ## Rotina de liberação
 
-1. Chega o e-mail "New form submission" com nome, e-mail e WhatsApp do aluno.
+1. Chega o e-mail "New form submission" com nome, e-mail e WhatsApp do aluno, e em geral
+   também uma mensagem no seu WhatsApp (5551991925356) avisando da compra.
 2. Abra `https://<seu-site>.netlify.app/admin.html`, cole o e-mail, digite a `ADMIN_SENHA` e gere o código.
 3. Toque em **Enviar por e-mail** ou **Enviar por WhatsApp**: a mensagem já sai pronta.
 

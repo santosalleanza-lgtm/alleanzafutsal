@@ -63,6 +63,7 @@ h1,h2,h3{margin:0;line-height:1.15}
 .sim .r{flex:none;text-align:right;font-size:12px;color:var(--tx3)}
 .sim .r b{display:block;font-size:17px;color:var(--tx)}
 .sim.done .n{background:var(--gold);color:#111}
+.btn svg{width:22px;height:22px}
 .frm{display:grid;gap:10px;margin-top:12px}
 .frm input{width:100%;min-height:50px;border-radius:12px;border:1px solid var(--line);background:var(--s2);color:var(--tx);padding:0 14px;font:inherit;font-size:16px}
 .frm input:focus{outline:2px solid var(--gold);outline-offset:1px}
@@ -292,7 +293,7 @@ function home(){
  h=h.replace('<div class="ttl"><b>','<div class="ttl"><b style="white-space:normal">');
  h+=`<div class="wrap">
  <div class="hero"><div class="k">HCPA 2026 · PS 32</div><h1 class="pf">Simulados <em>Assistente Administrativo II</em></h1>
- <p>${LOCKED?`${FREE} simulados grátis no formato da prova: 40 questões, 3 horas, banca FAURGS. Peça a liberação dos outros ${LOCKED} por e-mail.`:`${SIMS.length} simulados inéditos no formato da prova: 40 questões, 3 horas, banca FAURGS.`}</p>
+ <p>${LOCKED?`${FREE} simulados grátis no formato da prova: 40 questões, 3 horas, banca FAURGS. Os outros ${LOCKED} são liberados para quem comprou a apostila.`:`${SIMS.length} simulados inéditos no formato da prova: 40 questões, 3 horas, banca FAURGS.`}</p>
  <div class="stats"><div class="stat"><b>${done.length}/${FREE}</b><span>simulados concluídos</span></div><div class="stat"><b>${done.length?avg.toString().replace('.',','):'—'}</b><span>média de acertos</span></div><div class="stat"><b>${done.length?best:'—'}</b><span>melhor resultado</span></div></div></div>
  ${igCard(true,'Siga @'+CFG.ig,'Questões e dicas diárias para o HCPA 2026')}
  <div class="sec"><h2>Treinar</h2></div>
@@ -323,8 +324,8 @@ function intro(n){
  h+=`<div class="wrap">`;
  if(s.lock){
    const em=esc(lsGet('po_email')||'');
-   h+=`<div class="score"><div class="big">🔒</div><div class="st">Simulado ${n} está bloqueado</div><p>Os simulados 1 a ${FREE} são grátis. Peça a liberação dos outros ${LOCKED} (${LOCKED*40} questões com gabarito comentado) e receba um código de acesso.</p></div>
-   <div class="card" style="margin-top:16px" id="pedido"><b>Pedir liberação</b><p style="color:var(--tx2);margin:4px 0 0;font-size:14px">Preencha e aguarde o código no seu e-mail ou WhatsApp.</p>
+   h+=`<div class="score"><div class="big">🔒</div><div class="st">Simulado ${n} está bloqueado</div><p>Os simulados 1 a ${FREE} são grátis. Os outros ${LOCKED} (${LOCKED*40} questões com gabarito comentado) são liberados para quem comprou a apostila.</p></div>
+   <div class="card" style="margin-top:16px" id="pedido"><b>Comprou a apostila? Peça seu código</b><p style="color:var(--tx2);margin:4px 0 0;font-size:14px">Preencha com o e-mail usado na compra. O código chega no seu e-mail ou WhatsApp.</p>
    <form class="frm" onsubmit="APP.pedir(event)"><input name="nome" placeholder="Seu nome" required autocomplete="name"><input name="email" type="email" placeholder="Seu e-mail" required autocomplete="email" value="${em}"><input name="whatsapp" placeholder="WhatsApp com DDD (opcional)" inputmode="tel" autocomplete="tel"><button class="btn">Pedir liberação</button></form></div>
    <div class="card" style="margin-top:12px"><b>Já recebeu o código?</b>
    <form class="frm" onsubmit="APP.liberar(event,${n})"><input name="email" type="email" placeholder="E-mail usado no pedido" required autocomplete="email" value="${em}"><input name="codigo" placeholder="Código (6 caracteres)" required maxlength="6" autocapitalize="characters" autocomplete="one-time-code" style="text-transform:uppercase;letter-spacing:.25em"><button class="btn sec2">Liberar simulados</button></form></div>
@@ -506,7 +507,7 @@ function route(){
 async function onPedir(e){
  e.preventDefault();const f=e.target,b=f.querySelector('button');const d=Object.fromEntries(new FormData(f));
  d.email=d.email.trim().toLowerCase();b.disabled=true;b.textContent='Enviando...';
- try{await pedir(d);lsSet('po_email',d.email);const ce=document.querySelector('form input[name=codigo]');if(ce&&!ce.form.email.value)ce.form.email.value=d.email;const c=$('#pedido');if(c)c.innerHTML=`<b>Pedido enviado ✓</b><p style="color:var(--tx2);margin:6px 0 0;font-size:14px">Assim que for aprovado, você recebe o código em <b>${esc(d.email)}</b>${d.whatsapp?' ou no WhatsApp':''}. Depois é só voltar aqui e digitar no campo abaixo.</p>`}
+ try{await pedir(d);lsSet('po_email',d.email);const ce=document.querySelector('form input[name=codigo]');if(ce&&!ce.form.email.value)ce.form.email.value=d.email;const c=$('#pedido');if(c)c.innerHTML=`<b>Pedido enviado ✓</b><p style="color:var(--tx2);margin:6px 0 12px;font-size:14px">Para agilizar, avise no WhatsApp. Assim que a compra for confirmada, o código chega em <b>${esc(d.email)}</b>${d.whatsapp?' ou no seu WhatsApp':''}. Depois é só digitar no campo abaixo.</p><a class="btn" style="background:#25d366;text-decoration:none" href="${waLink(`Olá! Acabei de comprar sua apostila e quero fazer os simulados. Pode enviar o código?\nNome: ${d.nome}\nE-mail: ${d.email}`)}" target="_blank" rel="noopener">${WAI}Avisar no WhatsApp</a>`}
  catch(err){toast(err.message);b.disabled=false;b.textContent='Pedir liberação'}
 }
 async function onLiberar(e,n){
