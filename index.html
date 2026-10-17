@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alleanza Futsal | Escolinha de futsal em Alvorada/RS</title>
+<meta name="description" content="Escolinha de futsal infantil em Alvorada/RS. Turmas aos sábados para meninos e meninas de 6 a 15 anos. Primeira aula grátis.">
+<meta property="og:title" content="Alleanza Futsal | Alvorada/RS">
+<meta property="og:description" content="Futsal, educação e família. Turmas aos sábados de 6 a 15 anos. Primeira aula grátis.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0b1a33">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0b1a33;
+    --navy-2: #12264a;
+    --gold: #d4a63a;
+    --gold-soft: #f3e3b5;
+    --green: #1f8a4c;
+    --red: #c8312f;
+    --white: #ffffff;
+    --ink: #1a2233;
+    --muted: #5b6577;
+    --bg: #f6f4ee;
+    --card: #ffffff;
+    --wa: #25d366;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.6;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  h1, h2, h3 { font-family: "Oswald", Impact, sans-serif; line-height: 1.1; margin: 0 0 .5em; letter-spacing: .5px; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .tricolor { height: 6px; background: linear-gradient(90deg, var(--green) 0 33.3%, var(--white) 33.3% 66.6%, var(--red) 66.6%); }
+
+  /* Header */
+  header { background: var(--navy); color: var(--white); position: sticky; top: 0; z-index: 10; }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: "Oswald", sans-serif; font-size: 1.35rem; letter-spacing: 1px; }
+  .brand svg { width: 34px; height: 40px; }
+  .nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; }
+  .nav ul a { text-decoration: none; font-weight: 500; font-size: .95rem; opacity: .85; }
+  .nav ul a:hover { opacity: 1; color: var(--gold); }
+
+  /* Buttons */
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; border-radius: 999px; font-weight: 700; text-decoration: none; transition: transform .15s ease, box-shadow .15s ease; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-wa { background: var(--wa); color: #06341a; box-shadow: 0 8px 24px rgba(37, 211, 102, .35); }
+  .btn-ghost { border: 2px solid rgba(255,255,255,.5); color: var(--white); }
+  .btn svg { width: 20px; height: 20px; }
+
+  /* Hero */
+  .hero { background: radial-gradient(1200px 500px at 80% -10%, var(--navy-2), var(--navy)); color: var(--white); padding: 80px 0 90px; overflow: hidden; }
+  .hero-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: center; }
+  .tag { display: inline-block; background: rgba(212,166,58,.15); color: var(--gold); border: 1px solid rgba(212,166,58,.5); padding: 6px 14px; border-radius: 999px; font-size: .85rem; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; }
+  .hero h1 { font-size: clamp(2.4rem, 6vw, 4.2rem); margin-top: 18px; text-transform: uppercase; }
+  .hero h1 span { color: var(--gold); }
+  .hero p.lead { font-size: 1.15rem; opacity: .9; max-width: 560px; }
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
+  .crest { justify-self: center; width: min(320px, 80%); filter: drop-shadow(0 20px 40px rgba(0,0,0,.45)); }
+
+  /* Sections */
+  section { padding: 80px 0; }
+  .section-title { text-align: center; margin-bottom: 44px; }
+  .section-title h2 { font-size: clamp(1.9rem, 4vw, 2.6rem); text-transform: uppercase; color: var(--navy); }
+  .section-title p { color: var(--muted); max-width: 620px; margin: 0 auto; }
+  .eyebrow { color: var(--red); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; font-size: .8rem; }
+
+  /* Ofertas */
+  .offers { background: var(--gold); padding: 26px 0; }
+  .offers .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px 48px; font-family: "Oswald", sans-serif; font-size: 1.25rem; color: var(--navy); text-transform: uppercase; text-align: center; }
+  .offers b { color: var(--red); }
+
+  /* Turmas */
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .card { background: var(--card); border-radius: 18px; padding: 30px 26px; box-shadow: 0 10px 30px rgba(11,26,51,.08); border-top: 6px solid var(--navy); position: relative; }
+  .card:nth-child(1) { border-top-color: var(--green); }
+  .card:nth-child(3) { border-top-color: var(--red); }
+  .card .time { font-family: "Oswald", sans-serif; font-size: 3rem; color: var(--navy); line-height: 1; }
+  .card .age { font-weight: 700; font-size: 1.15rem; margin: 8px 0 6px; }
+  .card p { color: var(--muted); margin: 0; }
+  .turmas-note { text-align: center; margin-top: 30px; color: var(--muted); }
+
+  /* Pilares */
+  .pilares { background: var(--navy); color: var(--white); }
+  .pilares .section-title h2 { color: var(--white); }
+  .pilares .section-title p { color: rgba(255,255,255,.75); }
+  .pillars { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+  .pillar { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: 16px; padding: 24px 18px; text-align: center; }
+  .pillar .ico { font-size: 2rem; }
+  .pillar h3 { color: var(--gold); text-transform: uppercase; font-size: 1.2rem; margin: 10px 0 6px; }
+  .pillar p { margin: 0; font-size: .92rem; opacity: .85; }
+
+  /* Conquista */
+  .trophy { display: grid; grid-template-columns: auto 1fr; gap: 34px; align-items: center; background: linear-gradient(135deg, #fffaf0, var(--gold-soft)); border-radius: 24px; padding: 40px; border: 1px solid rgba(212,166,58,.45); }
+  .trophy .cup { font-size: 5rem; line-height: 1; }
+  .trophy h2 { color: var(--navy); font-size: clamp(1.7rem, 3.5vw, 2.4rem); text-transform: uppercase; }
+  .trophy p { margin: 0; color: var(--ink); }
+
+  /* Como funciona */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; counter-reset: step; }
+  .step { background: var(--card); border-radius: 18px; padding: 28px; box-shadow: 0 10px 30px rgba(11,26,51,.06); }
+  .step::before { counter-increment: step; content: counter(step); display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--navy); color: var(--gold); font-family: "Oswald", sans-serif; font-size: 1.3rem; margin-bottom: 14px; }
+  .step h3 { color: var(--navy); font-size: 1.25rem; }
+  .step p { margin: 0; color: var(--muted); }
+
+  /* Local */
+  .local-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 30px; align-items: stretch; }
+  .local-info { background: var(--card); border-radius: 18px; padding: 32px; box-shadow: 0 10px 30px rgba(11,26,51,.06); }
+  .local-info h3 { color: var(--navy); font-size: 1.5rem; }
+  .local-info ul { list-style: none; padding: 0; margin: 0 0 24px; }
+  .local-info li { padding: 10px 0; border-bottom: 1px solid #ece8dc; }
+  .local-info li:last-child { border-bottom: 0; }
+  .map { border-radius: 18px; overflow: hidden; min-height: 340px; box-shadow: 0 10px 30px rgba(11,26,51,.08); }
+  .map iframe { width: 100%; height: 100%; min-height: 340px; border: 0; }
+
+  /* Patrocinador */
+  .sponsor { text-align: center; padding: 50px 0; background: var(--white); }
+  .sponsor small { color: var(--muted); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
+  .sponsor .name { font-family: "Oswald", sans-serif; font-size: 2.2rem; color: var(--navy); text-transform: uppercase; margin-top: 6px; }
+  .sponsor p { color: var(--muted); margin: 6px 0 0; }
+
+  /* CTA final */
+  .final { background: linear-gradient(135deg, var(--navy), var(--navy-2)); color: var(--white); text-align: center; }
+  .final h2 { font-size: clamp(2rem, 5vw, 3rem); text-transform: uppercase; }
+  .final h2 span { color: var(--gold); }
+  .final p { opacity: .85; max-width: 560px; margin: 0 auto 28px; }
+
+  footer { background: #07122a; color: rgba(255,255,255,.7); padding: 30px 0; font-size: .9rem; }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; }
+  footer a { text-decoration: none; color: var(--gold); }
+  footer .links { display: flex; gap: 18px; }
+
+  /* WhatsApp flutuante */
+  .wa-float { position: fixed; right: 18px; bottom: 18px; width: 60px; height: 60px; border-radius: 50%; background: var(--wa); display: grid; place-items: center; box-shadow: 0 10px 30px rgba(0,0,0,.3); z-index: 20; }
+  .wa-float svg { width: 32px; height: 32px; fill: #fff; }
+
+  @media (max-width: 900px) {
+    .hero-grid, .local-grid, .trophy { grid-template-columns: 1fr; }
+    .crest { width: 200px; order: -1; }
+    .hero { padding: 50px 0 60px; text-align: center; }
+    .hero p.lead { margin: 0 auto; }
+    .hero-ctas { justify-content: center; }
+    .cards, .steps { grid-template-columns: 1fr; }
+    .pillars { grid-template-columns: repeat(2, 1fr); }
+    .pillar:last-child { grid-column: 1 / -1; }
+    .trophy { text-align: center; padding: 30px 22px; }
+    .nav ul { display: none; }
+    section { padding: 60px 0; }
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 0 16px; }
+    .btn { width: 100%; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="tricolor"></div>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#topo" aria-label="Alleanza Futsal">
+      <svg viewBox="0 0 100 120" aria-hidden="true"><use href="#crest"/></svg>
+      ALLEANZA
+    </a>
+    <ul>
+      <li><a href="#turmas">Turmas</a></li>
+      <li><a href="#pilares">A escola</a></li>
+      <li><a href="#como-funciona">Aula grátis</a></li>
+      <li><a href="#local">Local</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- Escudo provisório: troque pelo arquivo oficial (ex.: <img src="img/escudo.png">) -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="crest" viewBox="0 0 100 120">
+      <path d="M50 4 L94 16 V58 C94 86 74 106 50 116 C26 106 6 86 6 58 V16 Z" fill="#0b1a33" stroke="#d4a63a" stroke-width="5"/>
+      <path d="M22 26 H38 V70 H22 Z" fill="#1f8a4c"/>
+      <path d="M42 26 H58 V70 H42 Z" fill="#ffffff"/>
+      <path d="M62 26 H78 V70 H62 Z" fill="#c8312f"/>
+      <text x="50" y="96" text-anchor="middle" font-family="Oswald, Impact, sans-serif" font-size="22" font-weight="700" fill="#d4a63a">AF</text>
+    </symbol>
+  </defs>
+</svg>
+
+<main id="topo">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="tag">Alvorada/RS · 6 a 15 anos</span>
+        <h1>Seu filho evolui no futsal <span>e cresce como pessoa</span></h1>
+        <p class="lead">Escolinha de futsal infantil para meninos e meninas, com treinos aos sábados na Quadra Mayer Esportes 52, em Alvorada.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-wa" href="https://wa.me/5551991925356?text=Ol%C3%A1!%20Quero%20agendar%20a%20aula%20experimental%20gr%C3%A1tis%20na%20Alleanza%20Futsal." target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><use href="#wa"/></svg>
+            Agendar aula grátis
+          </a>
+          <a class="btn btn-ghost" href="#turmas">Ver turmas e horários</a>
+        </div>
+      </div>
+      <svg class="crest" viewBox="0 0 100 120" role="img" aria-label="Escudo Alleanza Futsal"><use href="#crest"/></svg>
+    </div>
+  </section>
+
+  <div class="offers">
+    <div class="wrap">
+      <div>⚽ 1ª aula <b>grátis</b></div>
+      <div>🤝 Veio com um amigo? <b>2 aulas grátis</b></div>
+    </div>
+  </div>
+
+  <section id="turmas">
+    <div class="wrap">
+      <div class="section-title">
+        <div class="eyebrow">Todo sábado</div>
+        <h2>Turmas e horários</h2>
+        <p>Cada idade tem a sua turma, para a criança treinar com quem está na mesma fase.</p>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="time">09h</div>
+          <div class="age">6 a 8 anos</div>
+          <p>Coordenação, contato com a bola e diversão em primeiro lugar.</p>
+        </div>
+        <div class="card">
+          <div class="time">10h</div>
+          <div class="age">9 a 12 anos</div>
+          <p>Fundamentos, posicionamento e trabalho em equipe.</p>
+        </div>
+        <div class="card">
+          <div class="time">11h</div>
+          <div class="age">13 a 15 anos</div>
+          <p>Tática, intensidade e preparação para competições.</p>
+        </div>
+      </div>
+      <p class="turmas-note">Turmas para <strong>meninos e meninas</strong>.</p>
+    </div>
+  </section>
+
+  <section id="pilares" class="pilares">
+    <div class="wrap">
+      <div class="section-title">
+        <div class="eyebrow" style="color:var(--gold)">Por que a Alleanza</div>
+        <h2>Mais que futsal</h2>
+        <p>Formar bons jogadores e, antes de tudo, boas pessoas.</p>
+      </div>
+      <div class="pillars">
+        <div class="pillar"><div class="ico">⚽</div><h3>Futsal</h3><p>Técnica e fundamentos desde cedo.</p></div>
+        <div class="pillar"><div class="ico">📚</div><h3>Educação</h3><p>Respeito, disciplina e responsabilidade.</p></div>
+        <div class="pillar"><div class="ico">👨‍👩‍👧</div><h3>Família</h3><p>Pais por perto, acompanhando a evolução.</p></div>
+        <div class="pillar"><div class="ico">📈</div><h3>Desenvolvimento</h3><p>Cada criança no seu ritmo.</p></div>
+        <div class="pillar"><div class="ico">🤝</div><h3>União</h3><p>Um time que joga junto, dentro e fora da quadra.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="trophy">
+        <div class="cup">🏆</div>
+        <div>
+          <div class="eyebrow">Conquista</div>
+          <h2>Campeões do Torneio Farroupilha 2026</h2>
+          <p>Resultado do trabalho de cada sábado: treino, dedicação e espírito de equipe.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="como-funciona" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-title">
+        <div class="eyebrow">Aula experimental</div>
+        <h2>Como começar</h2>
+      </div>
+      <div class="steps">
+        <div class="step"><h3>Chame no WhatsApp</h3><p>Conte o nome e a idade da criança.</p></div>
+        <div class="step"><h3>Escolha o sábado</h3><p>A gente indica a turma certa para a idade.</p></div>
+        <div class="step"><h3>Venha jogar</h3><p>A 1ª aula é grátis. Trouxe um amigo? São 2 aulas grátis.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="local" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-title">
+        <div class="eyebrow">Onde treinamos</div>
+        <h2>Local</h2>
+      </div>
+      <div class="local-grid">
+        <div class="local-info">
+          <h3>Quadra Mayer Esportes 52</h3>
+          <ul>
+            <li>📍 R. Natal, 359, Sumaré, Alvorada/RS</li>
+            <li>📅 Sábados: 09h, 10h e 11h</li>
+            <li>📱 (51) 99192-5356</li>
+          </ul>
+          <a class="btn btn-wa" href="https://wa.me/5551991925356?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20a%20Alleanza%20Futsal." target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><use href="#wa"/></svg>
+            Falar no WhatsApp
+          </a>
+        </div>
+        <div class="map">
+          <iframe title="Mapa da Quadra Mayer Esportes 52" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=R.+Natal,+359+-+Sumar%C3%A9,+Alvorada+-+RS&output=embed"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="sponsor">
+    <small>Patrocinador oficial</small>
+    <!-- Troque pelo logo: <img src="img/mayer.png" alt="Mayer Esportes" style="max-height:80px;margin:10px auto 0"> -->
+    <div class="name">Mayer Esportes</div>
+    <p>Obrigado por acreditar no futsal de base em Alvorada.</p>
+  </div>
+
+  <section class="final">
+    <div class="wrap">
+      <h2>A primeira aula <span>é por nossa conta</span></h2>
+      <p>Traga seu filho ou sua filha para conhecer a Alleanza neste sábado.</p>
+      <a class="btn btn-wa" href="https://wa.me/5551991925356?text=Ol%C3%A1!%20Quero%20agendar%20a%20aula%20experimental%20gr%C3%A1tis%20na%20Alleanza%20Futsal." target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><use href="#wa"/></svg>
+        Agendar aula grátis
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>© 2026 Alleanza Futsal · Alvorada/RS</div>
+    <div class="links">
+      <a href="https://www.instagram.com/alleanza.futsal/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.facebook.com/AlleanzaFutsal" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://wa.me/5551991925356" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/5551991925356?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Alleanza%20Futsal." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24"><use href="#wa"/></svg>
+</a>
+
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="wa" viewBox="0 0 24 24">
+    <path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.04 21.5h-.01a9.45 9.45 0 0 1-4.82-1.32l-.35-.21-3.58.94.96-3.49-.23-.36a9.43 9.43 0 0 1-1.45-5.03c0-5.22 4.25-9.47 9.48-9.47a9.4 9.4 0 0 1 6.7 2.78 9.41 9.41 0 0 1 2.77 6.7c0 5.22-4.25 9.46-9.47 9.46zm8.06-17.53A11.33 11.33 0 0 0 12.04.63C5.76.63.66 5.73.66 12a11.3 11.3 0 0 0 1.52 5.68L.56 23.6l6.05-1.59a11.36 11.36 0 0 0 5.43 1.38h.01c6.27 0 11.37-5.1 11.38-11.37 0-3.04-1.18-5.9-3.33-8.05z"/>
+  </symbol>
+</svg>
+
+</body>
+</html>
