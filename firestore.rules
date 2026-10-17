@@ -1,0 +1,24 @@
+// Regras de segurança do Firestore — painel da Alleanza (/painel).
+// Cole no console do Firebase: Firestore Database → Regras → Publicar.
+// Troque o e-mail abaixo pelo e-mail do usuário administrador criado em
+// Authentication → Users (pode listar mais de um, separados por vírgula).
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email in ['SEU-EMAIL-ADMIN@exemplo.com'];
+    }
+
+    // Tela inicial pública: depoimentos e link de inscrição.
+    match /alleanza/publico {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Todo o resto (alunos, telefones, mensalidades, balanço...): só admin.
+    match /alleanza/{doc} {
+      allow read, write: if isAdmin();
+    }
+  }
+}
