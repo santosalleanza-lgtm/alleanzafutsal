@@ -302,7 +302,7 @@ function home(){
   <button class="qa" onclick="APP.go('#erradas')"><i>↺</i><b>Minhas erradas</b><span>${nw} ${nw===1?'questão':'questões'} para refazer</span></button>
  </div>
  <div class="sec"><h2>Simulados completos</h2><span>${LOCKED?`${FREE} grátis · ${LOCKED} bloqueados`:`${ALLQ.length} questões`}</span></div>
- <div class="list">${SIMS.map((s,i)=>{if(s.lock)return `<button class="sim lk" onclick="APP.go('#sim/${s.n}')"><div class="n">🔒</div><div class="m"><b>Simulado ${s.n}</b><span>40 questões · ${s.tema||'formato oficial'}</span></div><div class="r"><span class="tag g">liberar</span></div></button>`;
+ <div class="list">${SIMS.map((s,i)=>{if(s.lock)return `<button class="sim lk" onclick="APP.lock(${s.n})"><div class="n">🔒</div><div class="m"><b>Simulado ${s.n}</b><span>40 questões · ${s.tema||'formato oficial'}</span></div><div class="r"><span class="tag g">liberar</span></div></button>`;
   const a=ST.att['s'+s.n];let cls='',r='<span class="tag g">novo</span>';
   if(a&&a.done){cls='done';r=`<b>${a.ok}/40</b>${a.pass?'<span class="tag ok">aprovado</span>':'<span class="tag bad">abaixo</span>'}`}
   else if(a){cls='prog';const n=a.ans.filter(x=>x!=null).length;r=`<b>${n}/40</b><span class="tag">em andamento</span>`}
@@ -325,10 +325,7 @@ function intro(n){
  if(s.lock){
    const em=esc(lsGet('po_email')||'');
    h+=`<div class="score"><div class="big">🔒</div><div class="st">Simulado ${n} está bloqueado</div><p>Os simulados 1 a ${FREE} são grátis. Os outros ${LOCKED} (${LOCKED*40} questões com gabarito comentado) são liberados para quem comprou a apostila.</p></div>
-   <div class="card" style="margin-top:16px" id="pedido"><b>Comprou a apostila? Peça seu código</b><p style="color:var(--tx2);margin:4px 0 0;font-size:14px">Preencha com o e-mail usado na compra. O código chega no seu e-mail ou WhatsApp.</p>
-   <form class="frm" onsubmit="APP.pedir(event)"><input name="nome" placeholder="Seu nome" required autocomplete="name"><input name="email" type="email" placeholder="Seu e-mail" required autocomplete="email" value="${em}"><input name="whatsapp" placeholder="WhatsApp com DDD (opcional)" inputmode="tel" autocomplete="tel"><button class="btn">Pedir liberação</button></form></div>
-   <div class="card" style="margin-top:12px"><b>Já recebeu o código?</b>
-   <form class="frm" onsubmit="APP.liberar(event,${n})"><input name="email" type="email" placeholder="E-mail usado no pedido" required autocomplete="email" value="${em}"><input name="codigo" placeholder="Código (6 caracteres)" required maxlength="6" autocapitalize="characters" autocomplete="one-time-code" style="text-transform:uppercase;letter-spacing:.25em"><button class="btn sec2">Liberar simulados</button></form></div>
+   <div class="card" style="margin-top:16px">${waUnlock(n)}</div>
    ${buyCard('Apostila completa · Assistente Administrativo II','225 páginas com todo o conteúdo do edital, questões comentadas e mapas mentais.')}
    <div style="display:grid;gap:10px;margin-top:16px"><button class="btn ghost" onclick="APP.go('#sim/1')">Fazer o Simulado 1 grátis</button></div></div>`;
    $('#app').innerHTML=h;window.scrollTo(0,0);return
@@ -504,6 +501,18 @@ function route(){
  if(h[0]==='erradas')return erradas();
  home()
 }
+/* ---------- liberação pelo WhatsApp ---------- */
+function waUnlock(n){
+ const num=CFG.wa.replace(/^55(\d{2})(\d{5})(\d{4})$/,'($1) $2-$3');
+ return `<b>Quer liberar os simulados?</b><p style="color:var(--tx2);margin:6px 0 14px;font-size:14px">Entre em contato pelo WhatsApp <b>${num}</b> e receba o acesso aos ${LOCKED} simulados bloqueados.</p>
+ <a class="btn" style="background:#25d366;text-decoration:none" href="${waLink(`Olá! Quero liberar os simulados do HCPA (cliquei no Simulado ${n}).`)}" target="_blank" rel="noopener">${WAI}Chamar no WhatsApp</a>`
+}
+function lockPop(n){
+ closeSheet();
+ const s=document.createElement('div');s.className='sheet';s.onclick=e=>{if(e.target===s)s.remove()};
+ s.innerHTML=`<div class="pn"><h3>🔒 Simulado ${n} bloqueado</h3><p style="color:var(--tx2);font-size:14px;margin:0 0 14px">Os simulados 1 a ${FREE} são grátis.</p>${waUnlock(n)}<button class="btn ghost" style="margin-top:10px" onclick="APP.closeSheet()">Agora não</button></div>`;
+ document.body.appendChild(s)
+}
 async function onPedir(e){
  e.preventDefault();const f=e.target,b=f.querySelector('button');const d=Object.fromEntries(new FormData(f));
  d.email=d.email.trim().toLowerCase();b.disabled=true;b.textContent='Enviando...';
@@ -516,7 +525,7 @@ async function onLiberar(e,n){
  try{await liberar(email,codigo);lsSet('po_email',email);toast('Simulados liberados!');intro(n)}
  catch(err){toast(err.message);b.disabled=false;b.textContent='Liberar simulados'}
 }
-window.APP={pedir:onPedir,liberar:onLiberar,igok:()=>lsSet("po_ig_hide","1"),igx:()=>{lsSet("po_ig_hide","1");const e=document.getElementById("igc");if(e)e.remove()},go,start:startSim,restart,mode:(m,n)=>{chosenMode=m;intro(n)},pick,flag,sheet,closeSheet,finish,rv:setRv,calc,
+window.APP={pedir:onPedir,liberar:onLiberar,lock:lockPop,igok:()=>lsSet("po_ig_hide","1"),igx:()=>{lsSet("po_ig_hide","1");const e=document.getElementById("igc");if(e)e.remove()},go,start:startSim,restart,mode:(m,n)=>{chosenMode=m;intro(n)},pick,flag,sheet,closeSheet,finish,rv:setRv,calc,
  cut:(e,k,i,x)=>{e.preventDefault();cutOpt(k,i,x)},
  trd:d=>{trD=trD.includes(d)?trD.filter(x=>x!==d):trD.concat(d);if(!trD.length)trD=[d];trT=null;treino()},trt:t=>{trT=t||null;treino()},trn:n=>{trN=n;treino()},trstart:trStart,erstart:erStart};
 route();
