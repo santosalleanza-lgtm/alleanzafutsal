@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Portrait } from "@/components/Portrait";
 import { SocialLinks } from "@/components/SocialLinks";
 import { ButtonLink } from "@/components/ui/Button";
@@ -31,7 +32,13 @@ export default async function AboutPage() {
   return (
     <div className="wrap grid gap-12 py-14 lg:grid-cols-[.8fr_1.2fr]">
       <div className="lg:sticky lg:top-24 lg:h-fit">
-        <Portrait src={s.photoUrl} name={s.fullName} />
+        {s.photoUrl ? (
+          <Portrait src={s.photoUrl} name={s.fullName} />
+        ) : (
+          <div className="glow-gold relative aspect-[4/5] overflow-hidden rounded-[2rem]">
+            <Image src="/img/aimore/perfil-marca.webp" alt={`${s.fullName}, profissional de Educação Física, CREF ${s.registry ?? ""}`} fill sizes="(min-width: 1024px) 40vw, 90vw" className="object-cover" priority />
+          </div>
+        )}
         <SocialLinks socials={s.socials} className="mt-6" />
       </div>
       <div className="space-y-12">

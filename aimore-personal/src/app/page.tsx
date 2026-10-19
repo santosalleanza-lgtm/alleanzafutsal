@@ -136,10 +136,13 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* FAIXA: ATLETA CORRENDO (imagem ilustrativa) */}
-      <section className="noise relative overflow-hidden border-b border-gold/15">
-        <div className="wrap grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-[1fr_.8fr]">
-          <div>
+      {/* FAIXA: CORREDOR NA CIDADE (imagem ilustrativa) */}
+      <section className="relative isolate overflow-hidden border-y border-gold/15">
+        <Image src="/img/aimore/corredor-cidade.webp" alt="Corredor em avenida à beira-rio ao pôr do sol (imagem ilustrativa)" fill sizes="100vw" className="-z-10 object-cover object-[28%_50%]" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink via-ink/40 to-ink/30 lg:bg-gradient-to-l lg:from-ink lg:via-ink/60 lg:to-transparent" aria-hidden />
+        <span className="absolute left-4 top-4 rounded-full bg-ink/70 px-3 py-1 text-[10px] uppercase tracking-wider text-chalk-dim backdrop-blur sm:left-6 sm:top-6">Imagem ilustrativa</span>
+        <div className="wrap flex min-h-[36rem] items-end py-16 sm:min-h-[42rem] lg:items-center lg:justify-end">
+          <div className="max-w-xl">
             <p className="eyebrow mb-4">Treino é rotina</p>
             <h2 className="font-display text-6xl font-black leading-[0.86] sm:text-8xl">
               Cada passo <span className="block text-gold-metal">conta.</span>
@@ -149,12 +152,6 @@ export default async function Home() {
               <ButtonLink href="/seja-aluno">Quero ser aluno</ButtonLink>
               <ButtonLink href="/situacao/vou-comecar" variant="secondary">Estou começando agora</ButtonLink>
             </div>
-          </div>
-          <div className="frame-gold glow-gold relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-[2rem] border border-gold/30">
-            <Image src="/img/aimore/corredor-trilha.webp" alt="Passada de corredor em trilha de montanha ao pôr do sol (imagem ilustrativa)" fill sizes="(min-width: 1024px) 34vw, 90vw" className="object-cover" />
-            <span className="absolute right-4 top-4 rounded-full bg-ink/70 px-3 py-1 text-[10px] uppercase tracking-wider text-chalk-dim backdrop-blur">Imagem ilustrativa</span>
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" aria-hidden />
-            <p className="absolute inset-x-6 bottom-6 font-display text-3xl font-black uppercase leading-none">Um passo <span className="text-gold-metal">por dia.</span></p>
           </div>
         </div>
       </section>
