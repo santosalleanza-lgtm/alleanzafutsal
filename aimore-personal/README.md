@@ -1,6 +1,6 @@
 # Aimoré Performance: site oficial
 
-> Identidade visual baseada no Instagram @aimorepersonal: preto e dourado, símbolo triangular "A", títulos condensados e artes no padrão dos carrosséis. Foto do profissional em `public/img/aimore/` (recortada e tratada; a pessoa ao lado na foto original foi retirada).
+> Identidade visual baseada no Instagram @aimorepersonal: preto e dourado, símbolo triangular "A", títulos condensados e artes no padrão dos carrosséis. Sem foto do profissional por enquanto (a pedido): o site usa o selo da marca e imagens ilustrativas de corredor em `public/img/aimore/`, sempre com a etiqueta "Imagem ilustrativa". Para usar uma foto profissional, envie em `/admin/configuracoes`.
 
 **Menus do site**
 - **Sua situação** (`/situacao`): 8 páginas, uma para cada momento (emagrecer, força e massa, TAF, futebol, filhos no esporte, recomeçar, mais de 60, bariátrica ou canetas), com método, primeiros passos, artigos e chamada para ser aluno.

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArtCard } from "@/components/ArtCard";
 import { BrandMark } from "@/components/BrandMark";
 import { InstagramGrid } from "@/components/InstagramGrid";
+import { Avatar } from "@/components/Avatar";
 import { Portrait } from "@/components/Portrait";
 import { ProductCard } from "@/components/ProductCard";
 import { DigitalProductBand } from "@/components/DigitalProductCard";
@@ -54,7 +55,7 @@ export default async function Home() {
             </ul>
           </div>
           <div className="relative mx-auto w-full max-w-md lg:max-w-none">
-            <Portrait src={settings.photoUrl} name={settings.fullName} />
+            <Portrait src="/img/aimore/corredor-paisagem.webp" name={settings.fullName} illustrative caption={["Treino é", "rotina"]} />
             <div className="frame-gold absolute -left-4 top-10 hidden rounded-2xl border border-gold/30 bg-ink-800/90 p-4 backdrop-blur sm:block lg:-left-10">
               <p className="text-[10px] uppercase tracking-luxe text-gold">Treino no app</p>
               <p className="mt-1 font-display text-2xl font-black uppercase leading-none">Onde você<br />estiver</p>
@@ -100,7 +101,7 @@ export default async function Home() {
               <Link key={s.slug} href={`/seja-aluno#${s.slug}`} className={`frame-gold group relative flex flex-col overflow-hidden rounded-2xl border p-7 transition duration-500 hover:-translate-y-1 ${s.featured ? "border-gold/50 bg-ink lg:row-span-3" : "border-gold/15 bg-ink/60 hover:border-gold/40"}`}>
                 {s.featured && (
                   <>
-                    <Image src="/img/aimore/aimore-retrato-estilo-sm.webp" alt="" fill sizes="(min-width: 1024px) 33vw, 90vw" className="object-cover object-top opacity-30" />
+                    <Image src="/img/aimore/corredor-trilha.webp" alt="" fill sizes="(min-width: 1024px) 33vw, 90vw" className="object-cover opacity-25" />
                     <div className="absolute inset-0 bg-gradient-to-b from-ink via-ink/70 to-ink" aria-hidden />
                     <div className="pointer-events-none absolute -bottom-20 -right-20 h-72 w-72 rounded-full bg-gold/20 blur-3xl" aria-hidden />
                   </>
@@ -150,7 +151,7 @@ export default async function Home() {
             </div>
           </div>
           <div className="frame-gold glow-gold relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-[2rem] border border-gold/30">
-            <Image src="/img/aimore/corredor-paisagem.webp" alt="Corredor em uma trilha de montanha ao pôr do sol (imagem ilustrativa)" fill sizes="(min-width: 1024px) 34vw, 90vw" className="object-cover" />
+            <Image src="/img/aimore/corredor-trilha.webp" alt="Passada de corredor em trilha de montanha ao pôr do sol (imagem ilustrativa)" fill sizes="(min-width: 1024px) 34vw, 90vw" className="object-cover" />
             <span className="absolute right-4 top-4 rounded-full bg-ink/70 px-3 py-1 text-[10px] uppercase tracking-wider text-chalk-dim backdrop-blur">Imagem ilustrativa</span>
             <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" aria-hidden />
             <p className="absolute inset-x-6 bottom-6 font-display text-3xl font-black uppercase leading-none">Um passo <span className="text-gold-metal">por dia.</span></p>
@@ -180,7 +181,7 @@ export default async function Home() {
                 </Link>
               ))}
               <Link href="/blog/perguntas" className="frame-gold group relative flex items-center gap-4 overflow-hidden rounded-2xl bg-gold-metal p-5 text-ink">
-                <Image src="/img/aimore/aimore-avatar.webp" alt="" width={64} height={64} className="h-16 w-16 rounded-full border-2 border-ink/30 object-cover" />
+                <Avatar size={64} className="!border-ink/30 !bg-ink" />
                 <div>
                   <p className="font-display text-2xl font-black uppercase leading-none">Pergunte ao Aimoré</p>
                   <p className="mt-1 text-sm text-ink/80">{questions.length} dúvidas respondidas. Mande a sua.</p>
@@ -235,8 +236,9 @@ export default async function Home() {
       {/* CHAMADA FINAL */}
       <section className="noise relative overflow-hidden py-20 sm:py-28">
         <div className="wrap relative grid items-center gap-10 lg:grid-cols-[auto_1fr]">
-          <div className="relative mx-auto h-44 w-44 overflow-hidden rounded-full border border-gold/40 glow-gold sm:h-56 sm:w-56">
-            <Image src="/img/aimore/aimore-avatar.webp" alt={settings.fullName} fill sizes="224px" className="object-cover" />
+          <div className="relative mx-auto aspect-[4/5] w-56 overflow-hidden rounded-[1.5rem] border border-gold/40 glow-gold sm:w-64">
+            <Image src="/img/aimore/corredor-espelho.webp" alt="Corredor em trilha ao pôr do sol (imagem ilustrativa)" fill sizes="256px" className="object-cover" />
+            <span className="absolute right-3 top-3 rounded-full bg-ink/70 px-2.5 py-1 text-[9px] uppercase tracking-wider text-chalk-dim backdrop-blur">Imagem ilustrativa</span>
           </div>
           <div className="text-center lg:text-left">
             <BrandMark className="mx-auto mb-4 h-10 w-11 lg:mx-0" />

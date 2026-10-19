@@ -16,7 +16,8 @@ export const defaultSettings: SiteSettings = {
   displayName: "Aimoré Performance",
   fullName: "Aimoré Weren",
   registry: "041955",
-  photoUrl: "/img/aimore/aimore-retrato-estilo.webp",
+  // Sem foto até o profissional enviar uma foto profissional; o site usa o selo da marca.
+  photoUrl: null,
   bio: "Sou Aimoré, profissional de Educação Física, e acredito que o treinamento precisa respeitar a individualidade, os objetivos e a realidade de cada pessoa. Meu propósito é tornar o exercício físico mais acessível, ajudando você a desenvolver hábitos consistentes, melhorar seu condicionamento e buscar uma vida mais ativa.",
   philosophy:
     "Treino bom é o que cabe na sua vida e continua sendo feito daqui a seis meses. Primeiro a técnica e a regularidade, depois a intensidade. Cada etapa tem um porquê, e você entende o que está fazendo.",

@@ -49,7 +49,7 @@ export default async function JoinPage() {
             </div>
             <p className="mt-3 text-xs text-chalk-dim">O cadastro é feito na plataforma MFIT, em ambiente próprio do aplicativo.</p>
           </div>
-          <Portrait src={s.photoUrl} name={s.fullName} className="mx-auto w-full max-w-sm" />
+          <Portrait src="/img/aimore/corredor-espelho.webp" name={s.fullName} illustrative caption={["Faça parte", "do time"]} className="mx-auto w-full max-w-sm" />
         </div>
       </section>
 

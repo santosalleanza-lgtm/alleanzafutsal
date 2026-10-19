@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArtCard } from "@/components/ArtCard";
+import { Avatar } from "@/components/Avatar";
 import { DigitalProductBand } from "@/components/DigitalProductCard";
 import { ButtonLink } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
@@ -96,7 +96,7 @@ export default async function SituationPage({ params }: { params: Promise<{ slug
             <div className="frame-gold relative overflow-hidden rounded-2xl border border-gold/40 bg-ink p-8">
               <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-gold/20 blur-3xl" aria-hidden />
               <div className="relative flex items-center gap-4">
-                <Image src="/img/aimore/aimore-avatar.webp" alt={settings.fullName} width={64} height={64} className="h-16 w-16 rounded-full border border-gold/40 object-cover" />
+                <Avatar size={64} />
                 <div>
                   <p className="font-semibold">{settings.fullName}</p>
                   <p className="text-xs text-chalk-dim">{settings.registry ? `CREF ${settings.registry}` : "Profissional de Educação Física"}</p>

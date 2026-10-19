@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { AskForm } from "@/components/AskForm";
+import { Avatar } from "@/components/Avatar";
 import { Notice } from "@/components/ui/Notice";
 import { blogCategories, type BlogCategory } from "@/data/blog";
-import { getQuestions, getSettings } from "@/lib/data";
+import { getQuestions } from "@/lib/data";
 
 export const revalidate = 60;
 export const metadata: Metadata = {
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default async function QuestionsPage() {
-  const [questions, settings] = await Promise.all([getQuestions(), getSettings()]);
+  const questions = await getQuestions();
   const groups = (Object.keys(blogCategories) as BlogCategory[]).map((c) => ({ c, items: questions.filter((q) => q.category === c) })).filter((g) => g.items.length);
   const jsonLd = {
     "@context": "https://schema.org",
@@ -25,9 +25,7 @@ export default async function QuestionsPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <section className="noise relative overflow-hidden border-b border-gold/15">
         <div className="wrap relative grid items-center gap-10 py-14 lg:grid-cols-[auto_1fr]">
-          <div className="relative mx-auto h-40 w-40 overflow-hidden rounded-full border border-gold/40 glow-gold sm:h-48 sm:w-48">
-            <Image src="/img/aimore/aimore-avatar.webp" alt={settings.fullName} fill sizes="192px" className="object-cover" priority />
-          </div>
+          <Avatar size={176} className="mx-auto glow-gold" />
           <div>
             <p className="eyebrow mb-3">Blog do Aimoré</p>
             <h1 className="font-display text-6xl font-black leading-[0.86] sm:text-7xl">Pergunte ao <span className="text-gold-metal">Aimoré</span></h1>
@@ -48,7 +46,7 @@ export default async function QuestionsPage() {
                       <span className="text-gold transition group-open:rotate-45">+</span>
                     </summary>
                     <div className="mt-4 flex gap-3 border-t border-gold/10 pt-4">
-                      <Image src="/img/aimore/aimore-avatar.webp" alt="" width={36} height={36} className="h-9 w-9 shrink-0 rounded-full object-cover" />
+                      <Avatar size={36} />
                       <p className="text-sm leading-relaxed text-chalk-muted">{q.answer}</p>
                     </div>
                   </details>
