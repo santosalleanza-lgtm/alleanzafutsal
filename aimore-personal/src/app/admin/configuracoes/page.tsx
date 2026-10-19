@@ -34,6 +34,11 @@ export default async function AdminSettings() {
             <Text name="whatsapp" label="WhatsApp (com DDI e DDD)" defaultValue={s.whatsapp} placeholder="5551999999999" />
             <Text name="contactEmail" label="E-mail de contato" type="email" defaultValue={s.contactEmail} />
             <Text name="memberAreaUrl" label="Área de membros Hotmart (Club)" defaultValue={s.memberAreaUrl} hint="Onde quem comprou acessa os conteúdos." />
+            <Text name="signupUrl" label="Link de cadastro de aluno (MFIT)" defaultValue={s.signupUrl} hint='Usado em todos os botões "Quero ser aluno".' />
+            <Text name="storeUrl" label="Loja externa (coleção completa)" defaultValue={s.storeUrl} />
+            <Text name="playlistUrl" label="Playlist" defaultValue={s.playlistUrl} />
+            <Text name="tagline" label="Frase de posicionamento" defaultValue={s.tagline} />
+            <Text name="motto" label="Lema" defaultValue={s.motto} />
             <Text name="instagram" label="Instagram" defaultValue={s.socials.instagram} />
             <Text name="facebook" label="Facebook" defaultValue={s.socials.facebook} />
             <Text name="tiktok" label="TikTok" defaultValue={s.socials.tiktok} />

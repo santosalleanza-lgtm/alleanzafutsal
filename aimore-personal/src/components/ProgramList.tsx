@@ -16,7 +16,7 @@ export function ProgramList({ programs }: { programs: Program[] }) {
             key={s}
             onClick={() => setFilter(s)}
             aria-pressed={filter === s}
-            className={`rounded-full px-4 py-2 text-sm font-semibold ${filter === s ? "bg-lime text-ink" : "border border-white/15 text-chalk-muted hover:text-chalk"}`}
+            className={`rounded-full px-4 py-2 text-sm font-semibold ${filter === s ? "bg-gold text-ink" : "border border-gold/20 text-chalk-muted hover:text-chalk"}`}
           >
             {s === "todos" ? "Todos" : programStatusLabel[s]}
           </button>

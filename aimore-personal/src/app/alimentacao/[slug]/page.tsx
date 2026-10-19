@@ -23,7 +23,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const cat = nutritionCategories.find((c) => c.slug === a.category);
   return (
     <article className="wrap max-w-3xl py-12">
-      <nav aria-label="Trilha" className="mb-6 text-sm text-chalk-dim"><Link href="/alimentacao" className="hover:text-lime">Alimentação</Link>{cat && <> / {cat.label}</>}</nav>
+      <nav aria-label="Trilha" className="mb-6 text-sm text-chalk-dim"><Link href="/alimentacao" className="hover:text-gold">Alimentação</Link>{cat && <> / {cat.label}</>}</nav>
       <h1 className="text-5xl leading-[0.95]">{a.title}</h1>
       <p className="mt-4 text-lg text-chalk-muted">{a.excerpt}</p>
       <div className="mt-8"><ArticleBody body={a.body} /></div>

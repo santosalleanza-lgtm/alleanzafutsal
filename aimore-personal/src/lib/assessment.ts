@@ -125,7 +125,8 @@ export type Summary = {
   alerts: string[];
   /** Nível de cautela: "stop" = procurar avaliação antes de começar. */
   caution: "ok" | "clearance" | "stop";
-  relatedPrograms: string[];
+  /** Páginas de "Sua situação" mais próximas do perfil. */
+  relatedSituations: string[];
 };
 
 export function lifeStage(age: number): "crianca" | "adolescente" | "adulto" | "idoso" {
@@ -234,7 +235,7 @@ export function buildSummary(input: AssessmentInput): Summary {
   }
   if (stage === "idoso") frequency += " Para pessoas com mais idade, a OMS recomenda incluir equilíbrio e força em 3 dias ou mais por semana.";
 
-  const relatedPrograms = relatedProgramSlugs(input, stage);
+  const relatedSituations = relatedSituationSlugs(input, stage);
 
   const nextStep =
     caution === "stop"
@@ -252,24 +253,25 @@ export function buildSummary(input: AssessmentInput): Summary {
     nextStep,
     alerts,
     caution,
-    relatedPrograms,
+    relatedSituations,
   };
 }
 
-function relatedProgramSlugs(input: AssessmentInput, stage: ReturnType<typeof lifeStage>): string[] {
+function relatedSituationSlugs(input: AssessmentInput, stage: ReturnType<typeof lifeStage>): string[] {
   const out: string[] = [];
-  if (stage === "crianca") out.push("desenvolvimento-motor-criancas-futebol");
-  if (input.flags.includes("bariatrica")) out.push("condicionamento-pos-bariatrica");
-  if (input.flags.includes("medicamento-peso")) out.push("treino-para-quem-usa-medicamentos-injetaveis");
-  if (stage === "idoso" || input.goal === "mobilidade") out.push("mobilidade-e-condicionamento-mais-velhos");
-  if (input.goal === "taf") out.push("metodo-taf-8-semanas");
-  if (input.goal === "esporte") out.push("preparacao-fisica-futebol-fim-de-semana", "preparacao-fisica-goleiros-e-jogadores");
-  if (stage === "adulto" || stage === "idoso") {
-    if (input.frequency === "nenhuma" || isBeginner(input.experience)) out.push("treinamento-para-iniciantes", "retorno-gradual-atividade-fisica");
-    if (input.time === "15-20" || input.time === "30") out.push("treino-para-rotina-corrida");
-    if (input.goal === "condicionamento" || input.goal === "emagrecimento" || input.goal === "saude" || input.goal === "forca") {
-      out.push("condicionamento-fisico-adultos");
-    }
-  }
+  if (stage === "crianca" || stage === "adolescente") out.push("meu-filho-treina");
+  if (input.flags.includes("bariatrica") || input.flags.includes("medicamento-peso")) out.push("tratamento-controle-de-peso");
+  if (stage === "idoso") out.push("mais-de-60");
+  const byGoal: Record<Goal, string> = {
+    emagrecimento: "quero-emagrecer",
+    forca: "quero-ganhar-massa",
+    taf: "vou-fazer-taf",
+    esporte: "jogo-futebol",
+    mobilidade: "mais-de-60",
+    saude: "vou-comecar",
+    condicionamento: "vou-comecar",
+  };
+  out.push(byGoal[input.goal]);
+  if (input.frequency === "nenhuma" || isBeginner(input.experience)) out.push("vou-comecar");
   return Array.from(new Set(out)).slice(0, 3);
 }

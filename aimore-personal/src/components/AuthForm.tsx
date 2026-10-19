@@ -49,8 +49,8 @@ export function AuthForm({ action, mode, next, initialError }: Props) {
       )}
       {mode === "cadastro" && (
         <div className="space-y-2 text-xs text-chalk-muted">
-          <label className="flex gap-3"><input type="checkbox" name="adult" value="sim" required className="mt-0.5 accent-[#C6F432]" />Tenho 18 anos ou mais.</label>
-          <label className="flex gap-3"><input type="checkbox" name="terms" value="sim" required className="mt-0.5 accent-[#C6F432]" /><span>Li e aceito os <Link href="/termos" className="text-lime underline">termos de uso</Link> e a <Link href="/privacidade" className="text-lime underline">política de privacidade</Link>.</span></label>
+          <label className="flex gap-3"><input type="checkbox" name="adult" value="sim" required className="mt-0.5 accent-[#D4AF61]" />Tenho 18 anos ou mais.</label>
+          <label className="flex gap-3"><input type="checkbox" name="terms" value="sim" required className="mt-0.5 accent-[#D4AF61]" /><span>Li e aceito os <Link href="/termos" className="text-gold underline">termos de uso</Link> e a <Link href="/privacidade" className="text-gold underline">política de privacidade</Link>.</span></label>
         </div>
       )}
       {state.error && <Notice tone="danger">{state.error}</Notice>}

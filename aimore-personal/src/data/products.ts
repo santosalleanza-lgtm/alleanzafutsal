@@ -10,14 +10,14 @@ export const seedProducts: Product[] = [
     price: 8990,
     shortDescription: "Para treinar, jogar ou usar no dia a dia, com a estampa que representa a sua rotina.",
     description:
-      "A camiseta Aimoré Personal foi pensada para acompanhar quem leva o treino a sério, dentro e fora da academia. Escolha o tamanho, a cor e a estampa, e acrescente um nome ou uma frase curta se quiser deixar a peça com a sua cara.",
+      "A camiseta Aimoré Performance foi pensada para acompanhar quem leva o treino a sério, dentro e fora da academia. Escolha o tamanho, a cor e a estampa, e acrescente um nome ou uma frase curta se quiser deixar a peça com a sua cara.",
     details: [
       "Personalização: estampa da marca, nome ou frase curta (até 30 caracteres).",
       "Tecido e composição: informados na confirmação do pedido.",
       "Confira o guia de tamanhos antes de finalizar.",
     ],
     images: ["/img/produtos/camiseta.svg"],
-    options: { sizes: ["P", "M", "G", "GG"], colors: ["Preto", "Branco"], models: ["Logo Aimoré", "Treino é rotina", "Futebol"], allowsCustomText: true },
+    options: { sizes: ["P", "M", "G", "GG"], colors: ["Preto", "Branco"], models: ["Símbolo dourado", "Treino é rotina", "Futebol"], allowsCustomText: true },
     sizeGuide: null,
     active: true,
     featured: true,
@@ -30,14 +30,14 @@ export const seedProducts: Product[] = [
     price: 6990,
     shortDescription: "Liberdade de movimento para os dias de calor e de treino pesado.",
     description:
-      "A regata Aimoré Personal deixa os ombros livres para os treinos de força, corrida e funcional. Escolha tamanho, cor e estampa conforme a disponibilidade informada no pedido.",
+      "A regata Aimoré Performance deixa os ombros livres para os treinos de força, corrida e funcional. Escolha tamanho, cor e estampa conforme a disponibilidade informada no pedido.",
     details: [
       "Personalização: estampa da marca, nome ou frase curta (até 30 caracteres).",
       "Cores, tamanhos e estampas conforme disponibilidade.",
       "Tecido e composição: informados na confirmação do pedido.",
     ],
     images: ["/img/produtos/regata.svg"],
-    options: { sizes: ["P", "M", "G", "GG"], colors: ["Preto", "Branco", "Grafite"], models: ["Logo Aimoré", "Treino é rotina"], allowsCustomText: true },
+    options: { sizes: ["P", "M", "G", "GG"], colors: ["Preto", "Branco", "Grafite"], models: ["Símbolo dourado", "Treino é rotina"], allowsCustomText: true },
     sizeGuide: null,
     active: true,
     featured: true,

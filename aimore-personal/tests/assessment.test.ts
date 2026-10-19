@@ -27,7 +27,7 @@ describe("resumo da autoavaliação", () => {
     expect(s.caution).toBe("ok");
     expect(s.suggestions.join(" ")).toContain("sessões curtas");
     expect(s.frequency).toContain("2 a 3 sessões");
-    expect(s.relatedPrograms).toContain("treinamento-para-iniciantes");
+    expect(s.relatedSituations).toContain("vou-comecar");
   });
   it("sinais de alerta pedem avaliação médica antes de começar", () => {
     const s = buildSummary({ ...base, flags: ["dor-peito"] });
@@ -38,7 +38,7 @@ describe("resumo da autoavaliação", () => {
   it("bariátrica e medicamento exigem liberação e indicam programas específicos", () => {
     const s = buildSummary({ ...base, flags: ["bariatrica", "medicamento-peso"] });
     expect(s.caution).toBe("clearance");
-    expect(s.relatedPrograms.slice(0, 2)).toEqual(["condicionamento-pos-bariatrica", "treino-para-quem-usa-medicamentos-injetaveis"]);
+    expect(s.relatedSituations[0]).toBe("tratamento-controle-de-peso");
     expect(s.alerts.join(" ")).toContain("não envolvem medicamentos");
   });
   it("crianças recebem brincadeiras, sem faixas adultas nem dieta", () => {
@@ -53,7 +53,9 @@ describe("resumo da autoavaliação", () => {
     expect(s.suggestions.join(" ")).toContain("equilíbrio");
     expect(s.frequency).toContain("equilíbrio e força em 3 dias");
   });
-  it("objetivo TAF indica o Método TAF", () => {
-    expect(buildSummary({ ...base, goal: "taf" }).relatedPrograms[0]).toBe("metodo-taf-8-semanas");
+  it("objetivo indica a situação correspondente", () => {
+    expect(buildSummary({ ...base, goal: "taf" }).relatedSituations[0]).toBe("vou-fazer-taf");
+    expect(buildSummary({ ...base, age: 10, heightCm: 140, weightKg: 35 }).relatedSituations[0]).toBe("meu-filho-treina");
+    expect(buildSummary({ ...base, goal: "forca", frequency: "3-4", experience: "avancado" }).relatedSituations).toEqual(["quero-ganhar-massa"]);
   });
 });

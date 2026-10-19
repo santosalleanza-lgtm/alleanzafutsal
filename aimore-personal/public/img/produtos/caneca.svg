@@ -1,8 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Ilustração de caneca branca com a marca Aimoré">
-  <path d="M280 150 C340 150 340 270 280 270" fill="none" stroke="#E6E6E1" stroke-width="22"/>
-  <rect x="90" y="110" width="200" height="220" rx="18" fill="#F5F5F2"/>
-  <ellipse cx="190" cy="112" rx="100" ry="14" fill="#DADAD4"/>
-  <rect x="90" y="170" width="200" height="90" fill="#0B0B0C"/>
-  <text x="190" y="218" text-anchor="middle" font-family="Impact, 'Arial Narrow', sans-serif" font-size="38" fill="#F5F5F2" letter-spacing="2">AIMORÉ</text>
-  <text x="190" y="243" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="12" fill="#C6F432" letter-spacing="6">PERSONAL</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Caneca preta fosca Aimoré Performance com detalhes dourados"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2DDA6"/><stop offset=".45" stop-color="#D4AF61"/><stop offset=".75" stop-color="#8F6A2C"/><stop offset="1" stop-color="#E8CB8C"/></linearGradient><radialGradient id="glow" cx=".5" cy=".4" r=".6"><stop offset="0" stop-color="#D4AF61" stop-opacity=".22"/><stop offset="1" stop-color="#D4AF61" stop-opacity="0"/></radialGradient></defs>
+<circle cx="190" cy="210" r="185" fill="url(#glow)"/>
+<path d="M280 150 C345 150 345 275 280 275" fill="none" stroke="#1E1B16" stroke-width="24"/>
+<path d="M280 150 C345 150 345 275 280 275" fill="none" stroke="url(#g)" stroke-width="2" opacity=".7"/>
+<rect x="90" y="108" width="200" height="225" rx="18" fill="#100E0B" stroke="#3B352B" stroke-width="3"/>
+<ellipse cx="190" cy="110" rx="100" ry="13" fill="#1E1B16" stroke="url(#g)" stroke-width="2"/>
+<g transform="translate(160 160) scale(.6)"><path fill-rule="evenodd" fill="url(#g)" d="M50 2 98 90H2L50 2Zm0 22L19 80h62L50 24Z"/><path fill="url(#g)" d="M50 42 64 68H36L50 42Z"/><path fill="url(#g)" d="M24 80 33 70h38l-4 10H24Z"/></g>
+<text x="190" y="252" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" letter-spacing="4" fill="url(#g)">AIMORÉ PERFORMANCE</text>
+<path d="M120 300 H260" stroke="url(#g)" stroke-width="1.5"/>
 </svg>

@@ -20,15 +20,15 @@ export default async function StudentHome() {
     <div className="space-y-8">
       <h1 className="text-5xl">Seu painel</h1>
       <div className="grid gap-4 sm:grid-cols-3">
-        <Link href="/aluno/programas" className="card p-5 hover:border-lime/50"><p className="eyebrow">Programas</p><p className="mt-2 font-display text-5xl">{programs?.length ?? 0}</p></Link>
-        <Link href="/aluno/avaliacoes" className="card p-5 hover:border-lime/50"><p className="eyebrow">Última avaliação</p><p className="mt-2 text-lg font-semibold">{last ? formatDate(last.created_at) : "Nenhuma ainda"}</p></Link>
-        <Link href="/aluno/atividades" className="card p-5 hover:border-lime/50"><p className="eyebrow">Atividades pendentes</p><p className="mt-2 font-display text-5xl">{pending ?? 0}</p></Link>
+        <Link href="/aluno/programas" className="card p-5 hover:border-gold/50"><p className="eyebrow">Programas</p><p className="mt-2 font-display text-5xl">{programs?.length ?? 0}</p></Link>
+        <Link href="/aluno/avaliacoes" className="card p-5 hover:border-gold/50"><p className="eyebrow">Última avaliação</p><p className="mt-2 text-lg font-semibold">{last ? formatDate(last.created_at) : "Nenhuma ainda"}</p></Link>
+        <Link href="/aluno/atividades" className="card p-5 hover:border-gold/50"><p className="eyebrow">Atividades pendentes</p><p className="mt-2 font-display text-5xl">{pending ?? 0}</p></Link>
       </div>
       {summary ? (
         <section className="card p-6">
           <h2 className="mb-4 text-3xl">Recomendações educativas</h2>
           <ul className="space-y-2 text-sm text-chalk-muted">{summary.suggestions.map((s) => <li key={s}>• {s}</li>)}</ul>
-          <p className="mt-4 rounded-xl border border-lime/30 bg-lime/5 p-4 text-sm"><strong>Próximo passo:</strong> {summary.nextStep}</p>
+          <p className="mt-4 rounded-xl border border-gold/30 bg-gold/5 p-4 text-sm"><strong>Próximo passo:</strong> {summary.nextStep}</p>
         </section>
       ) : (
         <section className="card p-6">

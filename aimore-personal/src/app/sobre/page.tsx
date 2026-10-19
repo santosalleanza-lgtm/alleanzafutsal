@@ -19,7 +19,7 @@ function List({ title, items }: { title: string; items: string[] }) {
     <section>
       <h2 className="mb-4 text-3xl">{title}</h2>
       <ul className="space-y-2">
-        {items.map((i) => <li key={i} className="flex gap-3 text-chalk-muted"><Icon name="check" className="mt-0.5 h-5 w-5 shrink-0 text-lime" />{i}</li>)}
+        {items.map((i) => <li key={i} className="flex gap-3 text-chalk-muted"><Icon name="check" className="mt-0.5 h-5 w-5 shrink-0 text-gold" />{i}</li>)}
       </ul>
     </section>
   );
@@ -38,11 +38,11 @@ export default async function AboutPage() {
         <header>
           <p className="eyebrow mb-3">Sobre mim</p>
           <h1 className="text-6xl leading-[0.9]">{s.fullName}</h1>
-          <p className="mt-2 text-chalk-muted">Profissional de Educação Física{s.registry ? ` · Registro profissional ${s.registry}` : ""}</p>
+          <p className="mt-2 text-chalk-muted">Profissional de Educação Física{s.registry ? ` · CREF ${s.registry}` : ""}</p>
           <p className="mt-6 text-lg leading-relaxed text-chalk-muted">{s.bio}</p>
         </header>
         {s.philosophy && (
-          <section className="card border-lime/30 p-6">
+          <section className="card border-gold/30 p-6">
             <p className="eyebrow mb-2">Filosofia de trabalho</p>
             <p className="font-display text-3xl uppercase leading-tight">{s.philosophy}</p>
           </section>
@@ -53,7 +53,7 @@ export default async function AboutPage() {
         <List title="Experiência" items={s.experience} />
         <List title="Áreas de atuação" items={s.areas} />
         <div className="flex flex-col gap-3 sm:flex-row">
-          <ButtonLink href="/programas">Conheça os programas</ButtonLink>
+          <ButtonLink href="/seja-aluno">Quero ser aluno</ButtonLink>
           {wa && <ButtonLink href={wa} external variant="secondary">Conhecer o acompanhamento online</ButtonLink>}
         </div>
       </div>

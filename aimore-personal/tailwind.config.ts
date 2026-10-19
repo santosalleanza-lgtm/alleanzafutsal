@@ -5,9 +5,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: { DEFAULT: "#0B0B0C", 900: "#0B0B0C", 800: "#141517", 700: "#1C1E21", 600: "#26292D", 500: "#3A3E44" },
-        chalk: { DEFAULT: "#F5F5F2", muted: "#B9BCC1", dim: "#8A8E95" },
-        lime: { DEFAULT: "#C6F432", 400: "#D4F865", 600: "#A9D61C", ink: "#0B0B0C" },
+        ink: { DEFAULT: "#0A0907", 900: "#0A0907", 800: "#13110D", 700: "#1B1814", 600: "#26221B", 500: "#3B352B" },
+        chalk: { DEFAULT: "#F6F2EA", muted: "#C2BAAC", dim: "#8E8678" },
+        gold: { DEFAULT: "#D4AF61", 300: "#F2DDA6", 400: "#E3C27E", 600: "#A8823C", 700: "#7A5C26", ink: "#0A0907" },
         danger: "#FF6B5B",
         warn: "#F5B841",
       },
@@ -16,6 +16,11 @@ export default {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
       },
       maxWidth: { site: "76rem" },
+      letterSpacing: { luxe: "0.42em" },
+      backgroundImage: {
+        "gold-metal": "linear-gradient(135deg, #F2DDA6 0%, #D4AF61 38%, #A8823C 70%, #E8CB8C 100%)",
+        "gold-sheen": "linear-gradient(110deg, transparent 20%, rgba(242,221,166,.12) 45%, transparent 70%)",
+      },
       keyframes: {
         rise: { "0%": { opacity: "0", transform: "translateY(12px)" }, "100%": { opacity: "1", transform: "none" } },
       },

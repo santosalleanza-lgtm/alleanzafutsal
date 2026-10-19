@@ -25,7 +25,7 @@ export function StoreCatalog({ products, categories }: { products: Product[]; ca
               key={c.slug}
               onClick={() => setCategory(c.slug)}
               aria-pressed={category === c.slug}
-              className={`rounded-full px-4 py-2 text-sm font-semibold transition ${category === c.slug ? "bg-lime text-ink" : "border border-white/15 text-chalk-muted hover:text-chalk"}`}
+              className={`rounded-full px-4 py-2 text-sm font-semibold transition ${category === c.slug ? "bg-gold text-ink" : "border border-gold/20 text-chalk-muted hover:text-chalk"}`}
             >
               {c.label}
             </button>

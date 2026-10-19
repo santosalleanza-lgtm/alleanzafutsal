@@ -34,7 +34,7 @@ export default async function AdminStudents({ searchParams }: { searchParams: Pr
       <section>
         <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
           <h2 className="text-3xl">Acessos a programas</h2>
-          <form className="flex gap-2"><input name="q" defaultValue={q} placeholder="Buscar por e-mail" className="field !py-2" aria-label="Buscar por e-mail" /><button className="rounded-xl border border-white/20 px-4 text-sm">Buscar</button></form>
+          <form className="flex gap-2"><input name="q" defaultValue={q} placeholder="Buscar por e-mail" className="field !py-2" aria-label="Buscar por e-mail" /><button className="rounded-xl border border-gold/25 px-4 text-sm">Buscar</button></form>
         </div>
         <ul className="card divide-y divide-white/10">
           {access?.map((a) => (
@@ -42,11 +42,11 @@ export default async function AdminStudents({ searchParams }: { searchParams: Pr
               <span className="flex-1">{a.buyer_email}</span>
               <span className="text-chalk-muted">{(a.programs as unknown as { name: string } | null)?.name ?? "Produto Hotmart sem programa vinculado"}</span>
               <span className="text-xs text-chalk-dim">{a.source} · {formatDate(a.created_at)}</span>
-              <span className={a.status === "ativa" ? "text-lime" : "text-danger"}>{a.status}</span>
+              <span className={a.status === "ativa" ? "text-gold" : "text-danger"}>{a.status}</span>
               <form action={setAccessStatus}>
                 <input type="hidden" name="id" value={a.id} />
                 <input type="hidden" name="status" value={a.status === "ativa" ? "cancelada" : "ativa"} />
-                <button className="text-xs text-chalk-dim hover:text-lime">{a.status === "ativa" ? "Revogar" : "Reativar"}</button>
+                <button className="text-xs text-chalk-dim hover:text-gold">{a.status === "ativa" ? "Revogar" : "Reativar"}</button>
               </form>
             </li>
           ))}

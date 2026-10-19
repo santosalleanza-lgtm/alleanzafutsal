@@ -42,14 +42,14 @@ export function CookieConsent({ gaId }: { gaId?: string }) {
         </>
       )}
       {choice === null && (
-        <div role="region" aria-label="Preferências de cookies" className="fixed inset-x-3 bottom-3 z-50 mx-auto max-w-xl rounded-2xl border border-white/15 bg-ink-700 p-4 text-sm shadow-2xl sm:inset-x-auto sm:left-4">
+        <div role="region" aria-label="Preferências de cookies" className="fixed inset-x-3 bottom-3 z-50 mx-auto max-w-xl rounded-2xl border border-gold/20 bg-ink-700 p-4 text-sm shadow-2xl sm:inset-x-auto sm:left-4">
           <p className="text-chalk-muted">
             Usamos cookies de análise para entender como o site é usado e melhorá-lo. Nenhum dado de saúde é enviado para essas ferramentas.{" "}
-            <Link href="/cookies" className="text-lime underline">Saiba mais</Link>.
+            <Link href="/cookies" className="text-gold underline">Saiba mais</Link>.
           </p>
           <div className="mt-3 flex gap-2">
-            <button onClick={() => decide("accepted")} className="rounded-full bg-lime px-4 py-2 font-semibold text-ink">Aceitar</button>
-            <button onClick={() => decide("rejected")} className="rounded-full border border-white/20 px-4 py-2 font-semibold">Recusar</button>
+            <button onClick={() => decide("accepted")} className="rounded-full bg-gold px-4 py-2 font-semibold text-ink">Aceitar</button>
+            <button onClick={() => decide("rejected")} className="rounded-full border border-gold/25 px-4 py-2 font-semibold">Recusar</button>
           </div>
         </div>
       )}

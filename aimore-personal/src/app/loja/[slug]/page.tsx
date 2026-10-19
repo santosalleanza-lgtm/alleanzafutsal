@@ -25,7 +25,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   return (
     <div className="wrap py-10 sm:py-14">
       <nav aria-label="Trilha" className="mb-6 text-sm text-chalk-dim">
-        <Link href="/loja" className="hover:text-lime">Loja</Link> <span aria-hidden>/</span> <span className="text-chalk">{product.name}</span>
+        <Link href="/loja" className="hover:text-gold">Loja</Link> <span aria-hidden>/</span> <span className="text-chalk">{product.name}</span>
       </nav>
       <div className="grid gap-10 lg:grid-cols-2">
         <div className="space-y-3">
@@ -37,11 +37,11 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         </div>
         <div>
           <h1 className="text-5xl leading-none sm:text-6xl">{product.name}</h1>
-          <p className="mt-4 font-display text-4xl text-lime">{formatBRL(product.price)}</p>
+          <p className="mt-4 font-display text-4xl text-gold">{formatBRL(product.price)}</p>
           <p className="mt-5 leading-relaxed text-chalk-muted">{product.description}</p>
           {product.details.length > 0 && (
             <ul className="mt-5 space-y-2 text-sm text-chalk-muted">
-              {product.details.map((d) => <li key={d} className="flex gap-2"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-lime" />{d}</li>)}
+              {product.details.map((d) => <li key={d} className="flex gap-2"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />{d}</li>)}
             </ul>
           )}
           <div className="card mt-8 p-6"><AddToCart product={product} /></div>
@@ -51,7 +51,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               {product.sizeGuide ? (
                 <div className="mt-4 overflow-x-auto">
                   <table className="w-full text-left text-sm">
-                    <thead><tr>{product.sizeGuide.headers.map((h) => <th key={h} className="border-b border-white/10 py-2 pr-4">{h}</th>)}</tr></thead>
+                    <thead><tr>{product.sizeGuide.headers.map((h) => <th key={h} className="border-b border-gold/15 py-2 pr-4">{h}</th>)}</tr></thead>
                     <tbody>{product.sizeGuide.rows.map((r, i) => <tr key={i}>{r.map((c, j) => <td key={j} className="border-b border-white/5 py-2 pr-4 text-chalk-muted">{c}</td>)}</tr>)}</tbody>
                   </table>
                 </div>

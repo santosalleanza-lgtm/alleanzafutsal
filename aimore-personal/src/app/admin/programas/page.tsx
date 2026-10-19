@@ -14,7 +14,7 @@ export default async function AdminPrograms() {
       <ul className="card divide-y divide-white/10">
         {data?.map((p) => (
           <li key={p.id} className="flex flex-wrap items-center gap-3 p-4">
-            <Link href={`/admin/programas/${p.id}`} className="flex-1 font-semibold hover:text-lime">{p.name}</Link>
+            <Link href={`/admin/programas/${p.id}`} className="flex-1 font-semibold hover:text-gold">{p.name}</Link>
             <StatusBadge status={p.status as ProgramStatus} />
             <span className="text-xs text-chalk-dim">{p.hotmart_url ? "Link Hotmart ✓" : "Sem link Hotmart"}</span>
             <form action={deleteRow}><input type="hidden" name="table" value="programs" /><input type="hidden" name="id" value={p.id} /><button className="text-xs text-chalk-dim hover:text-danger">Excluir</button></form>

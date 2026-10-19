@@ -25,7 +25,7 @@ export default async function ProfilePage({ searchParams }: { searchParams: Prom
       <section className="card p-6">
         <h2 className="text-2xl">Baixar meus dados</h2>
         <p className="mt-2 text-sm text-chalk-muted">Arquivo com seu perfil, avaliações, medidas, atividades, notas, pedidos e acessos a programas.</p>
-        <a href="/api/conta/exportar" className="mt-4 inline-block text-sm font-semibold text-lime underline">Baixar arquivo (JSON)</a>
+        <a href="/api/conta/exportar" className="mt-4 inline-block text-sm font-semibold text-gold underline">Baixar arquivo (JSON)</a>
       </section>
       <section className="card border-danger/40 p-6">
         <h2 className="text-2xl">Excluir minha conta</h2>

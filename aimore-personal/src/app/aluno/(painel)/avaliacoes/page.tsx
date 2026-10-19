@@ -27,7 +27,7 @@ export default async function MyAssessments() {
                 <span className="text-sm text-chalk-muted">{s.goal}{a.bmi ? ` · IMC ${String(a.bmi).replace(".", ",")}` : ""}</span>
               </div>
               <details className="mt-3">
-                <summary className="cursor-pointer text-sm text-lime">Ver resumo</summary>
+                <summary className="cursor-pointer text-sm text-gold">Ver resumo</summary>
                 <div className="mt-3 space-y-3 text-sm text-chalk-muted">
                   <p>{s.profile}</p>
                   <ul className="list-disc pl-5">{s.situation.map((x) => <li key={x}>{x}</li>)}</ul>

@@ -39,14 +39,14 @@ export function WorkoutGenerator() {
         <Select id="goal" label="Qual é seu objetivo?" options={workoutGoals} value={input.goal} onChange={(v) => set("goal", v)} />
         <Select id="level" label="Qual é sua experiência?" options={levels} value={input.level} onChange={(v) => set("level", v)} />
         <div>
-          <label htmlFor="days" className="label">Quantos dias por semana? <strong className="text-lime">{input.days}</strong></label>
-          <input id="days" type="range" min={1} max={6} value={input.days} onChange={(e) => set("days", Number(e.target.value))} className="w-full accent-[#C6F432]" />
+          <label htmlFor="days" className="label">Quantos dias por semana? <strong className="text-gold">{input.days}</strong></label>
+          <input id="days" type="range" min={1} max={6} value={input.days} onChange={(e) => set("days", Number(e.target.value))} className="w-full accent-[#D4AF61]" />
         </div>
         <fieldset>
           <legend className="label">Quanto tempo por sessão?</legend>
           <div className="flex flex-wrap gap-2">
             {minuteOptions.map((m) => (
-              <button type="button" key={m} onClick={() => set("minutes", m)} aria-pressed={input.minutes === m} className={`rounded-lg border px-3 py-2 text-sm ${input.minutes === m ? "border-lime bg-lime text-ink" : "border-white/15"}`}>{m} min</button>
+              <button type="button" key={m} onClick={() => set("minutes", m)} aria-pressed={input.minutes === m} className={`rounded-lg border px-3 py-2 text-sm ${input.minutes === m ? "border-gold bg-gold text-ink" : "border-gold/20"}`}>{m} min</button>
             ))}
           </div>
         </fieldset>
@@ -56,7 +56,7 @@ export function WorkoutGenerator() {
             <legend className="label">Possui equipamentos?</legend>
             {(Object.entries(gears) as [Gear, string][]).map(([k, v]) => (
               <label key={k} className="mr-4 inline-flex items-center gap-2 text-sm">
-                <input type="checkbox" checked={input.gear.includes(k)} onChange={() => set("gear", input.gear.includes(k) ? input.gear.filter((g) => g !== k) : [...input.gear, k])} className="accent-[#C6F432]" />
+                <input type="checkbox" checked={input.gear.includes(k)} onChange={() => set("gear", input.gear.includes(k) ? input.gear.filter((g) => g !== k) : [...input.gear, k])} className="accent-[#D4AF61]" />
                 {v}
               </label>
             ))}
@@ -89,7 +89,7 @@ export function WorkoutGenerator() {
             </Notice>
             {plan.sessions.map((s) => (
               <section key={s.day} className="card overflow-hidden">
-                <header className="flex items-baseline justify-between gap-4 border-b border-white/10 bg-ink-700 px-6 py-4">
+                <header className="flex items-baseline justify-between gap-4 border-b border-gold/15 bg-ink-700 px-6 py-4">
                   <h3 className="text-2xl">Dia {s.day} · {s.title}</h3>
                   <span className="text-xs uppercase tracking-wider text-chalk-dim">{s.focus}</span>
                 </header>
@@ -97,11 +97,11 @@ export function WorkoutGenerator() {
                   <p className="text-sm text-chalk-muted"><strong className="text-chalk">Aquecimento:</strong> {s.warmup}</p>
                   <ol className="space-y-3">
                     {s.exercises.map((e, i) => (
-                      <li key={e.id} className="rounded-xl border border-white/10 p-4">
+                      <li key={e.id} className="rounded-xl border border-gold/15 p-4">
                         <details>
                           <summary className="flex cursor-pointer list-none items-start justify-between gap-3">
                             <span>
-                              <span className="mr-2 font-display text-xl text-lime">{i + 1}</span>
+                              <span className="mr-2 font-display text-xl text-gold">{i + 1}</span>
                               <span className="font-semibold">{e.name}</span>
                               <span className="mt-1 block text-xs text-chalk-muted">{e.prescription}</span>
                             </span>
@@ -124,7 +124,7 @@ export function WorkoutGenerator() {
             ))}
             <p className="text-sm text-chalk-muted">{plan.restDays}</p>
             <div className="flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/programas">Conheça os programas completos</ButtonLink>
+              <ButtonLink href="/seja-aluno">Quero um treino individualizado</ButtonLink>
               <Button variant="secondary" onClick={() => window.print()}>Imprimir</Button>
             </div>
           </div>

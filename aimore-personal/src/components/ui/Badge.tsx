@@ -2,9 +2,9 @@ import type { ProgramStatus } from "@/lib/types";
 import { programStatusLabel } from "@/data/programs";
 
 const tone: Record<ProgramStatus, string> = {
-  disponivel: "bg-lime text-lime-ink",
+  disponivel: "bg-gold text-gold-ink",
   "em-breve": "bg-white text-ink",
-  "em-desenvolvimento": "border border-white/25 text-chalk-muted",
+  "em-desenvolvimento": "border border-gold/30 text-chalk-muted",
 };
 
 export function StatusBadge({ status }: { status: ProgramStatus }) {

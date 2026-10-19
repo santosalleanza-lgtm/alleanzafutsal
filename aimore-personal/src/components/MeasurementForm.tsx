@@ -31,7 +31,7 @@ export function MeasurementForm() {
       ))}
       <Button type="submit" disabled={pending}>{pending ? "Salvando…" : "Registrar"}</Button>
       {state.error && <p role="alert" className="text-sm text-danger sm:col-span-3 lg:col-span-6">{state.error}</p>}
-      {state.ok && <p role="status" className="text-sm text-lime sm:col-span-3 lg:col-span-6">Medida registrada.</p>}
+      {state.ok && <p role="status" className="text-sm text-gold sm:col-span-3 lg:col-span-6">Medida registrada.</p>}
     </form>
   );
 }

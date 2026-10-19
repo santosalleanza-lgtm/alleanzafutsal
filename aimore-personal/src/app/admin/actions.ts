@@ -152,9 +152,9 @@ export async function saveArticle(_: AdminState, form: FormData): Promise<AdminS
   const row = {
     title,
     slug: slugify(text(form.get("slug")) || title),
-    section: z.enum(["alimentacao", "treinamento"]).catch("alimentacao").parse(form.get("section")),
+    section: z.enum(["alimentacao", "treinamento", "blog"]).catch("blog").parse(form.get("section")),
     category: text(form.get("category")) || "rotina-ativa",
-    kind: z.enum(["artigo", "receita", "material"]).catch("artigo").parse(form.get("kind")),
+    kind: z.enum(["artigo", "receita", "material", "pergunta"]).catch("artigo").parse(form.get("kind")),
     excerpt: text(form.get("excerpt")),
     body: String(form.get("body") ?? ""),
     published: form.get("published") === "on",
@@ -203,6 +203,11 @@ export async function saveSettings(_: AdminState, form: FormData): Promise<Admin
       whatsapp: text(form.get("whatsapp")).replace(/\D/g, "") || null,
       contactEmail: nullable(form.get("contactEmail")),
       memberAreaUrl: httpsOrNull(form.get("memberAreaUrl")),
+      signupUrl: httpsOrNull(form.get("signupUrl")),
+      storeUrl: httpsOrNull(form.get("storeUrl")),
+      playlistUrl: httpsOrNull(form.get("playlistUrl")),
+      tagline: text(form.get("tagline")) || defaultSettings.tagline,
+      motto: text(form.get("motto")) || defaultSettings.motto,
       announcement: nullable(form.get("announcement")),
       banner,
     };

@@ -52,13 +52,13 @@ export type Program = {
   sortOrder: number;
 };
 
-export type ArticleKind = "artigo" | "receita" | "material";
+export type ArticleKind = "artigo" | "receita" | "material" | "pergunta";
 
 export type Article = {
   id: string;
   slug: string;
   title: string;
-  section: "alimentacao" | "treinamento";
+  section: "alimentacao" | "treinamento" | "blog";
   category: string;
   kind: ArticleKind;
   excerpt: string;
@@ -95,6 +95,13 @@ export type SiteSettings = {
   contactEmail: string | null;
   /** Área de membros da Hotmart (Hotmart Club), onde compradores acessam os conteúdos. */
   memberAreaUrl: string | null;
+  /** Formulário de cadastro de aluno (MFIT, "Cadastro do Time" no Linktree). */
+  signupUrl: string | null;
+  /** Loja externa com a coleção completa. */
+  storeUrl: string | null;
+  playlistUrl: string | null;
+  tagline: string;
+  motto: string;
   announcement: string | null;
   banner: Banner;
 };

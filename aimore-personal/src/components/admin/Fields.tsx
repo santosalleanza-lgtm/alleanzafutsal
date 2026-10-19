@@ -25,7 +25,7 @@ export function Area({ name, label, hint, className = "", defaultValue, rows = 4
 export function Check({ name, label, defaultChecked }: { name: string; label: string; defaultChecked?: boolean }) {
   return (
     <label className="flex items-center gap-3 text-sm">
-      <input type="checkbox" name={name} defaultChecked={defaultChecked} className="h-4 w-4 accent-[#C6F432]" />
+      <input type="checkbox" name={name} defaultChecked={defaultChecked} className="h-4 w-4 accent-[#D4AF61]" />
       {label}
     </label>
   );
@@ -46,7 +46,7 @@ export function Upload({ label, multiple, hint }: { label: string; multiple?: bo
   return (
     <div>
       <label htmlFor="upload" className="label">{label}</label>
-      <input id="upload" name="upload" type="file" accept="image/png,image/jpeg,image/webp,image/avif" multiple={multiple} className="block w-full text-sm text-chalk-muted file:mr-4 file:rounded-full file:border-0 file:bg-lime file:px-4 file:py-2 file:font-semibold file:text-ink" />
+      <input id="upload" name="upload" type="file" accept="image/png,image/jpeg,image/webp,image/avif" multiple={multiple} className="block w-full text-sm text-chalk-muted file:mr-4 file:rounded-full file:border-0 file:bg-gold file:px-4 file:py-2 file:font-semibold file:text-ink" />
       {hint && <p className="hint">{hint}</p>}
     </div>
   );

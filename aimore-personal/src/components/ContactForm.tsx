@@ -57,13 +57,13 @@ export function ContactForm() {
       {/* Campo armadilha para robôs: pessoas não veem nem preenchem. */}
       <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden />
       <label className="flex gap-3 text-xs text-chalk-muted">
-        <input type="checkbox" name="consent" value="sim" required className="mt-0.5 accent-[#C6F432]" />
+        <input type="checkbox" name="consent" value="sim" required className="mt-0.5 accent-[#D4AF61]" />
         Concordo com o uso destes dados apenas para responder ao meu contato, conforme a política de privacidade.
       </label>
       {error && (
         <Notice tone="danger">
           {error.message}
-          {error.fallback && <a href={error.fallback} target="_blank" rel="noopener noreferrer" className="mt-2 block font-semibold text-lime underline">Falar pelo WhatsApp</a>}
+          {error.fallback && <a href={error.fallback} target="_blank" rel="noopener noreferrer" className="mt-2 block font-semibold text-gold underline">Falar pelo WhatsApp</a>}
         </Notice>
       )}
       <Button type="submit" disabled={state === "sending"}>{state === "sending" ? "Enviando…" : "Enviar mensagem"}</Button>

@@ -1,10 +1,10 @@
 import type { ReactNode } from "react";
 
 const tones = {
-  info: "border-white/15 bg-ink-700 text-chalk-muted",
+  info: "border-gold/20 bg-ink-700 text-chalk-muted",
   warn: "border-warn/40 bg-warn/10 text-chalk",
   danger: "border-danger/50 bg-danger/10 text-chalk",
-  success: "border-lime/40 bg-lime/10 text-chalk",
+  success: "border-gold/40 bg-gold/10 text-chalk",
 };
 
 export function Notice({ tone = "info", title, children, className = "" }: { tone?: keyof typeof tones; title?: string; children: ReactNode; className?: string }) {

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/alimentacao" },
 };
 
-const kindLabel = { artigo: "Artigo", receita: "Receita", material: "Material" } as const;
+const kindLabel = { artigo: "Artigo", receita: "Receita", material: "Material", pergunta: "Pergunta" } as const;
 
 export default async function NutritionPage() {
   const articles = await getArticles("alimentacao");
@@ -38,9 +38,9 @@ export default async function NutritionPage() {
               <h2 id={`cat-${cat.slug}`} className="mb-4 text-3xl">{cat.label}</h2>
               <div className="grid gap-4 md:grid-cols-2">
                 {list.map((a) => (
-                  <Link key={a.id} href={`/alimentacao/${a.slug}`} className="card group p-6 transition hover:border-lime/50">
+                  <Link key={a.id} href={`/alimentacao/${a.slug}`} className="card group p-6 transition hover:border-gold/50">
                     <span className="text-xs font-semibold uppercase tracking-wider text-chalk-dim">{kindLabel[a.kind]}</span>
-                    <h3 className="mt-2 font-sans text-xl font-semibold normal-case tracking-normal group-hover:text-lime">{a.title}</h3>
+                    <h3 className="mt-2 font-sans text-xl font-semibold normal-case tracking-normal group-hover:text-gold">{a.title}</h3>
                     <p className="mt-2 text-sm text-chalk-muted">{a.excerpt}</p>
                   </Link>
                 ))}

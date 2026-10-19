@@ -28,7 +28,7 @@ export default async function AdminCoupons() {
             <strong className="flex-1">{c.code}</strong>
             <span>{c.kind === "percent" ? `${c.value}%` : formatBRL(c.value)}</span>
             <span className="text-chalk-dim">{c.expires_at ? `até ${formatDate(c.expires_at)}` : "sem validade"}</span>
-            <span className={c.active ? "text-lime" : "text-chalk-dim"}>{c.active ? "ativo" : "inativo"}</span>
+            <span className={c.active ? "text-gold" : "text-chalk-dim"}>{c.active ? "ativo" : "inativo"}</span>
             <form action={deleteRow}><input type="hidden" name="table" value="coupons" /><input type="hidden" name="id" value={c.code} /><button className="text-xs text-chalk-dim hover:text-danger">Excluir</button></form>
           </li>
         ))}

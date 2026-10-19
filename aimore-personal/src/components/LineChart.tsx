@@ -71,15 +71,15 @@ export function LineChart({ title, unit, points }: { title: string; unit: string
           ))}
           <text x={x(xs[0])} y={H - 8} fontSize="11" fill="#8A8E95" textAnchor="start">{fmtDate(points[0].date)}</text>
           {last > 0 && <text x={x(xs[last])} y={H - 8} fontSize="11" fill="#8A8E95" textAnchor="end">{fmtDate(points[last].date)}</text>}
-          <path d={path} fill="none" stroke="#C6F432" strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" />
+          <path d={path} fill="none" stroke="#D4AF61" strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" />
           {points.map((p, i) => (
-            <circle key={p.date + i} cx={x(xs[i])} cy={y(p.value)} r={i === a || i === last ? 5 : 3.5} fill="#C6F432" stroke="#141517" strokeWidth={2} />
+            <circle key={p.date + i} cx={x(xs[i])} cy={y(p.value)} r={i === a || i === last ? 5 : 3.5} fill="#D4AF61" stroke="#141517" strokeWidth={2} />
           ))}
           {a !== null && <line x1={x(xs[a])} x2={x(xs[a])} y1={PAD.top} y2={H - PAD.bottom} stroke="rgba(255,255,255,.35)" strokeWidth={1} />}
         </svg>
         {a !== null && (
           <div
-            className="pointer-events-none absolute top-0 -translate-x-1/2 rounded-lg border border-white/15 bg-ink-700 px-3 py-2 text-xs shadow-xl"
+            className="pointer-events-none absolute top-0 -translate-x-1/2 rounded-lg border border-gold/20 bg-ink-700 px-3 py-2 text-xs shadow-xl"
             style={{ left: `${(x(xs[a]) / W) * 100}%` }}
           >
             <strong className="block text-sm text-chalk">{fmtVal(points[a].value)} {unit}</strong>

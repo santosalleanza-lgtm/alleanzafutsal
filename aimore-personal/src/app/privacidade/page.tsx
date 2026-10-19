@@ -7,7 +7,7 @@ export const metadata: Metadata = { title: "Política de privacidade", alternate
 
 export default async function PrivacyPage() {
   const s = await getSettings();
-  const contact = s.contactEmail ? <a href={`mailto:${s.contactEmail}`} className="text-lime">{s.contactEmail}</a> : <Link href="/contato" className="text-lime">página de contato</Link>;
+  const contact = s.contactEmail ? <a href={`mailto:${s.contactEmail}`} className="text-gold">{s.contactEmail}</a> : <Link href="/contato" className="text-gold">página de contato</Link>;
   return (
     <LegalPage title="Política de privacidade" updated="19/10/2026">
       <p>Esta política explica como o site Aimoré Personal trata dados pessoais, em conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018, LGPD).</p>
@@ -38,7 +38,7 @@ export default async function PrivacyPage() {
       <h2>6. Por quanto tempo guardamos</h2>
       <p>Dados da conta e da evolução ficam guardados enquanto a conta existir. Dados de pedidos são mantidos pelo prazo exigido pela legislação fiscal e de defesa do consumidor. Mensagens de contato são apagadas quando deixam de ser necessárias.</p>
       <h2>7. Seus direitos</h2>
-      <p>Você pode confirmar a existência de tratamento, acessar, corrigir, exportar e excluir seus dados, além de revogar consentimentos. Na área do aluno, em <Link href="/aluno/perfil" className="text-lime">Meus dados</Link>, há opções para corrigir, baixar e excluir a sua conta e os dados associados. Para outras solicitações, use o contato acima.</p>
+      <p>Você pode confirmar a existência de tratamento, acessar, corrigir, exportar e excluir seus dados, além de revogar consentimentos. Na área do aluno, em <Link href="/aluno/perfil" className="text-gold">Meus dados</Link>, há opções para corrigir, baixar e excluir a sua conta e os dados associados. Para outras solicitações, use o contato acima.</p>
       <h2>8. Crianças e adolescentes</h2>
       <p>Contas devem ser criadas por maiores de 18 anos. Informações sobre menores de idade, como na autoavaliação, devem ser registradas por pais ou responsáveis, no melhor interesse da criança ou do adolescente.</p>
       <h2>9. Alterações</h2>

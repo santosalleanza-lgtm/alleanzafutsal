@@ -13,9 +13,9 @@ export default async function AdminProducts() {
       <ul className="card divide-y divide-white/10">
         {data?.map((p) => (
           <li key={p.id} className="flex flex-wrap items-center gap-3 p-4">
-            <Link href={`/admin/produtos/${p.id}`} className="flex-1 font-semibold hover:text-lime">{p.name}</Link>
+            <Link href={`/admin/produtos/${p.id}`} className="flex-1 font-semibold hover:text-gold">{p.name}</Link>
             <span className="text-sm text-chalk-muted">{p.category} · {formatBRL(p.price)}</span>
-            <span className={`text-xs ${p.active ? "text-lime" : "text-chalk-dim"}`}>{p.active ? "Ativo" : "Inativo"}</span>
+            <span className={`text-xs ${p.active ? "text-gold" : "text-chalk-dim"}`}>{p.active ? "Ativo" : "Inativo"}</span>
             <form action={deleteRow}><input type="hidden" name="table" value="products" /><input type="hidden" name="id" value={p.id} /><button className="text-xs text-chalk-dim hover:text-danger">Excluir</button></form>
           </li>
         ))}

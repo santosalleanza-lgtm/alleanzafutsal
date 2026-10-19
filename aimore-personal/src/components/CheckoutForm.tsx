@@ -154,24 +154,24 @@ export function CheckoutForm({ shippingCents, shippingNotice }: { shippingCents:
         <div className="flex gap-2">
           <label htmlFor="coupon" className="sr-only">Cupom de desconto</label>
           <input id="coupon" value={coupon} onChange={(e) => setCoupon(e.target.value.toUpperCase())} placeholder="Cupom de desconto" className="field !py-2.5" />
-          <button type="button" onClick={applyCoupon} disabled={!coupon} className="rounded-xl border border-white/20 px-4 text-sm font-semibold disabled:opacity-40">Aplicar</button>
+          <button type="button" onClick={applyCoupon} disabled={!coupon} className="rounded-xl border border-gold/25 px-4 text-sm font-semibold disabled:opacity-40">Aplicar</button>
         </div>
-        {couponMsg && <p role="status" className={`text-xs ${applied ? "text-lime" : "text-danger"}`}>{couponMsg}</p>}
-        <dl className="space-y-1 border-t border-white/10 pt-4 text-sm">
+        {couponMsg && <p role="status" className={`text-xs ${applied ? "text-gold" : "text-danger"}`}>{couponMsg}</p>}
+        <dl className="space-y-1 border-t border-gold/15 pt-4 text-sm">
           <div className="flex justify-between"><dt>Subtotal</dt><dd>{formatBRL(subtotal)}</dd></div>
-          {discount > 0 && <div className="flex justify-between text-lime"><dt>Desconto</dt><dd>− {formatBRL(discount)}</dd></div>}
+          {discount > 0 && <div className="flex justify-between text-gold"><dt>Desconto</dt><dd>− {formatBRL(discount)}</dd></div>}
           <div className="flex justify-between"><dt>Frete</dt><dd>{shippingCents !== null ? formatBRL(shippingCents) : "A combinar"}</dd></div>
           <div className="flex justify-between pt-2 text-lg font-bold"><dt>Total</dt><dd>{formatBRL(total)}</dd></div>
         </dl>
         {shippingNotice && <p className="text-xs text-chalk-dim">{shippingNotice}</p>}
         <label className="flex gap-3 text-xs text-chalk-muted">
-          <input type="checkbox" checked={accept} onChange={(e) => setAccept(e.target.checked)} required className="mt-0.5 h-4 w-4 accent-[#C6F432]" />
-          <span>Li e aceito os <Link href="/termos" className="text-lime underline">termos de uso</Link> e a <Link href="/privacidade" className="text-lime underline">política de privacidade</Link>.</span>
+          <input type="checkbox" checked={accept} onChange={(e) => setAccept(e.target.checked)} required className="mt-0.5 h-4 w-4 accent-[#D4AF61]" />
+          <span>Li e aceito os <Link href="/termos" className="text-gold underline">termos de uso</Link> e a <Link href="/privacidade" className="text-gold underline">política de privacidade</Link>.</span>
         </label>
         {error && (
           <Notice tone="danger">
             {error.message}
-            {error.whatsapp && <a href={error.whatsapp} target="_blank" rel="noopener noreferrer" className="mt-3 block font-semibold text-lime underline">Enviar pedido pelo WhatsApp</a>}
+            {error.whatsapp && <a href={error.whatsapp} target="_blank" rel="noopener noreferrer" className="mt-3 block font-semibold text-gold underline">Enviar pedido pelo WhatsApp</a>}
           </Notice>
         )}
         <Button type="submit" disabled={status === "sending"} className="w-full">{status === "sending" ? "Processando…" : "Ir para o pagamento"}</Button>

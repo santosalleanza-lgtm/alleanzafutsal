@@ -32,10 +32,10 @@ export default async function ProgramPage({ params }: { params: Promise<{ slug: 
 
   return (
     <article>
-      <header className="relative overflow-hidden border-b border-white/10 bg-ink-800">
+      <header className="relative overflow-hidden border-b border-gold/15 bg-ink-800">
         <div className="grid-lines absolute inset-0" aria-hidden />
         <div className="wrap relative py-14 sm:py-20">
-          <nav aria-label="Trilha" className="mb-6 text-sm text-chalk-dim"><Link href="/programas" className="hover:text-lime">Programas</Link></nav>
+          <nav aria-label="Trilha" className="mb-6 text-sm text-chalk-dim"><Link href="/programas" className="hover:text-gold">Programas</Link></nav>
           <StatusBadge status={program.status} />
           <h1 className="mt-4 max-w-4xl text-5xl leading-[0.9] sm:text-6xl">{program.name}</h1>
           <p className="mt-5 max-w-2xl text-lg text-chalk-muted">{program.tagline}</p>
@@ -45,13 +45,13 @@ export default async function ProgramPage({ params }: { params: Promise<{ slug: 
             ) : (
               wa && <ButtonLink href={wa} external>{isTaf ? "Entrar na lista de espera" : "Quero ser avisado"}</ButtonLink>
             )}
-            {program.duration && <span className="flex items-center gap-2 text-sm text-chalk-muted"><Icon name="clock" className="h-4 w-4 text-lime" />{program.duration}</span>}
+            {program.duration && <span className="flex items-center gap-2 text-sm text-chalk-muted"><Icon name="clock" className="h-4 w-4 text-gold" />{program.duration}</span>}
           </div>
           {!canBuy && <p className="mt-3 text-xs text-chalk-dim">{isTaf ? "Ao enviar TAF pelo WhatsApp, você entra na lista de espera e é avisado na abertura das vendas." : "Este programa ainda não está à venda."}</p>}
           {settings.memberAreaUrl && (
             <p className="mt-4 text-sm text-chalk-muted">
               Já comprou?{" "}
-              <a href={settings.memberAreaUrl} target="_blank" rel="noopener noreferrer" className="font-semibold text-lime underline">
+              <a href={settings.memberAreaUrl} target="_blank" rel="noopener noreferrer" className="font-semibold text-gold underline">
                 Acesse seus conteúdos na área de membros da Hotmart
               </a>
             </p>
@@ -78,7 +78,7 @@ export default async function ProgramPage({ params }: { params: Promise<{ slug: 
             <section>
               <h2 className="mb-4 text-3xl">Objetivos gerais</h2>
               <ul className="grid gap-3 sm:grid-cols-2">
-                {program.goals.map((g) => <li key={g} className="card flex gap-3 p-4 text-sm"><Icon name="target" className="h-5 w-5 shrink-0 text-lime" />{g}</li>)}
+                {program.goals.map((g) => <li key={g} className="card flex gap-3 p-4 text-sm"><Icon name="target" className="h-5 w-5 shrink-0 text-gold" />{g}</li>)}
               </ul>
             </section>
           )}
@@ -90,10 +90,10 @@ export default async function ProgramPage({ params }: { params: Promise<{ slug: 
         <aside className="card h-fit p-6">
           <p className="eyebrow mb-4">O que está incluído</p>
           <ul className="space-y-3 text-sm">
-            {program.includes.map((i) => <li key={i} className="flex gap-2"><Icon name="check" className="h-4 w-4 shrink-0 text-lime" />{i}</li>)}
+            {program.includes.map((i) => <li key={i} className="flex gap-2"><Icon name="check" className="h-4 w-4 shrink-0 text-gold" />{i}</li>)}
           </ul>
           {program.status !== "disponivel" && <p className="mt-5 text-xs text-chalk-dim">O conteúdo final pode ser ajustado até o lançamento.</p>}
-          <div className="mt-6 border-t border-white/10 pt-6">
+          <div className="mt-6 border-t border-gold/15 pt-6">
             <ButtonLink href="/avaliacao" variant="secondary" className="w-full">Fazer autoavaliação</ButtonLink>
           </div>
         </aside>

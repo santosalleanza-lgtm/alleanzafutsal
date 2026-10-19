@@ -38,7 +38,7 @@ export default async function AdminOrders() {
               <select name="status" defaultValue={o.status} className="field" aria-label="Status do pedido">{statuses.map((s) => <option key={s} value={s}>{s.replace(/_/g, " ")}</option>)}</select>
               <input name="tracking_code" defaultValue={o.tracking_code ?? ""} placeholder="Código de rastreio" className="field" aria-label="Código de rastreio" />
               <input name="shipping" defaultValue={centsToInput(o.shipping)} placeholder="Frete cobrado (R$)" className="field" aria-label="Frete" />
-              <button className="rounded-full bg-lime px-5 py-2 text-sm font-semibold text-ink">Atualizar</button>
+              <button className="rounded-full bg-gold px-5 py-2 text-sm font-semibold text-ink">Atualizar</button>
             </form>
           </div>
         </details>

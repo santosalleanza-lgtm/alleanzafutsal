@@ -2,6 +2,7 @@ import { createClient as createJsClient } from "@supabase/supabase-js";
 import { cache } from "react";
 import { defaultSettings } from "@/config/site";
 import { seedArticles } from "@/data/articles";
+import { seedPosts, seedQuestions, type BlogCategory, type BlogPost, type Question } from "@/data/blog";
 import { seedPrograms } from "@/data/programs";
 import { seedProducts } from "@/data/products";
 import { isSupabaseConfigured, supabaseAnonKey, supabaseUrl } from "@/lib/env";
@@ -107,3 +108,41 @@ export const getArticles = cache(async (section: Article["section"]): Promise<Ar
 
 export const getArticle = async (section: Article["section"], slug: string) =>
   (await getArticles(section)).find((a) => a.slug === slug) ?? null;
+
+
+const asCategory = (c: string): BlogCategory =>
+  (["hidratacao", "musculacao", "futsal-base", "taf", "emagrecimento", "futebol"] as const).includes(c as BlogCategory) ? (c as BlogCategory) : "musculacao";
+
+/** Artigos do blog: os do banco (publicados pelo painel) seguidos dos iniciais do repositório. */
+export const getBlogPosts = cache(async (): Promise<BlogPost[]> => {
+  const db = publicClient();
+  let fromDb: BlogPost[] = [];
+  if (db) {
+    const { data } = await db.from("articles").select("*").eq("section", "blog").eq("kind", "artigo").eq("published", true).order("created_at", { ascending: false });
+    fromDb = (data ?? []).map((r) => ({
+      slug: String(r.slug),
+      title: String(r.title),
+      category: asCategory(String(r.category)),
+      excerpt: String(r.excerpt ?? ""),
+      quick: String(r.excerpt ?? ""),
+      date: String(r.created_at).slice(0, 10),
+      cover: { kicker: String(r.category), lines: [String(r.title).split(" ").slice(0, 2).join(" "), String(r.title).split(" ").slice(2, 4).join(" ")], variant: "dark" },
+      body: String(r.body ?? ""),
+    }));
+  }
+  const slugs = new Set(fromDb.map((p) => p.slug));
+  return [...fromDb, ...seedPosts.filter((p) => !slugs.has(p.slug))].sort((a, b) => b.date.localeCompare(a.date));
+});
+
+export const getBlogPost = async (slug: string) => (await getBlogPosts()).find((p) => p.slug === slug) ?? null;
+
+export const getQuestions = cache(async (): Promise<Question[]> => {
+  const db = publicClient();
+  let fromDb: Question[] = [];
+  if (db) {
+    const { data } = await db.from("articles").select("*").eq("section", "blog").eq("kind", "pergunta").eq("published", true).order("created_at", { ascending: false });
+    fromDb = (data ?? []).map((r) => ({ slug: String(r.slug), question: String(r.title), category: asCategory(String(r.category)), answer: String(r.body ?? "") }));
+  }
+  const slugs = new Set(fromDb.map((q) => q.slug));
+  return [...fromDb, ...seedQuestions.filter((q) => !slugs.has(q.slug))];
+});

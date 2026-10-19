@@ -20,7 +20,7 @@ export function ProfileForm({ fullName, phone, email }: { fullName: string; phon
         <p className="text-sm text-chalk-muted">{email}</p>
       </div>
       {state.error && <p role="alert" className="text-sm text-danger">{state.error}</p>}
-      {state.ok && <p role="status" className="text-sm text-lime">Dados atualizados.</p>}
+      {state.ok && <p role="status" className="text-sm text-gold">Dados atualizados.</p>}
       <Button type="submit" disabled={pending}>{pending ? "Salvando…" : "Salvar"}</Button>
     </form>
   );

@@ -14,7 +14,7 @@ import {
   type Equipment,
   type HealthFlag,
 } from "@/lib/assessment";
-import type { Program } from "@/lib/types";
+import type { Situation } from "@/data/situations";
 import { Button, ButtonLink } from "./ui/Button";
 import { Notice } from "./ui/Notice";
 
@@ -49,8 +49,8 @@ function Choice<T extends string>({ name, label, options, value, onChange }: { n
       <legend className="label">{label}</legend>
       <div className="grid gap-2 sm:grid-cols-2">
         {(Object.entries(options) as [T, string][]).map(([k, v]) => (
-          <label key={k} className={`flex cursor-pointer items-center gap-3 rounded-xl border px-4 py-3 text-sm transition ${value === k ? "border-lime bg-lime/10" : "border-white/15 hover:border-white/30"}`}>
-            <input type="radio" name={name} value={k} checked={value === k} onChange={() => onChange(k)} className="accent-[#C6F432]" />
+          <label key={k} className={`flex cursor-pointer items-center gap-3 rounded-xl border px-4 py-3 text-sm transition ${value === k ? "border-gold bg-gold/10" : "border-gold/20 hover:border-white/30"}`}>
+            <input type="radio" name={name} value={k} checked={value === k} onChange={() => onChange(k)} className="accent-[#D4AF61]" />
             {v}
           </label>
         ))}
@@ -72,7 +72,7 @@ function NumberField({ id, label, unit, value, onChange, hint, required }: { id:
   );
 }
 
-export function AssessmentWizard({ programs, loggedIn }: { programs: Program[]; loggedIn: boolean }) {
+export function AssessmentWizard({ situations, loggedIn }: { situations: Pick<Situation, "slug" | "label">[]; loggedIn: boolean }) {
   const [step, setStep] = useState(0);
   const [d, setD] = useState<Draft>(empty);
   const [error, setError] = useState("");
@@ -115,7 +115,7 @@ export function AssessmentWizard({ programs, loggedIn }: { programs: Program[]; 
 
   const summary = useMemo(() => (input ? buildSummary(input) : null), [input]);
   const bmi = input ? interpretBmi(input.age, input.weightKg, input.heightCm) : null;
-  const related = summary ? programs.filter((p) => summary.relatedPrograms.includes(p.slug)) : [];
+  const related = summary ? summary.relatedSituations.map((slug) => situations.find((x) => x.slug === slug)).filter((x) => x !== undefined) : [];
 
   const validateStep = () => {
     if (step === 0) {
@@ -170,8 +170,8 @@ export function AssessmentWizard({ programs, loggedIn }: { programs: Program[]; 
     <div className="grid gap-8 lg:grid-cols-[16rem_1fr]">
       <ol className="flex gap-2 overflow-x-auto lg:flex-col" aria-label="Etapas">
         {steps.map((s, i) => (
-          <li key={s} aria-current={i === step ? "step" : undefined} className={`flex shrink-0 items-center gap-3 rounded-xl px-4 py-3 text-sm ${i === step ? "bg-lime text-ink font-semibold" : i < step ? "text-chalk" : "text-chalk-dim"}`}>
-            <span className={`grid h-7 w-7 place-items-center rounded-full text-xs font-bold ${i === step ? "bg-ink text-lime" : "border border-current"}`}>{i + 1}</span>
+          <li key={s} aria-current={i === step ? "step" : undefined} className={`flex shrink-0 items-center gap-3 rounded-xl px-4 py-3 text-sm ${i === step ? "bg-gold text-ink font-semibold" : i < step ? "text-chalk" : "text-chalk-dim"}`}>
+            <span className={`grid h-7 w-7 place-items-center rounded-full text-xs font-bold ${i === step ? "bg-ink text-gold" : "border border-current"}`}>{i + 1}</span>
             {s}
           </li>
         ))}
@@ -199,27 +199,27 @@ export function AssessmentWizard({ programs, loggedIn }: { programs: Program[]; 
               <legend className="label">Equipamentos disponíveis</legend>
               <div className="grid gap-2 sm:grid-cols-2">
                 {(Object.entries(equipmentOptions) as [Equipment, string][]).map(([k, v]) => (
-                  <label key={k} className={`flex cursor-pointer items-center gap-3 rounded-xl border px-4 py-3 text-sm ${d.equipment.includes(k) ? "border-lime bg-lime/10" : "border-white/15"}`}>
-                    <input type="checkbox" checked={d.equipment.includes(k)} onChange={() => set("equipment", toggle(d.equipment, k))} className="accent-[#C6F432]" />
+                  <label key={k} className={`flex cursor-pointer items-center gap-3 rounded-xl border px-4 py-3 text-sm ${d.equipment.includes(k) ? "border-gold bg-gold/10" : "border-gold/20"}`}>
+                    <input type="checkbox" checked={d.equipment.includes(k)} onChange={() => set("equipment", toggle(d.equipment, k))} className="accent-[#D4AF61]" />
                     {v}
                   </label>
                 ))}
               </div>
             </fieldset>
-            <fieldset className="rounded-2xl border border-white/10 p-5">
+            <fieldset className="rounded-2xl border border-gold/15 p-5">
               <legend className="px-1 text-sm font-semibold">Restrições e recomendações profissionais (opcional)</legend>
               <p className="text-sm text-chalk-muted">
                 Essas informações servem só para ajustar as orientações de segurança deste resultado. Elas ficam no seu navegador e só são gravadas se você
-                escolher salvar a avaliação na sua conta, onde apenas você tem acesso. Veja a <Link href="/privacidade" className="text-lime underline">política de privacidade</Link>.
+                escolher salvar a avaliação na sua conta, onde apenas você tem acesso. Veja a <Link href="/privacidade" className="text-gold underline">política de privacidade</Link>.
               </p>
               <label className="mt-4 flex items-center gap-3 text-sm">
-                <input type="checkbox" checked={d.shareHealth} onChange={(e) => set("shareHealth", e.target.checked)} className="h-4 w-4 accent-[#C6F432]" />
+                <input type="checkbox" checked={d.shareHealth} onChange={(e) => set("shareHealth", e.target.checked)} className="h-4 w-4 accent-[#D4AF61]" />
                 Quero informar situações de saúde relevantes
               </label>
               {d.shareHealth && (
                 <div className="mt-4 grid gap-2 sm:grid-cols-2">
                   {(Object.entries(healthFlags) as [HealthFlag, string][]).map(([k, v]) => (
-                    <label key={k} className={`flex cursor-pointer items-start gap-3 rounded-xl border px-4 py-3 text-sm ${d.flags.includes(k) ? "border-warn bg-warn/10" : "border-white/15"}`}>
+                    <label key={k} className={`flex cursor-pointer items-start gap-3 rounded-xl border px-4 py-3 text-sm ${d.flags.includes(k) ? "border-warn bg-warn/10" : "border-gold/20"}`}>
                       <input type="checkbox" checked={d.flags.includes(k)} onChange={() => set("flags", toggle(d.flags, k))} className="mt-0.5 accent-[#F5B841]" />
                       {v}
                     </label>
@@ -244,9 +244,9 @@ export function AssessmentWizard({ programs, loggedIn }: { programs: Program[]; 
         {step === 2 && bmi && (
           <div className="space-y-6">
             {bmi.kind !== "none" ? (
-              <div className="rounded-2xl border border-white/10 bg-ink-700 p-6">
+              <div className="rounded-2xl border border-gold/15 bg-ink-700 p-6">
                 <p className="text-sm text-chalk-muted">Índice de Massa Corporal (IMC)</p>
-                <p className="mt-1 font-display text-6xl text-lime">{bmi.value.toFixed(1).replace(".", ",")}</p>
+                <p className="mt-1 font-display text-6xl text-gold">{bmi.value.toFixed(1).replace(".", ",")}</p>
                 {bmi.kind === "adult" && <p className="mt-1 font-semibold">{bmi.label}</p>}
                 <p className="mt-2 text-xs text-chalk-dim">IMC = peso (kg) ÷ altura (m)². Faixas de referência da OMS para adultos: abaixo de 18,5 · 18,5 a 24,9 · 25 a 29,9 · 30 ou mais.</p>
               </div>
@@ -264,7 +264,7 @@ export function AssessmentWizard({ programs, loggedIn }: { programs: Program[]; 
             {summary.alerts.map((a) => <Notice key={a} tone={summary.caution === "stop" ? "danger" : "warn"}>{a}</Notice>)}
             <ul className="space-y-3">
               {summary.suggestions.map((s) => (
-                <li key={s} className="flex gap-3 rounded-xl border border-white/10 p-4 text-sm"><span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-lime" />{s}</li>
+                <li key={s} className="flex gap-3 rounded-xl border border-gold/15 p-4 text-sm"><span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-gold" />{s}</li>
               ))}
             </ul>
           </div>
@@ -274,28 +274,28 @@ export function AssessmentWizard({ programs, loggedIn }: { programs: Program[]; 
           <div className="space-y-6">
             {summary.caution !== "ok" && <Notice tone={summary.caution === "stop" ? "danger" : "warn"} title="Antes de começar">{summary.alerts[0]}</Notice>}
             <dl className="grid gap-4 sm:grid-cols-2">
-              <div className="rounded-xl border border-white/10 p-4"><dt className="eyebrow mb-1">Perfil informado</dt><dd className="text-sm">{summary.profile}</dd></div>
-              <div className="rounded-xl border border-white/10 p-4"><dt className="eyebrow mb-1">Objetivo</dt><dd className="text-sm">{summary.goal}</dd></div>
-              <div className="rounded-xl border border-white/10 p-4 sm:col-span-2"><dt className="eyebrow mb-1">Situação atual</dt><dd><ul className="space-y-1 text-sm">{summary.situation.map((s) => <li key={s}>{s}</li>)}</ul></dd></div>
-              <div className="rounded-xl border border-white/10 p-4 sm:col-span-2"><dt className="eyebrow mb-1">Sugestões iniciais</dt><dd><ul className="list-disc space-y-1 pl-5 text-sm">{summary.suggestions.slice(0, 4).map((s) => <li key={s}>{s}</li>)}</ul></dd></div>
-              <div className="rounded-xl border border-white/10 p-4 sm:col-span-2"><dt className="eyebrow mb-1">Frequência sugerida</dt><dd className="text-sm">{summary.frequency}</dd></div>
-              <div className="rounded-xl border border-lime/40 bg-lime/5 p-4 sm:col-span-2"><dt className="eyebrow mb-1">Próximo passo</dt><dd className="text-sm">{summary.nextStep}</dd></div>
+              <div className="rounded-xl border border-gold/15 p-4"><dt className="eyebrow mb-1">Perfil informado</dt><dd className="text-sm">{summary.profile}</dd></div>
+              <div className="rounded-xl border border-gold/15 p-4"><dt className="eyebrow mb-1">Objetivo</dt><dd className="text-sm">{summary.goal}</dd></div>
+              <div className="rounded-xl border border-gold/15 p-4 sm:col-span-2"><dt className="eyebrow mb-1">Situação atual</dt><dd><ul className="space-y-1 text-sm">{summary.situation.map((s) => <li key={s}>{s}</li>)}</ul></dd></div>
+              <div className="rounded-xl border border-gold/15 p-4 sm:col-span-2"><dt className="eyebrow mb-1">Sugestões iniciais</dt><dd><ul className="list-disc space-y-1 pl-5 text-sm">{summary.suggestions.slice(0, 4).map((s) => <li key={s}>{s}</li>)}</ul></dd></div>
+              <div className="rounded-xl border border-gold/15 p-4 sm:col-span-2"><dt className="eyebrow mb-1">Frequência sugerida</dt><dd className="text-sm">{summary.frequency}</dd></div>
+              <div className="rounded-xl border border-gold/40 bg-gold/5 p-4 sm:col-span-2"><dt className="eyebrow mb-1">Próximo passo</dt><dd className="text-sm">{summary.nextStep}</dd></div>
             </dl>
             {related.length > 0 && (
               <div>
-                <p className="label">Programas relacionados</p>
+                <p className="label">Orientações para o seu momento</p>
                 <ul className="flex flex-wrap gap-2">
-                  {related.map((p) => <li key={p.id}><Link href={`/programas/${p.slug}`} className="inline-block rounded-full border border-white/15 px-4 py-2 text-sm hover:border-lime hover:text-lime">{p.name}</Link></li>)}
+                  {related.map((p) => <li key={p.slug}><Link href={`/situacao/${p.slug}`} className="inline-block rounded-full border border-gold/25 px-4 py-2 text-sm hover:border-gold hover:text-gold">{p.label}</Link></li>)}
                 </ul>
               </div>
             )}
             <div className="flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/programas">Conhecer os programas</ButtonLink>
+              <ButtonLink href="/seja-aluno">Quero ser aluno</ButtonLink>
               <Button variant="secondary" onClick={saveToAccount} disabled={save === "saving" || save === "saved"}>
                 {save === "saved" ? "Avaliação salva" : save === "saving" ? "Salvando…" : loggedIn ? "Salvar na minha conta" : "Entrar para salvar"}
               </Button>
             </div>
-            {save === "saved" && <p role="status" className="text-sm text-lime">Salva! Veja o histórico na <Link href="/aluno/avaliacoes" className="underline">área do aluno</Link>.</p>}
+            {save === "saved" && <p role="status" className="text-sm text-gold">Salva! Veja o histórico na <Link href="/aluno/avaliacoes" className="underline">área do aluno</Link>.</p>}
             {save === "error" && <p role="alert" className="text-sm text-danger">Não foi possível salvar agora. Tente novamente.</p>}
             <p className="text-xs text-chalk-dim">Esta autoavaliação é educativa e não substitui avaliação física presencial, consulta médica ou acompanhamento individualizado.</p>
           </div>
@@ -303,7 +303,7 @@ export function AssessmentWizard({ programs, loggedIn }: { programs: Program[]; 
 
         {error && <p role="alert" className="mt-6 text-sm font-medium text-danger">{error}</p>}
 
-        <div className="mt-8 flex justify-between gap-3 border-t border-white/10 pt-6">
+        <div className="mt-8 flex justify-between gap-3 border-t border-gold/15 pt-6">
           <Button variant="ghost" onClick={() => { setError(""); setStep((s) => Math.max(0, s - 1)); }} disabled={step === 0}>Voltar</Button>
           {step < steps.length - 1 && <Button onClick={next}>Continuar</Button>}
           {step === steps.length - 1 && <Button variant="ghost" onClick={() => { setD(empty); setStep(0); setSave("idle"); }}>Refazer</Button>}

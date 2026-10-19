@@ -19,11 +19,12 @@ export function Section({ id, eyebrow, title, intro, children, className = "" }:
 
 export function PageHeader({ eyebrow, title, intro, children }: { eyebrow?: string; title: ReactNode; intro?: ReactNode; children?: ReactNode }) {
   return (
-    <div className="relative overflow-hidden border-b border-white/10 bg-ink-800">
-      <div className="grid-lines pointer-events-none absolute inset-0" aria-hidden />
+    <div className="noise relative overflow-hidden border-b border-gold/15 bg-ink-800">
+      <div className="grid-lines pointer-events-none absolute inset-0 opacity-70" aria-hidden />
+      <div className="pointer-events-none absolute -right-32 top-0 h-80 w-80 rounded-full bg-gold/10 blur-3xl" aria-hidden />
       <div className="wrap relative py-14 sm:py-20">
         {eyebrow && <p className="eyebrow mb-3">{eyebrow}</p>}
-        <h1 className="max-w-3xl text-5xl leading-[0.9] sm:text-6xl">{title}</h1>
+        <h1 className="max-w-3xl font-display text-5xl font-black leading-[0.88] sm:text-7xl">{title}</h1>
         {intro && <p className="mt-5 max-w-2xl text-lg text-chalk-muted">{intro}</p>}
         {children}
       </div>

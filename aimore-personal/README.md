@@ -1,4 +1,14 @@
-# Aimoré Personal: site oficial
+# Aimoré Performance: site oficial
+
+> Identidade visual baseada no Instagram @aimorepersonal: preto e dourado, símbolo triangular "A", títulos condensados e artes no padrão dos carrosséis. Foto do profissional em `public/img/aimore/` (recortada e tratada; a pessoa ao lado na foto original foi retirada).
+
+**Menus do site**
+- **Sua situação** (`/situacao`): 8 páginas, uma para cada momento (emagrecer, força e massa, TAF, futebol, filhos no esporte, recomeçar, mais de 60, bariátrica ou canetas), com método, primeiros passos, artigos e chamada para ser aluno.
+- **Treinos**: central por perfil, autoavaliação e gerador de treino.
+- **Blog do Aimoré** (`/blog`): artigos (hidratação, musculação, futsal de base, TAF, emagrecimento, aquecimento) e **Pergunte ao Aimoré** (`/blog/perguntas`), com perguntas respondidas e formulário para novas perguntas. Novos artigos e respostas são publicados pelo painel (`/admin/artigos`, opção "Blog do Aimoré").
+- **Quero ser aluno** (`/seja-aluno`): serviços da bio, como funciona e o botão para o cadastro do Time Aimoré no MFIT (link do Linktree).
+- Os programas da Hotmart saíram da navegação a pedido; as páginas e a integração continuam no código para uso futuro.
+
 
 Plataforma da marca **Aimoré Personal** (@aimorepersonal). Reúne programas digitais vendidos pela Hotmart, uma loja de produtos personalizados, autoavaliação física educativa, gerador de sugestões de treino, conteúdos de treinamento e alimentação, área do aluno e painel administrativo.
 
@@ -111,7 +121,7 @@ Comandos:
 ### 5.1 Supabase (banco e login)
 
 1. Crie um projeto em <https://supabase.com> (região São Paulo).
-2. Em **SQL Editor**, cole e execute `supabase/migrations/0001_schema.sql`.
+2. Em **SQL Editor**, cole e execute, nesta ordem, `supabase/migrations/0001_schema.sql` e `supabase/migrations/0002_blog.sql`.
 3. Em **Authentication > Providers > Email**, mantenha **Confirm email** ativado. Isso é obrigatório: a liberação dos programas é feita pelo e-mail da compra.
 4. Em **Authentication > URL Configuration**, defina *Site URL* como o seu domínio e adicione `https://SEU-DOMINIO/auth/callback` em *Redirect URLs*.
 5. (Recomendado) Em **Authentication > SMTP**, configure um provedor de e-mail próprio para os e-mails de confirmação e recuperação.

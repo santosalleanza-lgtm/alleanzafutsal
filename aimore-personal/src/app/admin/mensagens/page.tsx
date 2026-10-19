@@ -15,7 +15,7 @@ export default async function AdminMessages() {
             <strong>{m.subject}</strong>
             <span className="text-chalk-dim">{formatDate(m.created_at)}</span>
           </header>
-          <p className="mt-1 text-sm text-chalk-muted">{m.name} · <a href={`mailto:${m.email}`} className="text-lime">{m.email}</a></p>
+          <p className="mt-1 text-sm text-chalk-muted">{m.name} · <a href={`mailto:${m.email}`} className="text-gold">{m.email}</a></p>
           <p className="mt-3 whitespace-pre-line text-sm">{m.message}</p>
           <form action={deleteRow} className="mt-3"><input type="hidden" name="table" value="contact_messages" /><input type="hidden" name="id" value={m.id} /><button className="text-xs text-chalk-dim hover:text-danger">Apagar (após responder)</button></form>
         </article>

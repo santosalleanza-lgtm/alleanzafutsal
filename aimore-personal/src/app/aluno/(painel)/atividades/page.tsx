@@ -28,7 +28,7 @@ export default async function ActivitiesPage() {
               <form action={toggleActivity}>
                 <input type="hidden" name="id" value={a.id} />
                 <input type="hidden" name="done" value={String(a.done)} />
-                <button aria-label={a.done ? `Desmarcar ${a.title}` : `Concluir ${a.title}`} className={`grid h-7 w-7 place-items-center rounded-lg border ${a.done ? "border-lime bg-lime text-ink" : "border-white/25"}`}>{a.done ? "✓" : ""}</button>
+                <button aria-label={a.done ? `Desmarcar ${a.title}` : `Concluir ${a.title}`} className={`grid h-7 w-7 place-items-center rounded-lg border ${a.done ? "border-gold bg-gold text-ink" : "border-gold/30"}`}>{a.done ? "✓" : ""}</button>
               </form>
               <span className={`flex-1 text-sm ${a.done ? "text-chalk-dim line-through" : ""}`}>{a.title}</span>
               <form action={deleteActivity}><input type="hidden" name="id" value={a.id} /><button className="text-xs text-chalk-dim hover:text-danger" aria-label={`Excluir ${a.title}`}>Excluir</button></form>

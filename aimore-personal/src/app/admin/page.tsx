@@ -34,7 +34,7 @@ export default async function AdminHome({ searchParams }: { searchParams: Promis
         </Notice>
       )}
       <div className="grid gap-4 sm:grid-cols-4">
-        {stats.map((s) => <Link key={s.label} href={s.href} className="card p-5 hover:border-lime/50"><p className="eyebrow">{s.label}</p><p className="mt-2 font-display text-5xl">{s.value}</p></Link>)}
+        {stats.map((s) => <Link key={s.label} href={s.href} className="card p-5 hover:border-gold/50"><p className="eyebrow">{s.label}</p><p className="mt-2 font-display text-5xl">{s.value}</p></Link>)}
       </div>
       <section>
         <h2 className="mb-3 text-3xl">Últimos pedidos</h2>

@@ -25,10 +25,10 @@ export function CartView() {
               {i.image && <Image src={i.image} alt="" fill sizes="96px" unoptimized={i.image.endsWith(".svg")} className="object-contain p-2" />}
             </div>
             <div className="flex flex-1 flex-col">
-              <Link href={`/loja/${i.slug}`} className="font-semibold hover:text-lime">{i.name}</Link>
+              <Link href={`/loja/${i.slug}`} className="font-semibold hover:text-gold">{i.name}</Link>
               <p className="text-xs text-chalk-dim">{[i.size && `Tamanho ${i.size}`, i.color, i.model, i.customText && `“${i.customText}”`].filter(Boolean).join(" · ")}</p>
               <div className="mt-auto flex items-center justify-between pt-3">
-                <div className="flex items-center rounded-lg border border-white/15 text-sm">
+                <div className="flex items-center rounded-lg border border-gold/20 text-sm">
                   <button className="px-3 py-1.5" onClick={() => update(i.key, i.quantity - 1)} aria-label={`Diminuir quantidade de ${i.name}`}>−</button>
                   <span className="w-8 text-center" aria-live="polite">{i.quantity}</span>
                   <button className="px-3 py-1.5" onClick={() => update(i.key, i.quantity + 1)} aria-label={`Aumentar quantidade de ${i.name}`}>+</button>
@@ -44,7 +44,7 @@ export function CartView() {
         <div className="flex justify-between text-lg"><span>Subtotal</span><strong>{formatBRL(subtotal)}</strong></div>
         <p className="mt-2 text-xs text-chalk-dim">Cupom de desconto e dados de entrega na próxima etapa. Frete informado conforme o endereço.</p>
         <ButtonLink href="/checkout" className="mt-6 w-full">Finalizar compra</ButtonLink>
-        <Link href="/loja" className="mt-4 block text-center text-sm text-chalk-muted hover:text-lime">Continuar comprando</Link>
+        <Link href="/loja" className="mt-4 block text-center text-sm text-chalk-muted hover:text-gold">Continuar comprando</Link>
       </aside>
     </div>
   );

@@ -1,6 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Ilustração de regata grafite com a marca Aimoré">
-  <path d="M150 50 L130 50 C130 110 110 140 100 160 L100 355 L300 355 L300 160 C290 140 270 110 270 50 L250 50 C245 95 225 115 200 115 C175 115 155 95 150 50 Z" fill="#26292D" stroke="#3A3E44" stroke-width="4" stroke-linejoin="round"/>
-  <path d="M150 50 C155 95 175 115 200 115 C225 115 245 95 250 50" fill="none" stroke="#C6F432" stroke-width="5"/>
-  <text x="200" y="225" text-anchor="middle" font-family="Impact, 'Arial Narrow', sans-serif" font-size="42" fill="#F5F5F2" letter-spacing="2">AIMORÉ</text>
-  <text x="200" y="252" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="14" fill="#C6F432" letter-spacing="7">PERSONAL</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Regata grafite Aimoré Performance com símbolo dourado"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2DDA6"/><stop offset=".45" stop-color="#D4AF61"/><stop offset=".75" stop-color="#8F6A2C"/><stop offset="1" stop-color="#E8CB8C"/></linearGradient><radialGradient id="glow" cx=".5" cy=".4" r=".6"><stop offset="0" stop-color="#D4AF61" stop-opacity=".22"/><stop offset="1" stop-color="#D4AF61" stop-opacity="0"/></radialGradient></defs>
+<circle cx="200" cy="190" r="190" fill="url(#glow)"/>
+<path d="M150 50 L130 50 C130 110 110 140 100 160 L100 355 L300 355 L300 160 C290 140 270 110 270 50 L250 50 C245 95 225 115 200 115 C175 115 155 95 150 50 Z" fill="#1E1B16" stroke="#3B352B" stroke-width="3" stroke-linejoin="round"/>
+<path d="M150 50 C155 95 175 115 200 115 C225 115 245 95 250 50" fill="none" stroke="url(#g)" stroke-width="3"/>
+<g transform="translate(170 165) scale(.6)"><path fill-rule="evenodd" fill="url(#g)" d="M50 2 98 90H2L50 2Zm0 22L19 80h62L50 24Z"/><path fill="url(#g)" d="M50 42 64 68H36L50 42Z"/><path fill="url(#g)" d="M24 80 33 70h38l-4 10H24Z"/></g>
+<text x="200" y="258" text-anchor="middle" font-family="Impact, 'Arial Narrow', sans-serif" font-size="34" letter-spacing="2" fill="url(#g)">TREINO É ROTINA</text>
 </svg>

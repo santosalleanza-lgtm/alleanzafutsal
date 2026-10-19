@@ -45,8 +45,8 @@ export default async function OrderPage({ params }: { params: Promise<{ token: s
         ) : (
           <ol className="grid gap-3 sm:grid-cols-5">
             {steps.map((s, i) => (
-              <li key={s.key} className={`card p-4 text-sm ${i <= current ? "border-lime/50 text-chalk" : "text-chalk-dim"}`}>
-                <span className={`mb-2 block h-1.5 rounded-full ${i <= current ? "bg-lime" : "bg-white/10"}`} />
+              <li key={s.key} className={`card p-4 text-sm ${i <= current ? "border-gold/50 text-chalk" : "text-chalk-dim"}`}>
+                <span className={`mb-2 block h-1.5 rounded-full ${i <= current ? "bg-gold" : "bg-white/10"}`} />
                 {s.label}
               </li>
             ))}

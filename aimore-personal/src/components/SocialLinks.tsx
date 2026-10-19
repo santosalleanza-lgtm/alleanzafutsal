@@ -17,8 +17,8 @@ export function SocialLinks({ socials, className = "", variant = "icons" }: { so
             rel="noopener noreferrer"
             className={
               variant === "buttons"
-                ? "inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm font-semibold hover:border-lime hover:text-lime"
-                : "inline-flex h-10 items-center gap-2 rounded-full border border-white/15 px-4 text-xs font-semibold uppercase tracking-wide text-chalk-muted hover:border-lime hover:text-lime"
+                ? "inline-flex items-center gap-2 rounded-full border border-gold/20 px-5 py-3 text-sm font-semibold hover:border-gold hover:text-gold"
+                : "inline-flex h-10 items-center gap-2 rounded-full border border-gold/20 px-4 text-xs font-semibold uppercase tracking-wide text-chalk-muted hover:border-gold hover:text-gold"
             }
           >
             {k === "instagram" && <Icon name="instagram" className="h-4 w-4" />}

@@ -6,7 +6,7 @@ import { StatusBadge } from "./ui/Badge";
 
 export function ProgramCard({ program }: { program: Program }) {
   return (
-    <article className="card group relative flex flex-col overflow-hidden transition hover:border-lime/50">
+    <article className="card group relative flex flex-col overflow-hidden transition hover:border-gold/50">
       <div className="relative aspect-[16/9] overflow-hidden bg-ink-700">
         {program.cover ? (
           <Image src={program.cover} alt="" fill sizes="(min-width: 768px) 30vw, 90vw" className="object-cover" />
@@ -23,7 +23,7 @@ export function ProgramCard({ program }: { program: Program }) {
         <p className="mt-3 text-xs text-chalk-dim"><span className="font-semibold text-chalk">Para quem:</span> {program.audience}</p>
         <div className="mt-auto flex items-center justify-between pt-5">
           <span className="text-sm font-semibold text-chalk">{program.price !== null ? formatBRL(program.price) : program.status === "disponivel" ? "" : "Preço em breve"}</span>
-          <Link href={`/programas/${program.slug}`} className="text-sm font-semibold uppercase tracking-wide text-lime after:absolute after:inset-0">
+          <Link href={`/programas/${program.slug}`} className="text-sm font-semibold uppercase tracking-wide text-gold after:absolute after:inset-0">
             Conheça o programa →
           </Link>
         </div>

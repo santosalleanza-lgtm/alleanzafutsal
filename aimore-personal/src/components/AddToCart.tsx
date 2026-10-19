@@ -17,7 +17,7 @@ function OptionGroup({ label, values, value, onChange }: { label: string; values
             key={v}
             onClick={() => onChange(v)}
             aria-pressed={value === v}
-            className={`min-w-12 rounded-xl border px-4 py-2.5 text-sm font-semibold transition ${value === v ? "border-lime bg-lime text-ink" : "border-white/15 hover:border-white/40"}`}
+            className={`min-w-12 rounded-xl border px-4 py-2.5 text-sm font-semibold transition ${value === v ? "border-gold bg-gold text-ink" : "border-gold/20 hover:border-white/40"}`}
           >
             {v}
           </button>
@@ -74,7 +74,7 @@ export function AddToCart({ product }: { product: Product }) {
       <div className="flex items-end gap-4">
         <div>
           <label htmlFor="qty" className="label">Quantidade</label>
-          <div className="flex items-center rounded-xl border border-white/15">
+          <div className="flex items-center rounded-xl border border-gold/20">
             <button type="button" className="px-4 py-3 text-lg" onClick={() => setQty((q) => Math.max(1, q - 1))} aria-label="Diminuir quantidade">−</button>
             <input id="qty" inputMode="numeric" value={qty} onChange={(e) => setQty(Math.min(20, Math.max(1, Number(e.target.value.replace(/\D/g, "")) || 1)))} className="w-12 bg-transparent text-center font-semibold" />
             <button type="button" className="px-4 py-3 text-lg" onClick={() => setQty((q) => Math.min(20, q + 1))} aria-label="Aumentar quantidade">+</button>
@@ -87,7 +87,7 @@ export function AddToCart({ product }: { product: Product }) {
         <Button onClick={submit} className="flex-1">Adicionar ao carrinho</Button>
         {added && <Link href="/carrinho" className={buttonClass("secondary", "flex-1")}>Ver carrinho</Link>}
       </div>
-      {added && <p role="status" className="text-sm text-lime">Produto adicionado ao carrinho.</p>}
+      {added && <p role="status" className="text-sm text-gold">Produto adicionado ao carrinho.</p>}
     </div>
   );
 }
