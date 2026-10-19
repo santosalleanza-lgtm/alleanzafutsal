@@ -93,7 +93,7 @@ export default async function Home() {
               <Link key={s.slug} href={`/seja-aluno#${s.slug}`} className={`frame-gold group relative flex flex-col overflow-hidden rounded-2xl border p-7 transition duration-500 hover:-translate-y-1 ${s.featured ? "border-gold/50 bg-ink lg:row-span-3" : "border-gold/15 bg-ink/60 hover:border-gold/40"}`}>
                 {s.featured && (
                   <>
-                    <Image src="/img/aimore/aimore-retrato-sm.webp" alt="" fill sizes="(min-width: 1024px) 33vw, 90vw" className="object-cover object-top opacity-30" />
+                    <Image src="/img/aimore/aimore-retrato-estilo-sm.webp" alt="" fill sizes="(min-width: 1024px) 33vw, 90vw" className="object-cover object-top opacity-30" />
                     <div className="absolute inset-0 bg-gradient-to-b from-ink via-ink/70 to-ink" aria-hidden />
                     <div className="pointer-events-none absolute -bottom-20 -right-20 h-72 w-72 rounded-full bg-gold/20 blur-3xl" aria-hidden />
                   </>
@@ -124,6 +124,28 @@ export default async function Home() {
               <p className="mt-3 text-sm text-ink/80">Em 3 minutos você descobre seu ponto de partida e qual caminho combina com você.</p>
               <span className="mt-6 text-xs font-bold uppercase tracking-wider">Começar →</span>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* FAIXA: ATLETA CORRENDO (imagem ilustrativa) */}
+      <section className="noise relative overflow-hidden border-b border-gold/15">
+        <div className="wrap grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-[1fr_.8fr]">
+          <div>
+            <p className="eyebrow mb-4">Treino é rotina</p>
+            <h2 className="font-display text-6xl font-black leading-[0.86] sm:text-8xl">
+              Cada passo <span className="block text-gold-metal">conta.</span>
+            </h2>
+            <p className="mt-6 max-w-md text-lg text-chalk-muted">Disciplina não é treinar perfeito. É aparecer de novo amanhã, com um plano que faz sentido para você.</p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <ButtonLink href="/seja-aluno">Quero ser aluno</ButtonLink>
+              <ButtonLink href="/situacao/vou-comecar" variant="secondary">Estou começando agora</ButtonLink>
+            </div>
+          </div>
+          <div className="frame-gold glow-gold relative mx-auto aspect-[2/3] w-full max-w-sm overflow-hidden rounded-[2rem] border border-gold/30">
+            <Image src="/img/aimore/atleta-correndo.webp" alt="Atleta correndo em uma estrada ao entardecer" fill sizes="(min-width: 1024px) 30vw, 90vw" className="object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" aria-hidden />
+            <p className="absolute inset-x-6 bottom-6 font-display text-3xl font-black uppercase leading-none">Um passo <span className="text-gold-metal">por dia.</span></p>
           </div>
         </div>
       </section>

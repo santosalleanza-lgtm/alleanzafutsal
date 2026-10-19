@@ -22,7 +22,7 @@ export const services: Service[] = [
     title: ["Consultoria", "online"],
     text: "Seu treino montado para o seu objetivo, sua rotina e o seu local de treino, direto no aplicativo. Você treina onde estiver e eu acompanho a sua evolução.",
     bullets: ["Treino individualizado no app MFIT", "Ajustes conforme a sua evolução", "Vídeos de execução dos exercícios", "Contato direto para dúvidas"],
-    price: "R$ 240/mês",
+    price: "R$ 110/mês",
     featured: true,
   },
   {
