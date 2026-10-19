@@ -103,7 +103,7 @@ export const digitalBundles: DigitalBundle[] = [
     description:
       "Os dois programas de emagrecimento juntos: o treino para quem usa caneta emagrecedora e o programa de 8 semanas para o verão. Força, massa magra e constância no mesmo plano.",
     includes: ["treino-caneta-emagrecedora", "treino-verao-ainda-da-tempo"],
-    checkoutUrl: null,
+    checkoutUrl: "https://pay.hotmart.com/F108094516O?sck=site",
     price: null,
     note: "Conteúdo de exercício físico. Quem usa caneta emagrecedora deve manter o acompanhamento médico.",
   },

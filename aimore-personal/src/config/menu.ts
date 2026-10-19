@@ -1,5 +1,5 @@
 import type { NavItem } from "@/config/site";
-import { digitalProducts } from "@/data/digital";
+import { activeBundles, digitalProducts } from "@/data/digital";
 import { situations } from "@/data/situations";
 import { trainingCategories } from "@/data/training";
 
@@ -47,6 +47,7 @@ export function buildMenu(): NavItem[] {
           title: "Programas digitais",
           links: [
             ...digitalProducts.map((d) => ({ href: `/programas-digitais#${d.slug}`, label: d.name, hint: d.kicker })),
+            ...activeBundles().map((b) => ({ href: `/programas-digitais#${b.slug}`, label: b.name, hint: "Combo · caneta + verão" })),
             { href: "/programas-digitais", label: "Ver todos os programas", hint: "Compra segura pela Hotmart" },
           ],
         },

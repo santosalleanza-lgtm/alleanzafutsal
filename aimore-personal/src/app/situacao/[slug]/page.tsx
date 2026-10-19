@@ -3,12 +3,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArtCard } from "@/components/ArtCard";
 import { Avatar } from "@/components/Avatar";
-import { DigitalProductBand } from "@/components/DigitalProductCard";
+import { DigitalBundleBand, DigitalProductBand } from "@/components/DigitalProductCard";
 import { ButtonLink } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { Disclaimer, Notice } from "@/components/ui/Notice";
 import { blogCategories } from "@/data/blog";
-import { productForSituation } from "@/data/digital";
+import { activeBundles, productForSituation } from "@/data/digital";
 import { services } from "@/data/services";
 import { getSituation, situations } from "@/data/situations";
 import { getTrainingCategory } from "@/data/training";
@@ -63,6 +63,7 @@ export default async function SituationPage({ params }: { params: Promise<{ slug
         {product && (
           <div id="produto" className="mb-16 scroll-mt-24">
             <DigitalProductBand product={product} />
+            {activeBundles().filter((b) => b.includes.includes(product.slug)).map((b) => <div key={b.slug} className="mt-6"><DigitalBundleBand bundle={b} /></div>)}
           </div>
         )}
 
