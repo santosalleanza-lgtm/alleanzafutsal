@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { DigitalProductBand } from "@/components/DigitalProductCard";
 import { StoreCatalog } from "@/components/StoreCatalog";
 import { PageHeader } from "@/components/ui/Section";
+import { digitalProducts } from "@/data/digital";
 import { productCategories } from "@/data/products";
 import { getProducts } from "@/lib/data";
 
@@ -16,6 +18,9 @@ export default async function StorePage() {
   return (
     <>
       <PageHeader eyebrow="Loja Aimoré Personal" title="Personalize seu estilo" intro="Camisetas, regatas e canecas para treinar, jogar ou presentear. Escolha o modelo, a cor e acrescente o seu nome." />
+      <div className="wrap space-y-6 pt-12">
+        {digitalProducts.map((d) => <DigitalProductBand key={d.slug} product={d} />)}
+      </div>
       <div className="wrap py-12">
         <StoreCatalog products={products} categories={productCategories} />
         <p className="mt-10 text-sm text-chalk-dim">

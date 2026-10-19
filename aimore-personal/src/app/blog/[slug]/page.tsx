@@ -4,10 +4,12 @@ import { notFound } from "next/navigation";
 import { ArticleBody } from "@/components/ArticleBody";
 import { ArtCard } from "@/components/ArtCard";
 import { AuthorBox } from "@/components/AuthorBox";
+import { DigitalProductAside } from "@/components/DigitalProductCard";
 import { ButtonLink } from "@/components/ui/Button";
 import { Notice } from "@/components/ui/Notice";
 import { siteUrl } from "@/config/site";
 import { blogCategories } from "@/data/blog";
+import { tafProduct } from "@/data/digital";
 import { getBlogPost, getBlogPosts, getSettings } from "@/lib/data";
 import { formatDate } from "@/lib/format";
 import { readingMinutes } from "@/lib/reading";
@@ -68,6 +70,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <div className="mt-10"><AuthorBox settings={settings} /></div>
         </div>
         <aside className="space-y-5 lg:sticky lg:top-24 lg:h-fit">
+          {post.category === "taf" && <DigitalProductAside product={tafProduct} />}
           <div className="frame-gold rounded-2xl border border-gold/30 bg-ink-800 p-6">
             <p className="font-display text-3xl font-black uppercase leading-none">Quer um treino <span className="text-gold-metal">para você?</span></p>
             <p className="mt-3 text-sm text-chalk-muted">Treino individualizado no app, com acompanhamento.</p>

@@ -20,6 +20,7 @@ export function buildMenu(): NavItem[] {
           links: [
             { href: "/avaliacao", label: "Minha Avaliação Física", hint: "IMC e plano de ação em 3 minutos" },
             { href: "/gerador-de-treino", label: "Gerador de treino", hint: "Sugestão semanal para o seu perfil" },
+            { href: "/situacao/vou-fazer-taf#produto", label: "Como ser aprovado no TAF", hint: "Produto digital na Hotmart" },
           ],
         },
       ],

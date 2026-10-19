@@ -5,11 +5,13 @@ import { BrandMark } from "@/components/BrandMark";
 import { InstagramGrid } from "@/components/InstagramGrid";
 import { Portrait } from "@/components/Portrait";
 import { ProductCard } from "@/components/ProductCard";
+import { DigitalProductBand } from "@/components/DigitalProductCard";
 import { ButtonLink } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { Section } from "@/components/ui/Section";
 import { instagramHandle, instagramUrl } from "@/config/site";
 import { blogCategories } from "@/data/blog";
+import { tafProduct } from "@/data/digital";
 import { services } from "@/data/services";
 import { situations } from "@/data/situations";
 import { getBlogPosts, getProducts, getQuestions, getSettings } from "@/lib/data";
@@ -76,6 +78,11 @@ export default async function Home() {
           ))}
         </div>
       </Section>
+
+      {/* PRODUTO DIGITAL */}
+      <section className="wrap pb-16 sm:pb-24">
+        <DigitalProductBand product={tafProduct} />
+      </section>
 
       {/* SERVIÇOS */}
       <section className="relative border-y border-gold/15 bg-ink-800 py-16 sm:py-24">

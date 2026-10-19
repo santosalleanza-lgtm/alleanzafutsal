@@ -3,10 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArtCard } from "@/components/ArtCard";
+import { DigitalProductBand } from "@/components/DigitalProductCard";
 import { ButtonLink } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { Disclaimer, Notice } from "@/components/ui/Notice";
 import { blogCategories } from "@/data/blog";
+import { tafProduct } from "@/data/digital";
 import { services } from "@/data/services";
 import { getSituation, situations } from "@/data/situations";
 import { getTrainingCategory } from "@/data/training";
@@ -57,6 +59,11 @@ export default async function SituationPage({ params }: { params: Promise<{ slug
 
       <div className="wrap py-14">
         {s.alert && <Notice tone="warn" title="Atenção" className="mb-12">{s.alert}</Notice>}
+        {s.slug === "vou-fazer-taf" && (
+          <div id="produto" className="mb-16 scroll-mt-24">
+            <DigitalProductBand product={tafProduct} />
+          </div>
+        )}
 
         <section aria-labelledby="como">
           <p className="eyebrow mb-3">Como eu organizo o treino</p>
