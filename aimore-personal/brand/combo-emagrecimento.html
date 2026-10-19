@@ -1,0 +1,38 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Sora:wght@300;400;600&display=block" rel="stylesheet">
+<style>
+*{margin:0;box-sizing:border-box}
+body{width:1200px;height:1200px;background:#0A0907;font-family:Sora,sans-serif;color:#F6F2EA;overflow:hidden}
+.card{position:relative;width:1200px;height:1200px;overflow:hidden;
+ background:radial-gradient(ellipse at 50% 62%,rgba(212,175,97,.32),transparent 55%),radial-gradient(ellipse at 0% 0%,rgba(168,130,60,.16),transparent 45%),#0A0907}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(212,175,97,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(212,175,97,.06) 1px,transparent 1px);background-size:60px 60px;
+ -webkit-mask-image:radial-gradient(ellipse at 50% 55%,#000 30%,transparent 78%)}
+.frame{position:absolute;inset:26px;border:1px solid rgba(212,175,97,.45);border-radius:40px}
+.frame2{position:absolute;inset:40px;border:1px solid rgba(212,175,97,.18);border-radius:32px}
+.top{position:absolute;left:0;right:0;top:96px;text-align:center}
+.brand{display:inline-flex;align-items:center;gap:16px;font-weight:300;letter-spacing:.5em;font-size:18px;color:#D4AF61;text-transform:uppercase}
+.brand svg{width:40px}
+.tag{display:inline-block;margin-top:34px;padding:10px 28px;border-radius:999px;background:linear-gradient(135deg,#F2DDA6,#D4AF61 45%,#A8823C);color:#0A0907;font-family:'Barlow Condensed';font-weight:900;font-size:30px;letter-spacing:.24em;text-transform:uppercase}
+h1{font-family:'Barlow Condensed';font-weight:900;font-size:132px;line-height:.86;text-transform:uppercase;margin-top:22px}
+h1 span{background:linear-gradient(135deg,#F2DDA6 0%,#D4AF61 40%,#A8823C 70%,#E8CB8C 100%);-webkit-background-clip:text;color:transparent}
+.books{position:absolute;left:50%;top:520px;width:760px;height:560px;transform:translateX(-50%)}
+.book{position:absolute;top:0;width:340px;aspect-ratio:2/3;border-radius:18px;overflow:hidden;border:2px solid rgba(212,175,97,.6);box-shadow:0 40px 90px rgba(0,0,0,.75),0 0 80px rgba(212,175,97,.25)}
+.book img{width:100%;height:100%;object-fit:cover;display:block}
+.b1{left:40px;transform:rotate(-7deg)}
+.b2{right:40px;transform:rotate(7deg)}
+.plus{position:absolute;left:50%;top:220px;transform:translateX(-50%);width:96px;height:96px;border-radius:50%;background:#0A0907;border:3px solid #D4AF61;color:#D4AF61;font-family:'Barlow Condensed';font-weight:900;font-size:72px;line-height:86px;text-align:center;z-index:2;box-shadow:0 0 50px rgba(212,175,97,.5)}
+.bottom{position:absolute;left:0;right:0;bottom:66px;text-align:center;font-family:'Barlow Condensed';font-weight:800;letter-spacing:.32em;font-size:24px;color:#D4AF61;text-transform:uppercase}
+</style></head><body><div class="card">
+<div class="grid"></div><div class="frame"></div><div class="frame2"></div>
+<div class="top">
+ <div class="brand"><svg viewBox="0 0 100 92"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2DDA6"/><stop offset=".45" stop-color="#D4AF61"/><stop offset=".75" stop-color="#8F6A2C"/><stop offset="1" stop-color="#E8CB8C"/></linearGradient></defs><path fill-rule="evenodd" fill="url(#g)" d="M50 2 98 90H2L50 2Zm0 22L19 80h62L50 24Z"/><path fill="url(#g)" d="M50 42 64 68H36L50 42Z"/></svg>Aimoré Performance</div><br>
+ <div class="tag">Combo · 2 programas</div>
+ <h1>Emagrecer<br><span>com método</span></h1>
+</div>
+<div class="books">
+ <div class="book b1"><img src="../public/img/produtos-digitais/caneta.webp"></div>
+ <div class="plus">+</div>
+ <div class="book b2"><img src="../public/img/produtos-digitais/verao.webp"></div>
+</div>
+<div class="bottom">Força · Massa magra · Constância</div>
+</div></body></html>

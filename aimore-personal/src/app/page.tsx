@@ -6,13 +6,13 @@ import { InstagramGrid } from "@/components/InstagramGrid";
 import { Avatar } from "@/components/Avatar";
 import { Portrait } from "@/components/Portrait";
 import { ProductCard } from "@/components/ProductCard";
-import { DigitalProductCard } from "@/components/DigitalProductCard";
+import { DigitalBundleBand, DigitalProductCard } from "@/components/DigitalProductCard";
 import { ButtonLink } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { Section } from "@/components/ui/Section";
 import { instagramHandle, instagramUrl } from "@/config/site";
 import { blogCategories } from "@/data/blog";
-import { digitalProducts } from "@/data/digital";
+import { activeBundles, digitalProducts } from "@/data/digital";
 import { services } from "@/data/services";
 import { situations } from "@/data/situations";
 import { getBlogPosts, getProducts, getQuestions, getSettings } from "@/lib/data";
@@ -85,6 +85,7 @@ export default async function Home() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {digitalProducts.map((d) => <DigitalProductCard key={d.slug} product={d} />)}
         </div>
+        {activeBundles().map((b) => <div key={b.slug} className="mt-8"><DigitalBundleBand bundle={b} /></div>)}
       </Section>
 
       {/* SERVIÇOS */}

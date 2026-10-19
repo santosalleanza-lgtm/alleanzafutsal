@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { DigitalProductBand } from "@/components/DigitalProductCard";
+import { DigitalBundleBand, DigitalProductBand } from "@/components/DigitalProductCard";
 import { ButtonLink } from "@/components/ui/Button";
 import { Notice } from "@/components/ui/Notice";
 import { PageHeader } from "@/components/ui/Section";
-import { digitalProducts } from "@/data/digital";
+import { activeBundles, digitalProducts } from "@/data/digital";
 
 export const metadata: Metadata = {
   title: "Programas digitais",
@@ -20,6 +20,7 @@ export default function DigitalProgramsPage() {
         intro="Programas de treino em e-book para seguir no seu ritmo. A compra é feita pela Hotmart, com pagamento seguro e acesso imediato."
       />
       <div className="wrap space-y-10 py-14">
+        {activeBundles().map((b) => <DigitalBundleBand key={b.slug} bundle={b} />)}
         {digitalProducts.map((d) => (
           <div key={d.slug} id={d.slug} className="scroll-mt-24">
             <DigitalProductBand product={d} />

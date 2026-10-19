@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { DigitalProduct } from "@/data/digital";
+import { digitalProducts, type DigitalBundle, type DigitalProduct } from "@/data/digital";
 import { ButtonLink } from "./ui/Button";
 import { Icon } from "./ui/Icon";
 
@@ -72,6 +72,30 @@ export function DigitalProductAside({ product }: { product: DigitalProduct }) {
       <p className="mt-2 text-sm text-chalk-muted">{product.description}</p>
       <div className="mt-5"><BuyButtons product={product} full /></div>
       <p className="mt-3 text-[11px] text-chalk-dim">{product.note}</p>
+    </div>
+  );
+}
+
+export function DigitalBundleBand({ bundle }: { bundle: DigitalBundle }) {
+  if (!bundle.checkoutUrl) return null;
+  const items = bundle.includes.map((slug) => digitalProducts.find((p) => p.slug === slug)).filter((p) => p !== undefined);
+  return (
+    <div id={bundle.slug} className="frame-gold relative grid scroll-mt-24 items-center gap-10 overflow-hidden rounded-[2rem] border border-gold/50 bg-ink-800 p-8 sm:p-12 lg:grid-cols-[1fr_420px]">
+      <div className="relative">
+        <p className="eyebrow mb-3">Combo · {items.length} programas</p>
+        <h2 className="font-display text-5xl font-black uppercase leading-[0.88] sm:text-6xl">{bundle.name}</h2>
+        <p className="mt-4 max-w-xl text-lg text-chalk-muted">{bundle.description}</p>
+        <ul className="mt-5 space-y-2 text-sm">
+          {items.map((p) => <li key={p.slug} className="flex gap-2"><Icon name="check" className="h-4 w-4 shrink-0 text-gold" />{p.name}</li>)}
+        </ul>
+        <ButtonLink href={bundle.checkoutUrl} external className="mt-8">
+          Comprar o combo{bundle.price ? ` · ${bundle.price}` : ""}
+        </ButtonLink>
+        <p className="mt-4 max-w-xl text-xs text-chalk-dim">{bundle.note}</p>
+      </div>
+      <div className="glow-gold relative aspect-square overflow-hidden rounded-2xl border border-gold/40">
+        <Image src={bundle.image} alt={`Capa do ${bundle.name}`} fill sizes="420px" className="object-cover" />
+      </div>
     </div>
   );
 }

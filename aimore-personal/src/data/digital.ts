@@ -81,3 +81,32 @@ export const digitalProducts: DigitalProduct[] = [
 export const tafProduct = digitalProducts[0];
 export const productForSituation = (slug: string) => digitalProducts.find((p) => p.situation === slug) ?? null;
 export const productForBlogCategory = (category: string) => digitalProducts.find((p) => p.blogCategories.includes(category)) ?? null;
+
+export type DigitalBundle = {
+  slug: string;
+  name: string;
+  image: string;
+  description: string;
+  /** Produtos incluídos (slugs de digitalProducts). */
+  includes: string[];
+  /** Checkout do combo na Hotmart. Enquanto for null, o combo não aparece no site. */
+  checkoutUrl: string | null;
+  price: string | null;
+  note: string;
+};
+
+export const digitalBundles: DigitalBundle[] = [
+  {
+    slug: "combo-emagrecimento",
+    name: "Combo Emagrecer com método",
+    image: "/img/produtos-digitais/combo-emagrecimento.webp",
+    description:
+      "Os dois programas de emagrecimento juntos: o treino para quem usa caneta emagrecedora e o programa de 8 semanas para o verão. Força, massa magra e constância no mesmo plano.",
+    includes: ["treino-caneta-emagrecedora", "treino-verao-ainda-da-tempo"],
+    checkoutUrl: null,
+    price: null,
+    note: "Conteúdo de exercício físico. Quem usa caneta emagrecedora deve manter o acompanhamento médico.",
+  },
+];
+
+export const activeBundles = () => digitalBundles.filter((b) => b.checkoutUrl);
