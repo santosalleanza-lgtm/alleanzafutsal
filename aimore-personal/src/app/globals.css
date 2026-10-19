@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { color-scheme: dark; scroll-behavior: smooth; }
+  body { @apply bg-ink text-chalk font-sans antialiased; }
+  ::selection { @apply bg-lime text-ink; }
+  :focus-visible { @apply outline-none ring-2 ring-lime ring-offset-2 ring-offset-ink; }
+  h1, h2, h3 { @apply font-display uppercase tracking-tight; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
+}
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-site px-4 sm:px-6 lg:px-8; }
+  .eyebrow { @apply text-xs font-semibold uppercase tracking-[0.2em] text-lime; }
+  .card { @apply rounded-2xl border border-white/10 bg-ink-800; }
+  .field { @apply w-full rounded-xl border border-white/15 bg-ink-700 px-4 py-3 text-chalk placeholder:text-chalk-dim focus:border-lime focus:outline-none; }
+  .label { @apply mb-1.5 block text-sm font-medium text-chalk; }
+  .hint { @apply mt-1 text-xs text-chalk-dim; }
+  .prose-site p { @apply mb-4 leading-relaxed text-chalk-muted; }
+  .prose-site h2 { @apply mb-3 mt-10 text-2xl text-chalk; }
+  .prose-site h3 { @apply mb-2 mt-6 text-lg normal-case tracking-normal font-sans font-semibold text-chalk; }
+  .prose-site ul { @apply mb-4 list-disc space-y-1.5 pl-5 text-chalk-muted; }
+  .grid-lines { background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px); background-size: 48px 48px; }
+}

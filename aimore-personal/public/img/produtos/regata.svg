@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Ilustração de regata grafite com a marca Aimoré">
+  <path d="M150 50 L130 50 C130 110 110 140 100 160 L100 355 L300 355 L300 160 C290 140 270 110 270 50 L250 50 C245 95 225 115 200 115 C175 115 155 95 150 50 Z" fill="#26292D" stroke="#3A3E44" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M150 50 C155 95 175 115 200 115 C225 115 245 95 250 50" fill="none" stroke="#C6F432" stroke-width="5"/>
+  <text x="200" y="225" text-anchor="middle" font-family="Impact, 'Arial Narrow', sans-serif" font-size="42" fill="#F5F5F2" letter-spacing="2">AIMORÉ</text>
+  <text x="200" y="252" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="14" fill="#C6F432" letter-spacing="7">PERSONAL</text>
+</svg>

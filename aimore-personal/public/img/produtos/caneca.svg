@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Ilustração de caneca branca com a marca Aimoré">
+  <path d="M280 150 C340 150 340 270 280 270" fill="none" stroke="#E6E6E1" stroke-width="22"/>
+  <rect x="90" y="110" width="200" height="220" rx="18" fill="#F5F5F2"/>
+  <ellipse cx="190" cy="112" rx="100" ry="14" fill="#DADAD4"/>
+  <rect x="90" y="170" width="200" height="90" fill="#0B0B0C"/>
+  <text x="190" y="218" text-anchor="middle" font-family="Impact, 'Arial Narrow', sans-serif" font-size="38" fill="#F5F5F2" letter-spacing="2">AIMORÉ</text>
+  <text x="190" y="243" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="12" fill="#C6F432" letter-spacing="6">PERSONAL</text>
+</svg>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Ilustração de camiseta preta com a marca Aimoré">
+  <path d="M140 60 L90 80 L40 140 L85 175 L110 150 L110 350 L290 350 L290 150 L315 175 L360 140 L310 80 L260 60 C250 90 225 105 200 105 C175 105 150 90 140 60 Z" fill="#1C1E21" stroke="#3A3E44" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M140 60 C150 90 175 105 200 105 C225 105 250 90 260 60" fill="none" stroke="#C6F432" stroke-width="5"/>
+  <text x="200" y="215" text-anchor="middle" font-family="Impact, 'Arial Narrow', sans-serif" font-size="46" fill="#F5F5F2" letter-spacing="2">AIMORÉ</text>
+  <text x="200" y="245" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="15" fill="#C6F432" letter-spacing="8">PERSONAL</text>
+  <path d="M150 305 L190 282 L215 298 L255 268" stroke="#C6F432" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
