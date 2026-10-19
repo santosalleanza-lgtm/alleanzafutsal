@@ -93,6 +93,8 @@ export type SiteSettings = {
   /** Somente dígitos com DDI, ex.: 5551999999999. */
   whatsapp: string | null;
   contactEmail: string | null;
+  /** Área de membros da Hotmart (Hotmart Club), onde compradores acessam os conteúdos. */
+  memberAreaUrl: string | null;
   announcement: string | null;
   banner: Banner;
 };

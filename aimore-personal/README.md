@@ -148,6 +148,8 @@ Netlify também funciona (plugin oficial de Next.js); nesse caso use o mesmo dir
 3. Na Hotmart, em **Ferramentas > Webhook**, crie um webhook na versão 2.0 para `https://SEU-DOMINIO/api/webhooks/hotmart`, com os eventos de compra aprovada, completa, cancelada, reembolsada, chargeback e protesto. Copie o **hottok** para `HOTMART_HOTTOK`.
 4. Faça uma compra de teste (a Hotmart permite reenviar eventos de teste) e confira em `/admin/alunos` se o acesso apareceu.
 
+A área de membros (Hotmart Club) já está configurada como `https://hotmart.com/pt-br/club/prof-aimore`: o link aparece nas páginas dos programas ("Já comprou?"), no rodapé e na área do aluno. Pode ser alterado em `/admin/configuracoes`.
+
 O aluno vê o programa em `/aluno/programas` ao entrar com **o mesmo e-mail usado na compra**. Para compras com outro e-mail, libere manualmente em `/admin/alunos`.
 
 ## 6. Lista de tarefas para produção

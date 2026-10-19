@@ -31,6 +31,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
           <p className="eyebrow mb-4">Atendimento</p>
           <ul className="space-y-2 text-sm text-chalk-muted">
             {wa && <li><a className="hover:text-lime" href={wa} target="_blank" rel="noopener noreferrer">WhatsApp</a></li>}
+            {settings.memberAreaUrl && <li><a className="hover:text-lime" href={settings.memberAreaUrl} target="_blank" rel="noopener noreferrer">Área de membros (Hotmart)</a></li>}
             <li><Link className="hover:text-lime" href="/contato">Contato e dúvidas</Link></li>
             <li><Link className="hover:text-lime" href="/privacidade">Política de privacidade</Link></li>
             <li><Link className="hover:text-lime" href="/termos">Termos de uso</Link></li>

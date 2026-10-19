@@ -202,6 +202,7 @@ export async function saveSettings(_: AdminState, form: FormData): Promise<Admin
       },
       whatsapp: text(form.get("whatsapp")).replace(/\D/g, "") || null,
       contactEmail: nullable(form.get("contactEmail")),
+      memberAreaUrl: httpsOrNull(form.get("memberAreaUrl")),
       announcement: nullable(form.get("announcement")),
       banner,
     };

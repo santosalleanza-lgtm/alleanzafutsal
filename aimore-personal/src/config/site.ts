@@ -49,6 +49,7 @@ export const defaultSettings: SiteSettings = {
   },
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5551991925356",
   contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL || null,
+  memberAreaUrl: "https://hotmart.com/pt-br/club/prof-aimore",
   announcement: null,
   banner: null,
 };

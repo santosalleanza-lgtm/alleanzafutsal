@@ -48,6 +48,14 @@ export default async function ProgramPage({ params }: { params: Promise<{ slug: 
             {program.duration && <span className="flex items-center gap-2 text-sm text-chalk-muted"><Icon name="clock" className="h-4 w-4 text-lime" />{program.duration}</span>}
           </div>
           {!canBuy && <p className="mt-3 text-xs text-chalk-dim">{isTaf ? "Ao enviar TAF pelo WhatsApp, você entra na lista de espera e é avisado na abertura das vendas." : "Este programa ainda não está à venda."}</p>}
+          {settings.memberAreaUrl && (
+            <p className="mt-4 text-sm text-chalk-muted">
+              Já comprou?{" "}
+              <a href={settings.memberAreaUrl} target="_blank" rel="noopener noreferrer" className="font-semibold text-lime underline">
+                Acesse seus conteúdos na área de membros da Hotmart
+              </a>
+            </p>
+          )}
         </div>
       </header>
 
