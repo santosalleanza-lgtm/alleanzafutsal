@@ -8,7 +8,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { Disclaimer, Notice } from "@/components/ui/Notice";
 import { blogCategories } from "@/data/blog";
-import { tafProduct } from "@/data/digital";
+import { productForSituation } from "@/data/digital";
 import { services } from "@/data/services";
 import { getSituation, situations } from "@/data/situations";
 import { getTrainingCategory } from "@/data/training";
@@ -26,6 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function SituationPage({ params }: { params: Promise<{ slug: string }> }) {
   const s = getSituation((await params).slug);
   if (!s) notFound();
+  const product = productForSituation(s.slug);
   const [posts, settings] = await Promise.all([getBlogPosts(), getSettings()]);
   const articles = s.articles.map((slug) => posts.find((p) => p.slug === slug)).filter((p) => p !== undefined);
   const service = services.find((x) => x.slug === s.service);
@@ -59,9 +60,9 @@ export default async function SituationPage({ params }: { params: Promise<{ slug
 
       <div className="wrap py-14">
         {s.alert && <Notice tone="warn" title="Atenção" className="mb-12">{s.alert}</Notice>}
-        {s.slug === "vou-fazer-taf" && (
+        {product && (
           <div id="produto" className="mb-16 scroll-mt-24">
-            <DigitalProductBand product={tafProduct} />
+            <DigitalProductBand product={product} />
           </div>
         )}
 

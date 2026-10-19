@@ -1,4 +1,5 @@
 import type { NavItem } from "@/config/site";
+import { digitalProducts } from "@/data/digital";
 import { situations } from "@/data/situations";
 import { trainingCategories } from "@/data/training";
 
@@ -20,7 +21,6 @@ export function buildMenu(): NavItem[] {
           links: [
             { href: "/avaliacao", label: "Minha Avaliação Física", hint: "IMC e plano de ação em 3 minutos" },
             { href: "/gerador-de-treino", label: "Gerador de treino", hint: "Sugestão semanal para o seu perfil" },
-            { href: "/situacao/vou-fazer-taf#produto", label: "Como ser aprovado no TAF", hint: "Produto digital na Hotmart" },
           ],
         },
       ],
@@ -35,6 +35,19 @@ export function buildMenu(): NavItem[] {
             { href: "/blog", label: "Artigos", hint: "Hidratação, musculação, futsal e mais" },
             { href: "/blog/perguntas", label: "Pergunte ao Aimoré", hint: "Suas dúvidas respondidas" },
             { href: "/alimentacao", label: "Alimentação", hint: "Educação alimentar para quem treina" },
+          ],
+        },
+      ],
+    },
+    {
+      label: "Programas",
+      href: "/programas-digitais",
+      children: [
+        {
+          title: "Programas digitais",
+          links: [
+            ...digitalProducts.map((d) => ({ href: `/programas-digitais#${d.slug}`, label: d.name, hint: d.kicker })),
+            { href: "/programas-digitais", label: "Ver todos os programas", hint: "Compra segura pela Hotmart" },
           ],
         },
       ],

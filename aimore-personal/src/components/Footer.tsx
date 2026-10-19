@@ -35,6 +35,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
             <li><Link className="hover:text-gold" href="/avaliacao">Minha Avaliação Física</Link></li>
             <li><Link className="hover:text-gold" href="/gerador-de-treino">Gerador de treino</Link></li>
             <li><Link className="hover:text-gold" href="/alimentacao">Alimentação</Link></li>
+            <li><Link className="hover:text-gold" href="/programas-digitais">Programas digitais</Link></li>
           </ul>
         </div>
         <div>

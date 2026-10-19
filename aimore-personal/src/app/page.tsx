@@ -6,13 +6,13 @@ import { InstagramGrid } from "@/components/InstagramGrid";
 import { Avatar } from "@/components/Avatar";
 import { Portrait } from "@/components/Portrait";
 import { ProductCard } from "@/components/ProductCard";
-import { DigitalProductBand } from "@/components/DigitalProductCard";
+import { DigitalProductCard } from "@/components/DigitalProductCard";
 import { ButtonLink } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { Section } from "@/components/ui/Section";
 import { instagramHandle, instagramUrl } from "@/config/site";
 import { blogCategories } from "@/data/blog";
-import { tafProduct } from "@/data/digital";
+import { digitalProducts } from "@/data/digital";
 import { services } from "@/data/services";
 import { situations } from "@/data/situations";
 import { getBlogPosts, getProducts, getQuestions, getSettings } from "@/lib/data";
@@ -80,10 +80,12 @@ export default async function Home() {
         </div>
       </Section>
 
-      {/* PRODUTO DIGITAL */}
-      <section className="wrap pb-16 sm:pb-24">
-        <DigitalProductBand product={tafProduct} />
-      </section>
+      {/* PROGRAMAS DIGITAIS */}
+      <Section id="programas" eyebrow="Programas digitais" title={<>Treine comigo <span className="text-gold-metal">de onde estiver</span></>} intro="E-books com programas de treino prontos para seguir no seu ritmo. Compra segura pela Hotmart, com acesso imediato." className="scroll-mt-20 pt-0 sm:pt-0">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {digitalProducts.map((d) => <DigitalProductCard key={d.slug} product={d} />)}
+        </div>
+      </Section>
 
       {/* SERVIÇOS */}
       <section className="relative border-y border-gold/15 bg-ink-800 py-16 sm:py-24">

@@ -6,7 +6,7 @@ import { getArticles, getBlogPosts, getProducts } from "@/lib/data";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [products, posts, articles] = await Promise.all([getProducts(), getBlogPosts(), getArticles("alimentacao")]);
-  const staticPaths = ["", "/sobre", "/seja-aluno", "/situacao", "/blog", "/blog/perguntas", "/treinos", "/avaliacao", "/gerador-de-treino", "/alimentacao", "/loja", "/contato", "/comece", "/privacidade", "/termos", "/cookies"];
+  const staticPaths = ["", "/sobre", "/seja-aluno", "/situacao", "/blog", "/blog/perguntas", "/treinos", "/avaliacao", "/gerador-de-treino", "/alimentacao", "/loja", "/programas-digitais", "/contato", "/comece", "/privacidade", "/termos", "/cookies"];
   return [
     ...staticPaths.map((p) => ({ url: `${siteUrl}${p}`, changeFrequency: "weekly" as const, priority: p === "" ? 1 : 0.7 })),
     ...products.map((p) => ({ url: `${siteUrl}/loja/${p.slug}`, priority: 0.8 })),
