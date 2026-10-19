@@ -33,7 +33,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           Pular para o conteúdo
         </a>
         <CartProvider>
-          <Header announcement={settings.announcement} menu={buildMenu()} />
+          <Header announcement={settings.announcement} menu={buildMenu()} memberAreaUrl={settings.memberAreaUrl} />
           <main id="conteudo" className="flex-1">
             {children}
           </main>

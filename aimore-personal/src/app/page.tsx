@@ -238,6 +238,12 @@ export default async function Home() {
               <ButtonLink href="/seja-aluno">Quero ser aluno</ButtonLink>
               <ButtonLink href="/avaliacao" variant="secondary">Fazer autoavaliação</ButtonLink>
             </div>
+            {settings.memberAreaUrl && (
+              <p className="mt-5 text-sm text-chalk-muted">
+                Já comprou um conteúdo?{" "}
+                <a href={settings.memberAreaUrl} target="_blank" rel="noopener noreferrer" className="font-semibold text-gold underline">Acesse a área de membros na Hotmart</a>
+              </p>
+            )}
           </div>
         </div>
       </section>

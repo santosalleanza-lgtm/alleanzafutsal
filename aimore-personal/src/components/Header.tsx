@@ -8,7 +8,7 @@ import { Logo } from "./Logo";
 import { buttonClass } from "./ui/Button";
 import { Icon } from "./ui/Icon";
 
-export function Header({ announcement, menu }: { announcement: string | null; menu: NavItem[] }) {
+export function Header({ announcement, menu, memberAreaUrl }: { announcement: string | null; menu: NavItem[]; memberAreaUrl: string | null }) {
   const [open, setOpen] = useState(false);
   const [drop, setDrop] = useState<number | null>(null);
   const [section, setSection] = useState<number | null>(null);
@@ -91,6 +91,11 @@ export function Header({ announcement, menu }: { announcement: string | null; me
             </ul>
           </nav>
           <div className="flex items-center gap-1.5">
+            {memberAreaUrl && (
+              <a href={memberAreaUrl} target="_blank" rel="noopener noreferrer" className="hidden rounded-full px-3 py-2 text-[13px] font-medium text-chalk-muted hover:text-gold 2xl:block">
+                Área de membros
+              </a>
+            )}
             <Link href="/aluno" className="hidden rounded-full p-2.5 text-chalk hover:text-gold sm:block" aria-label="Área do aluno"><Icon name="user" /></Link>
             <Link href="/carrinho" className="relative rounded-full p-2.5 text-chalk hover:text-gold" aria-label={`Carrinho, ${count} ${count === 1 ? "item" : "itens"}`}>
               <Icon name="cart" />
@@ -134,6 +139,13 @@ export function Header({ announcement, menu }: { announcement: string | null; me
               </li>
             ))}
             <li className="border-b border-gold/10"><Link href="/aluno" className="block py-4 font-display text-3xl font-bold uppercase">Área do aluno</Link></li>
+            {memberAreaUrl && (
+              <li className="border-b border-gold/10">
+                <a href={memberAreaUrl} target="_blank" rel="noopener noreferrer" className="block py-4 font-display text-3xl font-bold uppercase">
+                  Área de membros <span className="text-base font-medium normal-case text-gold">Hotmart</span>
+                </a>
+              </li>
+            )}
             <li className="pt-6"><Link href="/seja-aluno" className={buttonClass("primary", "w-full")}>Quero ser aluno</Link></li>
           </ul>
         </nav>

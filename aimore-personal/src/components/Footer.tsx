@@ -47,6 +47,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
             {settings.playlistUrl && <li><a className="hover:text-gold" href={settings.playlistUrl} target="_blank" rel="noopener noreferrer">Playlist de treino</a></li>}
             <li><Link className="hover:text-gold" href="/contato">Contato</Link></li>
             <li><Link className="hover:text-gold" href="/aluno">Área do aluno</Link></li>
+            {settings.memberAreaUrl && <li><a className="hover:text-gold" href={settings.memberAreaUrl} target="_blank" rel="noopener noreferrer">Área de membros (Hotmart)</a></li>}
           </ul>
         </div>
       </div>
