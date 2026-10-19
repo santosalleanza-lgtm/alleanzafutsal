@@ -149,8 +149,9 @@ export default async function Home() {
               <ButtonLink href="/situacao/vou-comecar" variant="secondary">Estou começando agora</ButtonLink>
             </div>
           </div>
-          <div className="frame-gold glow-gold relative mx-auto aspect-[2/3] w-full max-w-sm overflow-hidden rounded-[2rem] border border-gold/30">
-            <Image src="/img/aimore/atleta-correndo.webp" alt="Atleta correndo em uma estrada ao entardecer" fill sizes="(min-width: 1024px) 30vw, 90vw" className="object-cover" />
+          <div className="frame-gold glow-gold relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-[2rem] border border-gold/30">
+            <Image src="/img/aimore/corredor-paisagem.webp" alt="Corredor em uma trilha de montanha ao pôr do sol (imagem ilustrativa)" fill sizes="(min-width: 1024px) 34vw, 90vw" className="object-cover" />
+            <span className="absolute right-4 top-4 rounded-full bg-ink/70 px-3 py-1 text-[10px] uppercase tracking-wider text-chalk-dim backdrop-blur">Imagem ilustrativa</span>
             <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" aria-hidden />
             <p className="absolute inset-x-6 bottom-6 font-display text-3xl font-black uppercase leading-none">Um passo <span className="text-gold-metal">por dia.</span></p>
           </div>
