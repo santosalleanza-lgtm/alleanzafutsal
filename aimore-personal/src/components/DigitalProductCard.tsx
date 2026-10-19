@@ -82,7 +82,7 @@ export function DigitalBundleBand({ bundle }: { bundle: DigitalBundle }) {
   return (
     <div id={bundle.slug} className="frame-gold relative grid scroll-mt-24 items-center gap-10 overflow-hidden rounded-[2rem] border border-gold/50 bg-ink-800 p-8 sm:p-12 lg:grid-cols-[1fr_420px]">
       <div className="relative">
-        <p className="eyebrow mb-3">Combo · {items.length} programas</p>
+        <p className="mb-4 inline-block rounded-full bg-gold-metal px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em] text-ink">Destaque · Combo com {items.length} programas</p>
         <h2 className="font-display text-5xl font-black uppercase leading-[0.88] sm:text-6xl">{bundle.name}</h2>
         <p className="mt-4 max-w-xl text-lg text-chalk-muted">{bundle.description}</p>
         <ul className="mt-5 space-y-2 text-sm">

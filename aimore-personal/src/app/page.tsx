@@ -82,10 +82,10 @@ export default async function Home() {
 
       {/* PROGRAMAS DIGITAIS */}
       <Section id="programas" eyebrow="Programas digitais" title={<>Treine comigo <span className="text-gold-metal">de onde estiver</span></>} intro="E-books com programas de treino prontos para seguir no seu ritmo. Compra segura pela Hotmart, com acesso imediato." className="scroll-mt-20 pt-0 sm:pt-0">
+        {activeBundles().map((b) => <div key={b.slug} className="mb-8"><DigitalBundleBand bundle={b} /></div>)}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {digitalProducts.map((d) => <DigitalProductCard key={d.slug} product={d} />)}
         </div>
-        {activeBundles().map((b) => <div key={b.slug} className="mt-8"><DigitalBundleBand bundle={b} /></div>)}
       </Section>
 
       {/* SERVIÇOS */}
