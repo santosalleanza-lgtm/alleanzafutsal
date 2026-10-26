@@ -843,6 +843,18 @@ tr.linha-pendente td{background:rgba(212,175,95,0.045);}
   .link-card-acoes, .link-card-acoes .btn{width:100%;justify-content:center;}
 }
 
+
+/* Pedidos com vários itens */
+.ped-itens{display:flex;flex-direction:column;gap:8px;white-space:nowrap;}
+.ped-item{display:flex;flex-direction:column;gap:3px;font-size:12px;padding-left:8px;border-left:2px solid rgba(212,175,95,0.25);}
+.ped-tam{color:var(--cream);font-weight:600;}
+.ped-costas{color:var(--gold-light);font-weight:700;letter-spacing:.3px;}
+.ped-sem{color:var(--muted);font-size:11px;}
+.item-ped{background:rgba(0,0,0,0.2);border:1px solid var(--hairline);border-radius:12px;padding:12px 12px 2px;margin-bottom:10px;}
+.item-ped-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.item-ped-top strong{font-size:12.5px;color:var(--gold-light);letter-spacing:.5px;}
+.ped-total{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;background:rgba(212,175,95,0.08);border:1px solid rgba(212,175,95,0.25);border-radius:12px;padding:10px 14px;margin:6px 0 14px;font-size:13px;}
+.ped-total strong{font-size:17px;color:var(--gold-light);}
 </style>
 </head>
 <body>
@@ -1079,15 +1091,37 @@ function seedCompeticoes(){
 const PIX_CHAVE = 'aimore.weren@gmail.com';
 const WHATS_NUMBER_PEDIDOS = '5551991925356';
 const TIPOS_PEDIDO = {
-  uniforme:  {label:'Uniforme Infantil', valor:180, custo:90, tamanhos:['8','10','12','14','16','PP','P','M','G']},
+  uniforme:  {label:'Uniforme Infantil', valor:180, entrada:85, custo:90, tamanhos:['8','10','12','14','16','PP','P','M','G']},
   agasalho:  {label:'Agasalho de Atleta', valor:300, entrada:150, custo:200, tamanhos:['8','10','12','14','16','PP','P','M','G','GG']},
   torcedor:  {label:'Camisa de Torcedor', valor:120, custo:70, tamanhos:['P','M','G','GG','XG']},
 };
 function seedPedidos(){
   return [];
 }
+/* Um pedido tem um ou mais itens (ex.: 2 uniformes + 1 agasalho), cada um
+   com o seu tamanho — no uniforme, camisa e calção separados — e a
+   personalização (nome nas costas e número). */
+function itensPedido(p){ return p.itens || []; }
+function valorItemPedido(it){ return it.valor != null ? it.valor : TIPOS_PEDIDO[it.tipo].valor; }
+function valorPedido(p){ return itensPedido(p).reduce((s,it)=>s+valorItemPedido(it), 0); }
+function custoPedido(p){ return itensPedido(p).reduce((s,it)=>s+TIPOS_PEDIDO[it.tipo].custo, 0); }
+function sinalPedido(p){
+  return itensPedido(p).reduce((s,it)=>s+(TIPOS_PEDIDO[it.tipo].entrada != null ? TIPOS_PEDIDO[it.tipo].entrada : valorItemPedido(it)), 0);
+}
+function tamanhosItemTexto(it){
+  return it.tipo==='uniforme'
+    ? 'camisa '+it.tamanho+' · calção '+(it.tamCalcao||it.tamanho)
+    : 'tam. '+it.tamanho;
+}
+function personalizacaoItemTexto(it){
+  if(!it.costas && !it.numero) return 'sem nome/número';
+  return 'costas: '+(it.costas||'—')+' · nº '+(it.numero||'—');
+}
+function resumoItensPedido(p){
+  return itensPedido(p).map(it=>TIPOS_PEDIDO[it.tipo].label+' ('+tamanhosItemTexto(it)+')').join(', ');
+}
 function statusPagamentoPedido(p){
-  const total = TIPOS_PEDIDO[p.tipo].valor;
+  const total = valorPedido(p);
   if(p.valorPago >= total) return 'pago';
   if(p.valorPago > 0) return 'parcial';
   return 'pendente';
@@ -1105,7 +1139,7 @@ function pedidosDoLote(loteId){
   return DB.pedidos.filter(p=>p.loteId===loteId);
 }
 function totaisPedidos(lista){
-  const valorTotal = lista.reduce((s,p)=>s+TIPOS_PEDIDO[p.tipo].valor, 0);
+  const valorTotal = lista.reduce((s,p)=>s+valorPedido(p), 0);
   const valorRecebido = lista.reduce((s,p)=>s+p.valorPago, 0);
   return {
     qtd: lista.length,
@@ -1143,90 +1177,108 @@ function linkListaEscalados(compId){
   return 'https://api.whatsapp.com/send?text='+encodeURIComponent(textoListaEscalados(compId));
 }
 
-/* ---------- Resumo de produção (por tipo + tamanho) ---------- */
-function resumoProducao(){
+/* ---------- Resumo de produção (por peça + tamanho) ----------
+   Sempre de um escopo só: os pedidos novos (ainda sem lote) ou um lote
+   específico — assim o lote que já foi pra produção não entra de novo. */
+const PECAS_PRODUCAO = [
+  {key:'camisa',   label:'Camisa do uniforme',  tipo:'uniforme', tam: it=>it.tamanho},
+  {key:'calcao',   label:'Calção do uniforme',  tipo:'uniforme', tam: it=>it.tamCalcao||it.tamanho},
+  {key:'agasalho', label:'Agasalho de Atleta',  tipo:'agasalho', tam: it=>it.tamanho},
+  {key:'torcedor', label:'Camisa de Torcedor',  tipo:'torcedor', tam: it=>it.tamanho},
+];
+function ordenarTamanhos(tipo, lista){
+  const ordem = TIPOS_PEDIDO[tipo].tamanhos;
+  return lista.sort((a,b)=>{
+    const ia = ordem.indexOf(a), ib = ordem.indexOf(b);
+    return (ia===-1?99:ia) - (ib===-1?99:ib);
+  });
+}
+function escopoProducao(chave){
+  if(chave && chave !== 'sem-lote'){
+    const l = DB.lotes.find(x=>x.id===chave);
+    if(l) return { chave, lista: pedidosDoLote(l.id), titulo: l.nome, arquivo: l.nome };
+  }
+  return { chave: 'sem-lote', lista: pedidosSemLote(), titulo: 'Pedidos novos (ainda sem lote)', arquivo: 'pedidos-novos' };
+}
+function resumoProducao(lista){
   const resumo = {};
-  Object.keys(TIPOS_PEDIDO).forEach(tipo=>{ resumo[tipo] = {}; });
-  DB.pedidos.forEach(p=>{
-    resumo[p.tipo][p.tamanho] = (resumo[p.tipo][p.tamanho] || 0) + 1;
+  PECAS_PRODUCAO.forEach(pc=>{ resumo[pc.key] = {}; });
+  lista.forEach(p=>{
+    itensPedido(p).forEach(it=>{
+      PECAS_PRODUCAO.filter(pc=>pc.tipo===it.tipo).forEach(pc=>{
+        const tam = pc.tam(it);
+        resumo[pc.key][tam] = (resumo[pc.key][tam] || 0) + 1;
+      });
+    });
   });
   return resumo;
 }
-function textoResumoProducao(){
-  const resumo = resumoProducao();
+function textoResumoProducao(chave){
+  const esc = escopoProducao(chave);
+  const resumo = resumoProducao(esc.lista);
   const hoje = new Date().toLocaleDateString('pt-BR');
   let txt = 'RESUMO DE PRODUÇÃO — ALLEANZA ESCOLA DE FUTSAL\n';
-  txt += 'Gerado em: '+hoje+'\n';
+  txt += esc.titulo.toUpperCase()+'\n';
+  txt += 'Gerado em: '+hoje+' · '+esc.lista.length+' pedido(s)\n';
   txt += '========================================\n\n';
-  let totalGeral = 0;
-  Object.keys(TIPOS_PEDIDO).forEach(tipo=>{
-    const info = TIPOS_PEDIDO[tipo];
-    const tamanhos = resumo[tipo];
-    const qtdTipo = Object.values(tamanhos).reduce((s,n)=>s+n,0);
-    totalGeral += qtdTipo;
-    txt += info.label.toUpperCase()+' ('+qtdTipo+' pedido(s))\n';
-    if(qtdTipo===0){
-      txt += '  (nenhum pedido)\n';
+  let totalPecas = 0;
+  PECAS_PRODUCAO.forEach(pc=>{
+    const tamanhos = resumo[pc.key];
+    const qtd = Object.values(tamanhos).reduce((s,n)=>s+n,0);
+    totalPecas += qtd;
+    txt += pc.label.toUpperCase()+' ('+qtd+')\n';
+    if(qtd===0){
+      txt += '  (nenhum)\n';
     } else {
-      Object.keys(tamanhos).sort().forEach(tam=>{
+      ordenarTamanhos(pc.tipo, Object.keys(tamanhos)).forEach(tam=>{
         txt += '  Tamanho '+tam+': '+tamanhos[tam]+'\n';
       });
     }
     txt += '\n';
   });
   txt += '========================================\n';
-  txt += 'TOTAL GERAL: '+totalGeral+' peça(s)\n';
+  txt += 'TOTAL: '+totalPecas+' peça(s)\n';
 
   txt += '\n========================================\n';
-  txt += 'DETALHAMENTO POR PEDIDO (com responsável)\n';
+  txt += 'DETALHAMENTO POR PEDIDO (nome nas costas e número)\n';
   txt += '========================================\n\n';
-  Object.keys(TIPOS_PEDIDO).forEach(tipo=>{
-    const info = TIPOS_PEDIDO[tipo];
-    const pedidosTipo = DB.pedidos.filter(p=>p.tipo===tipo).sort((a,b)=>a.nome.localeCompare(b.nome));
-    if(!pedidosTipo.length) return;
-    txt += info.label.toUpperCase()+'\n';
-    pedidosTipo.forEach(p=>{
-      let linha = '  - '+p.nome+' — tam. '+p.tamanho;
-      if(p.tipo==='torcedor'){
-        linha += ' (costas: '+(p.costas||'—')+' / nº '+(p.numero||'—')+')';
-      } else if(p.responsavel){
-        linha += ' (responsável: '+p.responsavel+')';
-      }
-      txt += linha+'\n';
+  [...esc.lista].sort((a,b)=>a.nome.localeCompare(b.nome)).forEach(p=>{
+    txt += p.nome + (p.responsavel ? ' (responsável: '+p.responsavel+')' : '') + '\n';
+    itensPedido(p).forEach((it,i)=>{
+      txt += '  '+(i+1)+'. '+TIPOS_PEDIDO[it.tipo].label+' — '+tamanhosItemTexto(it)+' — '+personalizacaoItemTexto(it)+'\n';
     });
     txt += '\n';
   });
-
   return txt;
 }
-function linkEnviarProducao(){
-  return 'https://api.whatsapp.com/send?text='+encodeURIComponent(textoResumoProducao());
+function linkEnviarProducao(chave){
+  return 'https://api.whatsapp.com/send?text='+encodeURIComponent(textoResumoProducao(chave));
 }
 function fmtDataPedido(iso){
   return iso ? new Date(iso).toLocaleDateString('pt-BR') : '—';
 }
 function montarMensagemPedido(p){
-  const info = TIPOS_PEDIDO[p.tipo];
-  let msg = '';
-  if(p.tipo==='uniforme'){
-    msg = "🟢 *NOVO PEDIDO — UNIFORME INFANTIL*\n_Alleanza Escola de Futsal_\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n";
-    msg += "👤 *Aluno:* "+p.nome+"\n📏 *Tamanho:* "+p.tamanho+"\n";
-    if(p.responsavel) msg += "👨‍👩‍👧 *Responsável:* "+p.responsavel+"\n";
-    msg += "\n💰 *Valor:* "+fmtBRL(info.valor)+"\n🔑 *Pix (e-mail):* "+PIX_CHAVE+"\n✅ *Sinal mínimo p/ reserva:* R$ 85,00\n\n";
-    msg += "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n📎 Comprovante do Pix vai a seguir nesta conversa.";
-  } else if(p.tipo==='agasalho'){
-    msg = "🔵 *NOVO PEDIDO — AGASALHO DE ATLETA*\n_Alleanza Escola de Futsal_\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n";
-    msg += "👤 *Atleta:* "+p.nome+"\n📏 *Tamanho:* "+p.tamanho+"\n";
-    if(p.responsavel) msg += "👨‍👩‍👧 *Responsável:* "+p.responsavel+"\n";
-    msg += "\n💰 *Valor total:* "+fmtBRL(info.valor)+"\n✅ *Entrada p/ reserva:* "+fmtBRL(info.entrada)+"\n🔑 *Pix (e-mail):* "+PIX_CHAVE+"\n\n";
-    msg += "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n📎 Comprovante do Pix vai a seguir nesta conversa.";
-  } else {
-    msg = "🔴 *NOVO PEDIDO — CAMISA DE TORCEDOR*\n_Alleanza Escola de Futsal_\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n";
-    msg += "👤 *Torcedor:* "+p.nome+"\n📏 *Tamanho:* "+p.tamanho+"\n";
-    msg += "🖋️ *Nome nas costas:* "+(p.costas||'sem personalização')+"\n🔟 *Número:* "+(p.numero||'sem personalização')+"\n";
-    msg += "\n💰 *Valor:* "+fmtBRL(info.valor)+"\n🔑 *Pix (e-mail):* "+PIX_CHAVE+"\n\n";
-    msg += "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n📎 Comprovante do Pix vai a seguir nesta conversa.";
-  }
+  const itens = itensPedido(p);
+  const total = valorPedido(p);
+  const sinal = sinalPedido(p);
+  let msg = "🟢 *NOVO PEDIDO — UNIFORMES ALLEANZA*\n_Alleanza Escola de Futsal_\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n";
+  msg += "👤 *Nome:* "+p.nome+"\n";
+  if(p.responsavel) msg += "👨‍👩‍👧 *Responsável:* "+p.responsavel+"\n";
+  msg += "\n🧾 *ITENS ("+itens.length+"):*\n";
+  itens.forEach((it,i)=>{
+    msg += "\n*"+(i+1)+". "+TIPOS_PEDIDO[it.tipo].label+"* — "+fmtBRL(valorItemPedido(it))+"\n";
+    if(it.tipo==='uniforme'){
+      msg += "   👕 Camisa: "+it.tamanho+" · 🩳 Calção: "+(it.tamCalcao||it.tamanho)+"\n";
+    } else {
+      msg += "   📏 Tamanho: "+it.tamanho+"\n";
+    }
+    msg += "   🖋️ Nome nas costas: "+(it.costas||'sem nome')+"\n";
+    msg += "   🔟 Número: "+(it.numero||'sem número')+"\n";
+  });
+  msg += "\n💰 *Total:* "+fmtBRL(total)+"\n";
+  if(sinal < total) msg += "✅ *Sinal mínimo p/ reserva:* "+fmtBRL(sinal)+"\n";
+  msg += "🔑 *Pix (e-mail):* "+PIX_CHAVE+"\n\n";
+  msg += "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n📎 Comprovante do Pix vai a seguir nesta conversa.";
   return 'https://api.whatsapp.com/send?phone='+WHATS_NUMBER_PEDIDOS+'&text='+encodeURIComponent(msg);
 }
 
@@ -1362,9 +1414,18 @@ function migrarDB(parsed){
     if(p.loteId === undefined) p.loteId = null;
     if(p.observacao === undefined) p.observacao = '';
   });
+  // Formato antigo: um item por pedido (tipo/tamanho/costas/numero no próprio
+  // pedido). Vira um pedido com 1 item; no uniforme, o mesmo tamanho vale
+  // para camisa e calção. Os campos antigos ficam, só por compatibilidade.
+  parsed.pedidos.forEach(p=>{
+    if(!Array.isArray(p.itens)){
+      p.itens = [{ tipo: p.tipo, tamanho: p.tamanho, tamCalcao: p.tipo==='uniforme' ? p.tamanho : '',
+                   costas: p.costas || '', numero: p.numero || '' }];
+    }
+  });
   parsed.pedidos.forEach(p=>{
     if(p.valorPago === undefined){
-      p.valorPago = p.statusPagamento === 'pago' ? TIPOS_PEDIDO[p.tipo].valor : 0;
+      p.valorPago = p.statusPagamento === 'pago' ? valorPedido(p) : 0;
     }
   });
   if(!parsed.pedidosImportadosPlanilha){
@@ -2427,55 +2488,68 @@ function viewDesistencias(){
 ============================================================ */
 /* ---------- Quadro de produção (quantidade por tipo + tamanho) ---------- */
 function viewResumoProducao(){
-  const resumo = resumoProducao();
-  const blocos = Object.keys(TIPOS_PEDIDO).map(tipo=>{
-    const info = TIPOS_PEDIDO[tipo];
-    const tamanhos = resumo[tipo];
+  const esc = escopoProducao(filtroLotePedido);
+  const resumo = resumoProducao(esc.lista);
+  const blocos = PECAS_PRODUCAO.map(pc=>{
+    const tamanhos = resumo[pc.key];
     const qtdTipo = Object.values(tamanhos).reduce((s,n)=>s+n,0);
-    const corTipo = tipo==='uniforme' ? '#8fd6a8' : tipo==='agasalho' ? '#7dc4e0' : '#f0938d';
-    const linhasTam = Object.keys(tamanhos).sort().map(tam=>
+    const corTipo = pc.tipo==='uniforme' ? '#8fd6a8' : pc.tipo==='agasalho' ? '#7dc4e0' : '#f0938d';
+    const linhasTam = ordenarTamanhos(pc.tipo, Object.keys(tamanhos)).map(tam=>
       `<div style="display:flex;justify-content:space-between;font-size:12.5px;padding:3px 0;border-top:1px solid rgba(255,255,255,0.06);">
         <span style="color:var(--muted);">Tam. ${tam}</span><strong>${tamanhos[tam]}</strong>
       </div>`).join('');
     return `
-      <div style="flex:1;min-width:200px;background:rgba(255,255,255,0.03);border:1px solid var(--line);border-radius:12px;padding:14px;">
+      <div style="flex:1;min-width:170px;background:rgba(255,255,255,0.03);border:1px solid var(--line);border-radius:12px;padding:14px;">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <strong style="font-size:13px;color:${corTipo};">${info.label}</strong>
+          <strong style="font-size:13px;color:${corTipo};">${pc.label}</strong>
           <span style="font-family:'Playfair Display',serif;font-size:20px;font-weight:800;">${qtdTipo}</span>
         </div>
-        ${linhasTam || '<div style="font-size:11.5px;color:var(--muted);">Nenhum pedido ainda</div>'}
+        ${linhasTam || '<div style="font-size:11.5px;color:var(--muted);">Nenhuma peça</div>'}
       </div>`;
   }).join('');
 
   return `
     <div class="card" style="margin-bottom:18px;">
       <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;">
-        <strong style="font-size:14px;">📋 Quadro de produção — quantidade por tipo e tamanho</strong>
+        <div>
+          <strong style="font-size:14px;">📋 Quadro de produção — ${esc.titulo}</strong>
+          <div style="font-size:11.5px;color:var(--muted);margin-top:2px;">${esc.lista.length} pedido(s) · troque no filtro "Lote" abaixo para ver outro lote</div>
+        </div>
         <div style="display:flex;gap:8px;">
-          <button class="btn btn-ghost btn-sm" id="btn-exportar-producao">⬇ Exportar (.txt)</button>
-          <button class="btn btn-gold btn-sm" id="btn-enviar-producao">📲 Enviar pelo WhatsApp</button>
+          <button class="btn btn-ghost btn-sm" data-exportar-producao="${esc.chave}" ${esc.lista.length?'':'disabled'}>⬇ Exportar (.txt)</button>
+          <button class="btn btn-gold btn-sm" data-enviar-producao="${esc.chave}" ${esc.lista.length?'':'disabled'}>📲 Enviar pelo WhatsApp</button>
         </div>
       </div>
       <div style="display:flex;gap:12px;flex-wrap:wrap;">${blocos}</div>
-      <p style="font-size:11px;color:var(--muted);margin-top:10px;margin-bottom:0;">Use esse quadro para saber se já bateu a quantidade mínima de cada peça antes de encaminhar pra produção.</p>
+      <p style="font-size:11px;color:var(--muted);margin-top:10px;margin-bottom:0;">Conta só este escopo: pedidos de lotes já fechados não entram de novo. Cada lote fechado tem a sua exportação no histórico, lá embaixo.</p>
     </div>
   `;
+}
+
+function htmlItensPedido(p){
+  return `<div class="ped-itens">${itensPedido(p).map(it=>{
+    const cor = it.tipo==='uniforme' ? '#8fd6a8' : it.tipo==='agasalho' ? '#7dc4e0' : '#f0938d';
+    const pers = (it.costas || it.numero)
+      ? `<span class="ped-costas">${it.costas||'—'} · nº ${it.numero||'—'}</span>`
+      : `<span class="ped-sem">sem nome/número</span>`;
+    return `<div class="ped-item"><div><span class="cat-badge" style="color:${cor};border-color:${cor}55;">${TIPOS_PEDIDO[it.tipo].label}</span> <span class="ped-tam">${tamanhosItemTexto(it)}</span></div><div>${pers}</div></div>`;
+  }).join('')}</div>`;
 }
 
 function viewPedidos(){
   let lista = filtroLotePedido === 'sem-lote' ? pedidosSemLote()
     : filtroLotePedido ? pedidosDoLote(filtroLotePedido)
     : [...DB.pedidos];
-  if(filtroTipoPedido) lista = lista.filter(p=>p.tipo===filtroTipoPedido);
+  if(filtroTipoPedido) lista = lista.filter(p=>itensPedido(p).some(it=>it.tipo===filtroTipoPedido));
   if(filtroStatusPedido) lista = lista.filter(p=>statusPagamentoPedido(p)===filtroStatusPedido);
   lista.sort((a,b)=> (b.dataPedido||'').localeCompare(a.dataPedido||''));
 
   const totalPedidos = DB.pedidos.length;
   const totalPendentes = DB.pedidos.filter(p=>statusPagamentoPedido(p)!=='pago').length;
-  const valorTotal = DB.pedidos.reduce((s,p)=> s + TIPOS_PEDIDO[p.tipo].valor, 0);
+  const valorTotal = DB.pedidos.reduce((s,p)=> s + valorPedido(p), 0);
   const valorRecebido = DB.pedidos.reduce((s,p)=> s + p.valorPago, 0);
   const valorAReceber = valorTotal - valorRecebido;
-  const custoTotal = DB.pedidos.reduce((s,p)=> s + TIPOS_PEDIDO[p.tipo].custo, 0);
+  const custoTotal = DB.pedidos.reduce((s,p)=> s + custoPedido(p), 0);
   const saldoAtual = valorRecebido - custoTotal;        // já recebido menos custo de produção de tudo
   const lucroProjetado = valorTotal - custoTotal;        // se todo mundo pagar
   const semLoteCount = pedidosSemLote().length;
@@ -2486,22 +2560,16 @@ function viewPedidos(){
   }
 
   const rows = lista.map(p=>{
-    const info = TIPOS_PEDIDO[p.tipo];
-    const corTipo = p.tipo==='uniforme' ? '#8fd6a8' : p.tipo==='agasalho' ? '#7dc4e0' : '#f0938d';
-    const detalhes = p.tipo==='torcedor'
-      ? `Costas: ${p.costas||'—'} · Nº ${p.numero||'—'}`
-      : (p.responsavel ? `Resp.: ${p.responsavel}` : '—');
+    const total = valorPedido(p);
     const stPgto = statusPagamentoPedido(p);
     const clsPgto = stPgto==='pago' ? 'pago' : stPgto==='parcial' ? 'isento' : 'pendente';
-    const labelPgto = stPgto==='pago' ? 'PAGO' : stPgto==='parcial' ? `${fmtBRL(p.valorPago)}/${fmtBRL(info.valor)}` : 'PEND';
+    const labelPgto = stPgto==='pago' ? 'PAGO' : stPgto==='parcial' ? `${fmtBRL(p.valorPago)}/${fmtBRL(total)}` : 'PEND';
     const loteLabel = p.loteId ? (nomeLote(p.loteId) || 'Lote') : 'Novo';
     const temObs = p.observacao && p.observacao.trim();
     return `<tr>
-      <td><strong>${p.nome}</strong></td>
-      <td><span class="cat-badge" style="color:${corTipo};border-color:${corTipo}55;">${info.label}</span></td>
-      <td>${p.tamanho}</td>
-      <td class="resp-cell">${detalhes}</td>
-      <td>${fmtBRL(info.valor)}</td>
+      <td><strong>${p.nome}</strong>${p.responsavel ? `<div class="sub-linha">Resp.: ${p.responsavel}</div>` : ''}</td>
+      <td>${htmlItensPedido(p)}</td>
+      <td>${fmtBRL(total)}</td>
       <td class="resp-cell">${fmtDataPedido(p.dataPedido)}</td>
       <td>
         <span class="mes-cell ${clsPgto}" data-edit-pgto-pedido="${p.id}" title="Toque para lançar/editar o valor pago">${labelPgto}</span>
@@ -2511,7 +2579,7 @@ function viewPedidos(){
       </td>
       <td><span class="cat-badge" style="${p.loteId?'':'border-color:rgba(201,162,74,0.5);color:var(--gold-light);'}">${loteLabel}</span></td>
       <td>
-        <button class="icon-btn ${temObs?'':''}" style="${temObs?'background:rgba(201,162,74,0.18);border-color:rgba(201,162,74,0.4);':''}" data-editar-obs-pedido="${p.id}" title="${temObs ? p.observacao.replace(/"/g,'&quot;') : 'Adicionar observação'}">📝</button>
+        <button class="icon-btn" style="${temObs?'background:rgba(201,162,74,0.18);border-color:rgba(201,162,74,0.4);':''}" data-editar-obs-pedido="${p.id}" title="${temObs ? p.observacao.replace(/"/g,'&quot;') : 'Adicionar observação'}">📝</button>
       </td>
       <td>
         <button class="icon-btn danger" data-remove-pedido="${p.id}" title="Remover pedido">🗑️</button>
@@ -2525,14 +2593,13 @@ function viewPedidos(){
     const t = totaisPedidos(pedidosLote);
     const aberto = lotesAbertos.has(l.id);
     const rowsLote = pedidosLote.map(p=>{
-      const info = TIPOS_PEDIDO[p.tipo];
+      const total = valorPedido(p);
       const stPgto = statusPagamentoPedido(p);
       const clsPgto = stPgto==='pago' ? 'pago' : stPgto==='parcial' ? 'isento' : 'pendente';
-      const labelPgto = stPgto==='pago' ? 'PAGO' : stPgto==='parcial' ? `${fmtBRL(p.valorPago)}/${fmtBRL(info.valor)}` : 'PEND';
+      const labelPgto = stPgto==='pago' ? 'PAGO' : stPgto==='parcial' ? `${fmtBRL(p.valorPago)}/${fmtBRL(total)}` : 'PEND';
       return `<tr>
         <td><strong>${p.nome}</strong></td>
-        <td><span class="cat-badge" style="font-size:10px;">${info.label}</span></td>
-        <td>${p.tamanho}</td>
+        <td>${htmlItensPedido(p)}</td>
         <td><span class="mes-cell ${clsPgto}" data-edit-pgto-pedido="${p.id}" title="Toque para lançar/editar o valor pago">${labelPgto}</span></td>
         <td><button class="icon-btn" style="${p.observacao?'background:rgba(201,162,74,0.18);border-color:rgba(201,162,74,0.4);':''}" data-editar-obs-pedido="${p.id}" title="${p.observacao ? p.observacao.replace(/"/g,'&quot;') : 'Adicionar observação'}">📝</button></td>
       </tr>`;
@@ -2544,16 +2611,18 @@ function viewPedidos(){
             <strong style="font-size:13.5px;">${aberto?'▼':'▶'} ${l.nome}</strong>
             <div style="font-size:11px;color:var(--muted);margin-top:2px;">Fechado em ${fmtDataPedido(l.dataFechamento)} · ${t.qtd} pedido(s)</div>
           </div>
-          <div style="display:flex;gap:14px;font-size:12px;">
+          <div style="display:flex;gap:14px;font-size:12px;flex-wrap:wrap;align-items:center;">
             <span>Total: <strong>${fmtBRL(t.valorTotal)}</strong></span>
             <span style="color:#8fd6a8;">Recebido: <strong>${fmtBRL(t.valorRecebido)}</strong></span>
             <span style="color:#f0938d;">Falta: <strong>${fmtBRL(t.valorPendente)}</strong></span>
+            <button class="btn btn-ghost btn-sm" data-exportar-producao="${l.id}">⬇ Exportar lote</button>
+            <button class="btn btn-gold btn-sm" data-enviar-producao="${l.id}">📲 WhatsApp</button>
           </div>
         </div>
         ${aberto ? `
         <div class="table-wrap" style="margin-top:12px;">
           <table style="min-width:520px;">
-            <thead><tr><th>Nome</th><th>Tipo</th><th>Tam.</th><th>Pagamento</th><th>Obs.</th></tr></thead>
+            <thead><tr><th>Nome</th><th>Itens</th><th>Pagamento</th><th>Obs.</th></tr></thead>
             <tbody>${rowsLote}</tbody>
           </table>
         </div>` : ''}
@@ -2584,9 +2653,7 @@ function viewPedidos(){
     </div>
 
     <div class="toolbar">
-      <button class="btn btn-gold btn-sm" data-novo-pedido="uniforme">+ Uniforme Infantil</button>
-      <button class="btn btn-gold btn-sm" data-novo-pedido="agasalho">+ Agasalho de Atleta</button>
-      <button class="btn btn-gold btn-sm" data-novo-pedido="torcedor">+ Camisa de Torcedor</button>
+      <button class="btn btn-gold" data-novo-pedido="uniforme">+ Novo pedido</button>
       <button class="btn btn-ghost btn-sm" id="btn-fechar-lote" style="margin-left:auto;" ${semLoteCount===0?'disabled':''}>🔒 Fechar pedido (lote) — ${semLoteCount} novo(s)</button>
     </div>
 
@@ -2612,13 +2679,13 @@ function viewPedidos(){
     </div>
 
     <div class="table-wrap">
-      <table style="min-width:920px;">
+      <table style="min-width:980px;">
         <thead>
           <tr>
-            <th>Nome</th><th>Tipo</th><th>Tam.</th><th>Detalhes</th><th>Valor</th><th>Data</th><th>Pagamento</th><th>Entrega</th><th>Lote</th><th>Obs.</th><th>Ações</th>
+            <th>Nome</th><th>Itens (tamanho · costas · número)</th><th>Valor</th><th>Data</th><th>Pagamento</th><th>Entrega</th><th>Lote</th><th>Obs.</th><th>Ações</th>
           </tr>
         </thead>
-        <tbody>${rows || `<tr><td colspan="11"><div class="empty-state">Nenhum pedido registrado ainda.</div></td></tr>`}</tbody>
+        <tbody>${rows || `<tr><td colspan="9"><div class="empty-state">Nenhum pedido registrado ainda.</div></td></tr>`}</tbody>
       </table>
     </div>
 
@@ -3094,17 +3161,23 @@ function bindViewEvents(){
   });
 
   // ---- Pedidos ----
-  const btnExportProd = document.getElementById('btn-exportar-producao');
-  if(btnExportProd) btnExportProd.addEventListener('click', ()=>{
-    logAcao('Pedidos', 'Resumo de produção exportado (.txt)');
-    saveDB();
-    exportarResumoProducao();
+  document.querySelectorAll('[data-exportar-producao]').forEach(el=>{
+    el.addEventListener('click', e=>{
+      e.stopPropagation();
+      const esc = escopoProducao(el.dataset.exportarProducao);
+      logAcao('Pedidos', 'Resumo de produção exportado (.txt): '+esc.titulo);
+      saveDB();
+      exportarResumoProducao(esc.chave);
+    });
   });
-  const btnEnviarProd = document.getElementById('btn-enviar-producao');
-  if(btnEnviarProd) btnEnviarProd.addEventListener('click', ()=>{
-    logAcao('Pedidos', 'Resumo de produção enviado pelo WhatsApp');
-    saveDB();
-    abrirWhatsApp(linkEnviarProducao());
+  document.querySelectorAll('[data-enviar-producao]').forEach(el=>{
+    el.addEventListener('click', e=>{
+      e.stopPropagation();
+      const esc = escopoProducao(el.dataset.enviarProducao);
+      logAcao('Pedidos', 'Resumo de produção enviado pelo WhatsApp: '+esc.titulo);
+      saveDB();
+      abrirWhatsApp(linkEnviarProducao(esc.chave));
+    });
   });
   document.querySelectorAll('[data-novo-pedido]').forEach(el=>{
     el.addEventListener('click', ()=> openNovoPedidoModal(el.dataset.novoPedido));
@@ -3131,7 +3204,7 @@ function bindViewEvents(){
     el.addEventListener('click', ()=>{
       const p = DB.pedidos.find(x=>x.id===el.dataset.editPgtoPedido);
       if(!p) return;
-      const total = TIPOS_PEDIDO[p.tipo].valor;
+      const total = valorPedido(p);
       const novoStr = prompt('Valor pago até agora (R$) — total do pedido: '+fmtBRL(total), p.valorPago);
       if(novoStr === null) return;
       const novo = parseFloat(novoStr.replace(',','.'));
@@ -3797,70 +3870,127 @@ function openRosterModal(compId){
 /* ============================================================
    MODAL: NOVO PEDIDO DE UNIFORME
 ============================================================ */
-function openNovoPedidoModal(tipo){
-  const info = TIPOS_PEDIDO[tipo];
-  const isTorcedor = tipo==='torcedor';
-  const isAgasalho = tipo==='agasalho';
+function openNovoPedidoModal(tipoInicial){
+  const novoItem = tipo => ({ tipo: tipo || 'uniforme', tamanho: '', tamCalcao: '', costas: '', numero: '' });
+  const itens = [novoItem(tipoInicial)];
 
   openModal(`
-    <h3>Novo pedido — ${info.label}</h3>
-    <p style="font-size:13px;color:var(--muted);margin-top:-10px;margin-bottom:16px;">
-      Valor: <strong style="color:var(--gold-light)">${fmtBRL(info.valor)}</strong>
-      ${isAgasalho ? ` (entrada de ${fmtBRL(info.entrada)})` : ''}
+    <h3>Novo pedido</h3>
+    <p style="font-size:12.5px;color:var(--muted);margin-top:-10px;margin-bottom:16px;">
+      Um pedido pode ter vários itens, cada um com o seu tamanho, nome nas costas e número.
     </p>
-    <div class="field">
-      <label>${isTorcedor ? 'Nome do torcedor' : 'Nome do aluno'}</label>
-      <input type="text" id="p-nome" placeholder="Nome completo">
-    </div>
-    <div class="field">
-      <label>Tamanho</label>
-      <select id="p-tamanho">
-        <option value="" disabled selected>Selecione</option>
-        ${info.tamanhos.map(t=>`<option value="${t}">${t}</option>`).join('')}
-      </select>
-    </div>
-    ${!isTorcedor ? `
-    <div class="field">
-      <label>Nome do responsável (opcional)</label>
-      <input type="text" id="p-responsavel" placeholder="Nome de quem está pedindo">
-    </div>` : `
     <div class="field-row">
       <div class="field">
-        <label>Nome nas costas</label>
-        <input type="text" id="p-costas" maxlength="14" placeholder="Ex: SILVA">
+        <label>Nome (aluno ou cliente)</label>
+        <input type="text" id="p-nome" placeholder="Nome completo">
       </div>
       <div class="field">
-        <label>Número</label>
-        <input type="text" id="p-numero" maxlength="2" placeholder="Ex: 10">
+        <label>Responsável (opcional)</label>
+        <input type="text" id="p-responsavel" placeholder="Quem está pedindo">
       </div>
-    </div>`}
+    </div>
+    <div id="p-itens"></div>
+    <button class="btn btn-ghost btn-sm" id="p-add-item" type="button" style="margin-bottom:12px;">+ Adicionar item</button>
+    <div class="ped-total" id="p-total"></div>
     <div class="field">
       <label>Observação (opcional)</label>
-      <textarea id="p-obs" placeholder="Ex: combinou de pagar o restante na sexta..." style="width:100%;min-height:52px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:9px;padding:9px 11px;color:var(--cream);font-family:'Inter',sans-serif;font-size:13px;resize:vertical;"></textarea>
+      <textarea id="p-obs" placeholder="Ex: combinou de pagar o restante na sexta..."></textarea>
     </div>
     <div class="pix-box" style="background:rgba(46,125,79,0.10);border:1px dashed rgba(201,162,74,0.5);border-radius:12px;padding:12px 14px;font-size:13px;line-height:1.6;color:rgba(246,243,236,0.85);margin-bottom:14px;">
       <strong style="color:var(--gold-light);">Pix (e-mail):</strong> ${PIX_CHAVE}
     </div>
-    <div class="err" id="p-err" style="display:none;color:#f0938d;font-size:12.5px;margin-bottom:10px;">Preencha nome e tamanho antes de continuar.</div>
+    <div class="err" id="p-err" style="display:none;color:#f0938d;font-size:12.5px;margin-bottom:10px;"></div>
     <div class="modal-actions">
       <button class="btn btn-ghost" id="p-cancel">Cancelar</button>
       <button class="btn btn-gold" id="p-save">Registrar e enviar pelo WhatsApp</button>
     </div>
   `);
 
+  const box = document.getElementById('p-itens');
+  const opcoes = (lista, sel) => `<option value="" ${sel?'':'selected'} disabled>Selecione</option>` +
+    lista.map(t=>`<option value="${t}" ${sel===t?'selected':''}>${t}</option>`).join('');
+
+  function desenhar(){
+    box.innerHTML = itens.map((it,i)=>{
+      const info = TIPOS_PEDIDO[it.tipo];
+      const tamanhos = it.tipo==='uniforme' ? `
+        <div class="field-row">
+          <div class="field"><label>Tamanho da camisa</label><select data-i="${i}" data-campo="tamanho">${opcoes(info.tamanhos, it.tamanho)}</select></div>
+          <div class="field"><label>Tamanho do calção</label><select data-i="${i}" data-campo="tamCalcao">${opcoes(info.tamanhos, it.tamCalcao)}</select></div>
+        </div>` : `
+        <div class="field"><label>Tamanho</label><select data-i="${i}" data-campo="tamanho">${opcoes(info.tamanhos, it.tamanho)}</select></div>`;
+      return `
+        <div class="item-ped">
+          <div class="item-ped-top">
+            <strong>ITEM ${i+1} · ${fmtBRL(info.valor)}</strong>
+            ${itens.length > 1 ? `<button class="icon-btn danger" type="button" data-remover-item="${i}" title="Remover item">✕</button>` : ''}
+          </div>
+          <div class="field">
+            <label>Peça</label>
+            <select data-i="${i}" data-campo="tipo">
+              ${Object.keys(TIPOS_PEDIDO).map(t=>`<option value="${t}" ${it.tipo===t?'selected':''}>${TIPOS_PEDIDO[t].label}</option>`).join('')}
+            </select>
+          </div>
+          ${tamanhos}
+          <div class="field-row">
+            <div class="field"><label>Nome nas costas</label><input type="text" data-i="${i}" data-campo="costas" maxlength="14" placeholder="Ex: JOÃO (vazio = sem nome)" value="${it.costas.replace(/"/g,'&quot;')}"></div>
+            <div class="field"><label>Número</label><input type="text" data-i="${i}" data-campo="numero" maxlength="2" inputmode="numeric" placeholder="Ex: 10" value="${it.numero}"></div>
+          </div>
+        </div>`;
+    }).join('');
+    atualizarTotal();
+  }
+  function atualizarTotal(){
+    const p = { itens };
+    const total = valorPedido(p), sinal = sinalPedido(p);
+    document.getElementById('p-total').innerHTML =
+      `<span>${itens.length} item(ns)${sinal < total ? ` · sinal mínimo ${fmtBRL(sinal)}` : ''}</span><span>Total <strong>${fmtBRL(total)}</strong></span>`;
+  }
+
+  box.addEventListener('input', e=>{
+    const el = e.target.closest('[data-campo]');
+    if(!el) return;
+    const it = itens[+el.dataset.i];
+    let v = el.value;
+    if(el.dataset.campo === 'costas') v = v.toUpperCase();
+    if(el.dataset.campo === 'numero') v = v.replace(/\D/g,'');
+    if(el.dataset.campo === 'costas' || el.dataset.campo === 'numero'){ el.value = v; }
+    it[el.dataset.campo] = v;
+    if(el.dataset.campo === 'tipo'){ it.tamanho = ''; it.tamCalcao = ''; desenhar(); }
+  });
+  box.addEventListener('click', e=>{
+    const btn = e.target.closest('[data-remover-item]');
+    if(!btn) return;
+    itens.splice(+btn.dataset.removerItem, 1);
+    desenhar();
+  });
+  document.getElementById('p-add-item').addEventListener('click', ()=>{
+    const ultimo = itens[itens.length-1];
+    itens.push(novoItem(ultimo ? ultimo.tipo : 'uniforme'));
+    desenhar();
+  });
+  desenhar();
+
   document.getElementById('p-cancel').addEventListener('click', closeModal);
   document.getElementById('p-save').addEventListener('click', ()=>{
     const nome = document.getElementById('p-nome').value.trim();
-    const tamanho = document.getElementById('p-tamanho').value;
     const err = document.getElementById('p-err');
-    if(!nome || !tamanho){ err.style.display='block'; return; }
+    const semTamanho = itens.findIndex(it=>!it.tamanho || (it.tipo==='uniforme' && !it.tamCalcao));
+    if(!nome){ err.textContent = 'Preencha o nome.'; err.style.display='block'; return; }
+    if(semTamanho !== -1){ err.textContent = 'Escolha o tamanho do item '+(semTamanho+1)+'.'; err.style.display='block'; return; }
     err.style.display='none';
 
+    const itensSalvos = itens.map(it=>({
+      tipo: it.tipo, tamanho: it.tamanho, tamCalcao: it.tipo==='uniforme' ? it.tamCalcao : '',
+      costas: it.costas.trim(), numero: it.numero.trim(), valor: TIPOS_PEDIDO[it.tipo].valor
+    }));
+    const primeiro = itensSalvos[0];
     const pedido = {
-      id: uid('ped'), tipo, nome, tamanho,
-      responsavel: !isTorcedor ? (document.getElementById('p-responsavel').value.trim()) : '',
-      costas: isTorcedor ? document.getElementById('p-costas').value.trim() : '',
-      numero: isTorcedor ? document.getElementById('p-numero').value.trim() : '',
+      id: uid('ped'), nome,
+      responsavel: document.getElementById('p-responsavel').value.trim(),
+      itens: itensSalvos,
+      // campos do formato antigo (1º item), para versões antigas do painel abertas em outro aparelho
+      tipo: primeiro.tipo, tamanho: primeiro.tamanho, costas: primeiro.costas, numero: primeiro.numero,
       dataPedido: new Date().toISOString().slice(0,10),
       valorPago: 0,
       statusEntrega: 'pendente',
@@ -3868,7 +3998,7 @@ function openNovoPedidoModal(tipo){
       observacao: document.getElementById('p-obs').value.trim()
     };
     DB.pedidos.push(pedido);
-    logAcao('Pedidos', 'Novo pedido registrado: '+info.label+' — '+nome+' (tam. '+tamanho+', '+fmtBRL(info.valor)+')');
+    logAcao('Pedidos', 'Novo pedido registrado: '+nome+' — '+resumoItensPedido(pedido)+' ('+fmtBRL(valorPedido(pedido))+')');
     saveDB();
     toast('Pedido registrado');
     closeModal();
@@ -3902,7 +4032,7 @@ function abrirModalFecharLote(){
       <input type="text" id="lote-nome" value="${sugestao}">
     </div>
     <div style="max-height:200px;overflow-y:auto;margin-bottom:14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:9px;padding:10px 12px;">
-      ${pendentes.map(p=>`<div style="font-size:12px;padding:4px 0;border-top:1px solid rgba(255,255,255,0.06);">${p.nome} — ${TIPOS_PEDIDO[p.tipo].label} (tam. ${p.tamanho})</div>`).join('')}
+      ${pendentes.map(p=>`<div style="font-size:12px;padding:4px 0;border-top:1px solid rgba(255,255,255,0.06);">${p.nome} — ${resumoItensPedido(p)}</div>`).join('')}
     </div>
     <div class="modal-actions">
       <button class="btn btn-ghost" id="lote-cancel">Cancelar</button>
@@ -3932,7 +4062,7 @@ function abrirModalObservacaoPedido(pedidoId){
   if(!p) return;
   openModal(`
     <h3>Observação — ${p.nome}</h3>
-    <p style="font-size:12.5px;color:var(--muted);margin-top:-10px;margin-bottom:16px;">${TIPOS_PEDIDO[p.tipo].label} · tam. ${p.tamanho}</p>
+    <p style="font-size:12.5px;color:var(--muted);margin-top:-10px;margin-bottom:16px;">${resumoItensPedido(p)}</p>
     <div class="field">
       <label>Anotação livre</label>
       <textarea id="obs-pedido-texto" style="width:100%;min-height:90px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:9px;padding:10px 12px;color:var(--cream);font-family:'Inter',sans-serif;font-size:13.5px;resize:vertical;">${p.observacao||''}</textarea>
@@ -3952,13 +4082,15 @@ function abrirModalObservacaoPedido(pedidoId){
   });
 }
 
-function exportarResumoProducao(){
-  const txt = textoResumoProducao();
+function exportarResumoProducao(chave){
+  const esc = escopoProducao(chave);
+  const txt = textoResumoProducao(esc.chave);
   const blob = new Blob([txt], {type:'text/plain;charset=utf-8'});
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = 'alleanza_resumo_producao_' + new Date().toISOString().slice(0,10) + '.txt';
+  const slug = esc.arquivo.normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-zA-Z0-9]+/g,'-').replace(/^-|-$/g,'').toLowerCase();
+  a.download = 'alleanza_producao_' + slug + '_' + new Date().toISOString().slice(0,10) + '.txt';
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
