@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Aimoré Performance · Links</title><meta name="description" content="Aimoré Performance: preparação física com o personal Aimoré Weren. Consultoria online, programas digitais, TAF, emagrecimento e futsal."><meta name="theme-color" content="#0b0a08">
+<meta property="og:title" content="Aimoré Performance · Links"><meta property="og:description" content="Aimoré Performance: preparação física com o personal Aimoré Weren. Consultoria online, programas digitais, TAF, emagrecimento e futsal."><meta property="og:image" content="img/combo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet"><style>:root{--bg:#0b0a08;--g1:#FBF3DA;--g2:#EBD9A6;--g3:#D6BC82;--grad:linear-gradient(120deg,#FBF3DA 0%,#EBD9A6 45%,#D6BC82 100%);--txt:#F7F3EA;--mut:#BFB6A2;--line:rgba(246,235,203,.14);--glass:linear-gradient(180deg,rgba(255,250,235,.075),rgba(255,250,235,.03));--ink:#1d1709;--r:22px;--mx:50%;--my:30%}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;color-scheme:dark;scroll-padding-top:84px}
+main{overflow-x:clip}
+body{background:var(--bg);color:var(--txt);font-family:Sora,system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh}
+a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}img{display:block;max-width:100%}
+.container{width:100%;max-width:1160px;margin:0 auto;padding:0 clamp(18px,4vw,40px)}
+
+/* fundo vivo: aurora suave + grade + luz do cursor */
+.aurora{position:fixed;inset:0;z-index:-3;overflow:hidden;pointer-events:none;background:var(--bg)}
+.aurora i{position:absolute;width:60vmax;height:60vmax;border-radius:50%;filter:blur(90px);opacity:.34;animation:drift 26s ease-in-out infinite alternate}
+.aurora i:nth-child(1){left:-18vmax;top:-22vmax;background:radial-gradient(circle,#E8D39C,transparent 66%)}
+.aurora i:nth-child(2){right:-22vmax;bottom:-26vmax;background:radial-gradient(circle,#C9AD72,transparent 66%);animation-duration:32s;opacity:.26}
+@keyframes drift{to{transform:translate(8vmax,6vmax) scale(1.12)}}
+.grid-bg{position:fixed;inset:0;z-index:-2;pointer-events:none;background-image:linear-gradient(rgba(251,243,218,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(251,243,218,.04) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:radial-gradient(ellipse at 50% 20%,#000 15%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 20%,#000 15%,transparent 75%)}
+.glow{position:fixed;left:0;top:0;width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;z-index:-1;pointer-events:none;background:radial-gradient(circle,rgba(251,243,218,.10),transparent 68%);transform:translate(var(--mx),var(--my));will-change:transform}
+
+.cond{font-family:'Barlow Condensed',Impact,sans-serif;text-transform:uppercase;font-weight:800;line-height:.92;letter-spacing:.005em}
+.gold{background:var(--grad);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 7s linear infinite}
+@keyframes shine{to{background-position:200% 0}}
+.eyebrow{display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.24em;color:var(--g2);text-transform:uppercase;margin-bottom:12px}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--g2)}
+
+/* botões */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 24px;border-radius:999px;font-weight:700;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;text-align:center;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s,background .25s;white-space:nowrap}
+.btn.pri{background:var(--grad);color:var(--ink);box-shadow:0 10px 30px rgba(235,217,166,.16),inset 0 1px 0 rgba(255,255,255,.5)}
+.btn.pri:hover{box-shadow:0 14px 38px rgba(235,217,166,.3);transform:translateY(-2px)}
+.btn.gh{border:1px solid rgba(246,235,203,.38);color:var(--g1);background:rgba(255,250,235,.04);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.btn.gh:hover{background:rgba(255,250,235,.1);border-color:var(--g2);transform:translateY(-2px)}
+.btn:active{transform:scale(.97)}
+.btn.sm{min-height:44px;padding:0 18px;font-size:11.5px}
+.btn.block{width:100%}
+
+.glass{background:var(--glass);border:1px solid var(--line);border-radius:var(--r);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+
+/* topo */
+.top{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,rgba(11,10,8,.86),rgba(11,10,8,.55));backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.top .container{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
+.brand{display:flex;align-items:center;gap:11px}
+.brand svg{width:38px;height:35px;flex:none}
+.brand b{display:block;font-family:'Barlow Condensed';font-weight:800;font-size:21px;letter-spacing:.06em;line-height:1}
+.brand span{display:block;font-size:8.5px;letter-spacing:.36em;color:var(--g2);margin-top:2px}
+.nav{display:none;gap:4px}
+.nav a{padding:8px 16px;border-radius:99px;font-size:13px;font-weight:500;color:var(--mut);transition:.25s}
+.nav a:hover{color:var(--txt)}
+.nav a.on{color:var(--ink);background:var(--grad)}
+.prog{position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:var(--grad);transform-origin:left;transform:scaleX(0)}
+@media(min-width:900px){.nav{display:flex}}
+
+/* hero */
+.hero{display:grid;gap:28px;padding-top:32px;padding-bottom:40px;align-items:center}
+.hero-copy .lead{color:var(--mut);font-size:clamp(14px,1.5vw,16px);max-width:52ch;margin:0 0 24px}
+.hero-copy .lead b{color:var(--txt)}
+h1{font-size:clamp(50px,13.6vw,104px);margin-bottom:18px}
+h1 span{display:block;overflow:hidden;padding-bottom:.07em}
+h1 span i{display:block;font-style:normal;transform:translateY(108%);animation:up 1s cubic-bezier(.2,.8,.2,1) forwards}
+h1 span:nth-child(2) i{animation-delay:.12s}h1 span:nth-child(3) i{animation-delay:.24s}
+@keyframes up{to{transform:none}}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.cta .btn{flex:1 1 200px}
+.trust{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.trust span{font-size:11.5px;color:var(--mut);border:1px solid var(--line);border-radius:99px;padding:6px 14px;background:rgba(255,250,235,.03)}
+.hero-art{position:relative;border-radius:30px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/11;box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.03) inset}
+.hero-art img{width:100%;height:100%;object-fit:cover;object-position:center 35%;transform:scale(1.04);transition:transform .8s}
+.hero-art:hover img{transform:scale(1.09)}
+.hero-art::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(11,10,8,.55))}
+.chip{position:absolute;z-index:2;padding:9px 16px;border-radius:99px;font-size:12px;font-weight:600;color:var(--g1);background:rgba(20,17,12,.55);border:1px solid rgba(246,235,203,.28);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);animation:float 6s ease-in-out infinite}
+.chip:nth-of-type(2){animation-delay:-2s}.chip:nth-of-type(3){animation-delay:-4s}
+@keyframes float{50%{transform:translateY(-10px)}}
+@media(min-width:900px){.hero{grid-template-columns:1.05fr .95fr;gap:56px;padding-top:44px;padding-bottom:36px}.hero-art{aspect-ratio:4/5;max-height:500px;justify-self:end;width:100%;max-width:400px}}
+
+/* seções */
+.sec{padding-top:52px}
+.sec-h{display:flex;flex-direction:column;gap:6px;margin-bottom:20px}
+h2{font-size:clamp(38px,7vw,64px)}
+.sub{color:var(--mut);font-size:14px;max-width:56ch}
+.rev{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+.rev.on{opacity:1;transform:none}
+
+/* seletor (abas) */
+.picker{display:grid;gap:14px}
+.tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px 2px 6px;margin:0 -2px}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;display:flex;align-items:center;gap:10px;min-height:48px;padding:0 20px;border-radius:999px;border:1px solid var(--line);background:rgba(255,250,235,.04);font-weight:600;font-size:13px;color:var(--mut);transition:.25s;text-align:left}
+.tab small{font-family:'Barlow Condensed';font-weight:800;font-size:15px;color:var(--g2);letter-spacing:.06em}
+.tab:hover{color:var(--txt);border-color:rgba(246,235,203,.34)}
+.tab[aria-selected=true]{background:var(--grad);border-color:transparent;color:var(--ink)}
+.tab[aria-selected=true] small{color:var(--ink)}
+.panel{display:grid;gap:20px;padding:22px;transition:opacity .25s,transform .25s}
+.panel.sw{opacity:0;transform:translateY(10px)}
+.panel .pimg{border-radius:18px;overflow:hidden;aspect-ratio:3/2;border:1px solid var(--line)}
+.panel .pimg img{width:100%;height:100%;object-fit:cover}
+.panel h3{font-size:clamp(32px,5vw,46px);margin-bottom:10px}
+.panel p{color:var(--mut);font-size:14px;margin-bottom:18px;max-width:48ch}
+.panel .acts{display:flex;gap:10px;flex-wrap:wrap}
+@media(min-width:900px){
+ .picker{grid-template-columns:300px 1fr;gap:20px;align-items:stretch}
+ .tabs{flex-direction:column;overflow:visible;padding:0;margin:0}
+ .tab{border-radius:16px;width:100%;min-height:58px;padding:0 20px}
+ .tab[aria-selected=true]{transform:translateX(6px)}
+ .panel{grid-template-columns:1.1fr .9fr;align-items:center;padding:32px 34px}
+ .panel .pimg{aspect-ratio:4/3}
+}
+
+/* cartões de produto */
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.chip-f{min-height:44px;padding:0 20px;border-radius:99px;border:1px solid var(--line);background:rgba(255,250,235,.04);font-size:13px;font-weight:600;color:var(--mut);transition:.25s}
+.chip-f[aria-pressed=true]{background:var(--grad);color:var(--ink);border-color:transparent}
+.grid{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px clamp(18px,4vw,40px) 16px;margin:0 calc(-1*clamp(18px,4vw,40px));scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.grid::-webkit-scrollbar{display:none}
+.pc{flex:none;width:min(80vw,320px);scroll-snap-align:center;display:flex;flex-direction:column;overflow:hidden;transform-style:preserve-3d;transition:transform .3s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .3s}
+.pc:hover{border-color:rgba(246,235,203,.4);box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.pc.hide{display:none}
+.pc.hl{border-color:rgba(235,217,166,.55)}
+.pc-im{position:relative;aspect-ratio:3/2;overflow:hidden}
+.pc-im img{width:100%;height:100%;object-fit:cover;transition:transform .7s}
+.pc:hover .pc-im img{transform:scale(1.06)}
+.pc-im::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(11,10,8,.55))}
+.flag{position:absolute;z-index:2;top:12px;left:12px;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--ink);background:var(--grad);padding:5px 12px;border-radius:99px}
+.pc-b{display:flex;flex-direction:column;flex:1;padding:16px 18px 18px}
+.pc h3{font-size:25px;margin-bottom:6px}
+.pc p{color:var(--mut);font-size:12.5px;flex:1}
+.pc .row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px}
+.price{font-family:'Barlow Condensed';font-weight:800;font-size:30px;line-height:1;color:var(--g1);white-space:nowrap}
+.price small{display:block;font-family:Sora;font-weight:400;font-size:10px;color:var(--mut);letter-spacing:.03em;margin-top:3px}
+.note{font-size:10.5px;color:var(--mut);margin-top:10px}
+.dots{display:flex;justify-content:center;gap:8px;margin-top:2px}
+.dots i{width:7px;height:7px;border-radius:99px;background:rgba(235,217,166,.25);transition:.3s;cursor:pointer}
+.dots i.on{width:24px;background:var(--g2)}
+@media(min-width:700px){.grid{display:grid;grid-template-columns:repeat(2,1fr);overflow:visible;padding:0;margin:0}.pc{width:auto}.dots{display:none}}
+@media(min-width:1000px){.grid.c4{grid-template-columns:repeat(4,1fr)}.grid.c3{grid-template-columns:repeat(3,1fr)}}
+
+/* duas colunas (consultoria / como funciona / faq) */
+.two{display:grid;gap:18px}
+@media(min-width:900px){.two{grid-template-columns:1fr 1fr;gap:22px;align-items:stretch}}
+.pro{position:relative;border-radius:26px;padding:2px;background:conic-gradient(from var(--a,0deg),#FBF3DA,#CDB072,#EBD9A6,#CDB072,#FBF3DA);animation:spin 9s linear infinite}
+@property --a{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes spin{to{--a:360deg}}
+.pro .in{height:100%;border-radius:24px;background:linear-gradient(180deg,#1a1610,#100e0a);padding:28px 24px}
+.pro h3{font-size:clamp(34px,5vw,46px);margin:2px 0 10px}
+.pro p{color:var(--mut);font-size:14px;margin-bottom:16px}
+.ticks{list-style:none;display:grid;gap:10px;margin-bottom:22px}
+.ticks li{display:flex;gap:10px;font-size:13.5px}
+.ticks li::before{content:"";flex:none;width:18px;height:18px;margin-top:2px;border-radius:50%;background:var(--grad);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
+.mods{display:grid;gap:10px;grid-template-columns:1fr}
+@media(min-width:560px){.mods{grid-template-columns:1fr 1fr}}
+.mod{display:flex;flex-direction:column;gap:6px;padding:18px;transition:.3s;min-height:128px}
+.mod:hover{border-color:rgba(246,235,203,.4);transform:translateY(-4px)}
+.mod .n{font-family:'Barlow Condensed';font-weight:900;font-size:26px;line-height:1}
+.mod h3{font-size:22px}
+.mod p{font-size:12.5px;color:var(--mut)}
+.steps{display:grid;gap:12px}
+.step{display:flex;gap:16px;align-items:flex-start;padding:20px}
+.step .n{font-family:'Barlow Condensed';font-weight:900;font-size:44px;line-height:.9}
+.step h3{font-size:24px;margin-bottom:4px}
+.step p{font-size:13px;color:var(--mut)}
+.cpn{display:flex;flex-wrap:wrap;align-items:center;gap:16px;justify-content:space-between;padding:20px 24px;margin-top:22px}
+.cpn .t{flex:1 1 260px}
+.cpn b{display:block;font-family:'Barlow Condensed';font-weight:800;font-size:26px;text-transform:uppercase;line-height:1.05}
+.cpn span{font-size:13px;color:var(--mut)}
+.code{font-family:'Barlow Condensed';font-weight:800;font-size:22px;letter-spacing:.14em;border:1.5px dashed var(--g2);border-radius:14px;padding:10px 18px;color:var(--g1);min-height:48px;display:inline-flex;align-items:center;transition:.25s}
+.code:hover{background:rgba(235,217,166,.1)}
+.cd{display:flex;gap:8px}
+.cd div{text-align:center;min-width:54px;padding:6px 8px;border-radius:12px;border:1px solid var(--line);background:rgba(255,250,235,.04)}
+.cd b{display:block;font-family:'Barlow Condensed';font-size:26px;line-height:1;font-weight:800;color:var(--g1)}
+.cd small{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+
+details{border-radius:16px;margin-bottom:10px;overflow:hidden}
+summary{list-style:none;cursor:pointer;min-height:58px;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-weight:600;font-size:14px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:'Barlow Condensed';font-size:30px;color:var(--g2);transition:transform .3s;line-height:1}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding:0 20px 18px;color:var(--mut);font-size:13.5px}
+.cta-card{display:flex;flex-direction:column;justify-content:center;padding:30px 26px;background:radial-gradient(420px 280px at 90% 0%,rgba(235,217,166,.22),transparent 70%),var(--glass)}
+.cta-card h2{font-size:clamp(36px,5vw,52px);margin-bottom:12px}
+.cta-card .acts{display:grid;gap:10px;margin-top:6px}
+
+footer{margin-top:52px;border-top:1px solid var(--line);padding:26px 0 110px}
+footer .container{display:flex;flex-direction:column;gap:14px;align-items:center;text-align:center;font-size:12px;color:var(--mut)}
+.soc{display:flex;flex-wrap:wrap;gap:6px 22px;justify-content:center;font-weight:600;color:var(--g1);font-size:13px}
+.soc a:hover{color:#fff}
+@media(min-width:900px){footer{padding-bottom:36px}footer .container{flex-direction:row;justify-content:space-between;text-align:left}}
+
+/* barra inferior (celular) */
+.dock{position:fixed;left:12px;right:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:60;display:flex;gap:8px;padding:8px;border-radius:999px;background:rgba(20,17,12,.72);border:1px solid rgba(246,235,203,.22);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 14px 40px rgba(0,0,0,.55);transform:translateY(140%);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.dock.show{transform:none}
+.dock .btn{flex:1;min-height:46px;font-size:11.5px;padding:0 12px}
+@media(min-width:900px){.dock{display:none}}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}h1 span i{transform:none}.rev{opacity:1;transform:none}.dock{transform:none}}
+
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+
+/* autoavaliação */
+.av{padding:clamp(22px,4vw,36px)}
+.av-q{border:0;margin:0 0 22px;padding:0}
+.av-q legend{font-weight:700;font-size:15px;margin-bottom:10px;color:var(--txt)}
+.av-q legend b{color:var(--g2);margin-right:6px}
+.av-ops{display:flex;flex-wrap:wrap;gap:8px}
+.av-op{position:relative}
+.av-op input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.av-op span{display:inline-flex;align-items:center;min-height:42px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:rgba(255,250,235,.04);font-size:13px;color:var(--mut);transition:.2s}
+.av-op input:checked+span{background:var(--grad);color:var(--ink);border-color:transparent;font-weight:700}
+.av-op input:focus-visible+span{outline:2px solid var(--g2);outline-offset:2px}
+.av-bar{height:4px;border-radius:4px;background:rgba(255,250,235,.08);margin:0 0 22px;overflow:hidden}
+.av-bar i{display:block;height:100%;width:0;background:var(--grad);transition:width .3s}
+.av-res{display:none;margin-top:6px;padding:22px;border-radius:var(--r);border:1px solid rgba(235,217,166,.4);background:rgba(235,217,166,.06)}
+.av-res h3{margin:0 0 6px}
+.av-res p{color:var(--mut);margin:0 0 16px;line-height:1.6}
+.av-res .acts{display:flex;flex-direction:column;gap:10px}
+.av-res .btn{flex:none;width:100%;white-space:normal;line-height:1.3;padding:12px 16px;min-height:46px}
+@media(max-width:600px){.av{padding:18px 14px}.av-res{padding:18px 14px}}
+.av-erro{display:none;color:#f0a39d;font-size:13px;margin:-8px 0 14px}
+.soc.parc{margin-top:10px;font-size:12px}
+.soc.parc span{color:var(--mut)}
+</style></head><body>
+<div class="aurora"><i></i><i></i></div><div class="grid-bg"></div><div class="glow"></div>
+<header class="top"><div class="container">
+<a class="brand" href="#top" aria-label="AIMORÉ PERFORMANCE"><svg viewBox="0 0 100 92" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FBF3DA"/><stop offset=".5" stop-color="#EBD9A6"/><stop offset="1" stop-color="#D6BC82"/></linearGradient></defs><path fill-rule="evenodd" fill="url(#lg)" d="M50 2 98 90H2L50 2Zm0 22L19 80h62L50 24Z"/><path fill="url(#lg)" d="M50 42 64 68H36L50 42Z"/><path fill="url(#lg)" d="M24 80 33 70h38l-4 10H24Z" opacity=".9"/></svg><div><b>AIMORÉ</b><span>PERFORMANCE</span></div></a>
+<nav class="nav" aria-label="Seções"><a href="#objetivo">Objetivo</a><a href="#programas">Programas</a><a href="#consultoria">Consultoria</a><a href="#duvidas">Dúvidas</a></nav>
+<a class="btn pri sm" href="https://wa.me/5551991925356?text=Ol%C3%A1%2C%20Aimor%C3%A9%21%20Vim%20pelo%20Instagram%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener">WhatsApp</a></div><div class="prog"></div></header>
+<main id="top">
+<section class="hero container">
+ <div class="hero-copy">
+  <div class="eyebrow">CREF 041955 · Preparação física</div>
+  <h1 class="cond"><span><i>Disciplina.</i></span><span><i>Evolução.</i></span><span class="gold"><i>Resultado.</i></span></h1>
+  <p class="lead"><b>Alta performance e qualidade de vida.</b> Sou Aimoré, profissional de Educação Física. Monto o seu treino para o seu objetivo e para a sua rotina, e acompanho cada etapa da sua evolução.</p>
+  <div class="cta"><a class="btn pri" href="#objetivo">Descobrir meu treino</a><a class="btn gh" href="#consultoria">Quero ser aluno</a></div>
+  <div class="trust"><span>3 pós-graduações</span><span>Treinamento Desportivo</span><span>Fisiologia do Exercício</span><span>Musculação</span></div>
+ </div>
+ <div class="hero-art"><img src="img/hero.webp" alt="Aimoré Performance" width="900" height="1125"><span class="chip" style="left:16px;top:20px">CREF 041955</span><span class="chip" style="right:16px;top:30%">App MFIT</span><span class="chip" style="left:20px;bottom:24px">Treino individual</span></div>
+</section>
+
+<section id="objetivo" class="sec container rev">
+ <div class="sec-h"><div class="eyebrow">Seu momento</div><h2 class="cond">Qual é o <span class="gold">seu objetivo?</span></h2><p class="sub">Toque no que mais parece com você e veja por onde começar.</p></div>
+ <div class="picker"><div class="tabs" role="tablist" aria-label="Objetivo"><button class="tab" role="tab" aria-selected="true" data-k="emagrecer"><small>01</small>Emagrecer</button><button class="tab" role="tab" aria-selected="false" data-k="forca"><small>02</small>Força e massa</button><button class="tab" role="tab" aria-selected="false" data-k="taf"><small>03</small>TAF / concurso</button><button class="tab" role="tab" aria-selected="false" data-k="bola"><small>04</small>Futebol e futsal</button><button class="tab" role="tab" aria-selected="false" data-k="kids"><small>05</small>Meu filho treina</button><button class="tab" role="tab" aria-selected="false" data-k="comecar"><small>06</small>Vou começar</button></div><div class="panel glass" id="panel" role="tabpanel" aria-live="polite"></div></div>
+</section>
+
+<section id="programas" class="sec container rev">
+ <div class="sec-h"><div class="eyebrow">Programas digitais</div><h2 class="cond">Treine comigo <span class="gold">de onde estiver</span></h2><p class="sub">E-books com programas prontos para seguir no seu ritmo. Compra segura pela Hotmart, com acesso imediato.</p></div>
+ <div class="grid c4"><article class="pc glass hl" data-g="all"><div class="pc-im"><img src="img/combo.webp" alt="Combo Emagrecer com Método" width="900" height="600" loading="lazy"><span class="flag">Destaque · 2 programas</span></div><div class="pc-b"><h3 class="cond">Combo Emagrecer com Método</h3><p>Os dois programas de emagrecimento juntos: treino para quem usa caneta emagrecedora e o programa de 8 semanas para o verão.</p><div class="row"><div class="price">R$ 149,90</div><a class="btn pri sm" href="https://pay.hotmart.com/F108094516O?sck=bio" target="_blank" rel="noopener">Comprar</a></div><div class="note">Conteúdo de exercício físico. Quem usa caneta emagrecedora deve manter o acompanhamento médico.</div></div></article><article class="pc glass" data-g="all"><div class="pc-im"><img src="img/taf.webp" alt="Como ser aprovado no TAF" width="900" height="600" loading="lazy"><span class="flag">TAF aprovado RS</span></div><div class="pc-b"><h3 class="cond">Como ser aprovado no TAF</h3><p>Preparação para o teste físico dos concursos do RS, com planejamento de 12 semanas baseado em editais reais de 2024 a 2026.</p><div class="row"><div class="price">R$ 69,90</div><a class="btn pri sm" href="https://pay.hotmart.com/B104624799S?off=bm7e1tls&sck=bio" target="_blank" rel="noopener">Comprar</a></div></div></article><article class="pc glass" data-g="all"><div class="pc-im"><img src="img/caneta.webp" alt="Treino para quem usa caneta" width="900" height="600" loading="lazy"><span class="flag">Caneta emagrecedora</span></div><div class="pc-b"><h3 class="cond">Treino para quem usa caneta</h3><p>Para quem usa (ou vai usar) caneta emagrecedora prescrita pelo médico: preservar músculo, força e disposição.</p><div class="row"><div class="price">R$ 44,90</div><a class="btn pri sm" href="https://pay.hotmart.com/H108059978D?sck=bio" target="_blank" rel="noopener">Comprar</a></div><div class="note">Exige acompanhamento médico.</div></div></article><article class="pc glass" data-g="all"><div class="pc-im"><img src="img/verao.webp" alt="Verão: ainda dá tempo" width="900" height="600" loading="lazy"><span class="flag">8 semanas</span></div><div class="pc-b"><h3 class="cond">Verão: ainda dá tempo</h3><p>8 semanas de treino bem feito e uma alimentação que você consegue manter, sem proibir nenhum alimento.</p><div class="row"><div class="price">R$ 44,90</div><a class="btn pri sm" href="https://pay.hotmart.com/B108060593G?sck=bio" target="_blank" rel="noopener">Comprar</a></div></div></article></div><div class="dots"></div>
+</section>
+
+<section id="consultoria" class="sec container rev">
+ <div class="two">
+  <div class="pro"><div class="in"><div class="eyebrow">Time Aimoré · App MFIT</div><h3 class="cond">Consultoria online</h3><p>Seu treino montado para o seu objetivo, sua rotina e o seu local de treino, direto no aplicativo. Você treina onde estiver e eu acompanho a sua evolução.</p>
+   <ul class="ticks"><li>Treino individualizado no app MFIT</li><li>Ajustes conforme a sua evolução</li><li>Vídeos de execução dos exercícios</li><li>Contato direto para dúvidas</li></ul>
+   <a class="btn pri block" href="https://wa.me/5551991925356?text=Ol%C3%A1%2C%20Aimor%C3%A9%21%20Quero%20saber%20sobre%20a%20consultoria%20online." target="_blank" rel="noopener">Quero a consultoria</a></div></div>
+  <div><div class="sec-h" style="margin-bottom:16px"><div class="eyebrow">Como eu posso te ajudar</div><h2 class="cond" style="font-size:clamp(34px,5vw,52px)">Outras <span class="gold">modalidades</span></h2></div><div class="mods"><a class="mod glass" href="https://wa.me/5551991925356?text=Ol%C3%A1%2C%20Aimor%C3%A9%21%20Quero%20saber%20sobre%20o%20treino%20funcional." target="_blank" rel="noopener"><div class="n gold">01</div><h3 class="cond">Treino funcional</h3><p>Força, mobilidade e condicionamento em movimentos do dia a dia.</p></a><a class="mod glass" href="https://wa.me/5551991925356?text=Ol%C3%A1%2C%20Aimor%C3%A9%21%20Quero%20saber%20sobre%20o%20funcional%20kids%20para%20o%20meu%20filho." target="_blank" rel="noopener"><div class="n gold">02</div><h3 class="cond">Funcional kids</h3><p>Coordenação, equilíbrio e agilidade com atividades lúdicas.</p></a><a class="mod glass" href="https://wa.me/5551991925356?text=Ol%C3%A1%2C%20Aimor%C3%A9%21%20Quero%20saber%20sobre%20o%20treino%20de%20for%C3%A7a%20e%20hipertrofia." target="_blank" rel="noopener"><div class="n gold">03</div><h3 class="cond">Força e hipertrofia</h3><p>Séries, cargas e descanso com técnica antes de peso.</p></a><a class="mod glass" href="https://wa.me/5551991925356?text=Ol%C3%A1%2C%20Aimor%C3%A9%21%20Quero%20saber%20sobre%20a%20prepara%C3%A7%C3%A3o%20para%20o%20TAF." target="_blank" rel="noopener"><div class="n gold">04</div><h3 class="cond">Preparação para TAF</h3><p>Barra, flexão, abdominal, corrida e impulsão.</p></a></div></div>
+ </div>
+</section>
+
+<section id="avaliacao" class="sec container rev">
+ <div class="sec-h" style="margin-bottom:18px"><div class="eyebrow">Autoavaliação · 3 minutos</div><h2 class="cond" style="font-size:clamp(34px,5vw,52px)">Descubra seu <span class="gold">ponto de partida</span></h2><p class="sub">Responda 4 perguntas rápidas e veja qual caminho combina com você.</p></div>
+ <form class="av glass" id="av-form" novalidate>
+  <div class="av-bar" aria-hidden="true"><i id="av-bar"></i></div>
+  <fieldset class="av-q"><legend><b>1</b>Qual é o seu objetivo principal?</legend><div class="av-ops" data-q="objetivo"></div></fieldset>
+  <fieldset class="av-q" id="av-q-caneta" hidden><legend><b>1b</b>Você usa (ou vai usar) caneta emagrecedora prescrita pelo médico?</legend><div class="av-ops" data-q="caneta"></div></fieldset>
+  <fieldset class="av-q"><legend><b>2</b>Há quanto tempo você treina?</legend><div class="av-ops" data-q="tempo"></div></fieldset>
+  <fieldset class="av-q"><legend><b>3</b>Onde você vai treinar?</legend><div class="av-ops" data-q="local"></div></fieldset>
+  <fieldset class="av-q"><legend><b>4</b>Quantos dias por semana você consegue treinar?</legend><div class="av-ops" data-q="dias"></div></fieldset>
+  <p class="av-erro" id="av-erro">Responda todas as perguntas para ver o resultado.</p>
+  <div class="acts"><button class="btn pri" type="submit">Ver meu resultado</button></div>
+  <div class="av-res" id="av-res" aria-live="polite"></div>
+ </form>
+</section>
+
+<section id="duvidas" class="sec container rev">
+ <div class="two">
+  <div class="cta-card glass"><div class="eyebrow">Não sabe por onde começar?</div><h2 class="cond">Cada passo <span class="gold">conta.</span></h2><p class="sub" style="margin-bottom:18px">Em 3 minutos você descobre seu ponto de partida e qual caminho combina com você.</p><div class="acts"><a class="btn pri" href="#avaliacao">Fazer a autoavaliação</a><a class="btn gh" href="https://wa.me/5551991925356?text=Ol%C3%A1%2C%20Aimor%C3%A9%21%20Vim%20pelo%20Instagram%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener">Chamar no WhatsApp</a></div></div>
+  <div>
+   <details class="glass"><summary>Como recebo os programas digitais?</summary><p>A compra é feita pela Hotmart, com acesso imediato. Depois você acessa o conteúdo pela área de membros da Hotmart.</p></details>
+   <details class="glass"><summary>Como funciona a consultoria online?</summary><p>Seu treino é montado no app MFIT para o seu objetivo, sua rotina e seu local de treino. Eu ajusto conforme a sua evolução e você tira dúvidas direto comigo. Para valores e vagas, chame no WhatsApp.</p></details>
+   <details class="glass"><summary>Quem usa caneta emagrecedora pode seguir o programa?</summary><p>O programa é de exercício físico e foi pensado para preservar músculo, força e disposição. Quem usa caneta emagrecedora deve manter o acompanhamento médico.</p></details>
+   <details class="glass"><summary>Não sei por onde começar. E agora?</summary><p>Faça a autoavaliação de 3 minutos ou chame no WhatsApp e conte o seu objetivo. A gente define o primeiro passo juntos.</p></details>
+  </div>
+ </div>
+</section>
+</main>
+<footer><div class="container"><div class="soc"><a href="https://www.instagram.com/aimorepersonal/" target="_blank" rel="noopener">Instagram</a><a href="https://www.linkedin.com/in/aimor%C3%A9-weren-3273b9260/" target="_blank" rel="noopener">LinkedIn</a><a href="https://wa.me/5551991925356?text=Ol%C3%A1%2C%20Aimor%C3%A9%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener">WhatsApp</a><a href="https://hotmart.com/pt-br/club/prof-aimore" target="_blank" rel="noopener">Área de membros</a></div><div class="soc parc"><span>Projetos parceiros:</span><a href="https://ouroconcursos.netlify.app/" target="_blank" rel="noopener">Ouro Concursos · materiais para concursos</a><a href="https://alleanzafutsalpro.netlify.app/" target="_blank" rel="noopener">Alleanza Futsal · escolinha</a></div><div>Aimoré Performance · CREF 041955 · Compra segura pela Hotmart. Converse com seu médico antes de iniciar qualquer programa.</div></div></footer>
+<div class="dock"><a class="btn gh" href="#programas">Programas</a><a class="btn pri" href="https://wa.me/5551991925356?text=Ol%C3%A1%2C%20Aimor%C3%A9%21%20Vim%20pelo%20Instagram%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener">WhatsApp</a></div>
+<script>(function(){
+  var root=document.documentElement,reduce=matchMedia('(prefers-reduced-motion:reduce)').matches,fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+  var $=function(s,c){return (c||document).querySelector(s)},$$=function(s,c){return [].slice.call((c||document).querySelectorAll(s))};
+
+  // luz que segue o cursor (desktop) / toque
+  var glow=$('.glow');
+  function mv(e){var t=e.touches?e.touches[0]:e;glow.style.setProperty('--mx',t.clientX+'px');glow.style.setProperty('--my',t.clientY+'px')}
+  if(glow&&!reduce){addEventListener('pointermove',mv,{passive:true});addEventListener('touchmove',mv,{passive:true})}
+
+  // progresso, dock, scroll-spy
+  var prog=$('.prog'),dock=$('.dock'),links=$$('.nav a'),secs=links.map(function(a){return $(a.getAttribute('href'))}),tick=false;
+  function onScroll(){
+    var y=scrollY,max=document.documentElement.scrollHeight-innerHeight;
+    if(prog)prog.style.transform='scaleX('+(max>0?y/max:0)+')';
+    if(dock)dock.classList.toggle('show',y>innerHeight*.5);
+    var cur=-1;secs.forEach(function(s,i){if(s&&s.getBoundingClientRect().top<innerHeight*.4)cur=i});
+    links.forEach(function(a,i){a.classList.toggle('on',i===cur)});
+    tick=false;
+  }
+  addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(onScroll)}},{passive:true});onScroll();
+
+  // revelar ao rolar
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.1});
+  $$('.rev').forEach(function(el){io.observe(el)});
+
+  // inclinação 3D + botão magnético (só mouse)
+  if(fine&&!reduce){
+    $$('.pc,.mod,.step').forEach(function(c){
+      c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform='perspective(900px) rotateY('+(x*7)+'deg) rotateX('+(-y*7)+'deg) translateY(-4px)'});
+      c.addEventListener('pointerleave',function(){c.style.transform=''});
+    });
+    $$('.btn.pri').forEach(function(b){
+      b.addEventListener('pointermove',function(e){var r=b.getBoundingClientRect();b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.12)+'px,'+((e.clientY-r.top-r.height/2)*.2-2)+'px)'});
+      b.addEventListener('pointerleave',function(){b.style.transform=''});
+    });
+  }
+
+  // abas (setas do teclado)
+  var tabs=$$('.tab');
+  tabs.forEach(function(t,i){t.addEventListener('keydown',function(e){var n=e.key==='ArrowRight'||e.key==='ArrowDown'?1:e.key==='ArrowLeft'||e.key==='ArrowUp'?-1:0;if(n){e.preventDefault();var x=tabs[(i+n+tabs.length)%tabs.length];x.focus();x.click()}})});
+
+  // pontos do carrossel (celular)
+  var grid=$('.grid'),dots=$('.dots');
+  function buildDots(){
+    if(!grid||!dots)return;var cards=$$('.pc',grid).filter(function(c){return !c.classList.contains('hide')});
+    dots.innerHTML=cards.map(function(_,i){return '<i'+(i===0?' class="on"':'')+'></i>'}).join('');
+    $$('i',dots).forEach(function(d,i){d.onclick=function(){var c=cards[i];grid.scrollTo({left:c.offsetLeft-(grid.clientWidth-c.offsetWidth)/2,behavior:reduce?'auto':'smooth'})}});
+  }
+  if(grid&&dots){
+    grid.addEventListener('scroll',function(){
+      var cards=$$('.pc',grid).filter(function(c){return !c.classList.contains('hide')}),c0=grid.scrollLeft+grid.clientWidth/2,best=0,bd=1e9;
+      cards.forEach(function(c,i){var d=Math.abs(c.offsetLeft+c.offsetWidth/2-c0);if(d<bd){bd=d;best=i}});
+      $$('i',dots).forEach(function(d,i){d.classList.toggle('on',i===best)});
+    },{passive:true});
+    buildDots();window.__buildDots=buildDots;
+  }
+
+  // filtro de produtos (se houver)
+  var fs=$$('.chip-f');
+  fs.forEach(function(b){b.addEventListener('click',function(){
+    fs.forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+    var g=b.dataset.g;
+    $$('.pc').forEach(function(c){var show=g==='all'||c.dataset.g===g;c.classList.toggle('hide',!show);if(show){c.style.animation='none';void c.offsetWidth;c.style.animation='pop .5s cubic-bezier(.2,.8,.2,1)'}});
+    if(grid)grid.scrollTo({left:0});buildDots();
+  })});
+
+  // copiar cupom
+  var code=$('.code');
+  if(code)code.addEventListener('click',function(){
+    var t=code.dataset.code,done=function(){var o=code.textContent;code.textContent='Copiado!';setTimeout(function(){code.textContent=o},1600)};
+    try{navigator.clipboard.writeText(t).then(done,done)}catch(e){done()}
+  });
+
+  // contagem regressiva (se houver)
+  var cd=$('.cd');
+  if(cd){
+    var end=new Date(cd.dataset.end).getTime(),box=cd.closest('.cpn');
+    function t(){var d=end-Date.now();if(d<=0){cd.style.display='none';return}
+      var v=[Math.floor(d/864e5),Math.floor(d%864e5/36e5),Math.floor(d%36e5/6e4),Math.floor(d%6e4/1e3)];
+      $$('b',cd).forEach(function(b,i){b.textContent=String(v[i]).padStart(2,'0')})}
+    t();setInterval(t,1000);
+  }
+})();
+
+var D={"emagrecer": {"t": "Emagrecer sem passar fome", "p": "Processo, não pressa. Treino de força, condicionamento e hábitos que cabem na vida real, sem promessas milagrosas.", "img": "img/combo.webp", "a": [["Ver o combo", "https://pay.hotmart.com/F108094516O?sck=bio", 1], ["Consultoria individual", "https://wa.me/5551991925356?text=Ol%C3%A1%2C%20Aimor%C3%A9%21%20Quero%20emagrecer%20e%20gostaria%20de%20saber%20sobre%20a%20consultoria%20online.", 0]]}, "forca": {"t": "Força e hipertrofia", "p": "Séries, cargas e descanso planejados, com técnica antes de peso. Para quem quer ganhar força, massa muscular ou sair da estagnação.", "img": "img/hero.webp", "a": [["Quero treino individual", "https://wa.me/5551991925356?text=Ol%C3%A1%2C%20Aimor%C3%A9%21%20Quero%20ganhar%20for%C3%A7a%20e%20massa%20e%20gostaria%20de%20saber%20sobre%20a%20consultoria%20online.", 1], ["Entender a modalidade", "#consultoria", 0]]}, "taf": {"t": "Preparação para o TAF", "p": "Barra, flexão, abdominal, corrida e impulsão. Guia de 12 semanas baseado em editais reais de 2024 a 2026.", "img": "img/taf.webp", "a": [["Comprar o guia do TAF", "https://pay.hotmart.com/B104624799S?off=bm7e1tls&sck=bio", 1], ["Treino individual", "https://wa.me/5551991925356?text=Ol%C3%A1%2C%20Aimor%C3%A9%21%20Vou%20fazer%20TAF%20e%20gostaria%20de%20saber%20sobre%20a%20prepara%C3%A7%C3%A3o%20f%C3%ADsica.", 0]]}, "bola": {"t": "Preparação física para quem joga", "p": "Futebol, futsal e goleiros: velocidade, aceleração, força, potência, agilidade e prevenção de lesões.", "img": "img/hero.webp", "a": [["Quero preparação para jogar", "https://wa.me/5551991925356?text=Ol%C3%A1%2C%20Aimor%C3%A9%21%20Jogo%20futebol/futsal%20e%20gostaria%20de%20saber%20sobre%20a%20prepara%C3%A7%C3%A3o%20f%C3%ADsica.", 1], ["Ver a situação", "#consultoria", 0]]}, "kids": {"t": "Criança não é adulto em miniatura", "p": "Coordenação, equilíbrio e agilidade com atividades lúdicas, respeitando a idade e a segurança de cada criança.", "img": "img/hero.webp", "a": [["Falar sobre meu filho", "https://wa.me/5551991925356?text=Ol%C3%A1%2C%20Aimor%C3%A9%21%20Meu%20filho%20pratica%20esporte%20e%20gostaria%20de%20saber%20sobre%20o%20funcional%20kids.", 1], ["Ver a situação", "https://wa.me/5551991925356?text=Ol%C3%A1%2C%20Aimor%C3%A9%21%20Meu%20filho%20pratica%20esporte%20e%20gostaria%20de%20saber%20sobre%20o%20funcional%20kids.", 0]]}, "comecar": {"t": "O melhor treino é o que você repete", "p": "Está parado e vai começar? Faça a autoavaliação de 3 minutos e descubra seu ponto de partida.", "img": "img/hero.webp", "a": [["Fazer a autoavaliação", "#avaliacao", 1], ["Estou começando agora", "#avaliacao", 0]]}};
+(function(){var panel=document.getElementById('panel'),tabs=[].slice.call(document.querySelectorAll('.tab')),red=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function render(k){var d=D[k],h='<div><h3 class="cond gold">'+d.t+'</h3><p>'+d.p+'</p><div class="acts">';d.a.forEach(function(x){h+='<a class="btn '+(x[2]?'pri':'gh')+'" href="'+x[1]+'"'+(x[1].charAt(0)==='#'?'':' target="_blank" rel="noopener"')+'>'+x[0]+'</a>'});panel.innerHTML=h+'</div></div><div class="pimg"><img src="'+d.img+'" alt="'+d.t+'"></div>'}
+tabs.forEach(function(b){b.addEventListener('click',function(){tabs.forEach(function(x){x.setAttribute('aria-selected',x===b)});panel.classList.add('sw');setTimeout(function(){render(b.dataset.k);panel.classList.remove('sw')},red?0:180);if(innerWidth<900)b.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'})})});render('emagrecer')})();</script>
+<script>
+/* Autoavaliação: recomenda o caminho e leva as respostas para o WhatsApp. */
+(function(){
+var WA='5551991925356';
+var Q={
+ objetivo:[['emagrecer','Emagrecer'],['massa','Ganhar força e massa'],['taf','Passar no TAF'],['futebol','Render mais no futebol/futsal'],['filho','Para o meu filho'],['comecar','Começar a me exercitar']],
+ caneta:[['sim','Sim'],['nao','Não']],
+ tempo:[['0','Não treino'],['1','Menos de 6 meses'],['2','6 meses a 2 anos'],['3','Mais de 2 anos']],
+ local:[['academia','Academia'],['casa','Em casa'],['livre','Ao ar livre'],['nsei','Ainda não sei']],
+ dias:[['2','2 dias'],['3','3 dias'],['4','4 dias'],['5','5 ou mais']]
+};
+var PROD={
+ combo:['Combo Emagrecer com Método','https://pay.hotmart.com/F108094516O?sck=avaliacao','Os dois programas de emagrecimento juntos, por R$ 149,90.'],
+ caneta:['Treino para quem usa caneta','https://pay.hotmart.com/H108059978D?sck=avaliacao','Preserva músculo, força e disposição durante o tratamento. R$ 44,90.'],
+ verao:['Verão: ainda dá tempo','https://pay.hotmart.com/B108060593G?sck=avaliacao','8 semanas de treino e uma alimentação que você consegue manter. R$ 44,90.'],
+ taf:['Como ser aprovado no TAF','https://pay.hotmart.com/B104624799S?off=bm7e1tls&sck=avaliacao','12 semanas de preparação baseada em editais reais do RS. R$ 69,90.']
+};
+var form=document.getElementById('av-form');if(!form)return;
+function nome(q,v){for(var i=0;i<Q[q].length;i++)if(Q[q][i][0]===v)return Q[q][i][1];return v}
+document.querySelectorAll('.av-ops').forEach(function(box){var q=box.dataset.q;
+ box.innerHTML=Q[q].map(function(o){return '<label class="av-op"><input type="radio" name="'+q+'" value="'+o[0]+'"><span>'+o[1]+'</span></label>'}).join('')});
+function val(q){var r=form.querySelector('input[name="'+q+'"]:checked');return r?r.value:''}
+function perguntas(){return ['objetivo','tempo','local','dias'].concat(val('objetivo')==='emagrecer'?['caneta']:[])}
+function progresso(){var ps=perguntas(),f=ps.filter(val).length;document.getElementById('av-bar').style.width=Math.round(f/ps.length*100)+'%'}
+form.addEventListener('change',function(e){
+ if(e.target.name==='objetivo')document.getElementById('av-q-caneta').hidden=e.target.value!=='emagrecer';
+ document.getElementById('av-erro').style.display='none';progresso()});
+form.addEventListener('submit',function(e){e.preventDefault();
+ if(perguntas().some(function(q){return !val(q)})){document.getElementById('av-erro').style.display='block';return}
+ var obj=val('objetivo'),tempo=+val('tempo'),nivel=tempo<=1?'iniciante':tempo===2?'intermediário':'avançado';
+ var titulo,texto,prod=null,consultoria=true;
+ if(obj==='emagrecer'){titulo='Emagrecer com método';
+  if(val('caneta')==='sim'){prod=PROD.caneta;texto='Com a caneta, o foco do treino é não perder músculo enquanto o peso cai. Comece pelo programa feito para isso.'}
+  else{prod=PROD.combo;texto='Treino bem feito e uma alimentação que você consegue manter. O combo reúne os dois programas de emagrecimento.'}}
+ else if(obj==='taf'){titulo='Rumo à aprovação no TAF';prod=PROD.taf;texto='Barra, flexão, abdominal e corrida com progressão semana a semana até a data da prova.'}
+ else if(obj==='massa'){titulo='Força e massa com técnica';texto='Para ganhar massa, carga e volume precisam ser ajustados ao seu nível. A consultoria monta isso para você no app.'}
+ else if(obj==='futebol'){titulo='Preparação física para o jogo';texto='Velocidade, força e agilidade para render mais em campo e em quadra, com treino individual no app.'}
+ else if(obj==='filho'){titulo='Funcional kids';consultoria=false;texto='Coordenação, equilíbrio e agilidade com atividades lúdicas. Chame no WhatsApp para saber horários e como começar.'}
+ else{titulo='O melhor treino é o que você repete';prod=+val('dias')<=3?PROD.verao:null;texto='Começar com o volume certo evita lesão e desistência. Um plano simples e progressivo é o primeiro passo.'}
+ var resumo='Objetivo: '+nome('objetivo',obj)+(obj==='emagrecer'?' (caneta: '+nome('caneta',val('caneta'))+')':'')+' · Treino há: '+nome('tempo',val('tempo'))+' · Local: '+nome('local',val('local'))+' · Dias/semana: '+nome('dias',val('dias'));
+ var msg='Olá, Aimoré! Fiz a autoavaliação no site.\n'+resumo+'\n'+(obj==='filho'?'Quero saber sobre o funcional kids.':'Quero saber qual o melhor caminho para mim.');
+ var h='<div class="eyebrow">Seu resultado · nível '+nivel+'</div><h3 class="cond gold">'+titulo+'</h3><p>'+texto+'</p><div class="acts">';
+ if(prod)h+='<a class="btn pri" href="'+prod[1]+'" target="_blank" rel="noopener">'+prod[0]+'</a>';
+ if(consultoria)h+='<a class="btn '+(prod?'gh':'pri')+'" href="#consultoria">Ver a consultoria online</a>';
+ h+='<a class="btn '+(prod||consultoria?'gh':'pri')+'" href="https://wa.me/'+WA+'?text='+encodeURIComponent(msg)+'" target="_blank" rel="noopener">Enviar respostas no WhatsApp</a></div>';
+ if(prod)h+='<p style="margin:14px 0 0;font-size:12.5px">'+prod[2]+' Compra segura pela Hotmart.</p>';
+ var res=document.getElementById('av-res');res.innerHTML=h;res.style.display='block';
+ res.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'center'});
+});
+})();
+</script>
+</body></html>

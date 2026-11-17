@@ -1,0 +1,14 @@
+# Site Aimoré Performance. No Netlify: Base directory = aimore (ou arraste a pasta aimore no deploy manual).
+[build]
+  publish = "."
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
