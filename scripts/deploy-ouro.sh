@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
-# Publica a pasta simulados/ no Netlify: cria o site, grava as variáveis, liga o
+# Publica a pasta ouro/ (catálogo + simulados) no Netlify: cria o site, grava as variáveis, liga o
 # formulário com aviso por e-mail e faz o deploy das páginas e funções.
 # Uso:
 #   NETLIFY_AUTH_TOKEN=... DADOS_CHAVE=... CODIGO_SEGREDO=... ADMIN_SENHA=... \
-#   NOTIFICAR_EMAIL=voce@exemplo.com ./scripts/deploy-simulados.sh [nome-do-site]
+#   NOTIFICAR_EMAIL=voce@exemplo.com ./scripts/deploy-ouro.sh [nome-do-site]
 set -euo pipefail
 
 : "${NETLIFY_AUTH_TOKEN:?defina NETLIFY_AUTH_TOKEN}"
 : "${DADOS_CHAVE:?defina DADOS_CHAVE}"
 : "${CODIGO_SEGREDO:?defina CODIGO_SEGREDO}"
 : "${ADMIN_SENHA:?defina ADMIN_SENHA}"
-NAME="${1:-simulados-hcpa}"
+NAME="${1:-ouroconcursos}"
 API=https://api.netlify.com/api/v1
 AUTH="Authorization: Bearer $NETLIFY_AUTH_TOKEN"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
@@ -63,5 +63,5 @@ if [ -n "${NOTIFICAR_EMAIL:-}" ]; then
 fi
 
 echo "Enviando deploy..."
-cd "$ROOT/simulados"
-npx -y netlify-cli@17.38.1 deploy --prod --dir . --functions netlify/functions --site "$SITE_ID" --message "deploy-simulados.sh"
+cd "$ROOT/ouro"
+npx -y netlify-cli@17.38.1 deploy --prod --dir . --functions netlify/functions --site "$SITE_ID" --message "deploy-ouro.sh"

@@ -10,7 +10,13 @@
 # Pastas de outros projetos que moram neste repositório: não publicar
 # junto com o site institucional (cada uma tem o seu próprio site).
 [[redirects]]
-  from = "/simulados/*"
+  from = "/ouro/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/aimore/*"
   to = "/404.html"
   status = 404
   force = true

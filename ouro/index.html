@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ouro Concursos · Materiais</title><meta name="description" content="Ouro Concursos: apostilas, questões e simulados para concursos hospitalares, Polícia Penal, EPTC e TAF."><meta name="theme-color" content="#0b0a08">
+<meta property="og:title" content="Ouro Concursos · Materiais"><meta property="og:description" content="Ouro Concursos: apostilas, questões e simulados para concursos hospitalares, Polícia Penal, EPTC e TAF."><meta property="og:image" content="img/hero.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet"><style>:root{--bg:#0b0a08;--g1:#FBF3DA;--g2:#EBD9A6;--g3:#D6BC82;--grad:linear-gradient(120deg,#FBF3DA 0%,#EBD9A6 45%,#D6BC82 100%);--txt:#F7F3EA;--mut:#BFB6A2;--line:rgba(246,235,203,.14);--glass:linear-gradient(180deg,rgba(255,250,235,.075),rgba(255,250,235,.03));--ink:#1d1709;--r:22px;--mx:50%;--my:30%}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;color-scheme:dark;scroll-padding-top:84px}
+main{overflow-x:clip}
+body{background:var(--bg);color:var(--txt);font-family:Sora,system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh}
+a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}img{display:block;max-width:100%}
+.container{width:100%;max-width:1160px;margin:0 auto;padding:0 clamp(18px,4vw,40px)}
+
+/* fundo vivo: aurora suave + grade + luz do cursor */
+.aurora{position:fixed;inset:0;z-index:-3;overflow:hidden;pointer-events:none;background:var(--bg)}
+.aurora i{position:absolute;width:60vmax;height:60vmax;border-radius:50%;filter:blur(90px);opacity:.34;animation:drift 26s ease-in-out infinite alternate}
+.aurora i:nth-child(1){left:-18vmax;top:-22vmax;background:radial-gradient(circle,#E8D39C,transparent 66%)}
+.aurora i:nth-child(2){right:-22vmax;bottom:-26vmax;background:radial-gradient(circle,#C9AD72,transparent 66%);animation-duration:32s;opacity:.26}
+@keyframes drift{to{transform:translate(8vmax,6vmax) scale(1.12)}}
+.grid-bg{position:fixed;inset:0;z-index:-2;pointer-events:none;background-image:linear-gradient(rgba(251,243,218,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(251,243,218,.04) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:radial-gradient(ellipse at 50% 20%,#000 15%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 20%,#000 15%,transparent 75%)}
+.glow{position:fixed;left:0;top:0;width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;z-index:-1;pointer-events:none;background:radial-gradient(circle,rgba(251,243,218,.10),transparent 68%);transform:translate(var(--mx),var(--my));will-change:transform}
+
+.cond{font-family:'Barlow Condensed',Impact,sans-serif;text-transform:uppercase;font-weight:800;line-height:.92;letter-spacing:.005em}
+.gold{background:var(--grad);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 7s linear infinite}
+@keyframes shine{to{background-position:200% 0}}
+.eyebrow{display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.24em;color:var(--g2);text-transform:uppercase;margin-bottom:12px}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--g2)}
+
+/* botões */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 24px;border-radius:999px;font-weight:700;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;text-align:center;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s,background .25s;white-space:nowrap}
+.btn.pri{background:var(--grad);color:var(--ink);box-shadow:0 10px 30px rgba(235,217,166,.16),inset 0 1px 0 rgba(255,255,255,.5)}
+.btn.pri:hover{box-shadow:0 14px 38px rgba(235,217,166,.3);transform:translateY(-2px)}
+.btn.gh{border:1px solid rgba(246,235,203,.38);color:var(--g1);background:rgba(255,250,235,.04);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.btn.gh:hover{background:rgba(255,250,235,.1);border-color:var(--g2);transform:translateY(-2px)}
+.btn:active{transform:scale(.97)}
+.btn.sm{min-height:44px;padding:0 18px;font-size:11.5px}
+.btn.block{width:100%}
+
+.glass{background:var(--glass);border:1px solid var(--line);border-radius:var(--r);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+
+/* topo */
+.top{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,rgba(11,10,8,.86),rgba(11,10,8,.55));backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.top .container{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
+.brand{display:flex;align-items:center;gap:11px}
+.brand svg{width:38px;height:35px;flex:none}
+.brand b{display:block;font-family:'Barlow Condensed';font-weight:800;font-size:21px;letter-spacing:.06em;line-height:1}
+.brand span{display:block;font-size:8.5px;letter-spacing:.36em;color:var(--g2);margin-top:2px}
+.nav{display:none;gap:4px}
+.nav a{padding:8px 16px;border-radius:99px;font-size:13px;font-weight:500;color:var(--mut);transition:.25s}
+.nav a:hover{color:var(--txt)}
+.nav a.on{color:var(--ink);background:var(--grad)}
+.prog{position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:var(--grad);transform-origin:left;transform:scaleX(0)}
+@media(min-width:900px){.nav{display:flex}}
+
+/* hero */
+.hero{display:grid;gap:28px;padding-top:32px;padding-bottom:40px;align-items:center}
+.hero-copy .lead{color:var(--mut);font-size:clamp(14px,1.5vw,16px);max-width:52ch;margin:0 0 24px}
+.hero-copy .lead b{color:var(--txt)}
+h1{font-size:clamp(50px,13.6vw,104px);margin-bottom:18px}
+h1 span{display:block;overflow:hidden;padding-bottom:.07em}
+h1 span i{display:block;font-style:normal;transform:translateY(108%);animation:up 1s cubic-bezier(.2,.8,.2,1) forwards}
+h1 span:nth-child(2) i{animation-delay:.12s}h1 span:nth-child(3) i{animation-delay:.24s}
+@keyframes up{to{transform:none}}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.cta .btn{flex:1 1 200px}
+.trust{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.trust span{font-size:11.5px;color:var(--mut);border:1px solid var(--line);border-radius:99px;padding:6px 14px;background:rgba(255,250,235,.03)}
+.hero-art{position:relative;border-radius:30px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/11;box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.03) inset}
+.hero-art img{width:100%;height:100%;object-fit:cover;object-position:center 35%;transform:scale(1.04);transition:transform .8s}
+.hero-art:hover img{transform:scale(1.09)}
+.hero-art::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(11,10,8,.55))}
+.chip{position:absolute;z-index:2;padding:9px 16px;border-radius:99px;font-size:12px;font-weight:600;color:var(--g1);background:rgba(20,17,12,.55);border:1px solid rgba(246,235,203,.28);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);animation:float 6s ease-in-out infinite}
+.chip:nth-of-type(2){animation-delay:-2s}.chip:nth-of-type(3){animation-delay:-4s}
+@keyframes float{50%{transform:translateY(-10px)}}
+@media(min-width:900px){.hero{grid-template-columns:1.05fr .95fr;gap:56px;padding-top:44px;padding-bottom:36px}.hero-art{aspect-ratio:4/5;max-height:500px;justify-self:end;width:100%;max-width:400px}}
+
+/* seções */
+.sec{padding-top:52px}
+.sec-h{display:flex;flex-direction:column;gap:6px;margin-bottom:20px}
+h2{font-size:clamp(38px,7vw,64px)}
+.sub{color:var(--mut);font-size:14px;max-width:56ch}
+.rev{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+.rev.on{opacity:1;transform:none}
+
+/* seletor (abas) */
+.picker{display:grid;gap:14px}
+.tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px 2px 6px;margin:0 -2px}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;display:flex;align-items:center;gap:10px;min-height:48px;padding:0 20px;border-radius:999px;border:1px solid var(--line);background:rgba(255,250,235,.04);font-weight:600;font-size:13px;color:var(--mut);transition:.25s;text-align:left}
+.tab small{font-family:'Barlow Condensed';font-weight:800;font-size:15px;color:var(--g2);letter-spacing:.06em}
+.tab:hover{color:var(--txt);border-color:rgba(246,235,203,.34)}
+.tab[aria-selected=true]{background:var(--grad);border-color:transparent;color:var(--ink)}
+.tab[aria-selected=true] small{color:var(--ink)}
+.panel{display:grid;gap:20px;padding:22px;transition:opacity .25s,transform .25s}
+.panel.sw{opacity:0;transform:translateY(10px)}
+.panel .pimg{border-radius:18px;overflow:hidden;aspect-ratio:3/2;border:1px solid var(--line)}
+.panel .pimg img{width:100%;height:100%;object-fit:cover}
+.panel h3{font-size:clamp(32px,5vw,46px);margin-bottom:10px}
+.panel p{color:var(--mut);font-size:14px;margin-bottom:18px;max-width:48ch}
+.panel .acts{display:flex;gap:10px;flex-wrap:wrap}
+@media(min-width:900px){
+ .picker{grid-template-columns:300px 1fr;gap:20px;align-items:stretch}
+ .tabs{flex-direction:column;overflow:visible;padding:0;margin:0}
+ .tab{border-radius:16px;width:100%;min-height:58px;padding:0 20px}
+ .tab[aria-selected=true]{transform:translateX(6px)}
+ .panel{grid-template-columns:1.1fr .9fr;align-items:center;padding:32px 34px}
+ .panel .pimg{aspect-ratio:4/3}
+}
+
+/* cartões de produto */
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.chip-f{min-height:44px;padding:0 20px;border-radius:99px;border:1px solid var(--line);background:rgba(255,250,235,.04);font-size:13px;font-weight:600;color:var(--mut);transition:.25s}
+.chip-f[aria-pressed=true]{background:var(--grad);color:var(--ink);border-color:transparent}
+.grid{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px clamp(18px,4vw,40px) 16px;margin:0 calc(-1*clamp(18px,4vw,40px));scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.grid::-webkit-scrollbar{display:none}
+.pc{flex:none;width:min(80vw,320px);scroll-snap-align:center;display:flex;flex-direction:column;overflow:hidden;transform-style:preserve-3d;transition:transform .3s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .3s}
+.pc:hover{border-color:rgba(246,235,203,.4);box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.pc.hide{display:none}
+.pc.hl{border-color:rgba(235,217,166,.55)}
+.pc-im{position:relative;aspect-ratio:3/2;overflow:hidden}
+.pc-im img{width:100%;height:100%;object-fit:cover;transition:transform .7s}
+.pc:hover .pc-im img{transform:scale(1.06)}
+.pc-im::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(11,10,8,.55))}
+.flag{position:absolute;z-index:2;top:12px;left:12px;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--ink);background:var(--grad);padding:5px 12px;border-radius:99px}
+.pc-b{display:flex;flex-direction:column;flex:1;padding:16px 18px 18px}
+.pc h3{font-size:25px;margin-bottom:6px}
+.pc p{color:var(--mut);font-size:12.5px;flex:1}
+.pc .row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px}
+.price{font-family:'Barlow Condensed';font-weight:800;font-size:30px;line-height:1;color:var(--g1);white-space:nowrap}
+.price small{display:block;font-family:Sora;font-weight:400;font-size:10px;color:var(--mut);letter-spacing:.03em;margin-top:3px}
+.note{font-size:10.5px;color:var(--mut);margin-top:10px}
+.dots{display:flex;justify-content:center;gap:8px;margin-top:2px}
+.dots i{width:7px;height:7px;border-radius:99px;background:rgba(235,217,166,.25);transition:.3s;cursor:pointer}
+.dots i.on{width:24px;background:var(--g2)}
+@media(min-width:700px){.grid{display:grid;grid-template-columns:repeat(2,1fr);overflow:visible;padding:0;margin:0}.pc{width:auto}.dots{display:none}}
+@media(min-width:1000px){.grid.c4{grid-template-columns:repeat(4,1fr)}.grid.c3{grid-template-columns:repeat(3,1fr)}}
+
+/* duas colunas (consultoria / como funciona / faq) */
+.two{display:grid;gap:18px}
+@media(min-width:900px){.two{grid-template-columns:1fr 1fr;gap:22px;align-items:stretch}}
+.pro{position:relative;border-radius:26px;padding:2px;background:conic-gradient(from var(--a,0deg),#FBF3DA,#CDB072,#EBD9A6,#CDB072,#FBF3DA);animation:spin 9s linear infinite}
+@property --a{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes spin{to{--a:360deg}}
+.pro .in{height:100%;border-radius:24px;background:linear-gradient(180deg,#1a1610,#100e0a);padding:28px 24px}
+.pro h3{font-size:clamp(34px,5vw,46px);margin:2px 0 10px}
+.pro p{color:var(--mut);font-size:14px;margin-bottom:16px}
+.ticks{list-style:none;display:grid;gap:10px;margin-bottom:22px}
+.ticks li{display:flex;gap:10px;font-size:13.5px}
+.ticks li::before{content:"";flex:none;width:18px;height:18px;margin-top:2px;border-radius:50%;background:var(--grad);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
+.mods{display:grid;gap:10px;grid-template-columns:1fr}
+@media(min-width:560px){.mods{grid-template-columns:1fr 1fr}}
+.mod{display:flex;flex-direction:column;gap:6px;padding:18px;transition:.3s;min-height:128px}
+.mod:hover{border-color:rgba(246,235,203,.4);transform:translateY(-4px)}
+.mod .n{font-family:'Barlow Condensed';font-weight:900;font-size:26px;line-height:1}
+.mod h3{font-size:22px}
+.mod p{font-size:12.5px;color:var(--mut)}
+.steps{display:grid;gap:12px}
+.step{display:flex;gap:16px;align-items:flex-start;padding:20px}
+.step .n{font-family:'Barlow Condensed';font-weight:900;font-size:44px;line-height:.9}
+.step h3{font-size:24px;margin-bottom:4px}
+.step p{font-size:13px;color:var(--mut)}
+.cpn{display:flex;flex-wrap:wrap;align-items:center;gap:16px;justify-content:space-between;padding:20px 24px;margin-top:22px}
+.cpn .t{flex:1 1 260px}
+.cpn b{display:block;font-family:'Barlow Condensed';font-weight:800;font-size:26px;text-transform:uppercase;line-height:1.05}
+.cpn span{font-size:13px;color:var(--mut)}
+.code{font-family:'Barlow Condensed';font-weight:800;font-size:22px;letter-spacing:.14em;border:1.5px dashed var(--g2);border-radius:14px;padding:10px 18px;color:var(--g1);min-height:48px;display:inline-flex;align-items:center;transition:.25s}
+.code:hover{background:rgba(235,217,166,.1)}
+.cd{display:flex;gap:8px}
+.cd div{text-align:center;min-width:54px;padding:6px 8px;border-radius:12px;border:1px solid var(--line);background:rgba(255,250,235,.04)}
+.cd b{display:block;font-family:'Barlow Condensed';font-size:26px;line-height:1;font-weight:800;color:var(--g1)}
+.cd small{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+
+details{border-radius:16px;margin-bottom:10px;overflow:hidden}
+summary{list-style:none;cursor:pointer;min-height:58px;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-weight:600;font-size:14px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:'Barlow Condensed';font-size:30px;color:var(--g2);transition:transform .3s;line-height:1}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding:0 20px 18px;color:var(--mut);font-size:13.5px}
+.cta-card{display:flex;flex-direction:column;justify-content:center;padding:30px 26px;background:radial-gradient(420px 280px at 90% 0%,rgba(235,217,166,.22),transparent 70%),var(--glass)}
+.cta-card h2{font-size:clamp(36px,5vw,52px);margin-bottom:12px}
+.cta-card .acts{display:grid;gap:10px;margin-top:6px}
+
+footer{margin-top:52px;border-top:1px solid var(--line);padding:26px 0 110px}
+footer .container{display:flex;flex-direction:column;gap:14px;align-items:center;text-align:center;font-size:12px;color:var(--mut)}
+.soc{display:flex;flex-wrap:wrap;gap:6px 22px;justify-content:center;font-weight:600;color:var(--g1);font-size:13px}
+.soc a:hover{color:#fff}
+@media(min-width:900px){footer{padding-bottom:36px}footer .container{flex-direction:row;justify-content:space-between;text-align:left}}
+
+/* barra inferior (celular) */
+.dock{position:fixed;left:12px;right:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:60;display:flex;gap:8px;padding:8px;border-radius:999px;background:rgba(20,17,12,.72);border:1px solid rgba(246,235,203,.22);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 14px 40px rgba(0,0,0,.55);transform:translateY(140%);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.dock.show{transform:none}
+.dock .btn{flex:1;min-height:46px;font-size:11.5px;padding:0 12px}
+@media(min-width:900px){.dock{display:none}}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}h1 span i{transform:none}.rev{opacity:1;transform:none}.dock{transform:none}}
+
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+
+.pc-free{display:block;margin-top:12px;padding:10px 12px;border-radius:12px;border:1px dashed rgba(235,217,166,.45);color:var(--g2);font-size:12.5px;font-weight:700;letter-spacing:.04em;text-align:center;text-transform:uppercase}
+.pc-free:hover{background:rgba(235,217,166,.08)}
+.sim-num{display:grid;gap:14px;align-content:center;padding:clamp(20px,3vw,32px)}
+.sim-num div{display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--line);padding-bottom:12px}
+.sim-num b{font-family:'Barlow Condensed';font-weight:800;font-size:clamp(36px,5vw,52px);line-height:1}
+.sim-num span{color:var(--mut);font-size:14px}
+.sim-num p{color:var(--mut);font-size:13px;margin:0}
+.soc.parc{margin-top:10px;font-size:12px}.soc.parc span{color:var(--mut)}
+</style></head><body>
+<div class="aurora"><i></i><i></i></div><div class="grid-bg"></div><div class="glow"></div>
+<header class="top"><div class="container">
+<a class="brand" href="#top" aria-label="OURO CONCURSOS"><svg viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FBF3DA"/><stop offset=".5" stop-color="#EBD9A6"/><stop offset="1" stop-color="#D6BC82"/></linearGradient></defs><circle cx="32" cy="32" r="28" fill="none" stroke="url(#lg)" stroke-width="3.5"/><path d="M18 33 28 43 47 21" fill="none" stroke="url(#lg)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>OURO</b><span>CONCURSOS</span></div></a>
+<nav class="nav" aria-label="Seções"><a href="#materiais">Materiais</a><a href="#simulados">Simulados grátis</a><a href="#como">Como funciona</a><a href="#duvidas">Dúvidas</a></nav>
+<a class="btn pri sm" href="https://www.instagram.com/ouro.concursos/" target="_blank" rel="noopener">Instagram</a></div><div class="prog"></div></header>
+<main id="top">
+<section class="hero container">
+ <div class="hero-copy">
+  <div class="eyebrow">Preparatório Ouro · Concursos</div>
+  <h1 class="cond"><span><i>Estude com</i></span><span><i>direção.</i></span><span class="gold"><i>Foque no edital.</i></span></h1>
+  <p class="lead"><b>Apostilas, questões e simulados</b> para concursos hospitalares, Polícia Penal, EPTC e TAF. Escolha o material do seu cargo e compre com segurança pela Hotmart.</p>
+  <div class="cta"><a class="btn pri" href="#materiais">Ver os materiais</a><a class="btn gh" href="https://www.instagram.com/ouro.concursos/" target="_blank" rel="noopener">Seguir @ouro.concursos</a></div>
+  <div class="trust"><span>8 materiais</span><span>Questões e simulados</span><span>Compra pela Hotmart</span><span>Material independente</span></div>
+ </div>
+ <div class="hero-art"><img src="img/hero.webp" alt="Ouro Concursos" width="900" height="1125"><span class="chip" style="left:16px;top:20px">Hospitalar</span><span class="chip" style="right:16px;top:30%">Polícia Penal · EPTC</span><span class="chip" style="left:20px;bottom:24px">Simulados e questões</span></div>
+</section>
+
+<section id="materiais" class="sec container rev">
+ <div class="sec-h"><div class="eyebrow">Escolha seu concurso</div><h2 class="cond">Materiais <span class="gold">por cargo</span></h2><p class="sub">Filtre pelo seu concurso e vá direto ao material certo.</p></div>
+ <div class="chips" role="group" aria-label="Filtro">
+  <button class="chip-f" aria-pressed="true" data-g="all">Todos</button><button class="chip-f" aria-pressed="false" data-g="hospitalar">Hospitalar</button><button class="chip-f" aria-pressed="false" data-g="policia">Polícia Penal</button><button class="chip-f" aria-pressed="false" data-g="transito">EPTC · Trânsito</button><button class="chip-f" aria-pressed="false" data-g="taf">TAF</button>
+ </div>
+ <div class="grid c4"><article class="pc glass hl" data-g="hospitalar"><div class="pc-im"><img src="img/o_aux_adm.webp" alt="Auxiliar Administrativo Hospitalar" width="900" height="600" loading="lazy"><span class="flag">Mais procurado</span></div><div class="pc-b"><h3 class="cond">Auxiliar Administrativo Hospitalar</h3><p>Material completo para a prova de auxiliar administrativo hospitalar.</p><div class="row"><div class="price">R$ 112,21<small>Cupom OURO87: R$ 86,96</small></div><a class="btn pri sm" href="https://go.hotmart.com/J108379196F" target="_blank" rel="noopener">Comprar</a></div></div></article><article class="pc glass" data-g="hospitalar"><div class="pc-im"><img src="img/o_vigia.webp" alt="Kit Premium Vigia Hospitalar" width="900" height="600" loading="lazy"><span class="flag">Kit premium</span></div><div class="pc-b"><h3 class="cond">Kit Premium Vigia Hospitalar</h3><p>600 questões comentadas + 25 mini-simulados + simulado final.</p><div class="row"><div class="price">R$ 67,00</div><a class="btn pri sm" href="https://go.hotmart.com/M108482190N" target="_blank" rel="noopener">Comprar</a></div></div></article><article class="pc glass" data-g="hospitalar"><div class="pc-im"><img src="img/o_hcpa.webp" alt="Assistente Administrativo II · HCPA" width="900" height="600" loading="lazy"><span class="flag">HCPA</span></div><div class="pc-b"><h3 class="cond">Assistente Administrativo II · HCPA</h3><p>Preparação focada no cargo de assistente administrativo II.</p><div class="row"><div class="price">R$ 79,90</div><a class="btn pri sm" href="https://go.hotmart.com/G108024565R" target="_blank" rel="noopener">Comprar</a></div><a class="pc-free" href="simulados/">▶ Fazer simulado grátis</a></div></article><article class="pc glass" data-g="hospitalar"><div class="pc-im"><img src="img/o_higien.webp" alt="Higienização Hospitalar" width="900" height="600" loading="lazy"><span class="flag">1.000 questões</span></div><div class="pc-b"><h3 class="cond">Higienização Hospitalar</h3><p>100 Português + 300 Legislação + 100 Conhecimentos Específicos + 500 simulados.</p><div class="row"><div class="price">R$ 57,90</div><a class="btn pri sm" href="https://go.hotmart.com/T108466669M" target="_blank" rel="noopener">Comprar</a></div></div></article><article class="pc glass" data-g="hospitalar"><div class="pc-im"><img src="img/o_aux_geral.webp" alt="Apostila Auxiliar Geral Hospitalar" width="900" height="600" loading="lazy"><span class="flag">Apostila</span></div><div class="pc-b"><h3 class="cond">Apostila Auxiliar Geral Hospitalar</h3><p>Base de estudo para auxiliar geral em ambiente hospitalar.</p><div class="row"><div class="price">R$ 54,90</div><a class="btn pri sm" href="https://go.hotmart.com/K97658214P" target="_blank" rel="noopener">Comprar</a></div></div></article><article class="pc glass" data-g="policia"><div class="pc-im"><img src="img/o_pp.webp" alt="Rota Polícia Penal" width="900" height="600" loading="lazy"><span class="flag">Polícia Penal</span></div><div class="pc-b"><h3 class="cond">Rota Polícia Penal</h3><p>Teoria, TAF e simulado em um só material.</p><div class="row"><div class="price">R$ 89,90</div><a class="btn pri sm" href="https://go.hotmart.com/M108493717F" target="_blank" rel="noopener">Comprar</a></div></div></article><article class="pc glass" data-g="transito"><div class="pc-im"><img src="img/o_eptc.webp" alt="Rota EPTC 01/2026" width="900" height="600" loading="lazy"><span class="flag">EPTC 01/2026</span></div><div class="pc-b"><h3 class="cond">Rota EPTC 01/2026</h3><p>Preparação para o concurso EPTC de Porto Alegre.</p><div class="row"><div class="price">R$ 77,77</div><a class="btn pri sm" href="https://go.hotmart.com/W107431430L" target="_blank" rel="noopener">Comprar</a></div></div></article><article class="pc glass" data-g="taf"><div class="pc-im"><img src="img/o_taf.webp" alt="Como ser aprovado no TAF" width="900" height="600" loading="lazy"><span class="flag">TAF</span></div><div class="pc-b"><h3 class="cond">Como ser aprovado no TAF</h3><p>Guia para o teste de aptidão física.</p><div class="row"><div class="price">R$ 69,90</div><a class="btn pri sm" href="https://go.hotmart.com/B104624799S" target="_blank" rel="noopener">Comprar</a></div></div></article></div><div class="dots"></div>
+ <div class="cpn glass"><div class="t"><b class="gold">Cupom OURO87</b><span>No Auxiliar Administrativo Hospitalar: de R$ 112,21 por R$ 86,96, até 21/11.</span></div>
+  <div class="cd" data-end="2026-11-21T23:59:59-03:00"><div><b>00</b><small>dias</small></div><div><b>00</b><small>horas</small></div><div><b>00</b><small>min</small></div><div><b>00</b><small>seg</small></div></div>
+  <button class="code" data-code="OURO87" aria-label="Copiar cupom OURO87">OURO87 · copiar</button></div>
+</section>
+
+<section id="simulados" class="sec container rev">
+ <div class="two">
+  <div class="cta-card glass sim-card"><div class="eyebrow">Grátis · HCPA 2026</div><h2 class="cond">Treine no formato <span class="gold">da prova</span></h2>
+   <p class="sub" style="margin-bottom:16px">Simulados de Assistente Administrativo II no padrão FAURGS: 40 questões, cronômetro de 3 horas e gabarito comentado em todas.</p>
+   <ul class="ticks"><li>3 simulados completos liberados, sem cadastro</li><li>Correção pelo critério do edital: 24 acertos e 2 em cada básica</li><li>Treino por assunto e revisão das questões que você errou</li><li>Funciona no celular, direto no navegador</li></ul>
+   <div class="acts"><a class="btn pri" href="simulados/">Fazer simulado grátis</a><a class="btn gh" href="https://go.hotmart.com/G108024565R" target="_blank" rel="noopener">Apostila HCPA · R$ 79,90</a></div></div>
+  <div class="sim-num glass"><div><b class="gold">26</b><span>simulados no total</span></div><div><b class="gold">1.040</b><span>questões comentadas</span></div><div><b class="gold">3</b><span>grátis para testar agora</span></div><p>Os outros 23 simulados são liberados para quem comprou a apostila do HCPA.</p></div>
+ </div>
+</section>
+
+<section id="como" class="sec container rev">
+ <div class="sec-h"><div class="eyebrow">Como funciona</div><h2 class="cond">Três passos <span class="gold">simples</span></h2></div>
+ <div class="steps" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
+  <div class="step glass"><div class="n gold">01</div><div><h3 class="cond">Escolha seu cargo</h3><p>Use o filtro acima e veja o material do seu concurso.</p></div></div>
+  <div class="step glass"><div class="n gold">02</div><div><h3 class="cond">Compre pela Hotmart</h3><p>Compra segura, com acesso imediato ao material.</p></div></div>
+  <div class="step glass"><div class="n gold">03</div><div><h3 class="cond">Estude com método</h3><p>Questões, simulados e material de apoio para treinar.</p></div></div>
+ </div>
+</section>
+
+<section id="duvidas" class="sec container rev">
+ <div class="two">
+  <div class="cta-card glass"><div class="eyebrow">Ficou em dúvida?</div><h2 class="cond">Fale com o <span class="gold">Ouro Concursos</span></h2><p class="sub" style="margin-bottom:18px">Não sabe qual material combina com o seu edital? Chame no direct do Instagram.</p><div class="acts"><a class="btn pri" href="https://www.instagram.com/ouro.concursos/" target="_blank" rel="noopener">Chamar no Instagram</a><a class="btn gh" href="#materiais">Voltar aos materiais</a></div></div>
+  <div>
+   <details class="glass"><summary>Como recebo o material?</summary><p>A compra é feita pela Hotmart, com acesso imediato. Você acessa o material pela própria Hotmart.</p></details>
+   <details class="glass"><summary>O material tem vínculo com a banca ou o órgão?</summary><p>Não. É material independente de preparação, sem vínculo com bancas ou instituições.</p></details>
+   <details class="glass"><summary>Qual material escolher?</summary><p>Escolha pelo cargo do seu edital usando o filtro. Em dúvida, chame no direct do @ouro.concursos.</p></details>
+   <details class="glass"><summary>Posso tirar dúvidas antes de comprar?</summary><p>Pode. Mande uma mensagem no direct do Instagram do Ouro Concursos.</p></details>
+  </div>
+ </div>
+</section>
+</main>
+<footer><div class="container"><div class="soc"><a href="https://www.instagram.com/ouro.concursos/" target="_blank" rel="noopener">Instagram</a><a href="#materiais">Materiais</a><a href="simulados/">Simulados grátis</a><a href="#duvidas">Dúvidas</a></div><div class="soc parc"><span>Projetos parceiros:</span><a href="https://aimoreperformance.netlify.app/" target="_blank" rel="noopener">Aimoré Performance · preparação para TAF</a><a href="https://alleanzafutsalpro.netlify.app/" target="_blank" rel="noopener">Alleanza Futsal</a></div><div>Ouro Concursos · Material independente de preparação, sem vínculo com bancas ou instituições. Compra segura pela Hotmart.</div></div></footer>
+<div class="dock"><a class="btn gh" href="#materiais">Materiais</a><a class="btn pri" href="https://www.instagram.com/ouro.concursos/" target="_blank" rel="noopener">Instagram</a></div>
+<script>(function(){
+  var root=document.documentElement,reduce=matchMedia('(prefers-reduced-motion:reduce)').matches,fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+  var $=function(s,c){return (c||document).querySelector(s)},$$=function(s,c){return [].slice.call((c||document).querySelectorAll(s))};
+
+  // luz que segue o cursor (desktop) / toque
+  var glow=$('.glow');
+  function mv(e){var t=e.touches?e.touches[0]:e;glow.style.setProperty('--mx',t.clientX+'px');glow.style.setProperty('--my',t.clientY+'px')}
+  if(glow&&!reduce){addEventListener('pointermove',mv,{passive:true});addEventListener('touchmove',mv,{passive:true})}
+
+  // progresso, dock, scroll-spy
+  var prog=$('.prog'),dock=$('.dock'),links=$$('.nav a'),secs=links.map(function(a){return $(a.getAttribute('href'))}),tick=false;
+  function onScroll(){
+    var y=scrollY,max=document.documentElement.scrollHeight-innerHeight;
+    if(prog)prog.style.transform='scaleX('+(max>0?y/max:0)+')';
+    if(dock)dock.classList.toggle('show',y>innerHeight*.5);
+    var cur=-1;secs.forEach(function(s,i){if(s&&s.getBoundingClientRect().top<innerHeight*.4)cur=i});
+    links.forEach(function(a,i){a.classList.toggle('on',i===cur)});
+    tick=false;
+  }
+  addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(onScroll)}},{passive:true});onScroll();
+
+  // revelar ao rolar
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.1});
+  $$('.rev').forEach(function(el){io.observe(el)});
+
+  // inclinação 3D + botão magnético (só mouse)
+  if(fine&&!reduce){
+    $$('.pc,.mod,.step').forEach(function(c){
+      c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform='perspective(900px) rotateY('+(x*7)+'deg) rotateX('+(-y*7)+'deg) translateY(-4px)'});
+      c.addEventListener('pointerleave',function(){c.style.transform=''});
+    });
+    $$('.btn.pri').forEach(function(b){
+      b.addEventListener('pointermove',function(e){var r=b.getBoundingClientRect();b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.12)+'px,'+((e.clientY-r.top-r.height/2)*.2-2)+'px)'});
+      b.addEventListener('pointerleave',function(){b.style.transform=''});
+    });
+  }
+
+  // abas (setas do teclado)
+  var tabs=$$('.tab');
+  tabs.forEach(function(t,i){t.addEventListener('keydown',function(e){var n=e.key==='ArrowRight'||e.key==='ArrowDown'?1:e.key==='ArrowLeft'||e.key==='ArrowUp'?-1:0;if(n){e.preventDefault();var x=tabs[(i+n+tabs.length)%tabs.length];x.focus();x.click()}})});
+
+  // pontos do carrossel (celular)
+  var grid=$('.grid'),dots=$('.dots');
+  function buildDots(){
+    if(!grid||!dots)return;var cards=$$('.pc',grid).filter(function(c){return !c.classList.contains('hide')});
+    dots.innerHTML=cards.map(function(_,i){return '<i'+(i===0?' class="on"':'')+'></i>'}).join('');
+    $$('i',dots).forEach(function(d,i){d.onclick=function(){var c=cards[i];grid.scrollTo({left:c.offsetLeft-(grid.clientWidth-c.offsetWidth)/2,behavior:reduce?'auto':'smooth'})}});
+  }
+  if(grid&&dots){
+    grid.addEventListener('scroll',function(){
+      var cards=$$('.pc',grid).filter(function(c){return !c.classList.contains('hide')}),c0=grid.scrollLeft+grid.clientWidth/2,best=0,bd=1e9;
+      cards.forEach(function(c,i){var d=Math.abs(c.offsetLeft+c.offsetWidth/2-c0);if(d<bd){bd=d;best=i}});
+      $$('i',dots).forEach(function(d,i){d.classList.toggle('on',i===best)});
+    },{passive:true});
+    buildDots();window.__buildDots=buildDots;
+  }
+
+  // filtro de produtos (se houver)
+  var fs=$$('.chip-f');
+  fs.forEach(function(b){b.addEventListener('click',function(){
+    fs.forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+    var g=b.dataset.g;
+    $$('.pc').forEach(function(c){var show=g==='all'||c.dataset.g===g;c.classList.toggle('hide',!show);if(show){c.style.animation='none';void c.offsetWidth;c.style.animation='pop .5s cubic-bezier(.2,.8,.2,1)'}});
+    if(grid)grid.scrollTo({left:0});buildDots();
+  })});
+
+  // copiar cupom
+  var code=$('.code');
+  if(code)code.addEventListener('click',function(){
+    var t=code.dataset.code,done=function(){var o=code.textContent;code.textContent='Copiado!';setTimeout(function(){code.textContent=o},1600)};
+    try{navigator.clipboard.writeText(t).then(done,done)}catch(e){done()}
+  });
+
+  // contagem regressiva (se houver)
+  var cd=$('.cd');
+  if(cd){
+    var end=new Date(cd.dataset.end).getTime(),box=cd.closest('.cpn');
+    function t(){var d=end-Date.now();if(d<=0){cd.style.display='none';return}
+      var v=[Math.floor(d/864e5),Math.floor(d%864e5/36e5),Math.floor(d%36e5/6e4),Math.floor(d%6e4/1e3)];
+      $$('b',cd).forEach(function(b,i){b.textContent=String(v[i]).padStart(2,'0')})}
+    t();setInterval(t,1000);
+  }
+})();
+
+</script></body></html>

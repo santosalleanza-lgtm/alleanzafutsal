@@ -1,0 +1,29 @@
+# Site Ouro Concursos: catálogo (/) + simulados HCPA (/simulados/) + funções de liberação (/api/*).
+# No Netlify: Base directory = ouro. As funções precisam das variáveis DADOS_CHAVE, CODIGO_SEGREDO e ADMIN_SENHA.
+[build]
+  publish = "."
+
+[functions]
+  directory = "netlify/functions"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/simulados/admin.html"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# Endereço antigo do app (quando ele era o site inteiro)
+[[redirects]]
+  from = "/admin.html"
+  to = "/simulados/admin.html"
+  status = 301

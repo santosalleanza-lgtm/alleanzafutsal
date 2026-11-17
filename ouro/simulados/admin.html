@@ -56,7 +56,7 @@ f.onsubmit=async e=>{
  const j=await r.json().catch(()=>({erro:'Falha na conexão.'}));
  if(!r.ok){err.textContent=j.erro||'Erro.';return}
  try{sessionStorage.setItem('adm',f.senha.value)}catch(e){}
- const site=location.origin+'/';
+ const site=location.origin+'/simulados/';
  const msg=`Olá! Seus simulados do HCPA 2026 foram liberados.\n\nAbra ${site}, toque em qualquer simulado bloqueado e digite:\nE-mail: ${j.email}\nCódigo: ${j.codigo}\n\nBons estudos!`;
  document.getElementById('em').textContent=j.email;
  document.getElementById('cod').textContent=j.codigo;
