@@ -79,11 +79,23 @@ input::placeholder, textarea::placeholder{color:rgba(240,236,226,0.35);}
 .check:first-child{border-top:none;padding-top:0;}
 .check input{width:22px;height:22px;flex-shrink:0;margin:1px 0 0;accent-color:var(--gold);-webkit-appearance:auto;appearance:auto;}
 .check span{font-size:13.5px;line-height:1.55;color:rgba(240,236,226,0.85);}
+.opcao{display:flex;gap:12px;align-items:flex-start;padding:14px;border:1px solid rgba(255,255,255,0.12);border-radius:14px;margin-bottom:10px;cursor:pointer;transition:border-color .2s var(--ease), background .2s var(--ease);}
+.opcao:last-of-type{margin-bottom:0;}
+.opcao input{width:22px;height:22px;flex-shrink:0;margin:1px 0 0;accent-color:var(--gold);-webkit-appearance:auto;appearance:auto;}
+.opcao b{display:block;font-size:14.5px;margin-bottom:3px;}
+.opcao small{display:block;font-size:12.5px;line-height:1.5;color:var(--muted);}
+.opcao.on{border-color:rgba(212,175,95,0.7);background:rgba(212,175,95,0.08);}
+.opcao.falta{border-color:rgba(240,147,141,0.8);}
+.pix{display:none;margin:10px 0 0;padding:12px 14px;border-radius:12px;background:rgba(0,0,0,0.25);border:1px dashed rgba(212,175,95,0.5);font-size:13px;line-height:1.55;}
+.pix code{font-family:inherit;font-weight:700;color:var(--gold-light);word-break:break-all;}
+.pix button{margin-top:8px;background:rgba(212,175,95,0.16);color:var(--gold-light);border:1px solid rgba(212,175,95,0.45);border-radius:10px;padding:8px 12px;font:600 13px 'Inter',sans-serif;cursor:pointer;}
+.reserva{display:none;margin-top:12px;}
+.redir{font-size:13px;color:var(--gold-light);margin:-6px 0 18px;}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
 .erro-box{display:none;background:rgba(198,54,47,0.12);border:1px solid rgba(198,54,47,0.4);color:var(--erro);
   border-radius:12px;padding:12px 14px;font-size:13.5px;line-height:1.5;margin-bottom:14px;}
 .btn{
-  display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
+  display:flex;align-items:center;justify-content:center;gap:8px;width:100%;text-decoration:none;text-align:center;
   border:none;border-radius:14px;padding:16px 20px;cursor:pointer;
   font-family:'Inter',sans-serif;font-size:15.5px;font-weight:800;letter-spacing:.3px;
   background:linear-gradient(135deg,var(--gold-light) 0%,var(--gold) 45%,var(--gold-deep) 100%);color:#0a1729;
@@ -192,6 +204,36 @@ footer{text-align:center;font-size:11px;color:rgba(240,236,226,0.35);margin-top:
       <label class="check"><input type="checkbox" id="aceite"><span>Declaro que as informações são verdadeiras e que sou o responsável legal pelo atleta. <span class="req">*</span></span></label>
     </div>
 
+    <div class="card">
+      <h2><span class="n">4</span>Inscrição e uniforme</h2>
+      <label class="opcao" id="op-pagar">
+        <input type="checkbox" id="pagarInscricao">
+        <span><b>Quero inscrever e pagar a inscrição <span class="req">*</span></b>
+        <small>Estou ciente de que a matrícula só é confirmada após o pagamento da taxa de inscrição. O valor atual é informado pela Alleanza no WhatsApp.</small></span>
+      </label>
+      <div class="pix" id="pix">
+        Pagamento por Pix (e-mail): <code id="pix-chave"></code><br>
+        <button type="button" id="btn-copiar-pix">Copiar chave Pix</button>
+      </div>
+      <label class="opcao" id="op-uniforme" style="margin-top:10px;">
+        <input type="checkbox" id="reservaUniforme">
+        <span><b>Quero reservar o uniforme</b>
+        <small>Escolha os tamanhos. Valor, pagamento e entrega são combinados pelo WhatsApp.</small></span>
+      </label>
+      <div class="reserva" id="reserva">
+        <div class="row">
+          <div class="field">
+            <label for="reservaCamisa">Tamanho da camisa <span class="req">*</span></label>
+            <select id="reservaCamisa"></select>
+          </div>
+          <div class="field">
+            <label for="reservaCalcao">Tamanho do calção <span class="req">*</span></label>
+            <select id="reservaCalcao"></select>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- campo isca para robôs: pessoas não veem -->
     <div class="hp" aria-hidden="true"><label for="site">Site</label><input id="site" name="site" tabindex="-1" autocomplete="off"></div>
 
@@ -202,9 +244,11 @@ footer{text-align:center;font-size:11px;color:rgba(240,236,226,0.35);margin-top:
 
   <div class="card sucesso" id="sucesso">
     <div class="ic"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
-    <h2>Inscrição enviada!</h2>
+    <h2>Inscrição concluída!</h2>
     <p id="sucesso-txt">Recebemos a ficha. A Alleanza vai entrar em contato pelo WhatsApp para confirmar a matrícula.</p>
-    <a class="btn" id="btn-whats" href="#" target="_blank" rel="noopener">Falar com a Alleanza no WhatsApp</a>
+    <p class="redir" id="redir-txt"></p>
+    <a class="btn" id="btn-site" href="https://alleanzafutsalpro.netlify.app/">Ir para o site do clube</a>
+    <a class="btn btn-sec" id="btn-whats" href="#" target="_blank" rel="noopener">Falar com a Alleanza no WhatsApp</a>
     <button class="btn btn-sec" id="btn-outra" type="button">Inscrever outro filho(a)</button>
   </div>
 
@@ -223,6 +267,10 @@ const firebaseConfig = {
   appId: "1:471864636284:web:4e4554225a2fe3a2c8eaf9"
 };
 const WHATS_ALLEANZA = '5551991925356';
+const PIX_CHAVE = 'aimore.weren@gmail.com';
+const SITE_CLUBE = 'https://alleanzafutsalpro.netlify.app/';
+const SEGUNDOS_REDIRECIONAR = 10;
+const TAMANHOS_UNIFORME = ['8','10','12','14','16','PP','P','M','G'];
 
 const form = document.getElementById('form');
 const erroBox = document.getElementById('erro-box');
@@ -236,6 +284,48 @@ const $ = id => document.getElementById(id);
   $('nascimento').max = fmt(new Date(hoje.getFullYear()-3, hoje.getMonth(), hoje.getDate()));
   $('nascimento').min = fmt(new Date(hoje.getFullYear()-20, 0, 1));
 })();
+
+// Opções de inscrição e reserva de uniforme
+(function(){
+  const opts = '<option value="">Selecione</option>' + TAMANHOS_UNIFORME.map(t=>'<option>'+t+'</option>').join('');
+  $('reservaCamisa').innerHTML = opts;
+  $('reservaCalcao').innerHTML = opts;
+  $('pix-chave').textContent = PIX_CHAVE;
+  $('pagarInscricao').addEventListener('change', e=>{
+    $('op-pagar').classList.toggle('on', e.target.checked);
+    $('op-pagar').classList.remove('falta');
+    $('pix').style.display = e.target.checked ? 'block' : 'none';
+  });
+  $('reservaUniforme').addEventListener('change', e=>{
+    $('op-uniforme').classList.toggle('on', e.target.checked);
+    $('reserva').style.display = e.target.checked ? 'block' : 'none';
+    // Se já escolheu o tamanho do uniforme acima, já vem preenchido.
+    if(e.target.checked && !$('reservaCamisa').value && TAMANHOS_UNIFORME.includes($('tamanhoCamisa').value)){
+      $('reservaCamisa').value = $('tamanhoCamisa').value;
+      $('reservaCalcao').value = $('tamanhoCamisa').value;
+    }
+  });
+  $('btn-copiar-pix').addEventListener('click', async ()=>{
+    try{ await navigator.clipboard.writeText(PIX_CHAVE); $('btn-copiar-pix').textContent = 'Chave copiada ✓'; }
+    catch(err){ $('btn-copiar-pix').textContent = 'Toque e segure a chave para copiar'; }
+  });
+})();
+
+let timerRedirecionar = null;
+function cancelarRedirecionamento(){
+  if(timerRedirecionar){ clearInterval(timerRedirecionar); timerRedirecionar = null; }
+  $('redir-txt').textContent = '';
+}
+function iniciarRedirecionamento(){
+  let s = SEGUNDOS_REDIRECIONAR;
+  const atualizar = ()=>{ $('redir-txt').textContent = 'Você será levado ao site do clube em ' + s + ' segundo' + (s === 1 ? '' : 's') + '.'; };
+  atualizar();
+  timerRedirecionar = setInterval(()=>{
+    s--;
+    if(s <= 0){ cancelarRedirecionamento(); window.location.href = SITE_CLUBE; return; }
+    atualizar();
+  }, 1000);
+}
 
 // Máscara do WhatsApp: (51) 99999-9999
 $('telefone').addEventListener('input', e=>{
@@ -275,6 +365,13 @@ form.addEventListener('submit', async e=>{
   if(!responsavel) return mostrarErro('Informe o nome do responsável.', $('responsavel'));
   if(telefone.length < 10) return mostrarErro('Informe um WhatsApp com DDD, por exemplo (51) 99999-9999.', $('telefone'));
   if(email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return mostrarErro('Confira o e-mail digitado.', $('email'));
+  if(!$('pagarInscricao').checked){
+    $('op-pagar').classList.add('falta');
+    return mostrarErro('Marque "Quero inscrever e pagar a inscrição" para enviar a ficha. A matrícula só é confirmada após o pagamento.', null);
+  }
+  const reserva = $('reservaUniforme').checked;
+  if(reserva && !$('reservaCamisa').value) return mostrarErro('Escolha o tamanho da camisa do uniforme.', $('reservaCamisa'));
+  if(reserva && !$('reservaCalcao').value) return mostrarErro('Escolha o tamanho do calção do uniforme.', $('reservaCalcao'));
   if(!$('aceite').checked) return mostrarErro('Marque a declaração de responsável para enviar.', null);
 
   const [y, m, d] = nascISO.split('-');
@@ -284,6 +381,8 @@ form.addEventListener('submit', async e=>{
     escola: limpo('escola', 120), responsavel, telefone, email,
     filiacaoMae: limpo('filiacaoMae', 120), filiacaoPai: limpo('filiacaoPai', 120),
     observacoes: limpo('observacoes', 600), autorizaImagem: $('autorizaImagem').checked,
+    pagarInscricao: true, reservaUniforme: reserva,
+    reservaCamisa: reserva ? $('reservaCamisa').value : '', reservaCalcao: reserva ? $('reservaCalcao').value : '',
     criadoEm: firebase.firestore.FieldValue.serverTimestamp()
   };
 
@@ -293,12 +392,15 @@ form.addEventListener('submit', async e=>{
     if(!firebase.apps.length) firebase.initializeApp(firebaseConfig);
     await firebase.firestore().collection('inscricoes').add(ficha);
     const primeiro = nome.split(' ')[0];
-    $('sucesso-txt').textContent = 'Recebemos a ficha de ' + primeiro + '. A Alleanza vai entrar em contato pelo WhatsApp para confirmar a matrícula.';
+    $('sucesso-txt').textContent = 'Inscrição de ' + primeiro + ' concluída' + (reserva ? ', com o uniforme reservado' : '') +
+      '. A Alleanza vai chamar você no WhatsApp para informar o valor da inscrição e confirmar a matrícula.';
     $('btn-whats').href = 'https://api.whatsapp.com/send?phone=' + WHATS_ALLEANZA + '&text=' +
-      encodeURIComponent('Olá! Acabei de enviar a ficha de inscrição de ' + nome + ' pelo site da Alleanza.');
+      encodeURIComponent('Olá! Acabei de enviar a ficha de inscrição de ' + nome + ' pelo site da Alleanza e quero pagar a inscrição.' +
+        (reserva ? ' Também reservei o uniforme (camisa ' + ficha.reservaCamisa + ', calção ' + ficha.reservaCalcao + ').' : ''));
     form.style.display = 'none';
     $('sucesso').style.display = 'block';
     window.scrollTo({top:0, behavior:'smooth'});
+    iniciarRedirecionamento();
   }catch(err){
     console.error(err);
     mostrarErro('Não foi possível enviar agora. Verifique sua internet e tente de novo. Se continuar, chame a Alleanza no WhatsApp.', null);
@@ -308,7 +410,11 @@ form.addEventListener('submit', async e=>{
   }
 });
 
+$('btn-whats').addEventListener('click', cancelarRedirecionamento);
 $('btn-outra').addEventListener('click', ()=>{
+  cancelarRedirecionamento();
+  ['reservaCamisa','reservaCalcao'].forEach(id=>$(id).value = '');
+  $('reservaUniforme').checked = false; $('op-uniforme').classList.remove('on'); $('reserva').style.display = 'none';
   ['nome','nascimento','rg','escola','observacoes'].forEach(id=>$(id).value = '');
   $('tamanhoCamisa').value = ''; $('jaJogou').value = ''; $('autorizaImagem').checked = false;
   $('sucesso').style.display = 'none';

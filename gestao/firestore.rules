@@ -28,7 +28,8 @@ service cloud.firestore {
       allow create: if request.resource.data.keys().hasOnly([
             'nome','nascimento','rg','tamanhoCamisa','jaJogou','escola',
             'responsavel','telefone','email','filiacaoMae','filiacaoPai',
-            'observacoes','autorizaImagem','criadoEm'])
+            'observacoes','autorizaImagem','criadoEm',
+            'pagarInscricao','reservaUniforme','reservaCamisa','reservaCalcao'])
         && request.resource.data.nome is string
         && request.resource.data.nome.size() >= 3 && request.resource.data.nome.size() <= 120
         && request.resource.data.responsavel is string
@@ -42,6 +43,10 @@ service cloud.firestore {
         && texto('filiacaoMae', 120) && texto('filiacaoPai', 120)
         && texto('observacoes', 600)
         && request.resource.data.get('autorizaImagem', false) is bool
+        // Ficha só entra com o "quero inscrever e pagar a inscrição" marcado.
+        && request.resource.data.get('pagarInscricao', false) == true
+        && request.resource.data.get('reservaUniforme', false) is bool
+        && texto('reservaCamisa', 4) && texto('reservaCalcao', 4)
         && request.resource.data.criadoEm == request.time;
       allow read, delete: if isAdmin();
     }

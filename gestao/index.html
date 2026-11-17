@@ -855,6 +855,32 @@ tr.linha-pendente td{background:rgba(212,175,95,0.045);}
 .item-ped-top strong{font-size:12.5px;color:var(--gold-light);letter-spacing:.5px;}
 .ped-total{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;background:rgba(212,175,95,0.08);border:1px solid rgba(212,175,95,0.25);border-radius:12px;padding:10px 14px;margin:6px 0 14px;font-size:13px;}
 .ped-total strong{font-size:17px;color:var(--gold-light);}
+
+/* ---------- Vestiário ---------- */
+.vst-h2{font-size:15px;margin:22px 0 10px;color:var(--gold-light);letter-spacing:.5px;}
+.vst-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;}
+.vst-card{margin:0;display:flex;flex-direction:column;gap:10px;}
+.vst-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;}
+.vst-sub{font-size:12px;color:var(--muted);margin-top:2px;}
+.vst-total{font-family:'Playfair Display',serif;font-size:24px;font-weight:800;color:var(--gold-light);text-align:right;line-height:1;}
+.vst-total small{display:block;font-family:'Inter',sans-serif;font-size:10.5px;font-weight:500;color:var(--muted);}
+.vst-chips{display:flex;flex-wrap:wrap;gap:6px;}
+.vst-chip{display:inline-flex;gap:6px;align-items:center;font-size:12px;padding:4px 9px;border-radius:999px;background:rgba(255,255,255,0.05);border:1px solid var(--line);}
+.vst-chip b{color:var(--gold-light);}
+.vst-aviso{font-size:12px;color:#f0938d;font-weight:600;margin-top:2px;}
+.vst-obs{font-size:12px;color:var(--muted);font-style:italic;margin-top:2px;}
+.vst-acoes{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;}
+.vst-alerta{border-color:rgba(240,147,141,0.55) !important;}
+.vst-mat{display:flex;align-items:center;gap:10px;padding:12px 0;border-top:1px solid rgba(255,255,255,0.06);}
+.vst-mat:first-child{border-top:none;}
+.vst-mat.vst-alerta{border-color:rgba(255,255,255,0.06) !important;}
+.vst-pm{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,0.05);color:var(--cream, #f3efe6);font-size:18px;font-weight:700;cursor:pointer;flex-shrink:0;}
+.vst-total,.vst-qtd{font-variant-numeric:lining-nums;}
+.vst-qtd{min-width:34px;text-align:center;font-family:'Playfair Display',serif;font-size:20px;font-weight:800;color:var(--gold-light);}
+.vst-tam-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(70px,1fr));gap:8px;margin-bottom:14px;}
+.vst-tam{display:flex;flex-direction:column;gap:4px;font-size:12px;text-align:center;}
+.vst-tam span{color:var(--gold-light);font-weight:700;}
+.vst-tam input{text-align:center;padding:8px 4px;}
 </style>
 </head>
 <body>
@@ -944,6 +970,7 @@ tr.linha-pendente td{background:rgba(212,175,95,0.045);}
       <button data-view="escalacao"><span class="ic">📋</span>Escalação</button>
       <button data-view="competicoes"><span class="ic">🏆</span>Competições</button>
       <button data-view="calendario"><span class="ic">📅</span>Calendário</button>
+      <button data-view="vestiario"><span class="ic">👕</span>Vestiário</button>
       <div class="sb-title">Sistema</div>
       <button data-view="historico"><span class="ic">🕓</span>Histórico</button>
       <button data-view="config"><span class="ic">⚙️</span>Configurações</button>
@@ -971,6 +998,7 @@ tr.linha-pendente td{background:rgba(212,175,95,0.045);}
       <button data-view="escalacao">📋 Escalação</button>
       <button data-view="competicoes">🏆 Competições</button>
       <button data-view="calendario">📅 Calendário</button>
+      <button data-view="vestiario">👕 Vestiário</button>
       <button data-view="desistencias">🚪 Desistências</button>
       <button data-view="historico">🕓 Histórico</button>
       <button data-view="config">⚙️ Config</button>
@@ -1357,7 +1385,7 @@ function receitaEhAoVivo(ano, mesKey){
 const STORAGE_KEY = 'alleanzaPainelDB_v1'; // cache local — usado como fallback se o Firebase não estiver configurado, e como cópia de segurança extra
 
 function seedDBFresh(){
-  return { atletas: seedAtletas(), competicoes: seedCompeticoes(), balanco: seedBalanco(), pedidos: seedPedidos(), pedidosImportadosPlanilha: true, lotes: [], log: [], valorMensalidade: 90, valorMatricula: 75 };
+  return { atletas: seedAtletas(), competicoes: seedCompeticoes(), balanco: seedBalanco(), pedidos: seedPedidos(), pedidosImportadosPlanilha: true, lotes: [], log: [], valorMensalidade: 90, valorMatricula: 75, vestiario: seedVestiario() };
 }
 
 /* Aplica todas as migrações de formato a um objeto DB vindo de qualquer fonte
@@ -1410,6 +1438,7 @@ function migrarDB(parsed){
   if(!parsed.pedidos) parsed.pedidos = seedPedidos();
   if(!parsed.log) parsed.log = [];
   if(!parsed.lotes) parsed.lotes = [];
+  if(!parsed.vestiario || !Array.isArray(parsed.vestiario.itens)) parsed.vestiario = seedVestiario();
   parsed.pedidos.forEach(p=>{
     if(p.loteId === undefined) p.loteId = null;
     if(p.observacao === undefined) p.observacao = '';
@@ -1631,7 +1660,9 @@ function render(){
   else if(currentView === 'escalacao') main.innerHTML = viewEscalacao();
   else if(currentView === 'desistencias') main.innerHTML = viewDesistencias();
   else if(currentView === 'config') main.innerHTML = viewConfig();
+  else if(currentView === 'vestiario') main.innerHTML = viewVestiario();
   bindViewEvents();
+  if(currentView === 'vestiario') bindVestiario();
   atualizarBadgeInscricoes();
 }
 
@@ -2761,7 +2792,7 @@ function viewHistorico(){
 
   const corArea = {
     'Mensalidades':'#8fd6a8', 'Balanço':'#7dc4e0', 'Competições':'var(--gold-light)',
-    'Pedidos':'#f0938d', 'Inscrições':'#e4c878', 'Elenco':'#7dc4e0', 'Desistências':'#f0938d', 'Configurações':'var(--muted)'
+    'Pedidos':'#f0938d', 'Inscrições':'#e4c878', 'Elenco':'#7dc4e0', 'Desistências':'#f0938d', 'Configurações':'var(--muted)', 'Vestiário':'#b9a0e8'
   };
 
   const blocos = Object.keys(grupos).map(dia=>{
@@ -2883,6 +2914,276 @@ function viewConfig(){
   `;
 }
 
+
+/* ============================================================
+   VESTIÁRIO — estoque de uniformes (por tipo e tamanho) e de
+   materiais esportivos (bolas, coletes, cones...). Fica em
+   DB.vestiario, no mesmo documento do painel.
+============================================================ */
+const VEST_TAMANHOS = ['6','8','10','12','14','16','PP','P','M','G','GG','XG'];
+const VEST_CATEGORIAS_UNIFORME = ['Camiseta de jogo','Camiseta de treino','Camiseta manga curta','Camisa de goleiro',
+  'Calção','Calça de goleiro','Meias','Agasalho','Outro vestuário'];
+const VEST_CATEGORIAS_MATERIAL = ['Bola','Colete','Cone','Chapéu chinês','Escada de agilidade','Barreira',
+  'Goleira / rede','Bomba de ar','Kit de primeiros socorros','Outro material'];
+const VEST_TIPOS_UNIFORME = ['Jogo — principal','Jogo — reserva','Treino','Goleiro','Passeio','Comissão técnica'];
+let filtroVestiario = '';
+let buscaVestiario = '';
+
+function seedVestiario(){
+  const u = (categoria, tipoUniforme)=>({ id:uid('vst'), grupo:'uniforme', categoria, tipoUniforme, descricao:'',
+    tamanhos:{}, quantidade:0, minimo:0, obs:'' });
+  const m = (categoria)=>({ id:uid('vst'), grupo:'material', categoria, tipoUniforme:'', descricao:'',
+    tamanhos:{}, quantidade:0, minimo:0, obs:'' });
+  return { itens: [
+    u('Camiseta de jogo','Jogo — principal'), u('Camiseta de treino','Treino'), u('Camiseta manga curta','Treino'),
+    u('Camisa de goleiro','Goleiro'), u('Calção','Jogo — principal'), u('Meias','Jogo — principal'),
+    m('Bola'), m('Colete'), m('Cone')
+  ]};
+}
+function escVest(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function totalVestItem(it){
+  return it.grupo === 'uniforme'
+    ? Object.values(it.tamanhos || {}).reduce((s,n)=>s+(Number(n)||0), 0)
+    : (Number(it.quantidade) || 0);
+}
+function nomeVestItem(it){
+  return it.categoria + (it.tipoUniforme ? ' · ' + it.tipoUniforme : '') + (it.descricao ? ' (' + it.descricao + ')' : '');
+}
+function vestEmAlerta(it){ return it.minimo > 0 && totalVestItem(it) < it.minimo; }
+function tamanhosVestTexto(it){
+  const t = VEST_TAMANHOS.concat(Object.keys(it.tamanhos||{}).filter(k=>!VEST_TAMANHOS.includes(k)))
+    .filter(k=>(it.tamanhos||{})[k] > 0).map(k=>k + ': ' + it.tamanhos[k]);
+  return t.length ? t.join(' · ') : 'sem peças';
+}
+
+function viewVestiario(){
+  const itens = DB.vestiario.itens;
+  const uniformes = itens.filter(i=>i.grupo==='uniforme');
+  const materiais = itens.filter(i=>i.grupo==='material');
+  const pecas = uniformes.reduce((s,i)=>s+totalVestItem(i), 0);
+  const somaCat = cat=>materiais.filter(i=>i.categoria===cat).reduce((s,i)=>s+totalVestItem(i), 0);
+  const alertas = itens.filter(vestEmAlerta);
+  const busca = buscaVestiario.trim().toLowerCase();
+  const passa = it=>(!filtroVestiario || it.grupo===filtroVestiario) && (!busca || nomeVestItem(it).toLowerCase().includes(busca));
+
+  const cardUniforme = it=>{
+    const tams = VEST_TAMANHOS.concat(Object.keys(it.tamanhos||{}).filter(k=>!VEST_TAMANHOS.includes(k)));
+    const chips = tams.filter(k=>(it.tamanhos||{})[k] > 0)
+      .map(k=>`<span class="vst-chip"><b>${escVest(k)}</b>${it.tamanhos[k]}</span>`).join('') || '<span style="font-size:12px;color:var(--muted);">Nenhuma peça cadastrada</span>';
+    return `<div class="card vst-card ${vestEmAlerta(it)?'vst-alerta':''}">
+      <div class="vst-top">
+        <div><strong>${escVest(it.categoria)}</strong>
+          <div class="vst-sub">${escVest(it.tipoUniforme || 'Sem tipo')}${it.descricao ? ' · ' + escVest(it.descricao) : ''}</div></div>
+        <div class="vst-total">${totalVestItem(it)}<small>peças</small></div>
+      </div>
+      <div class="vst-chips">${chips}</div>
+      ${vestEmAlerta(it) ? `<div class="vst-aviso">⚠️ Abaixo do mínimo (${it.minimo})</div>` : ''}
+      ${it.obs ? `<div class="vst-obs">${escVest(it.obs)}</div>` : ''}
+      <div class="vst-acoes">
+        <button class="btn btn-gold btn-sm" data-vst-mov="${it.id}">↕️ Entrada / saída</button>
+        <button class="btn btn-ghost btn-sm" data-vst-edit="${it.id}">Editar</button>
+      </div>
+    </div>`;
+  };
+  const linhaMaterial = it=>`<div class="vst-mat ${vestEmAlerta(it)?'vst-alerta':''}">
+      <div style="flex:1;min-width:0;"><strong>${escVest(it.categoria)}</strong>${it.descricao ? ` <span class="vst-sub">· ${escVest(it.descricao)}</span>` : ''}
+        ${vestEmAlerta(it) ? `<div class="vst-aviso">⚠️ Abaixo do mínimo (${it.minimo})</div>` : ''}
+        ${it.obs ? `<div class="vst-obs">${escVest(it.obs)}</div>` : ''}</div>
+      <button class="vst-pm" data-vst-menos="${it.id}" aria-label="Tirar 1">−</button>
+      <span class="vst-qtd">${totalVestItem(it)}</span>
+      <button class="vst-pm" data-vst-mais="${it.id}" aria-label="Somar 1">+</button>
+      <button class="btn btn-ghost btn-sm" data-vst-edit="${it.id}">Editar</button>
+    </div>`;
+
+  const listaU = uniformes.filter(passa);
+  const listaM = materiais.filter(passa);
+  return `
+    <h1 class="view-title">Vestiário</h1>
+    <p class="view-sub">Estoque de uniformes por tipo e tamanho e dos materiais esportivos. Atualize sempre que entregar ou receber peças.</p>
+
+    <div class="grid-kpi">
+      <div class="kpi"><div class="kpi-ic">👕</div><div class="kpi-val">${pecas}</div><div class="kpi-label">Peças de uniforme</div></div>
+      <div class="kpi accent-gold"><div class="kpi-ic">⚽</div><div class="kpi-val">${somaCat('Bola')}</div><div class="kpi-label">Bolas</div></div>
+      <div class="kpi accent-green"><div class="kpi-ic">🦺</div><div class="kpi-val">${somaCat('Colete')}</div><div class="kpi-label">Coletes</div></div>
+      <div class="kpi accent-red"><div class="kpi-ic">⚠️</div><div class="kpi-val">${alertas.length}</div><div class="kpi-label">Itens abaixo do mínimo</div></div>
+    </div>
+
+    <div class="toolbar">
+      <select id="vst-filtro">
+        <option value="">Tudo</option>
+        <option value="uniforme" ${filtroVestiario==='uniforme'?'selected':''}>Uniformes</option>
+        <option value="material" ${filtroVestiario==='material'?'selected':''}>Materiais esportivos</option>
+      </select>
+      <input type="text" id="vst-busca" placeholder="Buscar (ex.: goleiro, bola)" value="${escVest(buscaVestiario)}">
+      <button class="btn btn-ghost btn-sm" id="vst-copiar">📋 Copiar inventário</button>
+      <button class="btn btn-gold btn-sm" id="vst-novo" style="margin-left:auto;">+ Novo item</button>
+    </div>
+
+    ${filtroVestiario !== 'material' ? `
+      <h2 class="vst-h2">Uniformes</h2>
+      ${listaU.length ? `<div class="vst-grid">${listaU.map(cardUniforme).join('')}</div>` : '<div class="empty-state">Nenhum uniforme encontrado.</div>'}` : ''}
+    ${filtroVestiario !== 'uniforme' ? `
+      <h2 class="vst-h2">Materiais esportivos</h2>
+      ${listaM.length ? `<div class="card" style="padding:4px 16px;">${listaM.map(linhaMaterial).join('')}</div>` : '<div class="empty-state">Nenhum material encontrado.</div>'}` : ''}
+  `;
+}
+
+function textoInventarioVestiario(){
+  const itens = DB.vestiario.itens;
+  let t = '👕 *Vestiário Alleanza* — ' + new Date().toLocaleDateString('pt-BR') + '\n\n*Uniformes*\n';
+  itens.filter(i=>i.grupo==='uniforme').forEach(i=>{ t += '• ' + nomeVestItem(i) + ': ' + totalVestItem(i) + ' (' + tamanhosVestTexto(i) + ')\n'; });
+  t += '\n*Materiais*\n';
+  itens.filter(i=>i.grupo==='material').forEach(i=>{ t += '• ' + nomeVestItem(i) + ': ' + totalVestItem(i) + '\n'; });
+  return t;
+}
+
+function bindVestiario(){
+  const f = document.getElementById('vst-filtro');
+  if(!f) return;
+  f.addEventListener('change', e=>{ filtroVestiario = e.target.value; render(); });
+  const b = document.getElementById('vst-busca');
+  b.addEventListener('input', e=>{
+    buscaVestiario = e.target.value; const pos = e.target.selectionStart; render();
+    const nb = document.getElementById('vst-busca'); nb.focus(); try{ nb.setSelectionRange(pos,pos); }catch(err){}
+  });
+  document.getElementById('vst-novo').addEventListener('click', ()=>abrirModalVestItem(null));
+  document.getElementById('vst-copiar').addEventListener('click', async ()=>{
+    const txt = textoInventarioVestiario();
+    try{ await navigator.clipboard.writeText(txt); toast('Inventário copiado — cole no WhatsApp'); }
+    catch(err){ openModal(`<h3>Inventário</h3><textarea style="width:100%;min-height:260px;">${escVest(txt)}</textarea><div class="modal-actions"><button class="btn btn-ghost" id="vst-fechar">Fechar</button></div>`);
+      document.getElementById('vst-fechar').addEventListener('click', closeModal); }
+  });
+  document.querySelectorAll('[data-vst-edit]').forEach(el=>el.addEventListener('click', ()=>abrirModalVestItem(el.dataset.vstEdit)));
+  document.querySelectorAll('[data-vst-mov]').forEach(el=>el.addEventListener('click', ()=>abrirModalVestMov(el.dataset.vstMov)));
+  const ajustar = (id, delta)=>{
+    const it = DB.vestiario.itens.find(i=>i.id===id); if(!it) return;
+    const novo = Math.max(0, (Number(it.quantidade)||0) + delta);
+    if(novo === it.quantidade) return;
+    it.quantidade = novo;
+    logAcao('Vestiário', (delta>0?'Entrada':'Saída') + ' de 1 — ' + nomeVestItem(it) + ' (agora ' + novo + ')');
+    saveDB(); render();
+  };
+  document.querySelectorAll('[data-vst-mais]').forEach(el=>el.addEventListener('click', ()=>ajustar(el.dataset.vstMais, 1)));
+  document.querySelectorAll('[data-vst-menos]').forEach(el=>el.addEventListener('click', ()=>ajustar(el.dataset.vstMenos, -1)));
+}
+
+function abrirModalVestItem(id){
+  const existente = id ? DB.vestiario.itens.find(i=>i.id===id) : null;
+  const d = existente || { grupo:'uniforme', categoria:'Camiseta de jogo', tipoUniforme:'Jogo — principal', descricao:'', tamanhos:{}, quantidade:0, minimo:0, obs:'' };
+  let grupo = d.grupo;
+  const opcoesCat = g=>(g==='uniforme' ? VEST_CATEGORIAS_UNIFORME : VEST_CATEGORIAS_MATERIAL)
+    .map(c=>`<option ${c===d.categoria?'selected':''}>${c}</option>`).join('');
+  const extras = Object.keys(d.tamanhos||{}).filter(k=>!VEST_TAMANHOS.includes(k));
+  openModal(`
+    <h3>${existente ? 'Editar item do vestiário' : 'Novo item do vestiário'}</h3>
+    <div class="field-row">
+      <div class="field"><label>Grupo</label>
+        <select id="v-grupo"><option value="uniforme" ${grupo==='uniforme'?'selected':''}>Uniforme / vestuário</option>
+        <option value="material" ${grupo==='material'?'selected':''}>Material esportivo</option></select></div>
+      <div class="field"><label>Item</label><select id="v-categoria">${opcoesCat(grupo)}</select></div>
+    </div>
+    <div class="field-row">
+      <div class="field" id="v-tipo-wrap"><label>Tipo do uniforme</label>
+        <input type="text" id="v-tipo" list="v-tipos" value="${escVest(d.tipoUniforme)}" placeholder="Ex.: Jogo — principal">
+        <datalist id="v-tipos">${VEST_TIPOS_UNIFORME.map(t=>`<option value="${t}">`).join('')}</datalist></div>
+      <div class="field"><label>Descrição / cor <span style="color:var(--muted);font-weight:400;">(opcional)</span></label>
+        <input type="text" id="v-desc" value="${escVest(d.descricao)}" placeholder="Ex.: preta e dourada, manga longa"></div>
+    </div>
+    <div id="v-tam-wrap">
+      <label style="display:block;font-size:12.5px;margin-bottom:6px;">Quantidade por tamanho</label>
+      <div class="vst-tam-grid">
+        ${VEST_TAMANHOS.concat(extras).map(k=>`<label class="vst-tam"><span>${escVest(k)}</span><input type="number" min="0" inputmode="numeric" data-tam="${escVest(k)}" value="${(d.tamanhos||{})[k]||''}" placeholder="0"></label>`).join('')}
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field" id="v-qtd-wrap"><label>Quantidade</label><input type="number" min="0" inputmode="numeric" id="v-qtd" value="${d.quantidade||0}"></div>
+      <div class="field"><label>Avisar quando ficar abaixo de</label><input type="number" min="0" inputmode="numeric" id="v-min" value="${d.minimo||0}"></div>
+    </div>
+    <div class="field"><label>Observação <span style="color:var(--muted);font-weight:400;">(opcional)</span></label>
+      <input type="text" id="v-obs" value="${escVest(d.obs)}" placeholder="Ex.: 2 bolas precisam de conserto"></div>
+    <div class="modal-actions">
+      ${existente ? '<button class="btn btn-danger" id="v-del" style="margin-right:auto;">Excluir</button>' : ''}
+      <button class="btn btn-ghost" id="v-cancel">Cancelar</button>
+      <button class="btn btn-gold" id="v-save">Salvar</button>
+    </div>
+  `);
+  const ajustarGrupo = ()=>{
+    const u = grupo === 'uniforme';
+    document.getElementById('v-tam-wrap').style.display = u ? '' : 'none';
+    document.getElementById('v-tipo-wrap').style.display = u ? '' : 'none';
+    document.getElementById('v-qtd-wrap').style.display = u ? 'none' : '';
+  };
+  ajustarGrupo();
+  document.getElementById('v-grupo').addEventListener('change', e=>{
+    grupo = e.target.value; d.categoria = '';
+    document.getElementById('v-categoria').innerHTML = opcoesCat(grupo);
+    ajustarGrupo();
+  });
+  document.getElementById('v-cancel').addEventListener('click', closeModal);
+  if(existente) document.getElementById('v-del').addEventListener('click', ()=>{
+    if(!confirm('Excluir "' + nomeVestItem(existente) + '" do vestiário?')) return;
+    DB.vestiario.itens = DB.vestiario.itens.filter(i=>i.id!==existente.id);
+    logAcao('Vestiário', 'Item excluído: ' + nomeVestItem(existente));
+    saveDB(); closeModal(); render();
+  });
+  document.getElementById('v-save').addEventListener('click', ()=>{
+    const num = v=>Math.max(0, parseInt(v, 10) || 0);
+    const item = existente || { id: uid('vst') };
+    item.grupo = grupo;
+    item.categoria = document.getElementById('v-categoria').value;
+    item.tipoUniforme = grupo==='uniforme' ? document.getElementById('v-tipo').value.trim().slice(0,60) : '';
+    item.descricao = document.getElementById('v-desc').value.trim().slice(0,80);
+    item.tamanhos = {};
+    if(grupo==='uniforme') document.querySelectorAll('[data-tam]').forEach(inp=>{ const n = num(inp.value); if(n) item.tamanhos[inp.dataset.tam] = n; });
+    item.quantidade = grupo==='material' ? num(document.getElementById('v-qtd').value) : 0;
+    item.minimo = num(document.getElementById('v-min').value);
+    item.obs = document.getElementById('v-obs').value.trim().slice(0,200);
+    if(!existente) DB.vestiario.itens.push(item);
+    logAcao('Vestiário', (existente ? 'Item atualizado: ' : 'Novo item: ') + nomeVestItem(item) + ' — ' + totalVestItem(item) +
+      (grupo==='uniforme' ? ' peças (' + tamanhosVestTexto(item) + ')' : ' un.'));
+    saveDB(); closeModal(); render();
+  });
+}
+
+function abrirModalVestMov(id){
+  const it = DB.vestiario.itens.find(i=>i.id===id); if(!it) return;
+  openModal(`
+    <h3>Entrada / saída</h3>
+    <p style="font-size:13px;color:var(--muted);margin-top:-10px;margin-bottom:16px;">${escVest(nomeVestItem(it))} — hoje: ${escVest(tamanhosVestTexto(it))}</p>
+    <div class="field-row">
+      <div class="field"><label>Movimento</label>
+        <select id="m-tipo"><option value="saida">Saída (entreguei / perdeu)</option><option value="entrada">Entrada (chegou / devolveram)</option></select></div>
+      <div class="field"><label>Tamanho</label>
+        <select id="m-tam">${VEST_TAMANHOS.map(k=>`<option>${k}</option>`).join('')}</select></div>
+    </div>
+    <div class="field-row">
+      <div class="field"><label>Quantidade</label><input type="number" id="m-qtd" min="1" value="1" inputmode="numeric"></div>
+      <div class="field"><label>Para quem / motivo <span style="color:var(--muted);font-weight:400;">(opcional)</span></label>
+        <input type="text" id="m-motivo" placeholder="Ex.: entregue ao João (SUB11)"></div>
+    </div>
+    <div id="m-err" style="display:none;color:var(--erro, #f0938d);font-size:13px;margin-bottom:10px;"></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="m-cancel">Cancelar</button>
+      <button class="btn btn-gold" id="m-save">Registrar</button>
+    </div>
+  `);
+  document.getElementById('m-cancel').addEventListener('click', closeModal);
+  document.getElementById('m-save').addEventListener('click', ()=>{
+    const tipo = document.getElementById('m-tipo').value, tam = document.getElementById('m-tam').value;
+    const qtd = Math.max(0, parseInt(document.getElementById('m-qtd').value, 10) || 0);
+    const motivo = document.getElementById('m-motivo').value.trim().slice(0,120);
+    const atual = (it.tamanhos||{})[tam] || 0;
+    const err = document.getElementById('m-err');
+    if(!qtd){ err.textContent = 'Informe a quantidade.'; err.style.display = 'block'; return; }
+    if(tipo==='saida' && qtd > atual){ err.textContent = 'Só há ' + atual + ' peça(s) no tamanho ' + tam + '.'; err.style.display = 'block'; return; }
+    it.tamanhos = it.tamanhos || {};
+    const novo = tipo==='entrada' ? atual + qtd : atual - qtd;
+    if(novo) it.tamanhos[tam] = novo; else delete it.tamanhos[tam];
+    logAcao('Vestiário', (tipo==='entrada' ? 'Entrada' : 'Saída') + ' de ' + qtd + ' — ' + nomeVestItem(it) + ' tam. ' + tam +
+      (motivo ? ' (' + motivo + ')' : '') + ' · agora ' + novo + ' nesse tamanho');
+    saveDB(); closeModal(); render();
+  });
+}
 
 /* ============================================================
    MODAL HELPERS
@@ -4253,6 +4554,9 @@ function atletaDaInscricaoWeb(id, x){
   if(x.escola) extras.push('Escola: ' + textoSeguro(x.escola, 120));
   if(x.jaJogou) extras.push('Experiência: ' + textoSeguro(x.jaJogou, 200));
   extras.push('Uso de imagem: ' + (x.autorizaImagem ? 'autorizado' : 'NÃO autorizado'));
+  if(x.pagarInscricao) extras.push('Ciente de que deve pagar a inscrição');
+  const reserva = reservaUniformeDaFicha(x);
+  if(reserva) extras.push('Reservou uniforme: camisa ' + reserva.camisa + ' · calção ' + reserva.calcao);
   const observacoes = [textoSeguro(x.observacoes, 600), ...extras].filter(Boolean).join(' · ');
   const iso = dataISOlocal(enviadaEm);
   return {
@@ -4267,7 +4571,29 @@ function atletaDaInscricaoWeb(id, x){
     perfil: { tamanhoCamisa: textoSeguro(x.tamanhoCamisa, 6), peso: '', anotacoes: [], feedbacks: [] },
     mensalidades: Object.fromEntries(MESES.map(m=>[m.key, '-'])),
     emailResponsavel: email, autorizaImagem: !!x.autorizaImagem,
+    cienteTaxaInscricao: !!x.pagarInscricao, reservaUniforme: reserva,
     origem: 'link', novaInscricao: true
+  };
+}
+
+/* Reserva de uniforme marcada na ficha: só vale com tamanhos da lista do uniforme. */
+function reservaUniformeDaFicha(x){
+  if(!x.reservaUniforme) return null;
+  const tams = TIPOS_PEDIDO.uniforme.tamanhos;
+  const camisa = textoSeguro(x.reservaCamisa, 4), calcao = textoSeguro(x.reservaCalcao, 4);
+  if(!tams.includes(camisa) || !tams.includes(calcao)) return null;
+  return { camisa, calcao };
+}
+
+/* A reserva vira um pedido em Pedidos (a pagar), para entrar no próximo lote. */
+function pedidoDaReserva(atleta){
+  const r = atleta.reservaUniforme;
+  const item = { tipo:'uniforme', tamanho:r.camisa, tamCalcao:r.calcao, costas:'', numero:'', valor:TIPOS_PEDIDO.uniforme.valor };
+  return {
+    id: 'ped_web_' + atleta.id, nome: atleta.nome, responsavel: atleta.responsavel,
+    itens: [item], tipo: item.tipo, tamanho: item.tamanho, costas: '', numero: '',
+    dataPedido: atleta.dataEnvioInscricao, valorPago: 0, statusEntrega: 'pendente', loteId: null,
+    observacao: 'Reserva feita na ficha de inscrição — confirmar valor, nome/número e pagamento pelo WhatsApp.'
   };
 }
 
@@ -4294,6 +4620,11 @@ function processarFilaInscricoes(){
     DB.atletas.push(atleta);
     novos.push(atleta);
     logAcao('Inscrições', 'Nova inscrição pelo link: ' + atleta.nome + ' (' + atleta.categoria + ')');
+    if(atleta.reservaUniforme && !DB.pedidos.some(p=>p.id==='ped_web_'+atleta.id)){
+      const pedido = pedidoDaReserva(atleta);
+      DB.pedidos.push(pedido);
+      logAcao('Pedidos', 'Reserva de uniforme pela ficha: ' + atleta.nome + ' — ' + resumoItensPedido(pedido));
+    }
   });
   const apagarFichas = ()=>Promise.all(docs.map(d=>d.ref.delete()))
     .catch(err=>console.warn('Não consegui limpar fichas importadas:', err));
@@ -4587,6 +4918,7 @@ iniciarFirebase();
     calendario:'<rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/>',
     desistencias:'<path d="M14 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4"/><path d="M10 17l-5-5 5-5M5 12h11"/>',
     historico:'<path d="M3.5 12a8.5 8.5 0 1 0 2.6-6.1L3.5 8.5"/><path d="M3.5 3.5v5h5M12 7.5V12l3 2"/>',
+    vestiario:'<path d="M8 3l-5 3 2 5 3-1v11h8V10l3 1 2-5-5-3a4 4 0 0 1-8 0z"/>',
     config:'<path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/>'
   };
   function svg(view){
