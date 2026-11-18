@@ -40,7 +40,7 @@ Em app.netlify.com → **Add new site → Deploy manually**, arraste o arquivo `
 - Marcando **"Quero reservar o uniforme"**, ele escolhe camisa e calção. A reserva chega em
   **Pedidos** como pedido a pagar, com a observação "Reserva feita na ficha de inscrição".
 - Ao concluir, aparece a mensagem de inscrição concluída e, em 10 segundos, a página abre o site do
-  clube (`SITE_CLUBE`, hoje https://alleanzafutsalpro.netlify.app/). Tocar em "Inscrever outro
+  clube (`SITE_CLUBE`, hoje https://alleanzafutsalpro2.netlify.app/). Tocar em "Inscrever outro
   filho(a)" ou no WhatsApp cancela o redirecionamento.
 
 ## Vestiário

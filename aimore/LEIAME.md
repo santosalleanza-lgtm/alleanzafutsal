@@ -14,5 +14,5 @@ modalidades, autoavaliação de 3 minutos e dúvidas. Não precisa de banco de d
 - Consultoria, modalidades e kids: WhatsApp 51 99192-5356 com mensagem pronta.
 - Autoavaliação (`#avaliacao`): 4 perguntas → recomenda programa ou consultoria e envia as respostas pelo WhatsApp.
 - Rodapé: Instagram, LinkedIn, área de membros Hotmart e os parceiros Ouro Concursos
-  (https://ouroconcursos.netlify.app) e Alleanza Futsal (https://alleanzafutsalpro.netlify.app).
+  (https://ouroconcursos.netlify.app) e Alleanza Futsal (https://alleanzafutsalpro2.netlify.app).
   Se algum site ficar com outro nome no Netlify, troque o endereço no rodapé do `index.html`.
