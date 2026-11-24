@@ -5,10 +5,10 @@ const ALFABETO = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // sem 0/O e 1/I
 export const normalizar = (email) => String(email || "").trim().toLowerCase();
 
 // Código de 6 caracteres derivado do e-mail: só quem tem CODIGO_SEGREDO consegue gerar.
-export function gerarCodigo(email) {
+export function gerarCodigo(email, produto = "") {
   const segredo = process.env.CODIGO_SEGREDO;
   if (!segredo) throw new Error("CODIGO_SEGREDO não configurado");
-  const h = createHmac("sha256", segredo).update(normalizar(email)).digest();
+  const h = createHmac("sha256", segredo).update(normalizar(email) + (produto ? "|" + produto : "")).digest();
   let c = "";
   for (let i = 0; i < 6; i++) c += ALFABETO[h[i] % ALFABETO.length];
   return c;

@@ -16,7 +16,7 @@ p{color:var(--tx2);margin:0 0 18px;font-size:14px}
 .card{background:var(--s1);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:14px}
 form{display:grid;gap:10px}
 label{font-size:13px;color:var(--tx2)}
-input{width:100%;min-height:50px;border-radius:12px;border:1px solid var(--line);background:var(--s2);color:var(--tx);padding:0 14px;font:inherit}
+input,select{width:100%;min-height:50px;border-radius:12px;border:1px solid var(--line);background:var(--s2);color:var(--tx);padding:0 14px;font:inherit}
 button,a.btn{display:flex;align-items:center;justify-content:center;min-height:50px;border-radius:12px;border:0;font:inherit;font-weight:800;cursor:pointer;text-decoration:none;background:linear-gradient(135deg,#f3d873,#c9a227);color:#111}
 a.btn.sec{background:var(--s2);color:var(--tx);font-weight:700}
 .cod{font-size:40px;font-weight:900;letter-spacing:.25em;color:var(--gold);text-align:center;margin:6px 0 12px}
@@ -32,6 +32,7 @@ a.btn.sec{background:var(--s2);color:var(--tx);font-weight:700}
 <div class="card">
 <form id="f">
 <label>E-mail do aluno<input name="email" type="email" required autocomplete="off"></label>
+<label>Produto<select name="produto"><option value="">Assistente Administrativo II (HCPA)</option><option value="higienizacao">Higienização Hospitalar (GHC)</option><option value="vigia">Kit Premium Vigia Hospitalar (GHC)</option></select></label>
 <label>WhatsApp do aluno (opcional)<input name="wa" inputmode="tel" autocomplete="off"></label>
 <label>Senha de administrador<input name="senha" type="password" required autocomplete="current-password"></label>
 <button>Gerar código</button>
@@ -52,12 +53,13 @@ const f=document.getElementById('f'),err=document.getElementById('err');
 try{f.senha.value=sessionStorage.getItem('adm')||''}catch(e){}
 f.onsubmit=async e=>{
  e.preventDefault();err.textContent='';
- const r=await fetch('/api/codigo',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:f.email.value,senha:f.senha.value})});
+ const r=await fetch('/api/codigo',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:f.email.value,senha:f.senha.value,produto:f.produto.value})});
  const j=await r.json().catch(()=>({erro:'Falha na conexão.'}));
  if(!r.ok){err.textContent=j.erro||'Erro.';return}
  try{sessionStorage.setItem('adm',f.senha.value)}catch(e){}
- const site=location.origin+'/simulados/';
- const msg=`Olá! Seus simulados do HCPA 2026 foram liberados.\n\nAbra ${site}, toque em qualquer simulado bloqueado e digite:\nE-mail: ${j.email}\nCódigo: ${j.codigo}\n\nBons estudos!`;
+ const site=location.origin+'/simulados/'+(f.produto.value?f.produto.value+'/':'');
+ const nome={'':'Assistente Administrativo II (HCPA 2026)',higienizacao:'Higienização Hospitalar (GHC)',vigia:'Kit Premium Vigia Hospitalar (GHC)'}[f.produto.value];
+ const msg=`Olá! Seus simulados de ${nome} foram liberados.\n\nAbra ${site}, toque em qualquer simulado bloqueado e digite:\nE-mail: ${j.email}\nCódigo: ${j.codigo}\n\nBons estudos!`;
  document.getElementById('em').textContent=j.email;
  document.getElementById('cod').textContent=j.codigo;
  document.getElementById('mail').href=`mailto:${j.email}?subject=${encodeURIComponent('Seu código de liberação · Simulados HCPA 2026')}&body=${encodeURIComponent(msg)}`;
