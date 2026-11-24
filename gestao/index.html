@@ -881,6 +881,21 @@ tr.linha-pendente td{background:rgba(212,175,95,0.045);}
 .vst-tam{display:flex;flex-direction:column;gap:4px;font-size:12px;text-align:center;}
 .vst-tam span{color:var(--gold-light);font-weight:700;}
 .vst-tam input{text-align:center;padding:8px 4px;}
+
+/* Opções da mensalidade do mês */
+.acoes-mes{display:flex;flex-direction:column;gap:8px;}
+.acao-mes{display:flex;align-items:center;gap:12px;width:100%;text-align:left;cursor:pointer;
+  background:rgba(255,255,255,0.04);border:1px solid var(--hairline);border-radius:12px;padding:11px 14px;
+  color:var(--cream);font-family:'Inter',sans-serif;transition:background .15s ease,border-color .15s ease;}
+.acao-mes:hover{background:rgba(255,255,255,0.08);border-color:rgba(212,175,95,0.35);}
+.acao-mes.atual{border-color:rgba(212,175,95,0.6);background:rgba(212,175,95,0.1);}
+.acao-mes-ic{font-size:20px;width:26px;text-align:center;flex-shrink:0;}
+.acao-mes strong{display:block;font-size:14px;}
+.acao-mes small{display:block;font-size:11.5px;color:var(--muted);margin-top:1px;}
+.acao-mes-perigo{border-color:rgba(198,54,47,0.35);}
+.acao-mes-perigo:hover{background:rgba(198,54,47,0.14);border-color:rgba(198,54,47,0.6);}
+.acao-mes-perigo strong{color:#f0938d;}
+.acao-mes-sep{height:1px;background:var(--hairline);margin:14px 0;}
 </style>
 </head>
 <body>
@@ -1579,11 +1594,22 @@ function atletaAindaNaoInscrito(atleta, mesKey){
   if(idxInsc===-1 || idxAlvo===-1) return false;
   return idxAlvo < idxInsc;
 }
+/* Depois do mês da desistência, o que não foi pago deixa de contar como
+   pendente (o aluno saiu). O que já foi pago continua valendo. */
+function atletaJaSaiu(atleta, mesKey){
+  if(atleta.status !== 'desistente' || !atleta.dataDesistencia) return false;
+  const idxSaida = MESES.findIndex(m=>m.key===mesKeyDaData(atleta.dataDesistencia));
+  const idxAlvo = MESES.findIndex(m=>m.key===mesKey);
+  if(idxSaida===-1 || idxAlvo===-1) return false;
+  return idxAlvo > idxSaida;
+}
 function statusMesAtleta(atleta, mesKey){
   if(atleta.bolsista) return 'BOLSA';
   if(atletaAindaNaoInscrito(atleta, mesKey)) return 'N/A';
   const v = atleta.mensalidades[mesKey];
-  return v === undefined ? '-' : v;
+  const valor = v === undefined ? '-' : v;
+  if(atletaJaSaiu(atleta, mesKey) && classeStatusMes(valor) !== 'pago') return 'N/A';
+  return valor;
 }
 function classeStatusMes(valor){
   if(valor === 'BOLSA') return 'bolsa';
@@ -1591,13 +1617,6 @@ function classeStatusMes(valor){
   if(valor === 'ISENTO') return 'isento';
   if(valor === '-' || !valor) return 'pendente';
   return 'pago'; // 'PAGO' ou string de data tipo '25/07'
-}
-/* Ciclo de 3 estados ao clicar: Pendente -> Pago -> Isento -> Pendente */
-function proximoStatusMes(valorAtual){
-  const cls = classeStatusMes(valorAtual);
-  if(cls==='pendente') return 'PAGO';
-  if(cls==='pago') return 'ISENTO';
-  return '-'; // isento -> pendente
 }
 
 const MSG_COBRANCA = "Oi, td certo? Posso programar o pagamento da mensalidade para qual dia?";
@@ -1770,7 +1789,8 @@ function viewMensalidades(){
       const val = statusMesAtleta(a, m.key);
       const cls = classeStatusMes(val);
       const label = cls==='bolsa' ? 'BOLSA' : cls==='naoaplica' ? '—' : cls==='isento' ? 'ISN' : (cls==='pago' ? (val==='PAGO'?'PAGO':val) : 'PEND');
-      const titulo = cls==='naoaplica' ? `${m.label} — ainda não estava inscrito` : `${m.label} — toque para alternar`;
+      const motivoIsn = cls==='isento' && (a.isencoes||{})[m.key] ? ` (${a.isencoes[m.key].replace(/"/g,'&quot;')})` : '';
+      const titulo = cls==='naoaplica' ? `${m.label} — não conta neste mês` : `${m.label}${motivoIsn} — toque para opções`;
       return `<td><span class="mes-cell ${cls}" data-atleta="${a.id}" data-mes="${m.key}" title="${titulo}">${label}</span></td>`;
     }).join('');
     return `<tr>
@@ -1788,7 +1808,7 @@ function viewMensalidades(){
 
   return `
     <h1 class="view-title">Mensalidades</h1>
-    <p class="view-sub">Toque em uma célula para alternar entre <strong style="color:#8fd6a8">Pago</strong>, <strong style="color:#f0938d">Pendente</strong> e <strong style="color:#7dc4e0">Isento</strong>. Bolsistas não entram na contagem financeira.</p>
+    <p class="view-sub">Toque no mês de um aluno para marcar <strong style="color:#8fd6a8">Pago</strong>, <strong style="color:#f0938d">Pendente</strong>, <strong style="color:#7dc4e0">Isentar o mês</strong> ou <strong style="color:var(--gold-light)">Registrar desistência</strong>. Bolsistas não entram na contagem financeira.</p>
 
     ${viewVerificacaoMes()}
 
@@ -1853,10 +1873,10 @@ function viewVerificacaoMes(){
       <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,${pago?'0.02':'0.045'});border:1px solid ${cls==='pendente'?'rgba(198,54,47,0.25)':'rgba(255,255,255,0.06)'};margin-bottom:7px;">
         <div style="min-width:0;">
           <div style="font-weight:700;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${a.nome}</div>
-          <div style="font-size:11px;color:var(--muted);">${a.categoria} · ${a.responsavel || 'sem responsável'}</div>
+          <div style="font-size:11px;color:var(--muted);">${a.categoria} · ${a.responsavel || 'sem responsável'}${cls==='isento' && (a.isencoes||{})[mesSelecionado] ? ` · <span style="color:#7dc4e0;">isento: ${a.isencoes[mesSelecionado]}</span>` : ''}</div>
         </div>
         <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;">
-          <span class="mes-cell ${cls}" data-atleta="${a.id}" data-mes="${mesSelecionado}" title="Toque para alternar">${label}</span>
+          <span class="mes-cell ${cls}" data-atleta="${a.id}" data-mes="${mesSelecionado}" title="Toque para opções: pago, pendente, isentar ou desistência">${label} ▾</span>
           ${cls==='pendente' ? (link
             ? `<button class="btn btn-gold btn-sm" data-cobrar="${link}" data-nome="${a.nome.replace(/"/g,'&quot;')}" data-tel="${a.telefone}">📲 Cobrar</button>
                <button class="icon-btn" data-copiar="${link}" title="Copiar mensagem/número (backup)">📋</button>`
@@ -3272,14 +3292,8 @@ function bindViewEvents(){
       const atletaId = cell.dataset.atleta;
       const mes = cell.dataset.mes;
       const atleta = DB.atletas.find(a=>a.id===atletaId);
-      if(!atleta || atleta.bolsista || atletaAindaNaoInscrito(atleta, mes)) return;
-      const atual = atleta.mensalidades[mes];
-      const novo = proximoStatusMes(atual);
-      atleta.mensalidades[mes] = novo;
-      const mesLabel = (MESES.find(m=>m.key===mes)||{}).label || mes;
-      logAcao('Mensalidades', atleta.nome+' — '+mesLabel+' alterado para '+classeStatusMes(novo).toUpperCase());
-      saveDB();
-      render();
+      if(!atleta || atleta.bolsista || atletaAindaNaoInscrito(atleta, mes) || atletaJaSaiu(atleta, mes)) return;
+      openAcaoMes(atleta.id, mes);
     });
   });
 
@@ -3874,7 +3888,78 @@ function sugerirCategoria(idade){
 }
 
 
-function openDesistenciaModal(id){
+/* ============================================================
+   MODAL: OPÇÕES DA MENSALIDADE DE UM MÊS
+   Pago · Pendente · Isentar este mês (com motivo) · Desistência
+============================================================ */
+function openAcaoMes(atletaId, mes){
+  const a = DB.atletas.find(x=>x.id===atletaId);
+  if(!a) return;
+  const mesLabel = (MESES.find(m=>m.key===mes)||{}).label || mes;
+  const atual = classeStatusMes(statusMesAtleta(a, mes));
+  const motivoAtual = (a.isencoes||{})[mes] || '';
+  const rotuloAtual = {pago:'Pago', pendente:'Pendente', isento:'Isento'}[atual] || atual;
+  const opcao = (acao, ic, titulo, sub) =>
+    `<button type="button" class="acao-mes ${acao===atual?'atual':''}" data-acao-mes="${acao}">
+      <span class="acao-mes-ic">${ic}</span><span><strong>${titulo}</strong><small>${sub}</small></span>
+    </button>`;
+  openModal(`
+    <h3>${a.nome}</h3>
+    <p style="font-size:12.5px;color:var(--muted);margin-top:-10px;margin-bottom:14px;">
+      Mensalidade de <strong style="color:var(--cream)">${mesLabel}</strong> · agora:
+      <span class="mes-cell ${atual}" style="cursor:default;">${rotuloAtual.toUpperCase()}</span>
+    </p>
+    <div class="acoes-mes">
+      ${opcao('pago', '✅', 'Pago', 'Recebeu a mensalidade de '+mesLabel)}
+      ${opcao('pendente', '⏳', 'Pendente', 'Ainda não pagou '+mesLabel)}
+      ${opcao('isento', '🎁', 'Isentar este mês', 'Não cobra '+mesLabel+' (férias, lesão, desconto...)')}
+    </div>
+    <div id="isencao-box" style="display:${atual==='isento'?'block':'none'};margin-top:4px;">
+      <div class="field">
+        <label>Motivo da isenção (opcional)</label>
+        <input type="text" id="isencao-motivo" maxlength="80" placeholder="Ex: férias, lesão, irmão desconto" value="${motivoAtual.replace(/"/g,'&quot;')}">
+      </div>
+      <button class="btn btn-gold" id="isencao-ok" type="button" style="width:100%;justify-content:center;">Isentar ${mesLabel}</button>
+    </div>
+    <div class="acao-mes-sep"></div>
+    <button type="button" class="acao-mes acao-mes-perigo" data-acao-mes="desistencia">
+      <span class="acao-mes-ic">🚪</span><span><strong>Registrar desistência</strong><small>O aluno saiu: os meses seguintes deixam de ser cobrados</small></span>
+    </button>
+    <div class="modal-actions"><button class="btn btn-ghost" id="acao-mes-fechar" type="button">Fechar</button></div>
+  `);
+
+  function aplicar(novo, motivo){
+    a.mensalidades[mes] = novo;
+    if(!a.isencoes) a.isencoes = {};
+    if(novo === 'ISENTO' && motivo) a.isencoes[mes] = motivo; else delete a.isencoes[mes];
+    const nome = {PAGO:'PAGO', '-':'PENDENTE', ISENTO:'ISENTO'}[novo];
+    logAcao('Mensalidades', a.nome+' — '+mesLabel+' marcado como '+nome+(novo==='ISENTO' && motivo ? ' (motivo: '+motivo+')' : ''));
+    saveDB();
+    closeModal();
+    toast(mesLabel+': '+nome.toLowerCase());
+    render();
+  }
+  document.getElementById('acao-mes-fechar').addEventListener('click', closeModal);
+  document.querySelectorAll('[data-acao-mes]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const acao = btn.dataset.acaoMes;
+      if(acao === 'pago') aplicar('PAGO');
+      else if(acao === 'pendente') aplicar('-');
+      else if(acao === 'isento'){
+        document.getElementById('isencao-box').style.display = 'block';
+        document.getElementById('isencao-motivo').focus();
+      } else if(acao === 'desistencia'){
+        closeModal();
+        openDesistenciaModal(a.id, mes);
+      }
+    });
+  });
+  document.getElementById('isencao-ok').addEventListener('click', ()=>{
+    aplicar('ISENTO', document.getElementById('isencao-motivo').value.trim());
+  });
+}
+
+function openDesistenciaModal(id, mesRef){
   const a = DB.atletas.find(x=>x.id===id);
   if(!a) return;
   openModal(`
@@ -3883,6 +3968,10 @@ function openDesistenciaModal(id){
     <div class="field">
       <label>Data da desistência</label>
       <input type="date" id="d-data" value="${new Date().toISOString().slice(0,10)}">
+    </div>
+    <div class="note-box" style="margin-bottom:13px;">
+      O mês da desistência continua valendo. Os meses <strong>seguintes</strong> deixam de aparecer como pendentes,
+      e o aluno sai de Mensalidades. O que já foi pago continua no balanço. Dá para desfazer em <strong>Desistências → Reativar</strong>.
     </div>
     <div class="field">
       <label>Motivo (opcional)</label>
