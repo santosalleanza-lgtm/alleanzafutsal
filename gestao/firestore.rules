@@ -22,6 +22,12 @@ service cloud.firestore {
       allow read, write: if isAdmin();
     }
 
+    // Competições do ano (nome, data, local, taça) para o site do clube:
+    // qualquer visitante lê; só o admin grava (pela regra acima).
+    match /alleanza/publico {
+      allow read: if true;
+    }
+
     // Fichas do link de inscrição (inscricao.html).
     // Qualquer pessoa pode ENVIAR uma ficha; só o admin lê e apaga.
     match /inscricoes/{id} {

@@ -896,6 +896,54 @@ tr.linha-pendente td{background:rgba(212,175,95,0.045);}
 .acao-mes-perigo:hover{background:rgba(198,54,47,0.14);border-color:rgba(198,54,47,0.6);}
 .acao-mes-perigo strong{color:#f0938d;}
 .acao-mes-sep{height:1px;background:var(--hairline);margin:14px 0;}
+
+/* Mensalidades: 3 colunas + resumo */
+.verif-resumo{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:12.5px;color:var(--muted);margin:-4px 0 14px;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,0.03);border:1px solid var(--hairline);}
+.verif-resumo strong{font-size:15px;color:inherit;margin-right:2px;}
+.verif-resumo span:first-child{color:var(--cream);}
+.verif-colunas{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;align-items:start;}
+@media (max-width:1100px){ .verif-colunas{grid-template-columns:1fr 1fr;} }
+@media (max-width:860px){ .verif-colunas{grid-template-columns:1fr;} }
+body.force-desktop .verif-colunas{grid-template-columns:1fr 1fr 1fr !important;}
+/* Balanços (pedidos e competições) */
+.bal-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.bal-kpis > div{background:rgba(255,255,255,0.03);border:1px solid var(--hairline);border-radius:12px;padding:10px 12px;}
+.bal-kpis span{display:block;font-size:10.5px;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);font-weight:600;}
+.bal-kpis strong{display:block;font-size:17px;margin-top:4px;font-variant-numeric:tabular-nums;}
+@media (max-width:860px){ .bal-kpis{grid-template-columns:repeat(2,1fr);} }
+.bal-pecas{display:flex;flex-wrap:wrap;gap:12px;margin-top:14px;}
+.bal-peca{flex:1;min-width:170px;background:rgba(0,0,0,0.15);border:1px solid var(--hairline);border-radius:12px;padding:10px 12px;font-size:12.5px;}
+.bal-peca > strong{display:block;color:var(--gold-light);margin-bottom:6px;font-size:12.5px;}
+.bal-peca-linha{display:flex;justify-content:space-between;padding:3px 0;border-top:1px solid rgba(255,255,255,0.05);}
+.bal-peca-linha em{color:#7dc4e0;font-style:normal;font-size:11px;}
+/* Competições: custo e taça */
+.custo-linha{font-size:12px;color:rgba(240,236,226,0.75);margin-top:2px;line-height:1.5;}
+.custo-media{color:var(--gold-light);}
+.custo-box{background:rgba(212,175,95,0.08);border:1px solid rgba(212,175,95,0.25);border-radius:12px;padding:10px 12px;font-size:12.5px;line-height:1.6;margin-bottom:13px;}
+.custo-obs{font-size:11px;color:var(--muted);margin-top:3px;}
+.taca{filter:drop-shadow(0 0 8px rgba(212,175,95,0.7));}
+/* Elenco da competição */
+.roster-busca{width:100%;background:rgba(0,0,0,0.22);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:10px 12px;color:var(--cream);font-family:'Inter',sans-serif;font-size:16px;outline:none;margin-bottom:12px;}
+.roster-busca:focus{border-color:rgba(212,175,95,0.6);box-shadow:var(--ring);}
+.roster-disp-item{display:flex;align-items:center;gap:10px;padding:9px 6px;cursor:pointer;border-radius:8px;}
+.roster-disp-item:hover{background:rgba(255,255,255,0.04);}
+.roster-disp-item input{width:18px;height:18px;accent-color:var(--gold);flex-shrink:0;}
+/* Aniversariantes */
+.niver-card{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:rgba(255,255,255,0.03);border:1px solid var(--hairline);border-radius:14px;padding:12px 14px;margin-bottom:10px;}
+.niver-passou{opacity:.6;}
+.niver-data{flex-shrink:0;width:56px;text-align:center;background:rgba(212,175,95,0.12);border:1px solid var(--line);border-radius:10px;padding:7px 4px;}
+.niver-data .dia{font-family:'Playfair Display',serif;font-size:21px;font-weight:800;color:var(--gold-light);line-height:1;}
+.niver-data .mes{font-size:10px;letter-spacing:1px;color:var(--muted);margin-top:2px;}
+.niver-info{flex:1;min-width:170px;}
+.niver-nome{font-weight:700;font-size:14.5px;}
+.niver-meta{font-size:12px;color:var(--muted);margin-top:3px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.niver-acoes{display:flex;gap:8px;flex-wrap:wrap;}
+.niver-destaque{background:linear-gradient(135deg,rgba(212,175,95,0.22),rgba(212,175,95,0.05));border:1px solid rgba(212,175,95,0.55);border-radius:18px;padding:16px;margin-bottom:18px;box-shadow:0 0 40px -12px rgba(212,175,95,0.6);}
+.niver-destaque-tit{font-family:'Playfair Display',serif;font-size:19px;font-weight:800;margin-bottom:12px;color:var(--gold-light);}
+.niver-hoje{background:rgba(6,15,29,0.55);border-color:rgba(212,175,95,0.5);}
+.niver-hoje .niver-nome{font-size:17px;}
+.niver-banner{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:linear-gradient(135deg,rgba(212,175,95,0.2),rgba(212,175,95,0.05));border:1px solid rgba(212,175,95,0.5);border-radius:14px;padding:12px 16px;margin:-8px 0 20px;font-size:13.5px;}
+.nav-badge.niver{background:linear-gradient(135deg,var(--gold-light),var(--gold-deep));color:#0a1729;box-shadow:0 0 0 3px rgba(212,175,95,0.2);}
 </style>
 </head>
 <body>
@@ -976,6 +1024,7 @@ tr.linha-pendente td{background:rgba(212,175,95,0.045);}
       <div class="sb-title">Alunos</div>
       <button data-view="inscricoes"><span class="ic">📝</span>Inscrições<span class="nav-badge" hidden></span></button>
       <button data-view="elenco"><span class="ic">👥</span>Elenco</button>
+      <button data-view="aniversarios"><span class="ic">🎂</span>Aniversariantes<span class="nav-badge niver" hidden></span></button>
       <button data-view="desistencias"><span class="ic">🚪</span>Desistências</button>
       <div class="sb-title">Financeiro</div>
       <button data-view="mensalidades"><span class="ic">💳</span>Mensalidades</button>
@@ -1008,6 +1057,7 @@ tr.linha-pendente td{background:rgba(212,175,95,0.045);}
       <button data-view="inscricoes">📝 Inscrições<span class="nav-badge" hidden></span></button>
       <button data-view="mensalidades">💳 Mensalidades</button>
       <button data-view="elenco">👥 Elenco</button>
+      <button data-view="aniversarios">🎂 Aniversários<span class="nav-badge niver" hidden></span></button>
       <button data-view="balanco">💹 Balanço</button>
       <button data-view="pedidos">🛍️ Pedidos</button>
       <button data-view="escalacao">📋 Escalação</button>
@@ -1436,6 +1486,12 @@ function migrarDB(parsed){
     });
     parsed.escalacao[slotKey] = migrada;
   });
+  // Idade sempre recalculada pela data de nascimento (a gravada envelhece:
+  // quem fez aniversário continuava com a idade antiga).
+  parsed.atletas.forEach(a=>{
+    const idadeHoje = a.nascimento ? calcularIdade(a.nascimento) : '';
+    if(idadeHoje !== '') a.idade = idadeHoje;
+  });
   parsed.atletas.forEach(a=>{
     if(a.rg===undefined) a.rg = '';
     if(a.filiacaoMae===undefined) a.filiacaoMae = '';
@@ -1449,6 +1505,9 @@ function migrarDB(parsed){
     if(c.maxAtletas===undefined) c.maxAtletas = 15;
     if(c.horario===undefined) c.horario = '';
     if(c.atletas===undefined) c.atletas = [];
+    if(c.custoProfessor===undefined) c.custoProfessor = CUSTO_PROFESSOR_PADRAO;
+    if(c.inscricaoIsenta===undefined) c.inscricaoIsenta = false;
+    if(c.campea===undefined) c.campea = false;
   });
   if(!parsed.pedidos) parsed.pedidos = seedPedidos();
   if(!parsed.log) parsed.log = [];
@@ -1480,6 +1539,27 @@ function migrarDB(parsed){
   return parsed;
 }
 
+/* ---------- Dados públicos (site do clube) ----------
+   Só nome, categoria, data, horário, local, status e taça das competições
+   vão para alleanza/publico, que qualquer visitante pode ler. */
+let PUBLICO_DOC_REF = null;
+let ultimoPublicoJSON = null;
+function dadosPublicos(){
+  return { competicoes: DB.competicoes
+    .map(c=>({ nome:c.nome, categoria:c.categoria||'', data:c.dataInicio||'', horario:c.horario||'', local:c.local||'', status:c.status||'agendada', campea:!!c.campea }))
+    .sort((a,b)=>(a.data||'9999').localeCompare(b.data||'9999')) };
+}
+function sincronizarPublico(){
+  if(!PUBLICO_DOC_REF || !DB || typeof ADMIN_USER === 'undefined' || !ADMIN_USER) return;
+  const json = JSON.stringify(dadosPublicos());
+  if(json === ultimoPublicoJSON) return;
+  ultimoPublicoJSON = json;
+  PUBLICO_DOC_REF.set({ dados: json, atualizadoEm: new Date().toISOString() }).catch(err=>{
+    ultimoPublicoJSON = null;
+    console.warn('Não consegui publicar as competições no site do clube:', err && err.code);
+  });
+}
+
 function saveDB(){
   if(!DB) return;
   let localOk = false;
@@ -1499,6 +1579,7 @@ function saveDB(){
         ? '⚠️ Sem permissão para salvar — entre de novo na administração'
         : '⚠️ Não sincronizou — verifique sua internet');
     });
+    sincronizarPublico();
     toast('Alterações salvas');
     return;
   }
@@ -1680,11 +1761,117 @@ function render(){
   else if(currentView === 'desistencias') main.innerHTML = viewDesistencias();
   else if(currentView === 'config') main.innerHTML = viewConfig();
   else if(currentView === 'vestiario') main.innerHTML = viewVestiario();
+  else if(currentView === 'aniversarios') main.innerHTML = viewAniversarios();
   bindViewEvents();
+  atualizarBadgeAniversario();
   if(currentView === 'vestiario') bindVestiario();
   atualizarBadgeInscricoes();
 }
 
+
+/* ============================================================
+   ANIVERSARIANTES — semana atual (segunda a domingo), com destaque
+   para quem faz aniversário hoje e parabéns pronto para o WhatsApp
+============================================================ */
+function dataNascimento(a){
+  const m = (a.nascimento||'').match(/(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2,4})/);
+  if(!m) return null;
+  let y = m[3]; if(y.length===2) y = '20'+y;
+  return { d: parseInt(m[1],10), m: parseInt(m[2],10), y: parseInt(y,10) };
+}
+function hojeMeiaNoite(){ const h = new Date(); h.setHours(0,0,0,0); return h; }
+function proximoAniversario(n, aPartirDe){
+  let dt = new Date(aPartirDe.getFullYear(), n.m-1, n.d);
+  if(dt < aPartirDe) dt = new Date(aPartirDe.getFullYear()+1, n.m-1, n.d);
+  return dt;
+}
+function aniversariantes(){
+  const hoje = hojeMeiaNoite();
+  const seg = new Date(hoje); seg.setDate(hoje.getDate() - ((hoje.getDay()+6)%7));
+  const dom = new Date(seg); dom.setDate(seg.getDate()+6);
+  const limite = new Date(hoje); limite.setDate(hoje.getDate()+30);
+  const semana = [], proximos = [];
+  ativos().forEach(a=>{
+    const n = dataNascimento(a);
+    if(!n) return;
+    const niver = proximoAniversario(n, seg);
+    const item = { a, niver, idadeNova: niver.getFullYear() - n.y, hoje: niver.getTime() === hoje.getTime() };
+    if(niver <= dom) semana.push(item);
+    else if(niver <= limite) proximos.push(item);
+  });
+  semana.sort((x,y)=>x.niver-y.niver);
+  proximos.sort((x,y)=>x.niver-y.niver);
+  return { seg, dom, semana, proximos, hojeLista: semana.filter(i=>i.hoje) };
+}
+function fmtDiaMes(dt){ return String(dt.getDate()).padStart(2,'0')+'/'+String(dt.getMonth()+1).padStart(2,'0'); }
+const DIAS_SEMANA = ['domingo','segunda','terça','quarta','quinta','sexta','sábado'];
+function msgParabens(item){
+  const a = item.a, primeiro = a.nome.split(' ')[0];
+  const quando = item.hoje ? 'Hoje' : (item.niver < hojeMeiaNoite() ? 'No dia '+fmtDiaMes(item.niver) : 'No dia '+fmtDiaMes(item.niver)+' ('+DIAS_SEMANA[item.niver.getDay()]+')');
+  return '🎉🎂 *FELIZ ANIVERSÁRIO, '+primeiro.toUpperCase()+'!* 🎂🎉\n\n'
+    + quando+' o nosso atleta *'+a.nome+'* ('+a.categoria+') completa *'+item.idadeNova+' anos*! ⚽\n\n'
+    + 'Toda a família Alleanza deseja muita saúde, alegria e muitos gols! 🥳💚🤍❤️\n\n'
+    + '_Alleanza Escola de Futsal_';
+}
+function linkParabensGrupo(item){ return 'https://api.whatsapp.com/send?text='+encodeURIComponent(msgParabens(item)); }
+function linkParabensResponsavel(item){
+  const tel = normalizePhone(item.a.telefone);
+  return tel ? 'https://api.whatsapp.com/send?phone='+tel+'&text='+encodeURIComponent(msgParabens(item)) : null;
+}
+function cardAniversario(item, destaque){
+  const a = item.a;
+  const resp = linkParabensResponsavel(item);
+  return `
+    <div class="niver-card ${destaque?'niver-hoje':''} ${!item.hoje && item.niver < hojeMeiaNoite() ? 'niver-passou':''}">
+      <div class="niver-data"><div class="dia">${String(item.niver.getDate()).padStart(2,'0')}</div><div class="mes">${MESES_ANO[item.niver.getMonth()].toUpperCase()}</div></div>
+      <div class="niver-info">
+        <div class="niver-nome">${destaque ? '🎉 ' : ''}${a.nome}</div>
+        <div class="niver-meta"><span class="cat-badge">${a.categoria}</span> faz <strong>${item.idadeNova} anos</strong> · ${item.hoje ? '<strong style="color:var(--gold-light);">HOJE</strong>' : DIAS_SEMANA[item.niver.getDay()]}</div>
+      </div>
+      <div class="niver-acoes">
+        <button class="btn btn-gold btn-sm" data-parabens-grupo="${a.id}">🎉 Parabéns no grupo</button>
+        ${resp ? `<button class="btn btn-ghost btn-sm" data-parabens-resp="${a.id}">💬 Responsável</button>` : ''}
+      </div>
+    </div>`;
+}
+function viewAniversarios(){
+  const r = aniversariantes();
+  const semTitulo = 'Semana de '+fmtDiaMes(r.seg)+' a '+fmtDiaMes(r.dom);
+  const semNasc = ativos().filter(a=>!dataNascimento(a)).length;
+  return `
+    <h1 class="view-title">Aniversariantes</h1>
+    <p class="view-sub">Quem faz aniversário nesta semana. O aniversariante do dia aparece em destaque, com a mensagem de parabéns pronta para o grupo do WhatsApp.</p>
+    ${r.hojeLista.length ? `<div class="niver-destaque">
+      <div class="niver-destaque-tit">🎂 Aniversariante${r.hojeLista.length>1?'s':''} de hoje</div>
+      ${r.hojeLista.map(i=>cardAniversario(i, true)).join('')}
+    </div>` : ''}
+    <div class="card" style="margin-bottom:18px;">
+      <strong style="font-size:14px;color:var(--gold-light);">📅 ${semTitulo}</strong>
+      <div style="margin-top:12px;">
+        ${r.semana.filter(i=>!i.hoje).map(i=>cardAniversario(i,false)).join('') || (r.hojeLista.length ? '<div class="empty-state" style="padding:14px;">Nenhum outro aniversário nesta semana.</div>' : '<div class="empty-state">Nenhum aniversário nesta semana.</div>')}
+      </div>
+    </div>
+    ${r.proximos.length ? `<div class="card">
+      <strong style="font-size:14px;color:var(--muted);">🔜 Próximos 30 dias</strong>
+      <div style="margin-top:12px;">${r.proximos.map(i=>cardAniversario(i,false)).join('')}</div>
+    </div>` : ''}
+    ${semNasc ? `<p style="font-size:11.5px;color:var(--muted);margin-top:14px;">⚠️ ${semNasc} atleta(s) ativo(s) sem data de nascimento cadastrada — edite o cadastro para aparecerem aqui.</p>` : ''}
+  `;
+}
+function bannerAniversarioHoje(){
+  const hoje = aniversariantes().hojeLista;
+  if(!hoje.length) return '';
+  return `<div class="niver-banner">
+    <span>🎂 Hoje é aniversário de <strong>${hoje.map(i=>i.a.nome.split(' ')[0]+' ('+i.idadeNova+' anos)').join(', ')}</strong></span>
+    <button class="btn btn-gold btn-sm" data-ir-aniversarios>Dar parabéns</button>
+  </div>`;
+}
+function atualizarBadgeAniversario(){
+  if(!DB) return;
+  const n = aniversariantes().hojeLista.length;
+  document.querySelectorAll('.nav-badge.niver').forEach(el=>{ el.textContent = '🎂'+(n>1?n:''); el.hidden = n===0; });
+}
+function itemAniversario(id){ return aniversariantes().semana.concat(aniversariantes().proximos).find(i=>i.a.id===id); }
 
 /* ============================================================
    VIEW: DASHBOARD
@@ -1720,6 +1907,7 @@ function viewDashboard(){
   return `
     <h1 class="view-title">Dashboard</h1>
     <p class="view-sub">Visão geral do mês de referência — ajuste o mês para simular outros períodos.</p>
+    ${bannerAniversarioHoje()}
 
     <div class="toolbar">
       <select id="mes-dashboard">
@@ -1861,7 +2049,6 @@ function viewVerificacaoMes(){
   if(filtroBusca) base = base.filter(a=>a.nome.toLowerCase().includes(filtroBusca.toLowerCase()));
   base = base.filter(a=>!atletaAindaNaoInscrito(a, mesSelecionado));
   const pendentesCount = base.filter(a=>classeStatusMes(statusMesAtleta(a,mesSelecionado))==='pendente').length;
-  const emDiaCount = base.length - pendentesCount;
 
   function renderItem(a){
     const val = statusMesAtleta(a, mesSelecionado);
@@ -1903,7 +2090,11 @@ function viewVerificacaoMes(){
   }
 
   const pendentesList = base.filter(a=>classeStatusMes(statusMesAtleta(a,mesSelecionado))==='pendente');
-  const emDiaList = base.filter(a=>classeStatusMes(statusMesAtleta(a,mesSelecionado))!=='pendente');
+  const bolsistasList = base.filter(a=>a.bolsista);
+  const emDiaList = base.filter(a=>!a.bolsista && classeStatusMes(statusMesAtleta(a,mesSelecionado))!=='pendente');
+  const pagosCount = emDiaList.filter(a=>classeStatusMes(statusMesAtleta(a,mesSelecionado))==='pago').length;
+  const isentosCount = emDiaList.length - pagosCount;
+  const pagantesCount = base.length - bolsistasList.length;
 
   return `
     <div class="card" style="margin-bottom:18px;">
@@ -1923,7 +2114,14 @@ function viewVerificacaoMes(){
           ${CATEGORIAS.map(c=>`<option value="${c}" ${filtroCategoria===c?'selected':''}>${c}</option>`).join('')}
         </select>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;">
+      <div class="verif-resumo">
+        <span><strong>${pagantesCount}</strong> pagantes</span>
+        <span style="color:#8fd6a8;"><strong>${pagosCount}</strong> pagos</span>
+        <span style="color:#f0938d;"><strong>${pendentesCount}</strong> pendentes</span>
+        <span style="color:#7dc4e0;"><strong>${isentosCount}</strong> isentos no mês</span>
+        <span style="color:var(--gold-light);"><strong>${bolsistasList.length}</strong> bolsistas</span>
+      </div>
+      <div class="verif-colunas">
         <div>
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid rgba(198,54,47,0.35);">
             <span style="font-size:13px;font-weight:800;color:#f0938d;">⚠️ PENDENTES</span>
@@ -1934,10 +2132,17 @@ function viewVerificacaoMes(){
         <div>
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid rgba(46,125,79,0.35);">
             <span style="font-size:13px;font-weight:800;color:#8fd6a8;">✅ EM DIA</span>
-            <span style="font-family:'Playfair Display',serif;font-size:18px;font-weight:800;color:#8fd6a8;">${emDiaCount}</span>
-            <span style="font-size:10.5px;color:var(--muted);">(pago, isento ou bolsista)</span>
+            <span style="font-family:'Playfair Display',serif;font-size:18px;font-weight:800;color:#8fd6a8;">${emDiaList.length}</span>
+            <span style="font-size:10.5px;color:var(--muted);">(pagantes: pago ou isento)</span>
           </div>
           ${renderColuna(emDiaList)}
+        </div>
+        <div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid rgba(212,175,95,0.4);">
+            <span style="font-size:13px;font-weight:800;color:var(--gold-light);">🎓 BOLSISTAS</span>
+            <span style="font-family:'Playfair Display',serif;font-size:18px;font-weight:800;color:var(--gold-light);">${bolsistasList.length}</span>
+          </div>
+          ${renderColuna(bolsistasList)}
         </div>
       </div>
     </div>
@@ -2119,6 +2324,55 @@ function openEditMesBalanco(mesKey){
   });
 }
 
+/* ---------- Custos da competição ----------
+   Custo total = inscrição do time (zero se isenta) + professor (R$ 150 por padrão).
+   Dividido pelos atletas do elenco dá a média para cobrar de cada um. */
+const CUSTO_PROFESSOR_PADRAO = 150;
+function custoInscricaoTime(c){ return c.inscricaoIsenta ? 0 : (c.valorInscricaoTime||0); }
+function custoTotalComp(c){ return custoInscricaoTime(c) + (c.custoProfessor||0); }
+function arrecadadoComp(c){ return (c.atletas||[]).filter(r=>r.status==='pago').reduce((s,r)=>s+(r.valorCobrado||0),0); }
+function pagantesComp(c){ return (c.atletas||[]).filter(r=>r.status!=='isento').length; }
+function arred2(v){ return Math.ceil(v*100)/100; }
+function textoCustoComp(c, nAtletas){
+  const n = nAtletas != null ? nAtletas : (c.atletas||[]).length;
+  const total = custoTotalComp(c);
+  const insc = c.inscricaoIsenta ? 'inscrição isenta' : 'inscrição '+fmtBRL(c.valorInscricaoTime||0);
+  let txt = insc+' + professor '+fmtBRL(c.custoProfessor||0)+' = <strong>'+fmtBRL(total)+'</strong>';
+  if(n) txt += ' ÷ '+n+' atleta(s) = <strong class="custo-media">'+fmtBRL(arred2(total/n))+'</strong> por atleta';
+  return txt;
+}
+let anoBalancoComp = new Date().getFullYear();
+function anoComp(c){ return c.dataInicio ? parseInt(c.dataInicio.slice(0,4),10) : new Date().getFullYear(); }
+function viewBalancoCompeticoes(){
+  const anos = new Set([new Date().getFullYear()]);
+  DB.competicoes.forEach(c=>anos.add(anoComp(c)));
+  const lista = DB.competicoes.filter(c=>anoComp(c)===anoBalancoComp);
+  const arrecadado = lista.reduce((s,c)=>s+arrecadadoComp(c),0);
+  const gastoInsc = lista.reduce((s,c)=>s+custoInscricaoTime(c),0);
+  const gastoProf = lista.reduce((s,c)=>s+(c.custoProfessor||0),0);
+  const gasto = gastoInsc + gastoProf;
+  const saldo = arrecadado - gasto;
+  const titulos = lista.filter(c=>c.campea).length;
+  const aReceber = lista.reduce((s,c)=>s+(c.atletas||[]).filter(r=>r.status==='pendente').reduce((t,r)=>t+(r.valorCobrado||0),0),0);
+  return `
+    <div class="card" style="margin-bottom:18px;">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px;">
+        <strong style="font-size:14px;">📊 Balanço das competições</strong>
+        <select id="ano-balanco-comp">${[...anos].sort().map(y=>`<option value="${y}" ${y===anoBalancoComp?'selected':''}>${y}</option>`).join('')}</select>
+      </div>
+      <div class="bal-kpis">
+        <div><span>Competições</span><strong>${lista.length}</strong></div>
+        <div><span>Títulos</span><strong style="color:var(--gold-light);">${titulos ? '🏆 '+titulos : '0'}</strong></div>
+        <div><span>Arrecadado (atletas)</span><strong style="color:#8fd6a8;">${fmtBRL(arrecadado)}</strong></div>
+        <div><span>A receber</span><strong style="color:#f0938d;">${fmtBRL(aReceber)}</strong></div>
+        <div><span>Inscrições dos times</span><strong>${fmtBRL(gastoInsc)}</strong></div>
+        <div><span>Professor</span><strong>${fmtBRL(gastoProf)}</strong></div>
+        <div><span>Gasto total</span><strong style="color:#f0938d;">${fmtBRL(gasto)}</strong></div>
+        <div><span>Saldo</span><strong class="${saldo>=0?'saldo-pos':'saldo-neg'}">${fmtBRL(saldo)}</strong></div>
+      </div>
+    </div>`;
+}
+
 function statusLabel(s){
   return s==='agendada' ? 'Agendada' : s==='andamento' ? 'Em andamento' : 'Concluída';
 }
@@ -2126,14 +2380,14 @@ function viewCompeticoes(){
   const cards = DB.competicoes.map(c=>{
     const dataFmt = c.dataInicio ? new Date(c.dataInicio+'T00:00:00').toLocaleDateString('pt-BR') : '—';
     const roster = c.atletas || [];
-    const arrecadado = roster.filter(r=>r.status==='pago').reduce((s,r)=>s+r.valorCobrado,0);
+    const arrecadado = arrecadadoComp(c);
     const isentos = roster.filter(r=>r.status==='isento').length;
     const pendentes = roster.filter(r=>r.status==='pendente').length;
-    const saldoComp = arrecadado - c.valorInscricaoTime;
+    const saldoComp = arrecadado - custoTotalComp(c);
     return `<div class="comp-card">
       <div class="comp-top">
         <div>
-          <div class="comp-name">${c.nome}</div>
+          <div class="comp-name">${c.campea ? '<span class="taca" title="Campeões">🏆</span> ' : ''}${c.nome}</div>
           <span class="cat-badge">${c.categoria}</span>
         </div>
         <span class="status-pill status-${c.status}">${statusLabel(c.status)}</span>
@@ -2141,7 +2395,8 @@ function viewCompeticoes(){
       <div class="comp-meta">
         <div>📅 ${dataFmt}${c.horario ? ' às '+c.horario : ''}</div>
         <div>📍 ${c.local || 'Local a definir'}</div>
-        <div>🎟️ Inscrição do time: ${fmtBRL(c.valorInscricaoTime)} — <span style="color:${c.timeInscricaoPaga?'#8fd6a8':'#f0938d'};font-weight:700;">${c.timeInscricaoPaga?'PAGA':'PENDENTE'}</span></div>
+        <div>🎟️ Inscrição do time: ${c.inscricaoIsenta ? '<span style="color:var(--gold-light);font-weight:700;">ISENTA</span>' : fmtBRL(c.valorInscricaoTime)+` — <span style="color:${c.timeInscricaoPaga?'#8fd6a8':'#f0938d'};font-weight:700;">${c.timeInscricaoPaga?'PAGA':'PENDENTE'}</span>`}</div>
+        <div class="custo-linha">💰 ${textoCustoComp(c)}</div>
         ${c.obs ? `<div style="margin-top:4px;color:rgba(246,243,236,0.45);">${c.obs}</div>` : ''}
       </div>
       <div style="display:flex;gap:8px;margin:8px 0;flex-wrap:wrap;">
@@ -2163,7 +2418,8 @@ function viewCompeticoes(){
 
   return `
     <h1 class="view-title">Competições</h1>
-    <p class="view-sub">Acompanhe as competições em que a escola está inscrita, o valor pago pelo time e quanto cada atleta contribuiu.</p>
+    <p class="view-sub">Competições do ano, custo (inscrição + professor), média a cobrar por atleta e títulos. As datas entram no Calendário e a lista aparece no site do clube.</p>
+    ${viewBalancoCompeticoes()}
     <div class="toolbar">
       <button class="btn btn-gold" id="btn-nova-comp">+ Nova competição</button>
     </div>
@@ -2174,6 +2430,59 @@ function viewCompeticoes(){
 /* ============================================================
    VIEW: INSCRIÇÕES
 ============================================================ */
+/* ---------- Gráfico: matrículas x desistências por mês ---------- */
+let anoGraficoInscricoes = new Date().getFullYear();
+const MESES_ANO = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+function graficoMatriculasDesistencias(){
+  const anos = new Set([new Date().getFullYear()]);
+  DB.atletas.forEach(a=>{
+    if(a.dataInscricao) anos.add(parseInt(a.dataInscricao.slice(0,4),10));
+    if(a.dataDesistencia) anos.add(parseInt(a.dataDesistencia.slice(0,4),10));
+  });
+  const ano = String(anoGraficoInscricoes);
+  const matr = Array(12).fill(0), desist = Array(12).fill(0);
+  DB.atletas.forEach(a=>{
+    if(a.status !== 'inscricao_pendente' && a.dataInscricao && a.dataInscricao.slice(0,4)===ano){
+      matr[parseInt(a.dataInscricao.slice(5,7),10)-1]++;
+    }
+    if(a.dataDesistencia && a.dataDesistencia.slice(0,4)===ano){
+      desist[parseInt(a.dataDesistencia.slice(5,7),10)-1]++;
+    }
+  });
+  const max = Math.max(1, ...matr, ...desist);
+  const totM = matr.reduce((s,n)=>s+n,0), totD = desist.reduce((s,n)=>s+n,0);
+  const picoM = totM ? MESES_ANO[matr.indexOf(Math.max(...matr))] : '—';
+  const picoD = totD ? MESES_ANO[desist.indexOf(Math.max(...desist))] : '—';
+  const colunas = MESES_ANO.map((m,i)=>`
+    <div class="bar-col-dual" title="${m}: ${matr[i]} matrícula(s), ${desist[i]} desistência(s)">
+      <div class="bar-pair">
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;">
+          ${matr[i] ? `<span class="bar-val" style="color:#8fd6a8;">${matr[i]}</span>` : ''}
+          <div class="bar-mini receita" style="height:${matr[i]/max*100}%;"></div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;">
+          ${desist[i] ? `<span class="bar-val" style="color:#f0938d;">${desist[i]}</span>` : ''}
+          <div class="bar-mini despesa" style="height:${desist[i]/max*100}%;"></div>
+        </div>
+      </div>
+      <span class="bar-label">${m}</span>
+    </div>`).join('');
+  return `
+    <div class="card chart-card">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px;">
+        <div>
+          <strong style="font-size:14px;">📈 Matrículas e desistências por mês</strong>
+          <div style="font-size:11.5px;color:var(--muted);margin-top:2px;">
+            <span class="legend-dot" style="background:#8fd6a8;"></span>${totM} matrícula(s) · pico em ${picoM}
+            &nbsp;&nbsp;<span class="legend-dot" style="background:#f0938d;"></span>${totD} desistência(s) · pico em ${picoD}
+          </div>
+        </div>
+        <select id="ano-grafico-insc">${[...anos].sort().map(y=>`<option value="${y}" ${String(y)===ano?'selected':''}>${y}</option>`).join('')}</select>
+      </div>
+      <div class="chart-row-dual" style="height:170px;">${colunas}</div>
+    </div>`;
+}
+
 function viewInscricoes(){
   let lista = [...DB.atletas];
   if(filtroCategoria) lista = lista.filter(a=>a.categoria===filtroCategoria);
@@ -2244,6 +2553,7 @@ function viewInscricoes(){
         ${CATEGORIAS.map(c=>`<option value="${c}" ${filtroCategoria===c?'selected':''}>${c}</option>`).join('')}
       </select>
     </div>
+    ${graficoMatriculasDesistencias()}
     ${cartaoLinkInscricao()}
     <div class="table-wrap">
       <table style="min-width:900px;">
@@ -2259,7 +2569,12 @@ function viewInscricoes(){
 ============================================================ */
 function viewCalendario(){
   const hoje = new Date().toISOString().slice(0,10);
-  let lista = [...(DB.eventos||[])];
+  // Competições com data aparecem sozinhas (editáveis em Competições)
+  const comps = DB.competicoes.filter(c=>c.dataInicio).map(c=>({
+    id: c.id, data: c.dataInicio, titulo: c.nome, categoria: c.categoria, horario: c.horario, local: c.local,
+    obs: c.campea ? '🏆 Campeões!' : (c.obs||''), _comp: true, campea: c.campea
+  }));
+  let lista = [...(DB.eventos||[]), ...comps];
   lista.sort((a,b)=> (a.data||'').localeCompare(b.data||''));
   const proximos = lista.filter(e=> e.data >= hoje);
   const passados = lista.filter(e=> e.data < hoje).reverse();
@@ -2271,7 +2586,7 @@ function viewCalendario(){
     return `<div class="evento-card ${passado?'evento-passado':''}">
       <div class="evento-data"><div class="dia">${d}</div><div class="mes">${mesNome}</div></div>
       <div class="evento-body">
-        <div class="tit">${e.titulo || 'Jogo'} ${e.categoria ? `<span class="cat-badge">${e.categoria}</span>` : ''}</div>
+        <div class="tit">${e._comp ? (e.campea ? '🏆 ' : '🏟️ ') : ''}${e.titulo || 'Jogo'} ${e.categoria ? `<span class="cat-badge">${e.categoria}</span>` : ''} ${e._comp ? '<span class="cat-badge" style="color:var(--gold-light);">Competição</span>' : ''}</div>
         <div class="meta">
           ${e.horario ? `<span>🕐 ${e.horario}</span>` : ''}
           ${e.local ? `<span>📍 ${e.local}</span>` : ''}
@@ -2280,15 +2595,17 @@ function viewCalendario(){
         ${e.obs ? `<div class="obs">${e.obs}</div>` : ''}
       </div>
       <div class="row-actions">
-        <button class="icon-btn" data-editar-evento="${e.id}" title="Editar">✏️</button>
-        <button class="icon-btn danger" data-remover-evento="${e.id}" title="Excluir">🗑️</button>
+        ${e._comp
+          ? `<button class="icon-btn" data-edit-comp="${e.id}" title="Editar competição">✏️</button>`
+          : `<button class="icon-btn" data-editar-evento="${e.id}" title="Editar">✏️</button>
+             <button class="icon-btn danger" data-remover-evento="${e.id}" title="Excluir">🗑️</button>`}
       </div>
     </div>`;
   }
 
   return `
     <h1 class="view-title">Calendário</h1>
-    <p class="view-sub">Jogos, competições e eventos da escola.</p>
+    <p class="view-sub">Jogos, competições e eventos da escola. As competições cadastradas com data entram aqui automaticamente.</p>
     <div class="toolbar">
       <button class="btn btn-gold" id="btn-novo-evento">+ Novo evento</button>
     </div>
@@ -2577,6 +2894,51 @@ function viewResumoProducao(){
   `;
 }
 
+/* ---------- Balanço anual dos pedidos ---------- */
+let anoBalancoPedidos = new Date().getFullYear();
+function viewBalancoAnualPedidos(){
+  const anos = new Set([new Date().getFullYear()]);
+  DB.pedidos.forEach(p=>{ if(p.dataPedido) anos.add(parseInt(p.dataPedido.slice(0,4),10)); });
+  const ano = String(anoBalancoPedidos);
+  const lista = DB.pedidos.filter(p=>(p.dataPedido||'').slice(0,4)===ano);
+  const pecas = lista.reduce((s,p)=>s+itensPedido(p).length, 0);
+  const emEstoque = lista.filter(p=>p.statusEntrega==='estoque');
+  const pecasEstoque = emEstoque.reduce((s,p)=>s+itensPedido(p).length, 0);
+  const entregues = lista.filter(p=>p.statusEntrega==='entregue').length;
+  const vendido = lista.reduce((s,p)=>s+valorPedido(p), 0);
+  const recebido = lista.reduce((s,p)=>s+p.valorPago, 0);
+  const gasto = lista.reduce((s,p)=>s+custoPedido(p), 0);
+  const retorno = recebido - gasto;
+  const resumo = resumoProducao(lista);
+  const resumoEstoque = resumoProducao(emEstoque);
+  const tabelas = PECAS_PRODUCAO.map(pc=>{
+    const tams = ordenarTamanhos(pc.tipo, Object.keys(resumo[pc.key]));
+    if(!tams.length) return '';
+    return `<div class="bal-peca">
+      <strong>${pc.label}</strong>
+      ${tams.map(t=>`<div class="bal-peca-linha"><span>Tam. ${t}</span><span>${resumo[pc.key][t]}${resumoEstoque[pc.key][t] ? ` <em>(${resumoEstoque[pc.key][t]} em estoque)</em>` : ''}</span></div>`).join('')}
+    </div>`;
+  }).join('');
+  return `
+    <div class="card" style="margin-bottom:18px;">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px;">
+        <strong style="font-size:14px;">📊 Balanço anual de pedidos</strong>
+        <select id="ano-balanco-pedidos">${[...anos].sort().map(y=>`<option value="${y}" ${String(y)===ano?'selected':''}>${y}</option>`).join('')}</select>
+      </div>
+      <div class="bal-kpis">
+        <div><span>Pedidos</span><strong>${lista.length}</strong></div>
+        <div><span>Peças</span><strong>${pecas}</strong></div>
+        <div><span>Em estoque</span><strong style="color:#7dc4e0;">${pecasEstoque} peça(s)</strong></div>
+        <div><span>Entregues</span><strong>${entregues}</strong></div>
+        <div><span>Vendido</span><strong>${fmtBRL(vendido)}</strong></div>
+        <div><span>Recebido</span><strong style="color:#8fd6a8;">${fmtBRL(recebido)}</strong></div>
+        <div><span>Gasto (produção)</span><strong style="color:#f0938d;">${fmtBRL(gasto)}</strong></div>
+        <div><span>Retorno (recebido − gasto)</span><strong class="${retorno>=0?'saldo-pos':'saldo-neg'}">${fmtBRL(retorno)}</strong></div>
+      </div>
+      ${tabelas ? `<div class="bal-pecas">${tabelas}</div>` : '<div class="empty-state" style="padding:14px;">Nenhum pedido em '+ano+'.</div>'}
+    </div>`;
+}
+
 function htmlItensPedido(p){
   return `<div class="ped-itens">${itensPedido(p).map(it=>{
     const cor = it.tipo==='uniforme' ? '#8fd6a8' : it.tipo==='agasalho' ? '#7dc4e0' : '#f0938d';
@@ -2626,7 +2988,7 @@ function viewPedidos(){
         <span class="mes-cell ${clsPgto}" data-edit-pgto-pedido="${p.id}" title="Toque para lançar/editar o valor pago">${labelPgto}</span>
       </td>
       <td>
-        <span class="mes-cell ${p.statusEntrega==='entregue'?'pago':'pendente'}" data-toggle-pedido-entrega="${p.id}" title="Toque para alternar">${p.statusEntrega==='entregue'?'ENTREGUE':'PENDENTE'}</span>
+        <span class="mes-cell ${p.statusEntrega==='entregue'?'pago':p.statusEntrega==='estoque'?'isento':'pendente'}" data-toggle-pedido-entrega="${p.id}" title="Toque para alternar: a produzir → em estoque → entregue">${p.statusEntrega==='entregue'?'ENTREGUE':p.statusEntrega==='estoque'?'EM ESTOQUE':'A PRODUZIR'}</span>
       </td>
       <td><span class="cat-badge" style="${p.loteId?'':'border-color:rgba(201,162,74,0.5);color:var(--gold-light);'}">${loteLabel}</span></td>
       <td>
@@ -2685,6 +3047,8 @@ function viewPedidos(){
     <p class="view-sub">Registre um novo pedido — a mensagem já sai formatada pro WhatsApp — e acompanhe pagamento/entrega de todos que já pediram.</p>
 
     ${viewResumoProducao()}
+
+    ${viewBalancoAnualPedidos()}
 
     <div class="grid-kpi" style="grid-template-columns:repeat(3,1fr);">
       <div class="kpi"><div class="kpi-ic">🛍️</div><div class="kpi-val">${totalPedidos}</div><div class="kpi-label">Total de pedidos</div></div>
@@ -2763,7 +3127,7 @@ function viewElenco(){
           <div class="comp-top">
             <div>
               <div class="comp-name" style="font-size:15px;">${a.nome}</div>
-              <span style="font-size:11px;color:var(--muted);">${a.idade ? a.idade+' anos' : ''}</span>
+              <span style="font-size:11.5px;color:var(--muted);">${a.nascimento ? '🎂 '+a.nascimento+' · ' : ''}${a.idade!=='' && a.idade!=null ? a.idade+' anos' : ''}</span>
             </div>
             ${a.bolsista ? '<span class="status-pill status-agendada">Bolsista</span>' : ''}
           </div>
@@ -3423,7 +3787,28 @@ function bindViewEvents(){
     el.addEventListener('click', ()=> openEditMesBalanco(el.dataset.editMesBal));
   });
 
+  // ---- Aniversariantes ----
+  document.querySelectorAll('[data-ir-aniversarios]').forEach(el=>el.addEventListener('click', ()=>setView('aniversarios')));
+  document.querySelectorAll('[data-parabens-grupo]').forEach(el=>{
+    el.addEventListener('click', ()=>{
+      const item = itemAniversario(el.dataset.parabensGrupo);
+      if(!item) return;
+      logAcao('Aniversariantes', 'Parabéns enviado para o grupo: '+item.a.nome);
+      saveDB();
+      abrirWhatsApp(linkParabensGrupo(item));
+    });
+  });
+  document.querySelectorAll('[data-parabens-resp]').forEach(el=>{
+    el.addEventListener('click', ()=>{
+      const item = itemAniversario(el.dataset.parabensResp);
+      const link = item && linkParabensResponsavel(item);
+      if(link) abrirWhatsApp(link);
+    });
+  });
+
   // ---- Competições ----
+  const selAnoComp = document.getElementById('ano-balanco-comp');
+  if(selAnoComp) selAnoComp.addEventListener('change', e=>{ anoBalancoComp = parseInt(e.target.value,10); render(); });
   const btnNovaComp = document.getElementById('btn-nova-comp');
   if(btnNovaComp) btnNovaComp.addEventListener('click', ()=> openCompModal());
   document.querySelectorAll('[data-roster-comp]').forEach(el=>{
@@ -3447,6 +3832,8 @@ function bindViewEvents(){
   });
 
   // ---- Inscrições ----
+  const selAnoInsc = document.getElementById('ano-grafico-insc');
+  if(selAnoInsc) selAnoInsc.addEventListener('change', e=>{ anoGraficoInscricoes = parseInt(e.target.value,10); render(); });
   const btnNovaInsc = document.getElementById('btn-nova-inscricao');
   if(btnNovaInsc) btnNovaInsc.addEventListener('click', ()=> openEditAtleta(null));
   const btnCopiarLink = document.getElementById('btn-copiar-link');
@@ -3497,6 +3884,8 @@ function bindViewEvents(){
   document.querySelectorAll('[data-novo-pedido]').forEach(el=>{
     el.addEventListener('click', ()=> openNovoPedidoModal(el.dataset.novoPedido));
   });
+  const selAnoPed = document.getElementById('ano-balanco-pedidos');
+  if(selAnoPed) selAnoPed.addEventListener('change', e=>{ anoBalancoPedidos = parseInt(e.target.value,10); render(); });
   const fTipoPed = document.getElementById('filtro-tipo-pedido');
   if(fTipoPed) fTipoPed.addEventListener('change', e=>{ filtroTipoPedido = e.target.value; render(); });
   const fStatusPed = document.getElementById('filtro-status-pedido');
@@ -3534,8 +3923,10 @@ function bindViewEvents(){
     el.addEventListener('click', ()=>{
       const p = DB.pedidos.find(x=>x.id===el.dataset.togglePedidoEntrega);
       if(p){
-        p.statusEntrega = p.statusEntrega==='entregue' ? 'pendente' : 'entregue';
-        logAcao('Pedidos', 'Entrega do pedido de '+p.nome+' marcada como '+p.statusEntrega.toUpperCase());
+        // a produzir → em estoque (chegou e está guardado) → entregue → a produzir
+        p.statusEntrega = p.statusEntrega==='pendente' || !p.statusEntrega ? 'estoque' : p.statusEntrega==='estoque' ? 'entregue' : 'pendente';
+        const rotulo = {pendente:'A PRODUZIR', estoque:'EM ESTOQUE', entregue:'ENTREGUE'}[p.statusEntrega];
+        logAcao('Pedidos', 'Pedido de '+p.nome+' marcado como '+rotulo);
         saveDB(); render();
       }
     });
@@ -3785,7 +4176,7 @@ function openPerfilAtleta(id){
 
   openModal(`
     <h3>${a.nome}</h3>
-    <p style="font-size:12.5px;color:var(--muted);margin-top:-10px;margin-bottom:16px;">${a.categoria} · ${a.idade?a.idade+' anos':''} · ${a.responsavel||'sem responsável'}</p>
+    <p style="font-size:12.5px;color:var(--muted);margin-top:-10px;margin-bottom:16px;">${a.categoria} · ${a.nascimento ? a.nascimento+' · ' : ''}${a.idade?a.idade+' anos':''} · ${a.responsavel||'sem responsável'}</p>
 
     <div class="field-row">
       <div class="field">
@@ -4001,7 +4392,7 @@ function openDesistenciaModal(id, mesRef){
 function openCompModal(id){
   const c = id ? DB.competicoes.find(x=>x.id===id) : null;
   const isNew = !c;
-  const d = c || {nome:'', categoria:'SUB7', dataInicio:'', horario:'', local:'', status:'agendada', obs:'', valorInscricaoTime:0, timeInscricaoPaga:false, maxAtletas:15};
+  const d = c || {nome:'', categoria:'SUB7', dataInicio:'', horario:'', local:'', status:'agendada', obs:'', valorInscricaoTime:0, timeInscricaoPaga:false, maxAtletas:15, custoProfessor:CUSTO_PROFESSOR_PADRAO, inscricaoIsenta:false, campea:false};
 
   openModal(`
     <h3>${isNew ? 'Nova competição' : 'Editar competição'}</h3>
@@ -4049,9 +4440,26 @@ function openCompModal(id){
         <input type="number" id="c-max-atletas" value="${d.maxAtletas}" min="1">
       </div>
     </div>
+    <div class="field-row">
+      <div class="field">
+        <label>Professor (acréscimo)</label>
+        <input type="text" id="c-professor" value="${d.custoProfessor}">
+      </div>
+      <div class="field" style="display:flex;align-items:flex-end;padding-bottom:10px;">
+        <div class="check-row" style="margin-bottom:0;">
+          <input type="checkbox" id="c-isenta" ${d.inscricaoIsenta?'checked':''}>
+          <label for="c-isenta">Inscrição do time isenta</label>
+        </div>
+      </div>
+    </div>
+    <div class="custo-box" id="c-calc"></div>
     <div class="check-row">
       <input type="checkbox" id="c-inscricao-paga" ${d.timeInscricaoPaga?'checked':''}>
       <label for="c-inscricao-paga">Inscrição do time já foi paga</label>
+    </div>
+    <div class="check-row">
+      <input type="checkbox" id="c-campea" ${d.campea?'checked':''}>
+      <label for="c-campea">🏆 Fomos campeões (aparece com a taça no site do clube)</label>
     </div>
     <div class="field">
       <label>Observações</label>
@@ -4063,6 +4471,22 @@ function openCompModal(id){
       <button class="btn btn-gold" id="c-save">${isNew ? 'Criar' : 'Salvar'}</button>
     </div>
   `);
+
+  // Prévia do custo por atleta enquanto digita
+  function numCampo(id){ return parseFloat((document.getElementById(id).value||'').replace(',','.')) || 0; }
+  function atualizarCalc(){
+    const prev = { valorInscricaoTime: numCampo('c-valor-inscricao'), custoProfessor: numCampo('c-professor'),
+                   inscricaoIsenta: document.getElementById('c-isenta').checked };
+    const nElenco = c ? (c.atletas||[]).length : 0;
+    const n = nElenco || (parseInt(document.getElementById('c-max-atletas').value,10) || 0);
+    document.getElementById('c-calc').innerHTML = '💰 '+textoCustoComp(prev, n)
+      + (nElenco ? '' : (n ? '<div class="custo-obs">Estimativa com '+n+' atletas (o máximo). Com o elenco montado, a conta usa quem foi escalado.</div>' : ''));
+  }
+  ['c-valor-inscricao','c-professor','c-max-atletas','c-isenta'].forEach(id=>{
+    document.getElementById(id).addEventListener('input', atualizarCalc);
+    document.getElementById(id).addEventListener('change', atualizarCalc);
+  });
+  atualizarCalc();
 
   document.getElementById('c-cancel').addEventListener('click', closeModal);
   const delBtn = document.getElementById('c-delete');
@@ -4084,14 +4508,19 @@ function openCompModal(id){
     const valorInscricaoTime = parseFloat(document.getElementById('c-valor-inscricao').value.replace(',','.')) || 0;
     const maxAtletas = parseInt(document.getElementById('c-max-atletas').value) || 15;
     const timeInscricaoPaga = document.getElementById('c-inscricao-paga').checked;
+    const custoProfessor = numCampo('c-professor');
+    const inscricaoIsenta = document.getElementById('c-isenta').checked;
+    const campea = document.getElementById('c-campea').checked;
 
     if(isNew){
-      DB.competicoes.push({id:uid('comp'), nome, categoria, dataInicio, horario, local, status, obs, valorInscricaoTime, timeInscricaoPaga, maxAtletas, atletas:[]});
+      DB.competicoes.push({id:uid('comp'), nome, categoria, dataInicio, horario, local, status, obs, valorInscricaoTime, timeInscricaoPaga, maxAtletas, custoProfessor, inscricaoIsenta, campea, atletas:[]});
       logAcao('Competições', 'Nova competição criada: "'+nome+'" ('+categoria+') — inscrição '+fmtBRL(valorInscricaoTime)+', máx. '+maxAtletas+' atletas');
       toast('Competição criada');
     } else {
       c.nome=nome; c.categoria=categoria; c.dataInicio=dataInicio; c.horario=horario; c.local=local; c.status=status; c.obs=obs;
       c.valorInscricaoTime=valorInscricaoTime; c.timeInscricaoPaga=timeInscricaoPaga; c.maxAtletas=maxAtletas;
+      if(campea && !c.campea) logAcao('Competições', '🏆 Título registrado: "'+nome+'"');
+      c.custoProfessor=custoProfessor; c.inscricaoIsenta=inscricaoIsenta; c.campea=campea;
       logAcao('Competições', 'Competição "'+nome+'" atualizada');
       toast('Competição atualizada');
     }
@@ -4138,16 +4567,38 @@ function openListaEscaladosModal(compId){
 }
 
 
+/* Estado da janela de elenco entre um redesenho e outro: a busca, as
+   rolagens e os atletas marcados não se perdem a cada ação. */
+let rosterUI = { compId: null, busca: '', marcados: new Set(), valorLote: '', scroll: {} };
+function normalizarBusca(t){ return (t||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase(); }
+
 function openRosterModal(compId){
   const c = DB.competicoes.find(x=>x.id===compId);
   if(!c) return;
+  // guarda o estado da janela anterior (se for a mesma competição)
+  const modalEl = document.getElementById('modal');
+  if(rosterUI.compId === compId && modalAberto && document.getElementById('roster-busca')){
+    rosterUI.busca = document.getElementById('roster-busca').value;
+    rosterUI.marcados = new Set([...document.querySelectorAll('.roster-check:checked')].map(x=>x.value));
+    const vl = document.getElementById('roster-valor-lote');
+    rosterUI.valorLote = vl ? vl.value : '';
+    rosterUI.scroll = { modal: modalEl.scrollTop,
+      lista: (document.getElementById('roster-lista')||{}).scrollTop || 0,
+      disp: (document.getElementById('roster-disp')||{}).scrollTop || 0 };
+  } else {
+    rosterUI = { compId, busca: '', marcados: new Set(), valorLote: '', scroll: {} };
+  }
+
   const roster = c.atletas || [];
   const idsNoElenco = roster.map(r=>r.atletaId);
   const disponiveis = DB.atletas.filter(a=>a.status==='ativo' && !idsNoElenco.includes(a.id));
   const vagas = c.maxAtletas - roster.length;
-
-  const arrecadado = roster.filter(r=>r.status==='pago').reduce((s,r)=>s+r.valorCobrado,0);
-  const saldoComp = arrecadado - c.valorInscricaoTime;
+  const arrecadado = arrecadadoComp(c);
+  const total = custoTotalComp(c);
+  const saldoComp = arrecadado - total;
+  const pagantes = pagantesComp(c);
+  const valorPagante = pagantes ? arred2(total/pagantes) : 0;
+  const isentos = roster.length - pagantes;
 
   const linhasRoster = roster.map(r=>{
     const atleta = DB.atletas.find(a=>a.id===r.atletaId);
@@ -4156,49 +4607,58 @@ function openRosterModal(compId){
     const corBg = cls==='pago' ? 'var(--green-soft)' : cls==='isento' ? 'rgba(201,162,74,0.15)' : 'var(--red-soft)';
     const corTxt = cls==='pago' ? '#8fd6a8' : cls==='isento' ? 'var(--gold-light)' : '#f0938d';
     return `
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 10px;border-radius:9px;background:rgba(255,255,255,0.03);margin-bottom:6px;">
+      <div class="roster-linha" data-nome="${normalizarBusca(nome)}" style="display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 10px;border-radius:9px;background:rgba(255,255,255,0.03);margin-bottom:6px;">
         <div style="min-width:0;flex:1;">
           <div style="font-weight:700;font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${nome}</div>
         </div>
-        <input type="text" data-roster-valor="${r.atletaId}" value="${r.valorCobrado}" style="width:70px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:7px;padding:6px 8px;color:var(--cream);font-size:12px;">
-        <span data-roster-status="${r.atletaId}" style="cursor:pointer;padding:5px 10px;border-radius:7px;font-size:11px;font-weight:700;background:${corBg};color:${corTxt};white-space:nowrap;" title="Toque para alternar">${cls==='pago'?'PAGO':cls==='isento'?'ISENTO':'PENDENTE'}</span>
+        <input type="text" inputmode="decimal" data-roster-valor="${r.atletaId}" value="${r.valorCobrado}" style="width:70px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:7px;padding:6px 8px;color:var(--cream);font-size:13px;">
+        <span data-roster-status="${r.atletaId}" style="cursor:pointer;padding:6px 10px;border-radius:7px;font-size:11px;font-weight:700;background:${corBg};color:${corTxt};white-space:nowrap;" title="Toque para alternar: pendente → pago → isento">${cls==='pago'?'PAGO':cls==='isento'?'ISENTO':'PENDENTE'}</span>
         <button class="icon-btn danger" data-roster-remove="${r.atletaId}" title="Remover do elenco">🗑️</button>
       </div>`;
   }).join('');
 
   const disponiveisPorCategoria = CATEGORIAS.map(cat=>{
-    const doGrupo = disponiveis.filter(a=>a.categoria===cat);
+    const doGrupo = disponiveis.filter(a=>a.categoria===cat).sort((a,b)=>a.nome.localeCompare(b.nome));
     if(!doGrupo.length) return '';
     return `
-      <div style="margin-bottom:8px;">
+      <div class="roster-grupo" style="margin-bottom:8px;">
         <div style="font-size:10.5px;color:var(--gold-light);letter-spacing:0.5px;margin-bottom:4px;">${cat}</div>
         ${doGrupo.map(a=>`
-          <label style="display:flex;align-items:center;gap:8px;padding:6px 4px;cursor:pointer;">
-            <input type="checkbox" class="roster-check" value="${a.id}" style="width:15px;height:15px;">
-            <span style="font-size:12.5px;">${a.nome}</span>
+          <label class="roster-disp-item" data-nome="${normalizarBusca(a.nome)}">
+            <input type="checkbox" class="roster-check" value="${a.id}" ${rosterUI.marcados.has(a.id)?'checked':''}>
+            <span style="font-size:13px;">${a.nome}</span>
           </label>`).join('')}
       </div>`;
   }).join('');
 
   openModal(`
-    <h3>Elenco — ${c.nome}</h3>
-    <p style="font-size:12.5px;color:var(--muted);margin-top:-10px;margin-bottom:14px;">${roster.length}/${c.maxAtletas} atletas · inscrição do time ${fmtBRL(c.valorInscricaoTime)} · saldo <strong class="${saldoComp>=0?'saldo-pos':'saldo-neg'}">${fmtBRL(saldoComp)}</strong></p>
+    <h3>Elenco — ${c.campea?'🏆 ':''}${c.nome}</h3>
+    <p style="font-size:12.5px;color:var(--muted);margin-top:-10px;margin-bottom:10px;">${roster.length}/${c.maxAtletas} atletas · arrecadado ${fmtBRL(arrecadado)} · saldo <strong class="${saldoComp>=0?'saldo-pos':'saldo-neg'}">${fmtBRL(saldoComp)}</strong></p>
+    <div class="custo-box">
+      💰 ${textoCustoComp(c)}
+      ${isentos && pagantes ? `<div class="custo-obs">Com ${isentos} isento(s), cada um dos ${pagantes} pagantes fica com <strong style="color:var(--gold-light);">${fmtBRL(valorPagante)}</strong>.</div>` : ''}
+      ${pagantes ? `<button class="btn btn-gold btn-sm" id="roster-aplicar-media" style="margin-top:8px;">Cobrar ${fmtBRL(valorPagante)} de cada pagante</button>` : ''}
+    </div>
 
-    <div style="max-height:220px;overflow-y:auto;margin-bottom:14px;">
+    <input type="search" id="roster-busca" class="roster-busca" placeholder="🔎 Buscar atleta pelo nome..." value="${rosterUI.busca.replace(/"/g,'&quot;')}" autocomplete="off">
+
+    <div id="roster-lista" style="max-height:240px;overflow-y:auto;margin-bottom:14px;">
       ${linhasRoster || '<div class="empty-state">Nenhum atleta no elenco ainda.</div>'}
+      <div class="empty-state roster-vazio" style="display:none;padding:10px;">Nenhum atleta do elenco com esse nome.</div>
     </div>
 
     ${vagas > 0 ? `
     <div class="field">
-      <label>Escalar em lote (${vagas} vaga(s) restante(s))</label>
-      <div style="max-height:220px;overflow-y:auto;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:9px;padding:8px 10px;margin-bottom:8px;">
+      <label>Escalar (${vagas} vaga(s) restante(s))</label>
+      <div id="roster-disp" style="max-height:260px;overflow-y:auto;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:9px;padding:8px 10px;margin-bottom:8px;">
         ${disponiveisPorCategoria || '<div style="font-size:12px;color:var(--muted);">Nenhum atleta disponível.</div>'}
+        <div class="roster-disp-vazio" style="display:none;font-size:12px;color:var(--muted);padding:6px;">Ninguém com esse nome para escalar.</div>
       </div>
       <div style="display:flex;gap:8px;align-items:center;">
-        <input type="text" id="roster-valor-lote" placeholder="Valor padrão (R$)" style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:9px;padding:9px 10px;color:var(--cream);font-size:13px;">
-        <button class="btn btn-gold btn-sm" id="roster-add-lote">+ Adicionar selecionados</button>
+        <input type="text" inputmode="decimal" id="roster-valor-lote" placeholder="Valor (R$) — sugerido ${fmtBRL(valorPagante || (vagas ? arred2(total/Math.max(1, roster.length+1)) : 0))}" value="${rosterUI.valorLote}" style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:9px;padding:9px 10px;color:var(--cream);font-size:14px;">
+        <button class="btn btn-gold btn-sm" id="roster-add-lote">+ Adicionar <span id="roster-qtd-marcados">${rosterUI.marcados.size ? '('+rosterUI.marcados.size+')' : ''}</span></button>
       </div>
-      <div style="font-size:11px;color:var(--muted);margin-top:6px;">Marque quantos atletas quiser e adicione todos de uma vez, com o mesmo valor — ajuste caso a caso depois se precisar.</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:6px;">Marque os atletas (a busca filtra a lista) e adicione todos de uma vez. Depois use "Cobrar de cada pagante" para dividir o custo.</div>
     </div>` : `<div class="note-box">Elenco no limite máximo (${c.maxAtletas}).</div>`}
 
     <div class="modal-actions">
@@ -4206,7 +4666,41 @@ function openRosterModal(compId){
     </div>
   `);
 
-  document.getElementById('roster-close').addEventListener('click', closeModal);
+  // busca: filtra sem redesenhar (o teclado e a rolagem ficam onde estão)
+  const busca = document.getElementById('roster-busca');
+  function filtrar(){
+    const t = normalizarBusca(busca.value.trim());
+    let visL = 0, visD = 0;
+    document.querySelectorAll('.roster-linha').forEach(el=>{ const ok = !t || el.dataset.nome.includes(t); el.style.display = ok ? 'flex' : 'none'; if(ok) visL++; });
+    document.querySelectorAll('.roster-disp-item').forEach(el=>{ const ok = !t || el.dataset.nome.includes(t); el.style.display = ok ? 'flex' : 'none'; if(ok) visD++; });
+    document.querySelectorAll('.roster-grupo').forEach(g=>{ g.style.display = [...g.querySelectorAll('.roster-disp-item')].some(i=>i.style.display!=='none') ? '' : 'none'; });
+    const vL = document.querySelector('.roster-vazio'); if(vL) vL.style.display = (t && roster.length && !visL) ? 'block' : 'none';
+    const vD = document.querySelector('.roster-disp-vazio'); if(vD) vD.style.display = (t && !visD) ? 'block' : 'none';
+  }
+  busca.addEventListener('input', filtrar);
+  filtrar();
+  document.querySelectorAll('.roster-check').forEach(chk=>chk.addEventListener('change', ()=>{
+    const n = document.querySelectorAll('.roster-check:checked').length;
+    const q = document.getElementById('roster-qtd-marcados'); if(q) q.textContent = n ? '('+n+')' : '';
+  }));
+
+  // volta a rolagem para onde estava
+  const restaurar = ()=>{
+    if(rosterUI.scroll.modal != null) modalEl.scrollTop = rosterUI.scroll.modal;
+    const l = document.getElementById('roster-lista'); if(l && rosterUI.scroll.lista) l.scrollTop = rosterUI.scroll.lista;
+    const d = document.getElementById('roster-disp'); if(d && rosterUI.scroll.disp) d.scrollTop = rosterUI.scroll.disp;
+  };
+  restaurar(); requestAnimationFrame(restaurar);
+
+  document.getElementById('roster-close').addEventListener('click', ()=>{ rosterUI.compId = null; closeModal(); render(); });
+  const aplicarMedia = document.getElementById('roster-aplicar-media');
+  if(aplicarMedia) aplicarMedia.addEventListener('click', ()=>{
+    if(!confirm('Cobrar '+fmtBRL(valorPagante)+' de cada um dos '+pagantes+' atleta(s) pagante(s)? Os isentos ficam de fora.')) return;
+    c.atletas.forEach(r=>{ if(r.status!=='isento') r.valorCobrado = valorPagante; });
+    logAcao('Competições', 'Valor por atleta em "'+c.nome+'" definido em '+fmtBRL(valorPagante)+' (custo '+fmtBRL(total)+' ÷ '+pagantes+')');
+    saveDB();
+    openRosterModal(compId);
+  });
   const addLoteBtn = document.getElementById('roster-add-lote');
   if(addLoteBtn) addLoteBtn.addEventListener('click', ()=>{
     const checks = [...document.querySelectorAll('.roster-check:checked')];
@@ -4215,13 +4709,13 @@ function openRosterModal(compId){
     const valor = parseFloat(document.getElementById('roster-valor-lote').value.replace(',','.')) || 0;
     const nomes = [];
     checks.forEach(chk=>{
-      const atletaId = chk.value;
-      const atleta = DB.atletas.find(a=>a.id===atletaId);
-      c.atletas.push({atletaId, valorCobrado:valor, status:'pendente'});
+      const atleta = DB.atletas.find(a=>a.id===chk.value);
+      c.atletas.push({atletaId: chk.value, valorCobrado: valor, status: 'pendente'});
       if(atleta) nomes.push(atleta.nome);
     });
-    logAcao('Competições', nomes.length+' atleta(s) escalado(s) em lote para "'+c.nome+'": '+nomes.join(', ')+' (valor '+fmtBRL(valor)+' cada)');
+    logAcao('Competições', nomes.length+' atleta(s) escalado(s) para "'+c.nome+'": '+nomes.join(', ')+' (valor '+fmtBRL(valor)+' cada)');
     saveDB();
+    document.querySelectorAll('.roster-check:checked').forEach(x=>{ x.checked = false; });
     openRosterModal(compId);
   });
   document.querySelectorAll('[data-roster-remove]').forEach(btn=>{
@@ -4239,7 +4733,7 @@ function openRosterModal(compId){
       if(!r) return;
       r.status = r.status==='pendente' ? 'pago' : r.status==='pago' ? 'isento' : 'pendente';
       const atleta = DB.atletas.find(a=>a.id===r.atletaId);
-      logAcao('Competições', 'Pagamento de inscrição de '+(atleta?atleta.nome:'atleta')+' em "'+c.nome+'" alterado para '+r.status.toUpperCase());
+      logAcao('Competições', 'Inscrição de '+(atleta?atleta.nome:'atleta')+' em "'+c.nome+'": '+r.status.toUpperCase());
       saveDB();
       openRosterModal(compId);
     });
@@ -4896,6 +5390,7 @@ function assinarDadosPrivados(){
     try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(DB)); }catch(e){}
     aoDBAtualizado();
     iniciarInscricoesWeb();
+    sincronizarPublico();
     processarFilaInscricoes();
   }, err=>{
     console.error('Erro Firestore (dados do painel):', err);
@@ -4919,6 +5414,7 @@ function iniciarFirebase(){
   try{
     if(!firebase.apps || !firebase.apps.length){ firebase.initializeApp(firebaseConfig); }
     FIREBASE_DOC_REF = firebase.firestore().collection('alleanza').doc('painel-dados');
+    PUBLICO_DOC_REF = firebase.firestore().collection('alleanza').doc('publico');
     firebase.auth().onAuthStateChanged(user=>{
       if(user && user.isAnonymous){
         // Sessão anônima da versão antiga do painel — não dá mais acesso.
@@ -5002,6 +5498,7 @@ iniciarFirebase();
     competicoes:'<path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/>',
     pedidos:'<path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/>',
     elenco:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14.5a6.5 6.5 0 0 1 3.5 5.5"/>',
+    aniversarios:'<path d="M4 21h16M5 21v-8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8"/><path d="M5 15.5c1.5 1 3 1 4.5 0s3-1 4.5 0 3 1 4.5 0"/><path d="M12 11V8M12 5.6c.9-.7.9-1.8 0-2.6-.9.8-.9 1.9 0 2.6z"/>',
     escalacao:'<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 10h6M9 14h6M9 18h3"/>',
     inscricoes:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M19 8v6M16 11h6"/>',
     calendario:'<rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/>',
