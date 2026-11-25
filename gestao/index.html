@@ -944,6 +944,7 @@ body.force-desktop .verif-colunas{grid-template-columns:1fr 1fr 1fr !important;}
 .niver-hoje .niver-nome{font-size:17px;}
 .niver-banner{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:linear-gradient(135deg,rgba(212,175,95,0.2),rgba(212,175,95,0.05));border:1px solid rgba(212,175,95,0.5);border-radius:14px;padding:12px 16px;margin:-8px 0 20px;font-size:13.5px;}
 .nav-badge.niver{background:linear-gradient(135deg,var(--gold-light),var(--gold-deep));color:#0a1729;box-shadow:0 0 0 3px rgba(212,175,95,0.2);}
+.vst-caminho{font-style:normal;font-size:10.5px;color:#7dc4e0;margin-left:3px;}
 </style>
 </head>
 <body>
@@ -1231,6 +1232,12 @@ function pedidosSemLote(){
 function pedidosDoLote(loteId){
   return DB.pedidos.filter(p=>p.loteId===loteId);
 }
+/* Pedido em nome do Aimoré = compra para o estoque do Vestiário:
+   ninguém vai pagar por ele, então não entra no "a receber". */
+function pedidoDeEstoque(p){
+  return ((p.nome||'')+' '+(p.responsavel||'')).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().includes('aimore');
+}
+function aReceberPedido(p){ return pedidoDeEstoque(p) ? 0 : Math.max(0, valorPedido(p) - p.valorPago); }
 function totaisPedidos(lista){
   const valorTotal = lista.reduce((s,p)=>s+valorPedido(p), 0);
   const valorRecebido = lista.reduce((s,p)=>s+p.valorPago, 0);
@@ -1238,7 +1245,7 @@ function totaisPedidos(lista){
     qtd: lista.length,
     valorTotal,
     valorRecebido,
-    valorPendente: valorTotal - valorRecebido
+    valorPendente: lista.reduce((s,p)=>s+aReceberPedido(p), 0)
   };
 }
 
@@ -2958,10 +2965,10 @@ function viewPedidos(){
   lista.sort((a,b)=> (b.dataPedido||'').localeCompare(a.dataPedido||''));
 
   const totalPedidos = DB.pedidos.length;
-  const totalPendentes = DB.pedidos.filter(p=>statusPagamentoPedido(p)!=='pago').length;
+  const totalPendentes = DB.pedidos.filter(p=>!pedidoDeEstoque(p) && statusPagamentoPedido(p)!=='pago').length;
   const valorTotal = DB.pedidos.reduce((s,p)=> s + valorPedido(p), 0);
   const valorRecebido = DB.pedidos.reduce((s,p)=> s + p.valorPago, 0);
-  const valorAReceber = valorTotal - valorRecebido;
+  const valorAReceber = DB.pedidos.reduce((s,p)=>s+aReceberPedido(p), 0);
   const custoTotal = DB.pedidos.reduce((s,p)=> s + custoPedido(p), 0);
   const saldoAtual = valorRecebido - custoTotal;        // já recebido menos custo de produção de tudo
   const lucroProjetado = valorTotal - custoTotal;        // se todo mundo pagar
@@ -2976,16 +2983,18 @@ function viewPedidos(){
     const total = valorPedido(p);
     const stPgto = statusPagamentoPedido(p);
     const clsPgto = stPgto==='pago' ? 'pago' : stPgto==='parcial' ? 'isento' : 'pendente';
-    const labelPgto = stPgto==='pago' ? 'PAGO' : stPgto==='parcial' ? `${fmtBRL(p.valorPago)}/${fmtBRL(total)}` : 'PEND';
+    const estoque = pedidoDeEstoque(p);
+    const clsPgtoV = estoque && stPgto!=='pago' ? 'isento' : clsPgto;
+    const labelPgto = estoque && stPgto!=='pago' ? 'ESTOQUE' : stPgto==='pago' ? 'PAGO' : stPgto==='parcial' ? `${fmtBRL(p.valorPago)}/${fmtBRL(total)}` : 'PEND';
     const loteLabel = p.loteId ? (nomeLote(p.loteId) || 'Lote') : 'Novo';
     const temObs = p.observacao && p.observacao.trim();
     return `<tr>
-      <td><strong>${p.nome}</strong>${p.responsavel ? `<div class="sub-linha">Resp.: ${p.responsavel}</div>` : ''}</td>
+      <td><strong>${p.nome}</strong>${estoque ? ' <span class="cat-badge" style="color:#7dc4e0;border-color:#7dc4e055;">📦 Estoque</span>' : ''}${p.responsavel ? `<div class="sub-linha">Resp.: ${p.responsavel}</div>` : ''}</td>
       <td>${htmlItensPedido(p)}</td>
       <td>${fmtBRL(total)}</td>
       <td class="resp-cell">${fmtDataPedido(p.dataPedido)}</td>
       <td>
-        <span class="mes-cell ${clsPgto}" data-edit-pgto-pedido="${p.id}" title="Toque para lançar/editar o valor pago">${labelPgto}</span>
+        <span class="mes-cell ${clsPgtoV}" data-edit-pgto-pedido="${p.id}" title="${estoque ? 'Pedido para o estoque do Vestiário — não tem cobrança' : 'Toque para lançar/editar o valor pago'}">${labelPgto}</span>
       </td>
       <td>
         <span class="mes-cell ${p.statusEntrega==='entregue'?'pago':p.statusEntrega==='estoque'?'isento':'pendente'}" data-toggle-pedido-entrega="${p.id}" title="Toque para alternar: a produzir → em estoque → entregue">${p.statusEntrega==='entregue'?'ENTREGUE':p.statusEntrega==='estoque'?'EM ESTOQUE':'A PRODUZIR'}</span>
@@ -3009,9 +3018,9 @@ function viewPedidos(){
       const total = valorPedido(p);
       const stPgto = statusPagamentoPedido(p);
       const clsPgto = stPgto==='pago' ? 'pago' : stPgto==='parcial' ? 'isento' : 'pendente';
-      const labelPgto = stPgto==='pago' ? 'PAGO' : stPgto==='parcial' ? `${fmtBRL(p.valorPago)}/${fmtBRL(total)}` : 'PEND';
+      const labelPgto = pedidoDeEstoque(p) && stPgto!=='pago' ? 'ESTOQUE' : stPgto==='pago' ? 'PAGO' : stPgto==='parcial' ? `${fmtBRL(p.valorPago)}/${fmtBRL(total)}` : 'PEND';
       return `<tr>
-        <td><strong>${p.nome}</strong></td>
+        <td><strong>${p.nome}</strong>${pedidoDeEstoque(p) ? ' <span class="cat-badge" style="color:#7dc4e0;border-color:#7dc4e055;">📦 Estoque</span>' : ''}</td>
         <td>${htmlItensPedido(p)}</td>
         <td><span class="mes-cell ${clsPgto}" data-edit-pgto-pedido="${p.id}" title="Toque para lançar/editar o valor pago">${labelPgto}</span></td>
         <td><button class="icon-btn" style="${p.observacao?'background:rgba(201,162,74,0.18);border-color:rgba(201,162,74,0.4);':''}" data-editar-obs-pedido="${p.id}" title="${p.observacao ? p.observacao.replace(/"/g,'&quot;') : 'Adicionar observação'}">📝</button></td>
@@ -3344,7 +3353,12 @@ function viewVestiario(){
   const itens = DB.vestiario.itens;
   const uniformes = itens.filter(i=>i.grupo==='uniforme');
   const materiais = itens.filter(i=>i.grupo==='material');
-  const pecas = uniformes.reduce((s,i)=>s+totalVestItem(i), 0);
+  const pedEstoque = DB.pedidos.filter(pedidoDeEstoque);
+  const pedChegou = pedEstoque.filter(p=>p.statusEntrega==='estoque' || p.statusEntrega==='entregue');
+  const pedCaminho = pedEstoque.filter(p=>!(p.statusEntrega==='estoque' || p.statusEntrega==='entregue'));
+  const resPed = resumoProducao(pedChegou);
+  const pecasPedidos = PECAS_PRODUCAO.reduce((s,pc)=>s+Object.values(resPed[pc.key]).reduce((t,n)=>t+n,0), 0);
+  const pecas = uniformes.reduce((s,i)=>s+totalVestItem(i), 0) + pecasPedidos;
   const somaCat = cat=>materiais.filter(i=>i.categoria===cat).reduce((s,i)=>s+totalVestItem(i), 0);
   const alertas = itens.filter(vestEmAlerta);
   const busca = buscaVestiario.trim().toLowerCase();
@@ -3404,6 +3418,7 @@ function viewVestiario(){
     </div>
 
     ${filtroVestiario !== 'material' ? `
+      ${blocoPedidosEstoque(pedChegou, pedCaminho)}
       <h2 class="vst-h2">Uniformes</h2>
       ${listaU.length ? `<div class="vst-grid">${listaU.map(cardUniforme).join('')}</div>` : '<div class="empty-state">Nenhum uniforme encontrado.</div>'}` : ''}
     ${filtroVestiario !== 'uniforme' ? `
@@ -3412,10 +3427,38 @@ function viewVestiario(){
   `;
 }
 
+/* Pedidos feitos em nome do Aimoré entram aqui sozinhos (não precisa lançar de novo). */
+function blocoPedidosEstoque(chegou, caminho){
+  if(!chegou.length && !caminho.length) return '';
+  const resChegou = resumoProducao(chegou), resCaminho = resumoProducao(caminho);
+  const cards = PECAS_PRODUCAO.map(pc=>{
+    const tams = ordenarTamanhos(pc.tipo, [...new Set(Object.keys(resChegou[pc.key]).concat(Object.keys(resCaminho[pc.key])))]);
+    if(!tams.length) return '';
+    const total = tams.reduce((s,t)=>s+(resChegou[pc.key][t]||0),0);
+    const chips = tams.map(t=>`<span class="vst-chip"><b>${escVest(t)}</b>${resChegou[pc.key][t]||0}${resCaminho[pc.key][t] ? `<em class="vst-caminho">+${resCaminho[pc.key][t]}</em>` : ''}</span>`).join('');
+    return `<div class="card vst-card">
+      <div class="vst-top"><div><strong>${pc.label}</strong><div class="vst-sub">Pedidos de estoque</div></div>
+        <div class="vst-total">${total}<small>no estoque</small></div></div>
+      <div class="vst-chips">${chips}</div>
+    </div>`;
+  }).join('');
+  return `<h2 class="vst-h2">📦 Pedidos de estoque (em nome do Aimoré)</h2>
+    <p class="vst-sub" style="margin:-4px 0 12px;">${chegou.length} pedido(s) já chegaram${caminho.length ? ` · ${caminho.length} a caminho (o <em class="vst-caminho">+N</em> é o que ainda está sendo produzido)` : ''}. Vêm de Pedidos: não precisa lançar de novo aqui.</p>
+    <div class="vst-grid">${cards}</div>`;
+}
+
 function textoInventarioVestiario(){
   const itens = DB.vestiario.itens;
   let t = '👕 *Vestiário Alleanza* — ' + new Date().toLocaleDateString('pt-BR') + '\n\n*Uniformes*\n';
   itens.filter(i=>i.grupo==='uniforme').forEach(i=>{ t += '• ' + nomeVestItem(i) + ': ' + totalVestItem(i) + ' (' + tamanhosVestTexto(i) + ')\n'; });
+  const chegou = DB.pedidos.filter(p=>pedidoDeEstoque(p) && (p.statusEntrega==='estoque' || p.statusEntrega==='entregue'));
+  if(chegou.length){
+    const res = resumoProducao(chegou);
+    PECAS_PRODUCAO.forEach(pc=>{
+      const tams = ordenarTamanhos(pc.tipo, Object.keys(res[pc.key]));
+      if(tams.length) t += '• ' + pc.label + ' (pedidos de estoque): ' + tams.map(k=>k+': '+res[pc.key][k]).join(' · ') + '\n';
+    });
+  }
   t += '\n*Materiais*\n';
   itens.filter(i=>i.grupo==='material').forEach(i=>{ t += '• ' + nomeVestItem(i) + ': ' + totalVestItem(i) + '\n'; });
   return t;
@@ -4771,6 +4814,7 @@ function openNovoPedidoModal(tipoInicial){
       <div class="field">
         <label>Responsável (opcional)</label>
         <input type="text" id="p-responsavel" placeholder="Quem está pedindo">
+        <div style="font-size:11px;color:var(--muted);margin-top:4px;">Pedido para o estoque? Use <strong>Aimoré</strong>: ele vai para o Vestiário e não entra no "a receber".</div>
       </div>
     </div>
     <div id="p-itens"></div>
