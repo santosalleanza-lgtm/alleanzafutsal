@@ -554,6 +554,9 @@ window.APP={pedir:onPedir,liberar:onLiberar,lock:lockPop,igok:()=>lsSet("po_ig_h
  cut:(e,k,i,x)=>{e.preventDefault();cutOpt(k,i,x)},
  trd:d=>{trD=trD.includes(d)?trD.filter(x=>x!==d):trD.concat(d);if(!trD.length)trD=[d];trT=null;treino()},trt:t=>{trT=t||null;treino()},trn:n=>{trN=n;treino()},trstart:trStart,erstart:erStart};
 route();
+/* Liberação geral: todos os simulados abertos. Busca os que eram bloqueados na função do Netlify;
+   se ela não responder, o app continua com o bloqueio e a liberação por código. */
+(function(){if(!LOCKED)return;fetch('/api/gratis').then(r=>r.ok?r.json():Promise.reject(r.status)).then(j=>{if(!j||!Array.isArray(j.sims))return;aplicar(j.sims);try{localStorage.setItem(UKEY,JSON.stringify({email:'',sims:j.sims}))}catch(e){}route()}).catch(()=>{})})();
 })();
 </script>
 </body>
