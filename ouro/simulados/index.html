@@ -12,7 +12,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0a08'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%23EBD9A6' stroke-width='3.5'/%3E%3Cpath d='M21 33l8 8 15-17' fill='none' stroke='%23EBD9A6' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Barlow+Condensed:wght@600;700;800&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0b0a08;--g1:#FBF3DA;--g2:#EBD9A6;--g3:#D6BC82;--grad:linear-gradient(120deg,#FBF3DA 0%,#EBD9A6 45%,#D6BC82 100%);--txt:#F7F3EA;--mut:#BFB6A2;--line:rgba(246,235,203,.14);--glass:linear-gradient(180deg,rgba(255,250,235,.075),rgba(255,250,235,.03));--ink:#1d1709;--r:22px}
 *{box-sizing:border-box}
@@ -59,7 +59,13 @@ footer{margin-top:36px;font-size:11.5px;color:var(--mut);text-align:center;line-
 .card{border-top:3px solid var(--ac,var(--g2))}
 .tagc{color:var(--ac,var(--g2));border-color:color-mix(in srgb,var(--ac,#EBD9A6) 45%,transparent)}
 .nums b{color:var(--ac,var(--g1))}
-.how div:nth-child(1) b{color:#4FB8A2}.how div:nth-child(2) b{color:#7C9BE6}.how div:nth-child(3) b{color:#F2A64E}
+.how b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+h1,.card h2{font-family:'Playfair Display',Georgia,serif;text-transform:none;letter-spacing:-.01em}
+.intro{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:end}
+.intro .coruja{width:120px;height:auto;filter:drop-shadow(0 16px 36px rgba(226,190,98,.2));animation:voo 6s ease-in-out infinite}
+@keyframes voo{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@media(max-width:560px){.intro .coruja{width:84px}}
+@media(prefers-reduced-motion:reduce){.intro .coruja{animation:none}}
 </style>
 </head>
 <body>
@@ -72,12 +78,14 @@ footer{margin-top:36px;font-size:11.5px;color:var(--mut);text-align:center;line-
   <a class="back" href="../#materiais">Ver as apostilas</a>
  </header>
 
+ <div class="intro"><div>
  <div class="eyebrow">Simulados grátis</div>
  <h1>Escolha seu <span class="gold">concurso</span></h1>
+ </div><img class="coruja" src="../img/coruja.svg" alt="Coruja dourada da Ouro Concursos" width="120" height="145"></div>
  <p class="lead">Simulados no formato da prova, com cronômetro e gabarito comentado em todas as questões. Funciona no celular, sem cadastro. Os primeiros são grátis; os demais são liberados para quem comprou a apostila do cargo.</p>
 
  <div class="grid">
-  <article class="card" data-key="po_hcpa26_simulados_v1" style="--ac:#4FB8A2">
+  <article class="card" data-key="po_hcpa26_simulados_v1">
    <div class="im"><img src="../img/o_hcpa.webp" alt="Assistente Administrativo II, HCPA" width="900" height="600"></div>
    <div class="b">
     <span class="tagc">HCPA 2026 · FAURGS</span>
@@ -88,7 +96,7 @@ footer{margin-top:36px;font-size:11.5px;color:var(--mut);text-align:center;line-
     <div class="acts"><a class="btn pri" href="hcpa/">Começar grátis</a><a class="btn gh" href="https://go.hotmart.com/G108024565R" target="_blank" rel="noopener">Apostila · R$ 79,90</a></div>
    </div>
   </article>
-  <article class="card" data-key="po_ghc_higi_v1" style="--ac:#8BCB6B">
+  <article class="card" data-key="po_ghc_higi_v1">
    <div class="im"><img src="../img/o_higien.webp" alt="Higienização Hospitalar" width="900" height="600"></div>
    <div class="b">
     <span class="tagc">GHC · Hospitalar</span>
@@ -99,7 +107,7 @@ footer{margin-top:36px;font-size:11.5px;color:var(--mut);text-align:center;line-
     <div class="acts"><a class="btn pri" href="higienizacao/">Começar grátis</a><a class="btn gh" href="https://go.hotmart.com/T108466669M" target="_blank" rel="noopener">Apostila · R$ 57,90</a></div>
    </div>
   </article>
-  <article class="card" data-key="po_ghc_vigia_v1" style="--ac:#7C9BE6">
+  <article class="card" data-key="po_ghc_vigia_v1">
    <div class="im"><img src="../img/o_vigia.webp" alt="Vigia Hospitalar" width="900" height="600"></div>
    <div class="b">
     <span class="tagc">GHC · Hospitalar</span>

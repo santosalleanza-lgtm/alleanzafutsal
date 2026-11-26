@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Ouro Concursos · Materiais</title><meta name="description" content="Ouro Concursos: apostilas, questões e simulados para concursos hospitalares, Polícia Penal, EPTC e TAF."><meta name="theme-color" content="#0b0a08">
+<title>Ouro Concursos · Materiais</title><meta name="description" content="Ouro Concursos: apostilas, questões e simulados para concursos hospitalares, Polícia Penal, EPTC e TAF."><meta name="theme-color" content="#070605">
 <meta property="og:title" content="Ouro Concursos · Materiais"><meta property="og:description" content="Ouro Concursos: apostilas, questões e simulados para concursos hospitalares, Polícia Penal, EPTC e TAF."><meta property="og:image" content="img/hero.webp">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet"><style>:root{--bg:#0b0a08;--g1:#FBF3DA;--g2:#EBD9A6;--g3:#D6BC82;--grad:linear-gradient(120deg,#FBF3DA 0%,#EBD9A6 45%,#D6BC82 100%);--txt:#F7F3EA;--mut:#BFB6A2;--line:rgba(246,235,203,.14);--glass:linear-gradient(180deg,rgba(255,250,235,.075),rgba(255,250,235,.03));--ink:#1d1709;--r:22px;--mx:50%;--my:30%}
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet"><style>:root{--bg:#0b0a08;--g1:#FBF3DA;--g2:#EBD9A6;--g3:#D6BC82;--grad:linear-gradient(120deg,#FBF3DA 0%,#EBD9A6 45%,#D6BC82 100%);--txt:#F7F3EA;--mut:#BFB6A2;--line:rgba(246,235,203,.14);--glass:linear-gradient(180deg,rgba(255,250,235,.075),rgba(255,250,235,.03));--ink:#1d1709;--r:22px;--mx:50%;--my:30%}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth;color-scheme:dark;scroll-padding-top:84px}
 main{overflow-x:clip}
@@ -204,44 +204,51 @@ footer .container{display:flex;flex-direction:column;gap:14px;align-items:center
 .sim-num p{color:var(--mut);font-size:13px;margin:0}
 .soc.parc{margin-top:10px;font-size:12px}.soc.parc span{color:var(--mut)}
 
-/* ===== Ajustes nov/2026: cores por categoria, lista no celular, selo do Netlify ===== */
-:root{--c-hosp:#4FB8A2;--c-pol:#7C9BE6;--c-tra:#F2A64E;--c-taf:#E8716A;--cream:#F4EEDF;--nf:52px}
-.pc{--ac:var(--g2)}
-.pc[data-g=hospitalar]{--ac:var(--c-hosp)}.pc[data-g=policia]{--ac:var(--c-pol)}
-.pc[data-g=transito]{--ac:var(--c-tra)}.pc[data-g=taf]{--ac:var(--c-taf)}
-.pc{border-top:3px solid var(--ac)}
-.pc.hl{border-color:rgba(235,217,166,.35);border-top-color:var(--ac)}
-.flag{background:var(--ac);color:#0b0a08}
-.pc-cat{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ac);margin-bottom:6px}
-.pc-cat::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--ac)}
-.chip-f[data-g=hospitalar]{--ac:var(--c-hosp)}.chip-f[data-g=policia]{--ac:var(--c-pol)}
-.chip-f[data-g=transito]{--ac:var(--c-tra)}.chip-f[data-g=taf]{--ac:var(--c-taf)}
-.chip-f[data-g]:not([data-g=all])::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ac);margin-right:8px;vertical-align:1px}
-.chip-f[data-g]:not([data-g=all])[aria-pressed=true]{background:var(--ac);color:#0b0a08}
-.chip-f[data-g]:not([data-g=all])[aria-pressed=true]::before{background:#0b0a08}
-.hero-art .chip:nth-of-type(1){border-color:var(--c-hosp);color:#d6f3ec}
-.hero-art .chip:nth-of-type(2){border-color:var(--c-pol);color:#dfe7fb}
-.hero-art .chip:nth-of-type(3){border-color:var(--c-tra);color:#fde9cf}
-.step:nth-child(1) .n{background:none;color:var(--c-hosp);-webkit-text-fill-color:var(--c-hosp)}
-.step:nth-child(2) .n{background:none;color:var(--c-pol);-webkit-text-fill-color:var(--c-pol)}
-.step:nth-child(3) .n{background:none;color:var(--c-tra);-webkit-text-fill-color:var(--c-tra)}
+/* ===== Paleta premium: preto de fundo, dourado predominante, coruja como mascote ===== */
+:root{--bg:#070605;--k1:#0E0C09;--k2:#15120D;--champ:#F8EBC4;--ouro:#E2BE62;--ouro2:#C9A13B;--antigo:#9A7426;--bronze:#5E4614;
+ --grad:linear-gradient(120deg,#FBF0CF 0%,#E2BE62 48%,#B88A2E 100%);--line:rgba(226,190,98,.18);--nf:52px}
+body{background:radial-gradient(1100px 620px at 80% -8%,rgba(226,190,98,.10),transparent 60%),radial-gradient(800px 500px at -10% 40%,rgba(226,190,98,.05),transparent 60%),var(--bg)}
+/* títulos com serifa, como nos posts do @ouro.concursos */
+.cond,h1,h2,.pc h3,.step h3{font-family:'Playfair Display',Georgia,serif;text-transform:none;font-weight:800;letter-spacing:-.01em;line-height:1.02}
+h1.cond{font-size:clamp(44px,7.4vw,84px)}
+.gold{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.eyebrow{color:var(--ouro)}.eyebrow::before{background:linear-gradient(90deg,transparent,var(--ouro))}
+.glass{background:linear-gradient(180deg,rgba(226,190,98,.06),rgba(226,190,98,.015));border-color:var(--line)}
+/* categorias em tons de dourado (sem outras cores) */
+.pc{--ac:var(--ouro)}
+.pc[data-g=hospitalar]{--ac:var(--champ)}.pc[data-g=policia]{--ac:var(--ouro)}
+.pc[data-g=transito]{--ac:var(--ouro2)}.pc[data-g=taf]{--ac:var(--antigo)}
+.pc{border-top:1px solid var(--line);box-shadow:inset 0 1px 0 rgba(248,235,196,.08)}
+.pc.hl{border-color:rgba(226,190,98,.5)}
+.pc:hover{border-color:rgba(226,190,98,.55);box-shadow:0 24px 60px rgba(0,0,0,.6),0 0 0 1px rgba(226,190,98,.15)}
+.flag{background:var(--grad);color:#120E06}
+.pc-cat{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ac);margin-bottom:6px}
+.pc-cat::before{content:"";width:14px;height:1px;background:var(--ac)}
+.chip-f{border-color:var(--line)}
+.chip-f[aria-pressed=true]{background:var(--grad);color:#120E06}
+.price{color:var(--champ)}
+.step .n{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-family:'Playfair Display',serif;font-style:italic}
+/* coruja */
+.coruja{display:block;filter:drop-shadow(0 18px 40px rgba(226,190,98,.18))}
+.hero-art{background:radial-gradient(60% 55% at 50% 45%,rgba(226,190,98,.16),transparent 70%),linear-gradient(180deg,#120F0A,#070605);display:grid;place-items:center}
+.hero-art::before{content:"";position:absolute;inset:8%;border-radius:50%;border:1px solid rgba(226,190,98,.22);box-shadow:0 0 0 28px rgba(226,190,98,.035),0 0 0 29px rgba(226,190,98,.12),0 0 0 62px rgba(226,190,98,.025),0 0 0 63px rgba(226,190,98,.08)}
+.hero-art .coruja{position:relative;z-index:1;width:min(64%,300px);height:auto;animation:voo 6s ease-in-out infinite}
+@keyframes voo{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.owl-mini{width:46px;height:auto;flex:none}
+.quem-owl{display:flex;gap:16px;align-items:center;margin:18px 0 6px;padding:14px 16px;border:1px solid var(--line);border-radius:18px;background:rgba(226,190,98,.04)}
+.quem-owl p{margin:0;font-size:13.5px;color:var(--mut)}
+.quem-owl b{color:var(--champ)}
+.sim-card{position:relative;overflow:hidden}
+.sim-card .owl-bg{position:absolute;right:-30px;bottom:-26px;width:190px;opacity:.12;pointer-events:none}
+.div-owl{display:flex;align-items:center;gap:14px;justify-content:center;margin:6px auto 0;max-width:420px;opacity:.9}
+.div-owl::before,.div-owl::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--ouro2))}
+.div-owl::after{background:linear-gradient(90deg,var(--ouro2),transparent)}
+.div-owl img{width:34px;height:auto}
+footer .owl-foot{width:40px;height:auto;margin:0 auto 10px;display:block;opacity:.85}
+@media(prefers-reduced-motion:reduce){.hero-art .coruja{animation:none}}
 /* lista com link no meio do texto: não quebrar em colunas */
 #quem .ticks li{display:block;position:relative;padding-left:28px}
 #quem .ticks li::before{position:absolute;left:0;top:2px}
-/* seção clara para quebrar o preto e dourado */
-.light{position:relative;color:#1d1709;background:var(--cream);box-shadow:0 0 0 100vmax var(--cream);clip-path:inset(0 -100vmax);padding-top:clamp(48px,7vw,84px);padding-bottom:clamp(48px,7vw,84px)}
-.light .eyebrow{color:#8a6a1f}.light .eyebrow::before{background:#8a6a1f}
-.light .gold{background:linear-gradient(120deg,#8a6a1f,#b8892b);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
-.light .sub,.light p{color:#5b5243}
-.light .ticks li{color:#2a2416}
-.light .ticks li::before{background:#8a6a1f}
-.light .glass{background:#fff;border-color:rgba(29,23,9,.12);box-shadow:0 18px 40px rgba(29,23,9,.08);backdrop-filter:none;-webkit-backdrop-filter:none}
-.light .sim-num div{border-color:rgba(29,23,9,.1)}
-.light .sim-num b{background:none;-webkit-text-fill-color:#1f6f5f;color:#1f6f5f}
-.light .sim-num div:nth-child(2) b{-webkit-text-fill-color:#3d5ba8;color:#3d5ba8}
-.light .sim-num div:nth-child(3) b{-webkit-text-fill-color:#b35a25;color:#b35a25}
-.light .sim-num span,.light .sim-num p{color:#5b5243}
-.light a{color:#8a6a1f!important}
 /* celular: lista vertical em vez de carrossel lateral */
 @media(max-width:699px){
  .grid{display:grid;grid-template-columns:1fr;gap:12px;overflow:visible;scroll-snap-type:none;padding:0;margin:0}
@@ -279,7 +286,7 @@ footer .container{display:flex;flex-direction:column;gap:14px;align-items:center
   <div class="cta"><a class="btn pri" href="simulados/">Comece pelo simulado grátis</a><a class="btn gh" href="#materiais">Ver as apostilas</a></div>
   <div class="trust"><span>Simulados grátis</span><span>8 materiais por cargo</span><span>Gabarito comentado</span><span>Compra pela Hotmart</span></div>
  </div>
- <div class="hero-art"><img src="img/hero.webp" alt="Ouro Concursos" width="900" height="1125"><span class="chip" style="left:16px;top:20px">Hospitalar</span><span class="chip" style="right:16px;top:30%">Polícia Penal · EPTC</span><span class="chip" style="left:20px;bottom:24px">Simulados e questões</span></div>
+ <div class="hero-art"><img class="coruja" src="img/coruja.svg" alt="Coruja dourada, mascote da Ouro Concursos" width="240" height="290"><span class="chip" style="left:16px;top:20px">Hospitalar</span><span class="chip" style="right:16px;bottom:66px">Polícia Penal · EPTC</span><span class="chip" style="left:20px;bottom:24px">Simulados e questões</span></div>
 </section>
 
 <section id="materiais" class="sec container rev">
@@ -292,7 +299,7 @@ footer .container{display:flex;flex-direction:column;gap:14px;align-items:center
 
 <section id="simulados" class="sec container rev">
  <div class="two">
-  <div class="cta-card glass sim-card"><div class="eyebrow">Grátis · HCPA 2026</div><h2 class="cond">Treine no formato <span class="gold">da prova</span></h2>
+  <div class="cta-card glass sim-card"><img class="owl-bg" src="img/coruja.svg" alt="" width="190" height="230"><div class="eyebrow">Grátis · HCPA 2026</div><h2 class="cond">Treine no formato <span class="gold">da prova</span></h2>
    <p class="sub" style="margin-bottom:16px">Simulados de Assistente Administrativo II no padrão FAURGS: 40 questões, cronômetro de 3 horas e gabarito comentado em todas.</p>
    <ul class="ticks"><li>3 simulados completos liberados, sem cadastro</li><li>Correção pelo critério do edital: 24 acertos e 2 em cada básica</li><li>Treino por assunto e revisão das questões que você errou</li><li>Funciona no celular, direto no navegador</li></ul>
    <div class="acts"><a class="btn pri" href="simulados/hcpa/">Fazer simulado grátis</a><a class="btn gh" href="https://go.hotmart.com/G108024565R" target="_blank" rel="noopener">Apostila HCPA · R$ 79,90</a></div></div>
@@ -300,15 +307,18 @@ footer .container{display:flex;flex-direction:column;gap:14px;align-items:center
  </div>
 </section>
 
-<section id="quem" class="sec container rev light">
+<section id="quem" class="sec container rev">
  <div class="two">
   <div class="sec-h" style="margin:0"><div class="eyebrow">Quem faz o material</div><h2 class="cond">Material autoral, <span class="gold">feito para a prova</span></h2>
    <p class="sub">A Ouro Concursos produz as próprias apostilas e simulados, organizados pelo edital de cada cargo e no estilo das bancas que aplicam as provas no Rio Grande do Sul. Você estuda o que cai, do jeito que cai.</p>
+   <div class="quem-owl"><img class="owl-mini coruja" src="img/coruja.svg" alt="" width="46" height="56"><p><b>A coruja dourada é a nossa guia.</b> Ela aparece onde está o que mais cai: nas questões comentadas, nos simulados e nas dicas do Instagram.</p></div>
    <ul class="ticks" style="margin-top:16px"><li>Conteúdo organizado pelo edital de cada cargo</li><li>Questões com gabarito comentado, alternativa por alternativa</li><li>Simulados no formato da prova, com correção pelo critério do edital</li><li>Dúvidas respondidas no direct do <a href="https://www.instagram.com/ouro.concursos/" target="_blank" rel="noopener" style="color:var(--g2)">@ouro.concursos</a></li></ul>
   </div>
   <div class="sim-num glass"><div><b class="gold">8</b><span>materiais por cargo</span></div><div><b class="gold">2.640</b><span>questões nos materiais com simulados (HCPA, Higienização e Vigia)</span></div><div><b class="gold">3</b><span>apps de simulados grátis para testar</span></div><p>Material independente de preparação, sem vínculo com bancas ou instituições.</p></div>
  </div>
 </section>
+
+<div class="div-owl" aria-hidden="true"><img src="img/coruja.svg" alt="" width="34" height="41"></div>
 
 <section id="como" class="sec container rev">
  <div class="sec-h"><div class="eyebrow">Como funciona</div><h2 class="cond">Três passos <span class="gold">simples</span></h2></div>
@@ -331,7 +341,7 @@ footer .container{display:flex;flex-direction:column;gap:14px;align-items:center
  </div>
 </section>
 </main>
-<footer><div class="container"><div class="soc"><a href="https://www.instagram.com/ouro.concursos/" target="_blank" rel="noopener">Instagram</a><a href="#materiais">Materiais</a><a href="simulados/">Simulados grátis</a><a href="#duvidas">Dúvidas</a></div><div class="soc parc"><span>Projetos parceiros:</span><a href="https://aimoreperformance.netlify.app/" target="_blank" rel="noopener">Aimoré Performance · preparação para TAF</a><a href="https://alleanzafutsalpro2.netlify.app/" target="_blank" rel="noopener">Alleanza Futsal</a></div><div>Ouro Concursos · Material independente de preparação, sem vínculo com bancas ou instituições. Compra segura pela Hotmart.</div></div></footer>
+<footer><div class="container"><img class="owl-foot" src="img/coruja.svg" alt="" width="40" height="48"><div class="soc"><a href="https://www.instagram.com/ouro.concursos/" target="_blank" rel="noopener">Instagram</a><a href="#materiais">Materiais</a><a href="simulados/">Simulados grátis</a><a href="#duvidas">Dúvidas</a></div><div class="soc parc"><span>Projetos parceiros:</span><a href="https://aimoreperformance.netlify.app/" target="_blank" rel="noopener">Aimoré Performance · preparação para TAF</a><a href="https://alleanzafutsalpro2.netlify.app/" target="_blank" rel="noopener">Alleanza Futsal</a></div><div>Ouro Concursos · Material independente de preparação, sem vínculo com bancas ou instituições. Compra segura pela Hotmart.</div></div></footer>
 <div class="dock"><a class="btn gh" href="#materiais">Apostilas</a><a class="btn pri" href="simulados/">Simulado grátis</a></div>
 <script>(function(){
   var root=document.documentElement,reduce=matchMedia('(prefers-reduced-motion:reduce)').matches,fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
