@@ -308,7 +308,8 @@ function home(){
   else if(a){cls='prog';const n=a.ans.filter(x=>x!=null).length;r=`<b>${n}/40</b><span class="tag">em andamento</span>`}
   return `<button class="sim ${cls}" onclick="APP.go('#sim/${s.n}')"><div class="n">${s.n}</div><div class="m"><b>Simulado ${s.n}</b><span>40 questões · ${s.tema||'formato oficial'}</span></div><div class="r">${r}</div></button>`}).join('')}</div>
  ${buyCard('Apostila completa · Kit Premium Vigia Hospitalar','Material completo com o conteúdo do cargo, questões comentadas e revisão rápida.')}
- <a class="dev" href="../" style="margin-top:22px">📚 Ver todos os materiais da Ouro Concursos</a>
+ <a class="dev" href="../" style="margin-top:22px">🎯 Outros simulados grátis</a>
+ <a class="dev" href="../../" style="margin-top:10px">📚 Ver todos os materiais da Ouro Concursos</a>
  ${partnersBlock()}
  <div class="foot">Material didático independente, elaborado com base no conteúdo programático divulgado para o cargo. Sem vínculo, autorização ou endosso do Grupo Hospitalar Conceição ou da Fundatec. Questões inéditas e autorais. Seu progresso fica salvo apenas neste aparelho e neste navegador.<br>© Preparatório Ouro</div>
  </div>`;
@@ -430,6 +431,18 @@ function finish(key,forced){
 
 /* ---------- RESULTADO ---------- */
 let rvFilter='todas';
+/* Chamada da tela de resultado: aponta a matéria que mais pesou (item F). */
+function focoResultado(r,txtAprovado){
+ const ds=Object.keys(r.by).filter(d=>r.by[d][1]);
+ const pct=d=>r.by[d][0]/r.by[d][1];
+ const elim=r.total===40?["P","I","R"].filter(d=>r.by[d]&&r.by[d][1]&&r.by[d][0]<2&&r.why.some(w=>w.indexOf(DISC[d])>=0)):[];
+ if(elim.length){const d=elim[0];return['Você foi eliminado em '+DISC[d],'Foi a matéria que derrubou o simulado ('+r.by[d][0]+'/'+r.by[d][1]+'). A apostila traz '+DISC[d]+' do edital com teoria e questões comentadas para virar esse jogo.']}
+ if(!ds.length)return['Consolide o conteúdo do edital',txtAprovado];
+ const pior=ds.slice().sort((a,b)=>pct(a)-pct(b))[0];
+ if(r.pass===true)return[r.why.length||!['P','I','R'].every(d=>r.by[d])?'Meta atingida. Agora é manter o ritmo':'Você passaria. Agora é manter o ritmo',txtAprovado];
+ const [o,t]=r.by[pior];
+ return[(r.pass===false?'Seu ponto fraco: ':'Onde você mais errou: ')+DISC[pior]+' ('+o+'/'+t+')','Revise '+DISC[pior]+' na apostila, com teoria e questões comentadas, e refaça o simulado para medir a evolução.'];
+}
 function result(key){
  stopTimer();
  const a=ST.att[key];if(!a||!a.done)return go('#');
@@ -440,7 +453,7 @@ function result(key){
  if(r.pass!==null)h+=`<div class="st ${r.pass?'ok':'bad'}">${r.pass?'Meta de treino atingida':'Abaixo da meta de treino'}</div><p>Nota ${r.nota.toFixed(2).replace('.',',')} de 10,00${r.blank?` · ${r.blank} em branco`:''}</p>${r.why.length?`<p style="color:var(--bad)">${r.why.join(' · ')}</p>`:''}`;
  else h+=`<div class="st">${Math.round(r.ok/r.total*100)}% de acertos</div>`;
  h+=`</div>`;
- h+=buyCard(r.pass===false?'Revise os pontos que você errou':'Consolide o conteúdo do edital',r.pass===false?'A apostila completa explica cada assunto cobrado, com mapas mentais para revisar rápido.':'Teoria, questões comentadas e revisão rápida para chegar pronto à prova.');
+ h+=buyCard(...focoResultado(r,'Teoria, questões comentadas e revisão rápida para chegar pronto à prova.'));
  h+=igCard(false,'Continue treinando com a gente','Siga @'+CFG.ig+' e receba questões comentadas todos os dias');
  h+=`<div class="sec"><h2>Por disciplina</h2></div><div class="card bars">${DORD.filter(d=>r.by[d][1]).map(d=>{const[o,t]=r.by[d],p=o/t;const min=false;const col=min&&o<2?'var(--bad)':(p>=.7?'var(--ok)':p>=.5?'var(--gold)':'var(--bad)');return `<div class="bar"><div class="t"><b>${DISC[d]}</b><span>${o}/${t}${min?' · mín. 2':''}</span></div><div class="tr"><i style="width:${(p*100).toFixed(0)}%;background:${col}"></i></div></div>`}).join('')}</div>`;
  const tps=Object.entries(r.tp).filter(([t])=>qs.find(q=>q.t===t&&q.d==='E'));

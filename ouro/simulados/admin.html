@@ -57,7 +57,7 @@ f.onsubmit=async e=>{
  const j=await r.json().catch(()=>({erro:'Falha na conexão.'}));
  if(!r.ok){err.textContent=j.erro||'Erro.';return}
  try{sessionStorage.setItem('adm',f.senha.value)}catch(e){}
- const site=location.origin+'/simulados/'+(f.produto.value?f.produto.value+'/':'');
+ const site=location.origin+'/simulados/'+(f.produto.value||'hcpa')+'/';
  const nome={'':'Assistente Administrativo II (HCPA 2026)',higienizacao:'Higienização Hospitalar (GHC)',vigia:'Kit Premium Vigia Hospitalar (GHC)'}[f.produto.value];
  const msg=`Olá! Seus simulados de ${nome} foram liberados.\n\nAbra ${site}, toque em qualquer simulado bloqueado e digite:\nE-mail: ${j.email}\nCódigo: ${j.codigo}\n\nBons estudos!`;
  document.getElementById('em').textContent=j.email;

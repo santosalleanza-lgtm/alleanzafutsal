@@ -4,8 +4,10 @@ Um só site para a marca:
 
 | Endereço | O que é |
 |---|---|
-| `/` | Catálogo com os 8 materiais (filtro por concurso, cupom, compra pela Hotmart) |
-| `/simulados/` | App de simulados HCPA: simulados 1 a 3 grátis; 4 a 26 liberados por código para quem comprou a apostila |
+| `/` | Catálogo: chamada para o simulado grátis, 8 materiais por cargo (sem promoção), "Quem faz o material" |
+| `/simulados/` | Página de escolha: HCPA, Higienização e Vigia, com quantos são grátis e o progresso salvo no aparelho |
+| `/simulados/hcpa/` | Simulados HCPA: 1 a 3 grátis; 4 a 26 liberados por código para quem comprou a apostila |
+| `/simulados/higienizacao/`, `/simulados/vigia/` | Simulados GHC: 1 grátis; 2 liberados por código (`/api/liberar-ghc`) |
 | `/simulados/admin.html` | Sua página para gerar o código de liberação de um aluno |
 | `/api/liberar`, `/api/codigo` | Funções do Netlify que conferem o código e entregam os simulados bloqueados |
 
@@ -38,3 +40,8 @@ Com o HTML completo dos simulados (o arquivo original, com os 26) fora do reposi
 
 Guarde a chave gerada, coloque-a no Netlify, faça commit do novo `bloqueados.mjs` e um deploy.
 Os códigos já enviados continuam valendo se o `CODIGO_SEGREDO` for o mesmo.
+
+## Tela de resultado
+Depois de entregar um simulado, a chamada da apostila cita a matéria que mais pesou:
+eliminado por uma básica (HCPA: menos de 2 acertos) → "Você foi eliminado em <matéria>";
+abaixo da meta → "Seu ponto fraco: <matéria> (acertos/total)"; aprovado → "Você passaria" (HCPA) ou "Meta atingida" (GHC).
