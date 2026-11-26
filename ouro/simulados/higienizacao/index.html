@@ -197,6 +197,9 @@ h1,h2,h3{margin:0;line-height:1.15}
 
 /* barra de navegação acima do selo "Powered by Netlify" (canto inferior direito, plano grátis) */
 @media(max-width:899px){.nav{padding-bottom:calc(10px + var(--safe-b) + 50px)}.wrap{padding-bottom:calc(150px + var(--safe-b))}.toast{bottom:calc(140px + var(--safe-b))}}
+
+/* coruja dourada (mascote) como marca-d'água no destaque */
+.hero{position:relative;overflow:hidden}.hero>*{position:relative}.hero .hero-owl{position:absolute;right:-22px;bottom:-18px;width:150px;opacity:.13;pointer-events:none}
 </style>
 </head>
 <body>
@@ -295,7 +298,7 @@ function home(){
  let h=topbar(`<span class="brand">${LOGO}<span><span class="b1">PREPARATÓRIO</span><br><span class="b2">OURO</span></span></span>`,'', '', '');
  h=h.replace('<div class="ttl"><b>','<div class="ttl"><b style="white-space:normal">');
  h+=`<div class="wrap">
- <div class="hero"><div class="k">GHC 2026 · Nível Fundamental</div><h1 class="pf">Simulados <em>Higienização Hospitalar</em></h1>
+ <div class="hero"><img class="hero-owl" src="../../img/coruja.svg" alt="" aria-hidden="true"><div class="k">GHC 2026 · Nível Fundamental</div><h1 class="pf">Simulados <em>Higienização Hospitalar</em></h1>
  <p>${LOCKED?`${FREE} simulado${FREE>1?"s":""} grátis no formato da prova: 40 questões (Português 8, Saúde 6, Informática 6, Específicos 20). Os outros ${LOCKED} são liberados para quem comprou a apostila.`:`${SIMS.length} simulados inéditos no formato da prova: 40 questões (Português 8, Saúde 6, Informática 6, Específicos 20).`}</p>
  <div class="stats"><div class="stat"><b>${done.length}/${FREE}</b><span>simulados concluídos</span></div><div class="stat"><b>${done.length?avg.toString().replace('.',','):'—'}</b><span>média de acertos</span></div><div class="stat"><b>${done.length?best:'—'}</b><span>melhor resultado</span></div></div></div>
  ${igCard(true,'Siga @'+CFG.ig,'Questões e dicas diárias para o concurso do GHC')}

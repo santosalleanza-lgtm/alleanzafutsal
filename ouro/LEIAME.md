@@ -7,6 +7,7 @@ Um só site para a marca:
 | `/` | Catálogo: chamada para o simulado grátis, 8 materiais por cargo (sem promoção), "Quem faz o material" |
 | `/simulados/` | Página de escolha: HCPA, Higienização e Vigia, com quantos são grátis e o progresso salvo no aparelho |
 | `/simulados/hcpa/` | Simulados HCPA: 1 a 3 grátis; 4 a 26 liberados por código para quem comprou a apostila |
+| `/simulados/tecnico-enfermagem/` | Técnico de Enfermagem (CC, SR e/ou CME) · GHC 2026: Simulado 1 grátis, 50 questões no formato do edital FUNDATEC 03/2026 (fonte das questões: `scripts/conteudo/tecnico-enfermagem-simulado1.py`) |
 | `/simulados/higienizacao/`, `/simulados/vigia/` | Simulados GHC: 1 grátis; 2 liberados por código (`/api/liberar-ghc`) |
 | `/simulados/admin.html` | Sua página para gerar o código de liberação de um aluno |
 | `/api/liberar`, `/api/codigo` | Funções do Netlify que conferem o código e entregam os simulados bloqueados |
@@ -45,3 +46,10 @@ Os códigos já enviados continuam valendo se o `CODIGO_SEGREDO` for o mesmo.
 Depois de entregar um simulado, a chamada da apostila cita a matéria que mais pesou:
 eliminado por uma básica (HCPA: menos de 2 acertos) → "Você foi eliminado em <matéria>";
 abaixo da meta → "Seu ponto fraco: <matéria> (acertos/total)"; aprovado → "Você passaria" (HCPA) ou "Meta atingida" (GHC).
+
+## Técnico de Enfermagem (GHC 2026)
+Regras do edital (Anexo II, nível técnico): 50 questões de 4 alternativas, 2 pontos cada; mínimo de 1 acerto em
+Português, Políticas Públicas de Saúde e Informática, 13 nos Específicos e 50 pontos no total; 3h30 de prova.
+Conteúdo segue o Anexo V (prova base) e o Anexo VI, Cargo 3 (Parte 1 e Parte 2).
+Para gerar de novo os dados do Simulado 1: `python3 scripts/conteudo/tecnico-enfermagem-simulado1.py saida.json`
+e substituir o `<script id="data">` do app. Ainda não há apostila à venda: o card do app leva à lista de espera no WhatsApp.
