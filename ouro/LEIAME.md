@@ -1,4 +1,11 @@
-# Ouro Concursos: catálogo + simulados HCPA
+# Ouro Concursos: catálogo + simulados grátis
+
+> **Nov/2026:** a criptografia e a liberação por código foram removidas. Todos os simulados do site são
+> abertos e grátis, e o site não usa funções nem variáveis de ambiente. Os simulados que estavam
+> bloqueados (23 do HCPA, 2 de Higienização e 2 de Vigia) só existiam criptografados e saíram do site;
+> continuam no histórico do Git (commit anterior a esta mudança) e podem voltar com as chaves
+> DADOS_CHAVE/GHC_CHAVE ou com os arquivos originais das questões.
+
 
 Um só site para a marca:
 
@@ -9,8 +16,6 @@ Um só site para a marca:
 | `/simulados/hcpa/` | Simulados HCPA: 1 a 3 grátis; 4 a 26 liberados por código para quem comprou a apostila |
 | `/simulados/tecnico-enfermagem/` | Técnico de Enfermagem (CC, SR e/ou CME) · GHC 2026: Simulado 1 grátis, 50 questões no formato do edital FUNDATEC 03/2026 (fonte das questões: `scripts/conteudo/tecnico-enfermagem-simulado1.py`) |
 | `/simulados/higienizacao/`, `/simulados/vigia/` | Simulados GHC: 1 grátis; 2 liberados por código (`/api/liberar-ghc`) |
-| `/simulados/admin.html` | Sua página para gerar o código de liberação de um aluno |
-| `/api/liberar`, `/api/codigo` | Funções do Netlify que conferem o código e entregam os simulados bloqueados |
 
 As questões dos simulados 4 a 26 ficam em `netlify/functions/lib/bloqueados.mjs`, **cifradas** (AES-256-GCM).
 Sem a `DADOS_CHAVE`, que fica só nas variáveis do Netlify, o repositório público não expõe o gabarito.
