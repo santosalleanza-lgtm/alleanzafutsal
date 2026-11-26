@@ -217,6 +217,9 @@ footer .container{display:flex;flex-direction:column;gap:14px;align-items:center
 .av-erro{display:none;color:#f0a39d;font-size:13px;margin:-8px 0 14px}
 .soc.parc{margin-top:10px;font-size:12px}
 .soc.parc span{color:var(--mut)}
+
+/* barra fixa acima do selo "Powered by Netlify" (canto inferior direito, plano grátis) */
+@media(max-width:899px){.dock{bottom:calc(max(12px,env(safe-area-inset-bottom)) + 52px)}body{padding-bottom:150px}}
 </style></head><body>
 <div class="aurora"><i></i><i></i></div><div class="grid-bg"></div><div class="glow"></div>
 <header class="top"><div class="container">

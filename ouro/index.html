@@ -203,6 +203,67 @@ footer .container{display:flex;flex-direction:column;gap:14px;align-items:center
 .sim-num span{color:var(--mut);font-size:14px}
 .sim-num p{color:var(--mut);font-size:13px;margin:0}
 .soc.parc{margin-top:10px;font-size:12px}.soc.parc span{color:var(--mut)}
+
+/* ===== Ajustes nov/2026: cores por categoria, lista no celular, selo do Netlify ===== */
+:root{--c-hosp:#4FB8A2;--c-pol:#7C9BE6;--c-tra:#F2A64E;--c-taf:#E8716A;--cream:#F4EEDF;--nf:52px}
+.pc{--ac:var(--g2)}
+.pc[data-g=hospitalar]{--ac:var(--c-hosp)}.pc[data-g=policia]{--ac:var(--c-pol)}
+.pc[data-g=transito]{--ac:var(--c-tra)}.pc[data-g=taf]{--ac:var(--c-taf)}
+.pc{border-top:3px solid var(--ac)}
+.pc.hl{border-color:rgba(235,217,166,.35);border-top-color:var(--ac)}
+.flag{background:var(--ac);color:#0b0a08}
+.pc-cat{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ac);margin-bottom:6px}
+.pc-cat::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--ac)}
+.chip-f[data-g=hospitalar]{--ac:var(--c-hosp)}.chip-f[data-g=policia]{--ac:var(--c-pol)}
+.chip-f[data-g=transito]{--ac:var(--c-tra)}.chip-f[data-g=taf]{--ac:var(--c-taf)}
+.chip-f[data-g]:not([data-g=all])::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ac);margin-right:8px;vertical-align:1px}
+.chip-f[data-g]:not([data-g=all])[aria-pressed=true]{background:var(--ac);color:#0b0a08}
+.chip-f[data-g]:not([data-g=all])[aria-pressed=true]::before{background:#0b0a08}
+.hero-art .chip:nth-of-type(1){border-color:var(--c-hosp);color:#d6f3ec}
+.hero-art .chip:nth-of-type(2){border-color:var(--c-pol);color:#dfe7fb}
+.hero-art .chip:nth-of-type(3){border-color:var(--c-tra);color:#fde9cf}
+.step:nth-child(1) .n{background:none;color:var(--c-hosp);-webkit-text-fill-color:var(--c-hosp)}
+.step:nth-child(2) .n{background:none;color:var(--c-pol);-webkit-text-fill-color:var(--c-pol)}
+.step:nth-child(3) .n{background:none;color:var(--c-tra);-webkit-text-fill-color:var(--c-tra)}
+/* lista com link no meio do texto: não quebrar em colunas */
+#quem .ticks li{display:block;position:relative;padding-left:28px}
+#quem .ticks li::before{position:absolute;left:0;top:2px}
+/* seção clara para quebrar o preto e dourado */
+.light{position:relative;color:#1d1709;background:var(--cream);box-shadow:0 0 0 100vmax var(--cream);clip-path:inset(0 -100vmax);padding-top:clamp(48px,7vw,84px);padding-bottom:clamp(48px,7vw,84px)}
+.light .eyebrow{color:#8a6a1f}.light .eyebrow::before{background:#8a6a1f}
+.light .gold{background:linear-gradient(120deg,#8a6a1f,#b8892b);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.light .sub,.light p{color:#5b5243}
+.light .ticks li{color:#2a2416}
+.light .ticks li::before{background:#8a6a1f}
+.light .glass{background:#fff;border-color:rgba(29,23,9,.12);box-shadow:0 18px 40px rgba(29,23,9,.08);backdrop-filter:none;-webkit-backdrop-filter:none}
+.light .sim-num div{border-color:rgba(29,23,9,.1)}
+.light .sim-num b{background:none;-webkit-text-fill-color:#1f6f5f;color:#1f6f5f}
+.light .sim-num div:nth-child(2) b{-webkit-text-fill-color:#3d5ba8;color:#3d5ba8}
+.light .sim-num div:nth-child(3) b{-webkit-text-fill-color:#b35a25;color:#b35a25}
+.light .sim-num span,.light .sim-num p{color:#5b5243}
+.light a{color:#8a6a1f!important}
+/* celular: lista vertical em vez de carrossel lateral */
+@media(max-width:699px){
+ .grid{display:grid;grid-template-columns:1fr;gap:12px;overflow:visible;scroll-snap-type:none;padding:0;margin:0}
+ .pc{width:auto;display:grid;grid-template-columns:104px 1fr;border-top:1px solid var(--line);border-left:3px solid var(--ac)}
+ .pc.hl{border-top-color:rgba(235,217,166,.35)}
+ .pc-im{aspect-ratio:3/2;height:auto;align-self:start;margin:14px 0 0 12px;border-radius:10px;border:1px solid var(--line)}
+ .pc-im::after{display:none}
+ .pc:hover .pc-im img{transform:none}
+ .flag{display:none}
+ .pc.hl .pc-cat::after{content:"· Mais procurado";color:var(--g2);letter-spacing:.08em}
+ .pc-b{padding:12px 14px 14px}
+ .pc h3{font-size:21px;margin-bottom:4px}
+ .pc p{font-size:12px;line-height:1.45}
+ .pc .row{margin-top:10px}
+ .price{font-size:24px}
+ .pc .btn.sm{min-height:40px;padding:0 14px}
+ .pc-free{margin-top:8px;padding:8px;font-size:11px}
+ .dots{display:none!important}
+ /* barra fixa acima do selo "Powered by Netlify" (canto inferior direito) */
+ .dock{bottom:calc(max(12px,env(safe-area-inset-bottom)) + var(--nf))}
+ body{padding-bottom:calc(var(--nf) + 90px)}
+}
 </style></head><body>
 <div class="aurora"><i></i><i></i></div><div class="grid-bg"></div><div class="glow"></div>
 <header class="top"><div class="container">
@@ -226,7 +287,7 @@ footer .container{display:flex;flex-direction:column;gap:14px;align-items:center
  <div class="chips" role="group" aria-label="Filtro">
   <button class="chip-f" aria-pressed="true" data-g="all">Todos</button><button class="chip-f" aria-pressed="false" data-g="hospitalar">Hospitalar</button><button class="chip-f" aria-pressed="false" data-g="policia">Polícia Penal</button><button class="chip-f" aria-pressed="false" data-g="transito">EPTC · Trânsito</button><button class="chip-f" aria-pressed="false" data-g="taf">TAF</button>
  </div>
- <div class="grid c4"><article class="pc glass hl" data-g="hospitalar"><div class="pc-im"><img src="img/o_aux_adm.webp" alt="Auxiliar Administrativo Hospitalar" width="900" height="600" loading="lazy"><span class="flag">Mais procurado</span></div><div class="pc-b"><h3 class="cond">Auxiliar Administrativo Hospitalar</h3><p>Material completo para a prova de auxiliar administrativo hospitalar.</p><div class="row"><div class="price">R$ 112,21</div><a class="btn pri sm" href="https://go.hotmart.com/J108379196F" target="_blank" rel="noopener">Comprar</a></div></div></article><article class="pc glass" data-g="hospitalar"><div class="pc-im"><img src="img/o_vigia.webp" alt="Kit Premium Vigia Hospitalar" width="900" height="600" loading="lazy"><span class="flag">Kit premium</span></div><div class="pc-b"><h3 class="cond">Kit Premium Vigia Hospitalar</h3><p>600 questões comentadas + 25 mini-simulados + simulado final.</p><div class="row"><div class="price">R$ 67,00</div><a class="btn pri sm" href="https://go.hotmart.com/M108482190N" target="_blank" rel="noopener">Comprar</a></div><a class="btn gh sm" style="margin-top:10px;width:100%;justify-content:center" href="simulados/vigia/">Simulado grátis</a></div></article><article class="pc glass" data-g="hospitalar"><div class="pc-im"><img src="img/o_hcpa.webp" alt="Assistente Administrativo II · HCPA" width="900" height="600" loading="lazy"><span class="flag">HCPA</span></div><div class="pc-b"><h3 class="cond">Assistente Administrativo II · HCPA</h3><p>Preparação focada no cargo de assistente administrativo II.</p><div class="row"><div class="price">R$ 79,90</div><a class="btn pri sm" href="https://go.hotmart.com/G108024565R" target="_blank" rel="noopener">Comprar</a></div><a class="pc-free" href="simulados/hcpa/">▶ Fazer simulado grátis</a></div></article><article class="pc glass" data-g="hospitalar"><div class="pc-im"><img src="img/o_higien.webp" alt="Higienização Hospitalar" width="900" height="600" loading="lazy"><span class="flag">1.000 questões</span></div><div class="pc-b"><h3 class="cond">Higienização Hospitalar</h3><p>100 Português + 300 Legislação + 100 Conhecimentos Específicos + 500 simulados.</p><div class="row"><div class="price">R$ 57,90</div><a class="btn pri sm" href="https://go.hotmart.com/T108466669M" target="_blank" rel="noopener">Comprar</a></div><a class="btn gh sm" style="margin-top:10px;width:100%;justify-content:center" href="simulados/higienizacao/">Simulado grátis</a></div></article><article class="pc glass" data-g="hospitalar"><div class="pc-im"><img src="img/o_aux_geral.webp" alt="Apostila Auxiliar Geral Hospitalar" width="900" height="600" loading="lazy"><span class="flag">Apostila</span></div><div class="pc-b"><h3 class="cond">Apostila Auxiliar Geral Hospitalar</h3><p>Base de estudo para auxiliar geral em ambiente hospitalar.</p><div class="row"><div class="price">R$ 54,90</div><a class="btn pri sm" href="https://go.hotmart.com/K97658214P" target="_blank" rel="noopener">Comprar</a></div></div></article><article class="pc glass" data-g="policia"><div class="pc-im"><img src="img/o_pp.webp" alt="Rota Polícia Penal" width="900" height="600" loading="lazy"><span class="flag">Polícia Penal</span></div><div class="pc-b"><h3 class="cond">Rota Polícia Penal</h3><p>Teoria, TAF e simulado em um só material.</p><div class="row"><div class="price">R$ 89,90</div><a class="btn pri sm" href="https://go.hotmart.com/M108493717F" target="_blank" rel="noopener">Comprar</a></div></div></article><article class="pc glass" data-g="transito"><div class="pc-im"><img src="img/o_eptc.webp" alt="Rota EPTC 01/2026" width="900" height="600" loading="lazy"><span class="flag">EPTC 01/2026</span></div><div class="pc-b"><h3 class="cond">Rota EPTC 01/2026</h3><p>Preparação para o concurso EPTC de Porto Alegre.</p><div class="row"><div class="price">R$ 77,77</div><a class="btn pri sm" href="https://go.hotmart.com/W107431430L" target="_blank" rel="noopener">Comprar</a></div></div></article><article class="pc glass" data-g="taf"><div class="pc-im"><img src="img/o_taf.webp" alt="Como ser aprovado no TAF" width="900" height="600" loading="lazy"><span class="flag">TAF</span></div><div class="pc-b"><h3 class="cond">Como ser aprovado no TAF</h3><p>Guia para o teste de aptidão física.</p><div class="row"><div class="price">R$ 69,90</div><a class="btn pri sm" href="https://go.hotmart.com/B104624799S" target="_blank" rel="noopener">Comprar</a></div></div></article></div><div class="dots"></div>
+ <div class="grid c4"><article class="pc glass hl" data-g="hospitalar"><div class="pc-im"><img src="img/o_aux_adm.webp" alt="Auxiliar Administrativo Hospitalar" width="900" height="600" loading="lazy"><span class="flag">Mais procurado</span></div><div class="pc-b"><span class="pc-cat">Hospitalar</span><h3 class="cond">Auxiliar Administrativo Hospitalar</h3><p>Material completo para a prova de auxiliar administrativo hospitalar.</p><div class="row"><div class="price">R$ 112,21</div><a class="btn pri sm" href="https://go.hotmart.com/J108379196F" target="_blank" rel="noopener">Comprar</a></div></div></article><article class="pc glass" data-g="hospitalar"><div class="pc-im"><img src="img/o_vigia.webp" alt="Kit Premium Vigia Hospitalar" width="900" height="600" loading="lazy"><span class="flag">Kit premium</span></div><div class="pc-b"><span class="pc-cat">Hospitalar</span><h3 class="cond">Kit Premium Vigia Hospitalar</h3><p>600 questões comentadas + 25 mini-simulados + simulado final.</p><div class="row"><div class="price">R$ 67,00</div><a class="btn pri sm" href="https://go.hotmart.com/M108482190N" target="_blank" rel="noopener">Comprar</a></div><a class="btn gh sm" style="margin-top:10px;width:100%;justify-content:center" href="simulados/vigia/">Simulado grátis</a></div></article><article class="pc glass" data-g="hospitalar"><div class="pc-im"><img src="img/o_hcpa.webp" alt="Assistente Administrativo II · HCPA" width="900" height="600" loading="lazy"><span class="flag">HCPA</span></div><div class="pc-b"><span class="pc-cat">Hospitalar</span><h3 class="cond">Assistente Administrativo II · HCPA</h3><p>Preparação focada no cargo de assistente administrativo II.</p><div class="row"><div class="price">R$ 79,90</div><a class="btn pri sm" href="https://go.hotmart.com/G108024565R" target="_blank" rel="noopener">Comprar</a></div><a class="pc-free" href="simulados/hcpa/">▶ Fazer simulado grátis</a></div></article><article class="pc glass" data-g="hospitalar"><div class="pc-im"><img src="img/o_higien.webp" alt="Higienização Hospitalar" width="900" height="600" loading="lazy"><span class="flag">1.000 questões</span></div><div class="pc-b"><span class="pc-cat">Hospitalar</span><h3 class="cond">Higienização Hospitalar</h3><p>100 Português + 300 Legislação + 100 Conhecimentos Específicos + 500 simulados.</p><div class="row"><div class="price">R$ 57,90</div><a class="btn pri sm" href="https://go.hotmart.com/T108466669M" target="_blank" rel="noopener">Comprar</a></div><a class="btn gh sm" style="margin-top:10px;width:100%;justify-content:center" href="simulados/higienizacao/">Simulado grátis</a></div></article><article class="pc glass" data-g="hospitalar"><div class="pc-im"><img src="img/o_aux_geral.webp" alt="Apostila Auxiliar Geral Hospitalar" width="900" height="600" loading="lazy"><span class="flag">Apostila</span></div><div class="pc-b"><span class="pc-cat">Hospitalar</span><h3 class="cond">Apostila Auxiliar Geral Hospitalar</h3><p>Base de estudo para auxiliar geral em ambiente hospitalar.</p><div class="row"><div class="price">R$ 54,90</div><a class="btn pri sm" href="https://go.hotmart.com/K97658214P" target="_blank" rel="noopener">Comprar</a></div></div></article><article class="pc glass" data-g="policia"><div class="pc-im"><img src="img/o_pp.webp" alt="Rota Polícia Penal" width="900" height="600" loading="lazy"><span class="flag">Polícia Penal</span></div><div class="pc-b"><span class="pc-cat">Polícia Penal</span><h3 class="cond">Rota Polícia Penal</h3><p>Teoria, TAF e simulado em um só material.</p><div class="row"><div class="price">R$ 89,90</div><a class="btn pri sm" href="https://go.hotmart.com/M108493717F" target="_blank" rel="noopener">Comprar</a></div></div></article><article class="pc glass" data-g="transito"><div class="pc-im"><img src="img/o_eptc.webp" alt="Rota EPTC 01/2026" width="900" height="600" loading="lazy"><span class="flag">EPTC 01/2026</span></div><div class="pc-b"><span class="pc-cat">EPTC · Trânsito</span><h3 class="cond">Rota EPTC 01/2026</h3><p>Preparação para o concurso EPTC de Porto Alegre.</p><div class="row"><div class="price">R$ 77,77</div><a class="btn pri sm" href="https://go.hotmart.com/W107431430L" target="_blank" rel="noopener">Comprar</a></div></div></article><article class="pc glass" data-g="taf"><div class="pc-im"><img src="img/o_taf.webp" alt="Como ser aprovado no TAF" width="900" height="600" loading="lazy"><span class="flag">TAF</span></div><div class="pc-b"><span class="pc-cat">TAF</span><h3 class="cond">Como ser aprovado no TAF</h3><p>Guia para o teste de aptidão física.</p><div class="row"><div class="price">R$ 69,90</div><a class="btn pri sm" href="https://go.hotmart.com/B104624799S" target="_blank" rel="noopener">Comprar</a></div></div></article></div><div class="dots"></div>
 </section>
 
 <section id="simulados" class="sec container rev">
@@ -239,7 +300,7 @@ footer .container{display:flex;flex-direction:column;gap:14px;align-items:center
  </div>
 </section>
 
-<section id="quem" class="sec container rev">
+<section id="quem" class="sec container rev light">
  <div class="two">
   <div class="sec-h" style="margin:0"><div class="eyebrow">Quem faz o material</div><h2 class="cond">Material autoral, <span class="gold">feito para a prova</span></h2>
    <p class="sub">A Ouro Concursos produz as próprias apostilas e simulados, organizados pelo edital de cada cargo e no estilo das bancas que aplicam as provas no Rio Grande do Sul. Você estuda o que cai, do jeito que cai.</p>
